@@ -25,5 +25,23 @@ window.ATLAS_DATA.ui = {
   menuHeading: "Co chceš prozkoumat?",
   soon: "Připravujeme",
   back: "Zpět na menu",
-  kostraPlaceholder: "Tady brzy bude obrázek kostry, na který půjde klepat."
+  kostraPlaceholder: "Tady brzy bude obrázek kostry, na který půjde klepat.",
+
+  // Atlas screen (stage 5) – to be proofread
+  layerLabel: "Zobrazit",
+  layerKosti: "Kosti",
+  layerKlouby: "Klouby",
+  togglesLabel: "Zobrazení",
+  togglePopisky: "Popisky",
+  toggleLatinsky: "Latinsky",
+  toggleZvidave: "Pro zvídavé",
+  figureLabel: "Obrázek kostry kočky",
+  figureCredit: "Obrázek: J. Reighard a H. S. Jennings, Anatomy of the Cat (1901), kresba Louise Burridge Jennings. Volné dílo.",
+  cardEmptyKosti: "Klepni na kost na obrázku.",
+  cardEmptyKlouby: "Klepni na kloub na obrázku.",
+  kdeJe: "Kde je?",
+  coDela: "Co dělá?",
+  zajimavost: "Zajímavost",
+  moreInPart: "Další v části",
+  close: "Zavřít"
 };

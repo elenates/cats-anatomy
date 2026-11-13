@@ -3,7 +3,7 @@
  *
  * Routes:
  *   #/          -> main menu (7 sections)
- *   #/kostra    -> Kostra section (placeholder until the atlas UI, stage 5)
+ *   #/kostra    -> Kostra atlas (scripts/atlas.js)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -63,6 +63,12 @@
   function renderSection(section) {
     var back = el("a", { "class": "back-link", href: "#/", text: "← " + ui.back });
     var title = el("h1", { "class": "screen-title", text: section.cs });
+    if (section.id === "kostra" && window.Atlas) {
+      var host = el("div", { "class": "atlas" });
+      // The atlas measures text and the figure width, so it is mounted after insertion.
+      host._mount = function () { window.Atlas.mount(host, { figure: "skeleton" }); };
+      return [back, title, host];
+    }
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -74,6 +80,7 @@
 
     app.textContent = "";
     nodes.forEach(function (n) { app.appendChild(n); });
+    nodes.forEach(function (n) { if (n._mount) n._mount(); });
 
     // Move focus to the new screen so keyboard and screen-reader users start at the top.
     if (id) app.focus();

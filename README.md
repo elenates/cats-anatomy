@@ -36,7 +36,8 @@ cats-anatomy/
 ├── index.html              # app entry point (open this)
 ├── styles/main.css         # all styles, tablet-first
 ├── scripts/
-│   └── app.js              # hash routing, menu and section rendering
+│   ├── app.js              # hash routing, menu and section rendering
+│   └── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles
 ├── data/
 │   ├── sections.js         # the 7 sections and their status
 │   ├── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
@@ -59,8 +60,8 @@ cats-anatomy/
 3. Click on the figure to add points; click the first point or press Enter to close.
    Drag a point to move it, Alt+click to delete it, Ctrl/Cmd+Z to undo.
 4. Press **Check overlaps and sizes**: no overlaps are allowed within a layer;
-   structures narrower than 44 px on a tablet are listed (the app widens their
-   tap area to the nearest bone within 22 px, see stage 5).
+   structures narrower than 44 px on a tablet are listed (the app counts a tap
+   within 22 px of a structure as a hit on the nearest one).
 5. Press **Copy hotspots file** and paste it over `data/hotspots-kostra.js`.
 
 ## Content rules

@@ -155,3 +155,127 @@ a.menu-card:active {
   .menu-card { min-height: 72px; }
   .screen-title { font-size: 1.5rem; }
 }
+
+/* ===================== Atlas (stage 5) ===================== */
+.app-main:has(.atlas) { max-width: 1400px; }
+
+.atlas-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  margin: 0 0 16px;
+}
+.seg, .toggles { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.seg-btn, .toggle {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.seg-btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.toggle::before {                       /* switch-like marker, not only colour */
+  content: "";
+  display: inline-block;
+  width: 0.9em; height: 0.9em;
+  margin-right: 8px;
+  vertical-align: -0.1em;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+.toggle[aria-pressed="true"] { background: var(--accent-soft); }
+.toggle[aria-pressed="true"]::before { background: currentColor; box-shadow: inset 0 0 0 2px var(--surface); }
+
+/* Layout: tablet landscape and desktop = figure + card side by side;
+   portrait and narrow screens = stacked. */
+.atlas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 34%);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 899px), (orientation: portrait) {
+  .atlas-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+.atlas-figure {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px;
+}
+.atlas-svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
+.atlas-credit { margin: 6px 4px 0; font-size: 0.78rem; color: var(--muted); }
+
+/* Hotspots: invisible until hovered, focused or selected. */
+.hotspot polygon {
+  fill: rgba(181, 86, 42, 0);
+  stroke: rgba(181, 86, 42, 0);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition: fill .15s;
+}
+.hotspot:hover polygon { fill: rgba(181, 86, 42, 0.14); stroke: rgba(181, 86, 42, 0.6); }
+.hotspot:focus { outline: none; }
+.hotspot:focus-visible polygon { fill: rgba(26, 95, 180, 0.12); stroke: var(--focus); stroke-width: 3px; }
+.hotspot.is-selected polygon { fill: rgba(181, 86, 42, 0.32); stroke: var(--accent); stroke-width: 3px; }
+
+/* Margin labels ("Popisky") */
+.atlas-label { fill: #2b2420; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; cursor: pointer; }
+.atlas-label.is-selected { fill: var(--accent); font-weight: 700; }
+.atlas-leader { stroke: #8a7d74; stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.atlas-leader.is-selected { stroke: var(--accent); stroke-width: 2.5px; }
+.atlas-dot { fill: #8a7d74; stroke: #fff; stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.atlas-dot.is-selected { fill: var(--accent); }
+
+/* Info card */
+.atlas-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  min-height: 120px;
+}
+.card-empty { color: var(--muted); margin: 24px 0; text-align: center; }
+.card-head { display: flex; align-items: flex-start; gap: 8px; }
+.card-title { flex: 1; margin: 0; font-size: 1.75rem; line-height: 1.2; }
+.card-close {
+  min-width: var(--tap); min-height: var(--tap);
+  border: 0; border-radius: 50%;
+  background: var(--accent-soft); color: var(--text);
+  font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.card-latin { margin: 2px 0 0; font-style: italic; color: var(--muted); font-size: 0.95rem; }
+.card-badge {
+  display: inline-block; margin: 8px 0 0; padding: 2px 10px;
+  border-radius: 999px; background: var(--accent-soft); font-size: 0.8rem; font-weight: 600;
+}
+.card-h { margin: 16px 0 4px; font-size: 1.05rem; color: var(--accent); }
+.card-p { margin: 0; }
+.card-extra-h { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--text); }
+.extra { border-bottom: 1px solid var(--border); }
+.extra summary {
+  min-height: var(--tap); display: flex; align-items: center;
+  font-weight: 600; cursor: pointer; list-style-position: inside;
+}
+.extra-body { padding: 0 0 12px; }
+.extra-body .card-p { margin: 4px 0; }
+
+@media (max-width: 600px) {
+  .card-title { font-size: 1.5rem; }
+  .seg-btn, .toggle { padding: 0 12px; }
+}
+
+/* Phones: with labels on, keep the figure readable and let it scroll sideways. */
+@media (max-width: 600px) {
+  .atlas-figure.has-labels { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .atlas-figure.has-labels .atlas-svg { width: 760px; max-width: none; }
+}
