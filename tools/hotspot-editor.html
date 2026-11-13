@@ -393,6 +393,7 @@
       " * polygons. Layers never overlap internally (check in the editor).",
       " *   kosti  - bones (overview screen, quiz)",
       " *   klouby - joints (\"Klouby a pohyb\" screen)",
+      " * labelSides: where each label goes when \"Popisky\" is on (left/right/top/bottom).",
       " * alsoCounts: a tap on any listed item also counts as the key item.",
       " */",
       "window.ATLAS_DATA = window.ATLAS_DATA || {};",
@@ -414,6 +415,7 @@
         lines.push("    }" + (li < ln.length - 1 ? "," : ""));
       });
       lines.push("  },");
+      if (f.labelSides) lines.push("  labelSides: " + JSON.stringify(f.labelSides) + ",");
       lines.push("  alsoCounts: " + JSON.stringify(f.alsoCounts || {}));
       lines.push("};", "");
     });

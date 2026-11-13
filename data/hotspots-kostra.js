@@ -4,6 +4,7 @@
  * polygons. Layers never overlap internally (check in the editor).
  *   kosti  - bones (overview screen, quiz)
  *   klouby - joints ("Klouby a pohyb" screen)
+ * labelSides: where each label goes when "Popisky" is on (left/right/top/bottom).
  * alsoCounts: a tap on any listed item also counts as the key item.
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
@@ -44,5 +45,6 @@ window.ATLAS_DATA.hotspots["skeleton"] = {
       "hlezenni-kloub": [[[469,663],[457,651],[440,646],[423,651],[411,663],[406,680],[411,697],[423,709],[440,714],[457,709],[469,697],[474,680]]]
     }
   },
+  labelSides: {"pater":"top","zebra":"top","krcni-obratle":"top","lopatka":"top","panev":"top","lebka":"right","dolni-celist":"right","zuby":"right","hrudni-kost":"right","kost-pazni":"right","kost-patni":"bottom","kost-holenni":"bottom","kost-loketni":"bottom","kost-vretenni":"bottom","prsty-predni":"bottom","ocasni-obratle":"left","kost-stehenni":"left","ceska":"left","ramenni-kloub":"right","loketni-kloub":"bottom","zapestni-kloub":"bottom","kycelni-kloub":"top","kolenni-kloub":"left","hlezenni-kloub":"bottom"},
   alsoCounts: {"pater":["krcni-obratle","ocasni-obratle"],"lebka":["dolni-celist","zuby"]}
 };
