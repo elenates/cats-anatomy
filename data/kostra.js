@@ -15,7 +15,8 @@
  *   kdeJe, coDela, zajimavost   child-facing Czech texts (zajimavost may be null)
  *   quiz       false = never used as an answer in "Najdi kost nebo orgán"
  *   refs       reference ids from sources/references.md
- *   image, hotspot   filled in stages 3-4 (figure id and polygon)
+ *
+ * Hotspot polygons are kept separately in data/hotspots-kostra.js.
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -38,9 +39,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Drží tělo pohromadě a chrání míchu, která vede zprávy mezi mozkem a tělem.",
       zajimavost: "Kočka má v páteři kolem 50 obratlů, ty jich máš asi 33.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "MUNI-OST"]
     },
     {
       id: "krcni-obratle",
@@ -52,9 +51,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nesou hlavu a umožňují kočce otáčet krkem.",
       zajimavost: "Kočka má 7 krčních obratlů – stejně jako ty.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "MUNI-OST"]
     },
     {
       id: "nosic",
@@ -66,9 +63,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Hlava se na něm kývá nahoru a dolů.",
       zajimavost: "Jmenuje se podle obra Atlase z řeckých bájí, který nesl nebe na ramenou.",
       quiz: true,
-      refs: ["NAV", "MUNI-OST", "MUNI-NAZ"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MUNI-OST", "MUNI-NAZ"]
     },
     {
       id: "cepovec",
@@ -80,9 +75,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Má výběžek jako čep, kolem kterého se nosič i s hlavou otáčí.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MUNI-NAZ"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MUNI-NAZ"]
     },
     {
       id: "hrudni-obratle",
@@ -94,9 +87,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Jsou k nim připojená žebra.",
       zajimavost: "Kočka jich má 13 – ke každému patří jeden pár žeber.",
       quiz: true,
-      refs: ["NAV", "POL15", "IMA-RIB"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "IMA-RIB"]
     },
     {
       id: "bederni-obratle",
@@ -108,9 +99,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nesou zadní část trupu a pomáhají kočce prohnout hřbet.",
       zajimavost: "Kočka jich má 7, ty jen 5.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "MUNI-OST"]
     },
     {
       id: "kost-krizova",
@@ -122,9 +111,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje páteř s pánví.",
       zajimavost: "Vznikla ze 3 obratlů, které srostly v jednu kost.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "MUNI-OST"]
     },
     {
       id: "ocasni-obratle",
@@ -136,9 +123,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří kostru ocasu, kterým kočka může hýbat na všechny strany.",
       zajimavost: "Kočka jich mívá 20 až 23 – každá trochu jinak.",
       quiz: true,
-      refs: ["NAV", "POL15", "IMA-VERT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "POL15", "IMA-VERT"]
     },
     {
       id: "zebra",
@@ -150,9 +135,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří hrudní koš, který chrání srdce a plíce.",
       zajimavost: "Kočka má 13 párů žeber, ty máš 12 párů.",
       quiz: true,
-      refs: ["NAV", "IMA-RIB", "MUNI-OST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "IMA-RIB", "MUNI-OST"]
     },
     {
       id: "hrudni-kost",
@@ -164,9 +147,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje konce žeber zespodu.",
       zajimavost: "Prvních 9 párů žeber je k ní připojených, zbylé 4 páry ne.",
       quiz: true,
-      refs: ["NAV", "IMA-RIB"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "IMA-RIB"]
     },
     {
       id: "lebka",
@@ -178,9 +159,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání mozek a oči.",
       zajimavost: "Lebka se skládá z mnoha kostí, které jsou pevně spojené.",
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "dolni-celist",
@@ -192,9 +171,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Hýbe se v čelistním kloubu a otevírá a zavírá tlamu.",
       zajimavost: "Nese 14 zubů – 7 na každé straně.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "horni-celist",
@@ -206,9 +183,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří velkou část obličeje a patra.",
       zajimavost: "Horní řezáky nejsou v horní čelisti, ale v malé kosti řezákové.",
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "zuby",
@@ -220,9 +195,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kočka jimi chytá a drží kořist a krájí potravu na kousky.",
       zajimavost: "Kotě má 26 mléčných zubů, dospělá kočka 30 zubů.",
       quiz: true,
-      refs: ["NAV", "MERCK-TEETH", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-TEETH", "UMN-FEL"]
     },
     {
       id: "spicak",
@@ -234,9 +207,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kočka jím chytá a drží kořist.",
       zajimavost: "Kočka má 4 špičáky – stejně jako ty.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "ocnice",
@@ -248,9 +219,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání oko.",
       zajimavost: "U kočky je očnice skoro celá obkroužená kostí, zbytek uzavírá vaz.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "jarmovy-oblouk",
@@ -262,9 +231,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začíná na něm silný žvýkací sval.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "NLK-MeSH", "ELS-ZYG"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "NLK-MeSH", "ELS-ZYG"]
     },
     {
       id: "kost-tylni",
@@ -276,9 +243,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje lebku s páteří.",
       zajimavost: "Má velký otvor, kterým vede mícha z mozku do páteře.",
       quiz: true,
-      refs: ["NAV", "SLU-NAZ"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "SLU-NAZ"]
     },
     {
       id: "kost-celni",
@@ -290,9 +255,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání přední část mozku.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "kost-temenni",
@@ -304,9 +267,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří střechu lebky a chrání mozek.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "kost-nosni",
@@ -318,9 +279,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kryje nosní dutinu shora.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "kost-spankova",
@@ -332,9 +291,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Je v ní ukryté vnitřní ucho.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "kost-licni",
@@ -346,9 +303,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří přední část jařmového oblouku.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MUNI-KOST", "NLK-MeSH"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MUNI-KOST", "NLK-MeSH"]
     },
     {
       id: "lopatka",
@@ -360,9 +315,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Připojuje přední nohu k trupu.",
       zajimavost: "Lopatka není s trupem spojená kloubem – drží ji jen svaly.",
       quiz: true,
-      refs: ["NAV", "WIKIVET-FL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "WIKIVET-FL"]
     },
     {
       id: "klicni-kost",
@@ -374,9 +327,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "U kočky je malá a s ničím nespojená, takže rameni moc nepomáhá.",
       zajimavost: "Na rozdíl od tvé klíční kosti není spojená s žádnou jinou kostí.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL", "IMA-CLAV", "WIKIVET-FL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL", "IMA-CLAV", "WIKIVET-FL"]
     },
     {
       id: "kost-pazni",
@@ -388,9 +339,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje rameno s loktem.",
       zajimavost: "Kočka má v pažní kosti malý otvor, který pes na tom místě nemá.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "kost-vretenni",
@@ -402,9 +351,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje loket se zápěstím a nese váhu těla.",
       zajimavost: "Spolu s kostí loketní tvoří předloktí – stejně jako u tebe.",
       quiz: true,
-      refs: ["NAV", "MUNI-KOST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MUNI-KOST"]
     },
     {
       id: "kost-loketni",
@@ -416,9 +363,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Její horní konec tvoří špičku lokte.",
       zajimavost: "Na špičku lokte se upíná sval, který natahuje přední nohu.",
       quiz: true,
-      refs: ["NAV", "WIKIVET-FL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "WIKIVET-FL"]
     },
     {
       id: "kosti-zapestni",
@@ -430,9 +375,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří zápěstí, díky kterému se tlapka ohýbá.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT"]
     },
     {
       id: "kosti-zaprstni",
@@ -444,9 +387,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří střední část přední tlapky.",
       zajimavost: "Kočka jich má v přední tlapce 5, první je ale hodně krátká.",
       quiz: true,
-      refs: ["NAV", "TF-META"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "TF-META"]
     },
     {
       id: "prsty-predni",
@@ -458,9 +399,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kočka na nich stojí a chodí – patu ani dlaň na zem nepokládá.",
       zajimavost: "Nejmenší prst (paspárek) má jen dva články a dráp schovat neumí.",
       quiz: true,
-      refs: ["NAV", "UMN-RUN", "LAWSON", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-RUN", "LAWSON", "UMN-FEL"]
     },
     {
       id: "clanek-drapovy",
@@ -472,9 +411,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nese dráp. Když kočka dráp nepotřebuje, schová ho.",
       zajimavost: "Drápy umí schovat všechny kočkovité šelmy kromě geparda.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "panev",
@@ -486,9 +423,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje zadní nohy s páteří.",
       zajimavost: "Každá pánevní kost vznikla srůstem tří kostí: kyčelní, sedací a stydké.",
       quiz: true,
-      refs: ["NAV", "LF2-DK"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "LF2-DK"]
     },
     {
       id: "kost-kycelni",
@@ -500,9 +435,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Je spojená s kostí křížovou.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "LF2-DK"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "LF2-DK"]
     },
     {
       id: "kost-sedaci",
@@ -514,9 +447,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začínají na ní svaly zadní nohy.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "LF2-DK"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "LF2-DK"]
     },
     {
       id: "kost-stydka",
@@ -528,9 +459,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Uzavírá pánev zespodu; obě kosti stydké se uprostřed spojují.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "LF2-DK"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "LF2-DK"]
     },
     {
       id: "kost-stehenni",
@@ -542,9 +471,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nese váhu těla a pomáhá při odrazu ke skoku.",
       zajimavost: "Její hlavice zapadá do jamky v pánvi jako kulička do misky.",
       quiz: true,
-      refs: ["NAV", "UMN-RUN"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-RUN"]
     },
     {
       id: "ceska",
@@ -556,9 +483,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání koleno a pomáhá svalu narovnat nohu.",
       zajimavost: "Kočičí čéška má tvar hrušky.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL", "NCSU-PL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL", "NCSU-PL"]
     },
     {
       id: "kost-holenni",
@@ -570,9 +495,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nese váhu těla v bérci.",
       zajimavost: "Svou holenní kost si nahmatáš vpředu na noze pod kolenem.",
       quiz: true,
-      refs: ["NAV", "LF2-DK"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "LF2-DK"]
     },
     {
       id: "kost-lytkova",
@@ -584,9 +507,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začínají na ní svaly bérce.",
       zajimavost: "U kočky je mezi holenní a lýtkovou kostí skoro všude stejně široká mezera.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     },
     {
       id: "kosti-zanartni",
@@ -598,9 +519,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří hlezno.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "NCSU-PL", "MUNI-KOST"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "NCSU-PL", "MUNI-KOST"]
     },
     {
       id: "kost-patni",
@@ -612,9 +531,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Upíná se na ni silná šlacha lýtkových svalů, která pomáhá při odrazu.",
       zajimavost: "To, co vypadá jako koleno ohnuté dozadu, je ve skutečnosti kočičí pata!",
       quiz: true,
-      refs: ["NAV", "NCSU-PL", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "NCSU-PL", "MERCK-JOINT"]
     },
     {
       id: "kosti-nartni",
@@ -626,9 +543,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří dlouhou střední část zadní tlapky.",
       zajimavost: "Kočka jich má v zadní tlapce jen 4.",
       quiz: true,
-      refs: ["NAV", "TF-META"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "TF-META"]
     },
     {
       id: "prsty-zadni",
@@ -640,9 +555,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kočka na nich stojí a odráží se.",
       zajimavost: "Na přední tlapce má kočka 5 prstů, na zadní jen 4.",
       quiz: true,
-      refs: ["TF-META", "UMN-RUN"],
-      image: null,
-      hotspot: null
+      refs: ["TF-META", "UMN-RUN"]
     },
     {
       id: "ramenni-kloub",
@@ -654,9 +567,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Umožňuje přední noze kmitat dopředu a dozadu.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT"]
     },
     {
       id: "loketni-kloub",
@@ -668,9 +579,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Ohýbá a natahuje přední nohu.",
       zajimavost: "Kočičí loket míří dozadu – stejně jako tvůj, když lezeš po čtyřech.",
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT"]
     },
     {
       id: "zapestni-kloub",
@@ -682,9 +591,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Ohýbá tlapku.",
       zajimavost: "Vypadá jako koleno, ale je to zápěstí – jako to tvoje.",
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT"]
     },
     {
       id: "kycelni-kloub",
@@ -696,9 +603,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Umožňuje zadní noze pohyb dopředu, dozadu i do stran.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT"]
     },
     {
       id: "kolenni-kloub",
@@ -710,9 +615,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Ohýbá a natahuje zadní nohu.",
       zajimavost: "Kočičí koleno míří dopředu – stejně jako tvoje.",
       quiz: true,
-      refs: ["NAV", "MERCK-JOINT", "UMN-LAB7"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "MERCK-JOINT", "UMN-LAB7"]
     },
     {
       id: "hlezenni-kloub",
@@ -724,9 +627,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Při odrazu se rychle narovná a pomáhá kočce vyskočit.",
       zajimavost: "Kočka chodí po prstech, a proto má patu vysoko nad zemí.",
       quiz: true,
-      refs: ["NAV", "NCSU-PL", "UMN-RUN", "LAWSON"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "NCSU-PL", "UMN-RUN", "LAWSON"]
     },
     {
       id: "celistni-kloub",
@@ -738,9 +639,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje dolní čelist s lebkou, takže kočka může otevřít tlamu.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"],
-      image: null,
-      hotspot: null
+      refs: ["NAV"]
     },
     {
       id: "plotenka",
@@ -752,9 +651,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tlumí nárazy a dovoluje páteři se ohýbat.",
       zajimavost: "Kočce chybí vaz, který má pes na krku, a proto je její páteř ohebnější.",
       quiz: false,
-      refs: ["NAV", "UMN-FEL"],
-      image: null,
-      hotspot: null
+      refs: ["NAV", "UMN-FEL"]
     }
   ]
 };

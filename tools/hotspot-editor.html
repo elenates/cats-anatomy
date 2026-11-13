@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotspot editor – Kočičí tělo pod lupou</title>
+<!--
+  Developer tool. Draw polygon hotspots over a figure, check them, export JSON.
+  Works from file:// (no modules, no fetch). The figure is shown with <img>, and
+  polygons are drawn in an SVG with viewBox = the image's pixel size, so every
+  coordinate is in original image pixels.
+
+  Mouse / keys:
+    click                add a point to the polygon being drawn
+    click first point    close the polygon (or press Enter)
+    drag a point         move it (selected polygon only)
+    Alt+click a point    delete it
+    Esc                  cancel the polygon being drawn
+    Ctrl/Cmd+Z           undo
+-->
+<style>
+  :root { font-family: system-ui, sans-serif; font-size: 14px; color: #222; }
+  body { margin: 0; display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+  aside { border-right: 1px solid #ddd; padding: 12px; overflow: auto; background: #fafafa; }
+  main { overflow: auto; position: relative; background: #eee; }
+  h1 { font-size: 16px; margin: 0 0 8px; }
+  h2 { font-size: 13px; margin: 14px 0 6px; text-transform: uppercase; color: #666; }
+  label { display: block; margin: 6px 0 2px; }
+  select, button, textarea, input { font: inherit; }
+  select, textarea { width: 100%; box-sizing: border-box; }
+  button { margin: 2px 2px 2px 0; padding: 4px 8px; }
+  .stage { position: relative; display: inline-block; margin: 12px; transform-origin: 0 0; }
+  .stage img { display: block; user-select: none; -webkit-user-drag: none; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+  .poly { fill: rgba(30,120,220,.18); stroke: rgba(30,120,220,.9); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .poly.sel { fill: rgba(230,90,20,.25); stroke: #e65a14; stroke-width: 2.5; }
+  .poly.other-layer { fill: none; stroke: rgba(0,0,0,.25); stroke-dasharray: 4 3; }
+  .poly.bad { fill: rgba(220,0,0,.35); }
+  .draft { fill: rgba(0,160,0,.15); stroke: #090; stroke-width: 2; stroke-dasharray: 5 3; vector-effect: non-scaling-stroke; }
+  .vtx { fill: #fff; stroke: #e65a14; stroke-width: 2; vector-effect: non-scaling-stroke; cursor: move; }
+  .vtx.first { fill: #e65a14; }
+  .lbl { font: bold 13px system-ui; fill: #123; paint-order: stroke; stroke: #fff; stroke-width: 3px; pointer-events: none; }
+  #items { height: 220px; }
+  #report { font-size: 12px; white-space: pre-wrap; background: #fff; border: 1px solid #ddd; padding: 6px; max-height: 260px; overflow: auto; }
+  .hint { color: #666; font-size: 12px; }
+  .row { display: flex; gap: 6px; align-items: center; }
+</style>
+</head>
+<body>
+<aside>
+  <h1>Hotspot editor</h1>
+
+  <label for="figure">Figure</label>
+  <select id="figure"></select>
+  <div class="row" style="margin-top:6px">
+    <label class="hint" for="localImg" style="margin:0">or open an image file:</label>
+  </div>
+  <input type="file" id="localImg" accept="image/*">
+
+  <label for="layer">Layer</label>
+  <select id="layer"></select>
+  <div class="row"><input id="newLayer" placeholder="new layer name" style="flex:1"><button id="addLayer">Add</button></div>
+
+  <label for="items">Structure (from data/kostra.js)</label>
+  <select id="items" size="12"></select>
+  <div class="hint" id="itemInfo"></div>
+
+  <h2>Polygons of this structure</h2>
+  <div id="polyList"></div>
+  <button id="newPoly">New polygon</button>
+  <button id="delPoly">Delete selected polygon</button>
+
+  <h2>View</h2>
+  <div class="row">
+    <label for="zoom" style="margin:0">Zoom</label>
+    <input type="range" id="zoom" min="0.4" max="3" step="0.1" value="1" style="flex:1">
+    <span id="zoomVal">100%</span>
+  </div>
+  <label><input type="checkbox" id="showAll" checked> Show other structures</label>
+  <label><input type="checkbox" id="showOtherLayers"> Show other layers (outline)</label>
+  <label><input type="checkbox" id="showLabels" checked> Show labels</label>
+
+  <h2>Check</h2>
+  <div class="row">
+    <label for="tabletW" style="margin:0">Figure width on tablet (CSS px)</label>
+    <input type="number" id="tabletW" value="1024" style="width:70px">
+  </div>
+  <button id="check">Check overlaps and sizes</button>
+  <div id="report">–</div>
+
+  <h2>Export / import</h2>
+  <button id="copyFile">Copy hotspots file</button>
+  <button id="copyItem">Copy this structure (JSON)</button>
+  <label for="io">Paste JSON for this structure, then Import</label>
+  <textarea id="io" rows="4"></textarea>
+  <button id="importItem">Import into this structure</button>
+  <p class="hint">"Copy hotspots file" copies a complete <code>data/hotspots-&lt;section&gt;.js</code>
+     for all figures; paste it over the file in the repo.</p>
+</aside>
+
+<main>
+  <div class="stage" id="stage">
+    <img id="img" alt="">
+    <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+</main>
+
+<!-- Content and existing hotspots. Plain scripts, so this works from file://. -->
+<script src="../data/kostra.js"></script>
+<script src="../data/hotspots-kostra.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.ATLAS_DATA || {};
+  var items = (D.kostra && D.kostra.items) || [];
+  var figures = D.hotspots || {};      // { figureId: {image,width,height,layers,alsoCounts,...} }
+  var NS = "http://www.w3.org/2000/svg";
+
+  // ---------- state ----------
+  var st = { fig: null, layer: null, item: null, polyIdx: 0, draft: null, drag: null };
+  var undoStack = [];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var img = $("img"), svg = $("svg"), stage = $("stage");
+
+  function snapshot() {
+    undoStack.push(JSON.stringify(figures));
+    if (undoStack.length > 100) undoStack.shift();
+  }
+  function undo() {
+    if (!undoStack.length) return;
+    figures = JSON.parse(undoStack.pop());
+    D.hotspots = figures;
+    st.draft = null;
+    render();
+  }
+
+  function fig() { return figures[st.fig]; }
+  function layerObj() {
+    var f = fig(); if (!f) return {};
+    f.layers = f.layers || {};
+    f.layers[st.layer] = f.layers[st.layer] || {};
+    return f.layers[st.layer];
+  }
+  function polysOf(id) { return layerObj()[id] || []; }
+  function itemById(id) { for (var i = 0; i < items.length; i++) if (items[i].id === id) return items[i]; return null; }
+
+  // ---------- setup ----------
+  function fillFigures() {
+    var sel = $("figure"); sel.innerHTML = "";
+    Object.keys(figures).forEach(function (k) {
+      var o = document.createElement("option"); o.value = k; o.textContent = k + " (" + figures[k].image + ")"; sel.appendChild(o);
+    });
+    if (!st.fig) st.fig = Object.keys(figures)[0] || null;
+    sel.value = st.fig;
+  }
+  function fillLayers() {
+    var sel = $("layer"); sel.innerHTML = "";
+    var f = fig(); if (!f) return;
+    var names = Object.keys(f.layers || {});
+    if (!names.length) names = ["kosti"];
+    names.forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = k; sel.appendChild(o); });
+    if (names.indexOf(st.layer) < 0) st.layer = names[0];
+    sel.value = st.layer;
+  }
+  function fillItems() {
+    var sel = $("items"), cur = st.item; sel.innerHTML = "";
+    var lay = layerObj();
+    items.forEach(function (it) {
+      var n = (lay[it.id] || []).length;
+      var o = document.createElement("option");
+      o.value = it.id;
+      o.textContent = (n ? "● " : "○ ") + it.cs + "  [" + it.id + "]" + (it.level === "zaklad" ? "  Z" : "") + (n > 1 ? "  ×" + n : "");
+      sel.appendChild(o);
+    });
+    if (cur) sel.value = cur;
+  }
+  function loadFigureImage() {
+    var f = fig(); if (!f) return;
+    // Path in the data file is relative to the app root; this page is in tools/.
+    img.src = f._localUrl || ("../" + f.image);
+    img.onload = function () {
+      if (!f.width || !f.height) { f.width = img.naturalWidth; f.height = img.naturalHeight; }
+      if (img.naturalWidth !== f.width || img.naturalHeight !== f.height) {
+        alert("Image is " + img.naturalWidth + "×" + img.naturalHeight + " but the data says " + f.width + "×" + f.height + ". Coordinates may be off.");
+      }
+      svg.setAttribute("viewBox", "0 0 " + f.width + " " + f.height);
+      applyZoom(); render();
+    };
+  }
+  function applyZoom() {
+    var z = parseFloat($("zoom").value), f = fig(); if (!f) return;
+    img.style.width = (f.width * z) + "px";
+    $("zoomVal").textContent = Math.round(z * 100) + "%";
+  }
+
+  // ---------- rendering ----------
+  function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  function pts(p) { return p.map(function (q) { return q[0] + "," + q[1]; }).join(" "); }
+  function centroid(p) { var x = 0, y = 0; p.forEach(function (q) { x += q[0]; y += q[1]; }); return [x / p.length, y / p.length]; }
+
+  function render() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var f = fig(); if (!f) return;
+    var showAll = $("showAll").checked, showLbl = $("showLabels").checked;
+    if ($("showOtherLayers").checked) {
+      Object.keys(f.layers || {}).forEach(function (ln) {
+        if (ln === st.layer) return;
+        var L = f.layers[ln];
+        Object.keys(L).forEach(function (id) { L[id].forEach(function (p) { svg.appendChild(el("polygon", { points: pts(p), "class": "poly other-layer" })); }); });
+      });
+    }
+    var lay = layerObj();
+    Object.keys(lay).forEach(function (id) {
+      var isSel = id === st.item;
+      if (!isSel && !showAll) return;
+      lay[id].forEach(function (p, i) {
+        var poly = el("polygon", { points: pts(p), "class": "poly" + (isSel && i === st.polyIdx ? " sel" : "") + (badSet[id] ? " bad" : "") });
+        poly.dataset.id = id; poly.dataset.i = i;
+        svg.appendChild(poly);
+        if (showLbl && p.length) { var c = centroid(p); var t = el("text", { x: c[0], y: c[1], "class": "lbl", "text-anchor": "middle" }); t.textContent = (itemById(id) || {}).cs || id; svg.appendChild(t); }
+      });
+    });
+    // vertices of the selected polygon
+    var sp = polysOf(st.item)[st.polyIdx];
+    var r = 5 / parseFloat($("zoom").value);
+    if (sp && !st.draft) sp.forEach(function (q, k) {
+      var c = el("circle", { cx: q[0], cy: q[1], r: r, "class": "vtx" }); c.dataset.k = k; svg.appendChild(c);
+    });
+    if (st.draft && st.draft.length) {
+      svg.appendChild(el("polyline", { points: pts(st.draft), "class": "draft" }));
+      st.draft.forEach(function (q, k) { svg.appendChild(el("circle", { cx: q[0], cy: q[1], r: r * (k ? 1 : 1.4), "class": "vtx" + (k ? "" : " first") })); });
+    }
+    renderPolyList();
+  }
+  function renderPolyList() {
+    var box = $("polyList"); box.innerHTML = "";
+    var list = polysOf(st.item);
+    if (!st.item) { box.textContent = "Pick a structure."; return; }
+    if (!list.length) { box.textContent = st.draft ? "Drawing… click the first point or press Enter to close." : "None. Click on the figure to start drawing."; return; }
+    list.forEach(function (p, i) {
+      var b = document.createElement("button");
+      b.textContent = "#" + (i + 1) + " (" + p.length + " pts)" + (i === st.polyIdx ? " ◀" : "");
+      b.onclick = function () { st.polyIdx = i; st.draft = null; render(); };
+      box.appendChild(b);
+    });
+  }
+
+  // ---------- mouse ----------
+  function toImg(evt) {
+    var pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY;
+    var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return [Math.round(p.x * 10) / 10, Math.round(p.y * 10) / 10];
+  }
+  svg.addEventListener("mousedown", function (e) {
+    if (!st.item) { alert("Pick a structure first."); return; }
+    var t = e.target;
+    if (t.classList.contains("vtx") && !st.draft) {
+      var k = +t.dataset.k, poly = polysOf(st.item)[st.polyIdx];
+      if (e.altKey) {
+        if (poly.length <= 3) { alert("A polygon needs at least 3 points."); return; }
+        snapshot(); poly.splice(k, 1); render(); return;
+      }
+      snapshot(); st.drag = { k: k }; e.preventDefault(); return;
+    }
+    if (t.tagName === "polygon" && t.dataset.id && !st.draft && !e.shiftKey) {
+      // Click on an existing polygon selects it (Shift+click draws through it).
+      st.item = t.dataset.id; st.polyIdx = +t.dataset.i; $("items").value = st.item; updateItemInfo(); render(); return;
+    }
+    var p = toImg(e);
+    if (!st.draft) st.draft = [];
+    if (st.draft.length >= 3) {
+      var f0 = st.draft[0], z = parseFloat($("zoom").value);
+      if (Math.hypot(p[0] - f0[0], p[1] - f0[1]) * z < 10) { closeDraft(); return; }
+    }
+    st.draft.push(p); render();
+  });
+  window.addEventListener("mousemove", function (e) {
+    if (!st.drag) return;
+    var poly = polysOf(st.item)[st.polyIdx]; poly[st.drag.k] = toImg(e); render();
+  });
+  window.addEventListener("mouseup", function () { st.drag = null; });
+
+  function closeDraft() {
+    if (!st.draft || st.draft.length < 3) { alert("A polygon needs at least 3 points."); return; }
+    snapshot();
+    var lay = layerObj(); lay[st.item] = lay[st.item] || [];
+    lay[st.item].push(st.draft); st.polyIdx = lay[st.item].length - 1; st.draft = null;
+    fillItems(); render();
+  }
+  window.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+    if (e.key === "Enter" && st.draft) closeDraft();
+    else if (e.key === "Escape") { st.draft = null; render(); }
+    else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); undo(); }
+  });
+
+  // ---------- controls ----------
+  function updateItemInfo() {
+    var it = itemById(st.item);
+    $("itemInfo").textContent = it ? (it.cs + " · " + it.la + " · " + (it.level === "zaklad" ? "Základ" : "Pro zvídavé")) : "";
+  }
+  $("figure").onchange = function () { st.fig = this.value; st.draft = null; fillLayers(); fillItems(); loadFigureImage(); };
+  $("layer").onchange = function () { st.layer = this.value; st.draft = null; fillItems(); render(); };
+  $("addLayer").onclick = function () {
+    var n = $("newLayer").value.trim(); if (!n) return;
+    snapshot(); fig().layers[n] = fig().layers[n] || {}; st.layer = n; fillLayers(); fillItems(); render();
+  };
+  $("items").onchange = function () { st.item = this.value; st.polyIdx = 0; st.draft = null; updateItemInfo(); render(); };
+  $("newPoly").onclick = function () { st.draft = []; render(); };
+  $("delPoly").onclick = function () {
+    var list = polysOf(st.item); if (!list[st.polyIdx]) return;
+    if (!confirm("Delete polygon #" + (st.polyIdx + 1) + " of " + st.item + "?")) return;
+    snapshot(); list.splice(st.polyIdx, 1);
+    if (!list.length) delete layerObj()[st.item];
+    st.polyIdx = 0; fillItems(); render();
+  };
+  $("zoom").oninput = function () { applyZoom(); render(); };
+  ["showAll", "showOtherLayers", "showLabels"].forEach(function (id) { $(id).onchange = render; });
+
+  $("localImg").onchange = function () {
+    var file = this.files[0]; if (!file) return;
+    var name = prompt("Figure id (e.g. skull):", file.name.replace(/\.[^.]+$/, ""));
+    if (!name) return;
+    var path = prompt("Image path in the repo (relative to the app root):", "images/kostra/" + file.name);
+    snapshot();
+    figures[name] = figures[name] || { image: path, width: 0, height: 0, layers: { kosti: {} }, alsoCounts: {} };
+    figures[name]._localUrl = URL.createObjectURL(file);
+    st.fig = name; fillFigures(); fillLayers(); fillItems(); loadFigureImage();
+  };
+
+  // ---------- checks ----------
+  var badSet = {};
+  function rasterize(polys, w, h) {
+    var c = document.createElement("canvas"); c.width = w; c.height = h;
+    var g = c.getContext("2d"); g.fillStyle = "#000";
+    polys.forEach(function (p) { g.beginPath(); p.forEach(function (q, i) { i ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1]); }); g.closePath(); g.fill(); });
+    var d = g.getImageData(0, 0, w, h).data, m = new Uint8Array(w * h);
+    for (var i = 0; i < m.length; i++) m[i] = d[i * 4 + 3] > 127 ? 1 : 0;
+    return m;
+  }
+  // Largest inscribed circle diameter via a two-pass chamfer distance transform.
+  function thickness(m, w, h) {
+    var INF = 1e9, dist = new Float32Array(w * h), a = 1, b = Math.SQRT2, best = 0;
+    for (var i = 0; i < m.length; i++) dist[i] = m[i] ? INF : 0;
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+      var i2 = y * w + x; if (!dist[i2]) continue; var v = dist[i2];
+      if (x > 0) v = Math.min(v, dist[i2 - 1] + a);
+      if (y > 0) { v = Math.min(v, dist[i2 - w] + a); if (x > 0) v = Math.min(v, dist[i2 - w - 1] + b); if (x < w - 1) v = Math.min(v, dist[i2 - w + 1] + b); }
+      dist[i2] = v;
+    }
+    for (y = h - 1; y >= 0; y--) for (x = w - 1; x >= 0; x--) {
+      i2 = y * w + x; if (!dist[i2]) continue; v = dist[i2];
+      if (x < w - 1) v = Math.min(v, dist[i2 + 1] + a);
+      if (y < h - 1) { v = Math.min(v, dist[i2 + w] + a); if (x < w - 1) v = Math.min(v, dist[i2 + w + 1] + b); if (x > 0) v = Math.min(v, dist[i2 + w - 1] + b); }
+      dist[i2] = v; if (v > best) best = v;
+    }
+    return best * 2;
+  }
+  $("check").onclick = function () {
+    var f = fig(), w = f.width, h = f.height, lay = layerObj(), ids = Object.keys(lay);
+    var scale = parseFloat($("tabletW").value) / w, out = [], masks = {};
+    badSet = {};
+    ids.forEach(function (id) { masks[id] = rasterize(lay[id], w, h); });
+    var overlaps = [];
+    for (var i = 0; i < ids.length; i++) for (var j = i + 1; j < ids.length; j++) {
+      var A = masks[ids[i]], B = masks[ids[j]], n = 0;
+      for (var k = 0; k < A.length; k++) if (A[k] && B[k]) n++;
+      if (n > 4) { overlaps.push(ids[i] + " × " + ids[j] + ": " + n + " px"); badSet[ids[i]] = badSet[ids[j]] = true; }
+    }
+    out.push("Layer \"" + st.layer + "\", " + ids.length + " structures.");
+    out.push(overlaps.length ? "OVERLAPS (steal taps):\n  " + overlaps.join("\n  ") : "No overlaps.");
+    out.push("\nWidth on tablet (largest inscribed circle, CSS px; target ≥ 44):");
+    ids.forEach(function (id) {
+      var t = thickness(masks[id], w, h) * scale;
+      out.push("  " + (t >= 44 ? "ok   " : "thin ") + t.toFixed(0).padStart(3) + "  " + id);
+    });
+    var missing = items.filter(function (it) {
+      return it.level === "zaklad" && !Object.keys(f.layers).some(function (l) { return f.layers[l][it.id]; });
+    }).map(function (it) { return it.id; });
+    out.push("\nZáklad items without a hotspot on any layer of this figure: " + (missing.length ? missing.join(", ") : "none"));
+    $("report").textContent = out.join("\n");
+    render();
+  };
+
+  // ---------- export / import ----------
+  function round1(p) { return p.map(function (q) { return [Math.round(q[0] * 10) / 10, Math.round(q[1] * 10) / 10]; }); }
+  function fileText() {
+    var lines = [
+      "/*",
+      " * Hotspots for the Kostra figures. Generated by tools/hotspot-editor.html.",
+      " * Coordinates are in original image pixels; each item id maps to a list of",
+      " * polygons. Layers never overlap internally (check in the editor).",
+      " *   kosti  - bones (overview screen, quiz)",
+      " *   klouby - joints (\"Klouby a pohyb\" screen)",
+      " * alsoCounts: a tap on any listed item also counts as the key item.",
+      " */",
+      "window.ATLAS_DATA = window.ATLAS_DATA || {};",
+      "window.ATLAS_DATA.hotspots = window.ATLAS_DATA.hotspots || {};", ""];
+    Object.keys(figures).forEach(function (fk) {
+      var f = figures[fk], ln = Object.keys(f.layers || {});
+      lines.push("window.ATLAS_DATA.hotspots[" + JSON.stringify(fk) + "] = {");
+      lines.push("  image: " + JSON.stringify(f.image) + ",");
+      lines.push("  width: " + f.width + ",");
+      lines.push("  height: " + f.height + ",");
+      if (f.figure) lines.push("  figure: " + JSON.stringify(f.figure) + ",");
+      lines.push("  layers: {");
+      ln.forEach(function (l, li) {
+        lines.push("    " + l + ": {");
+        var ids = Object.keys(f.layers[l]);
+        ids.forEach(function (id, i) {
+          lines.push("      " + JSON.stringify(id) + ": " + JSON.stringify(f.layers[l][id].map(round1)) + (i < ids.length - 1 ? "," : ""));
+        });
+        lines.push("    }" + (li < ln.length - 1 ? "," : ""));
+      });
+      lines.push("  },");
+      lines.push("  alsoCounts: " + JSON.stringify(f.alsoCounts || {}));
+      lines.push("};", "");
+    });
+    return lines.join("\n");
+  }
+  function copy(text, what) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { alert(what + " copied."); }, function () { fallback(text); });
+    } else fallback(text);
+  }
+  function fallback(text) { $("io").value = text; $("io").select(); alert("Clipboard not available here: the text is in the box below, selected. Copy it with Ctrl/Cmd+C."); }
+  $("copyFile").onclick = function () { copy(fileText(), "Hotspots file"); };
+  $("copyItem").onclick = function () { if (st.item) copy(JSON.stringify(polysOf(st.item).map(round1)), "Polygons of " + st.item); };
+  $("importItem").onclick = function () {
+    if (!st.item) return;
+    try {
+      var v = JSON.parse($("io").value);
+      if (!Array.isArray(v) || !v.every(function (p) { return Array.isArray(p) && p.length >= 3; })) throw new Error("Expected [[[x,y],...], ...]");
+      snapshot(); layerObj()[st.item] = v; st.polyIdx = 0; fillItems(); render();
+    } catch (err) { alert("Could not import: " + err.message); }
+  };
+
+  // Hook for automated tests.
+  window.__hotspotEditor = { fileText: fileText, state: st, figures: function () { return figures; } };
+
+  // ---------- start ----------
+  if (!Object.keys(figures).length) {
+    figures.skeleton = { image: "images/kostra/skeleton.webp", width: 0, height: 0, layers: { kosti: {} }, alsoCounts: {} };
+    D.hotspots = figures;
+  }
+  fillFigures(); fillLayers(); fillItems(); loadFigureImage();
+})();
+</script>
+</body>
+</html>
