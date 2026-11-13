@@ -78,7 +78,8 @@
   </div>
   <label><input type="checkbox" id="showAll" checked> Show other structures</label>
   <label><input type="checkbox" id="showOtherLayers"> Show other layers (outline)</label>
-  <label><input type="checkbox" id="showLabels" checked> Show labels</label>
+  <label><input type="checkbox" id="showLabels"> Show labels on the figure</label>
+  <div class="hint">Hover over a structure to see its name here: <b id="hoverName">–</b></div>
 
   <h2>Check</h2>
   <div class="row">
@@ -274,6 +275,10 @@
       if (Math.hypot(p[0] - f0[0], p[1] - f0[1]) * z < 10) { closeDraft(); return; }
     }
     st.draft.push(p); render();
+  });
+  svg.addEventListener("mousemove", function (e) {
+    var id = e.target.dataset && e.target.dataset.id, it = id && itemById(id);
+    $("hoverName").textContent = it ? it.cs + " [" + id + "]" : "–";
   });
   window.addEventListener("mousemove", function (e) {
     if (!st.drag) return;
