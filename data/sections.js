@@ -43,5 +43,30 @@ window.ATLAS_DATA.ui = {
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",
   moreInPart: "Další v části",
-  close: "Zavřít"
+  close: "Zavřít",
+
+  // Quiz (stage 6) – to be proofread
+  quizTitle: "Kvíz: Najdi kost nebo orgán",
+  quizOpen: "Hrát kvíz",
+  quizBack: "Zpět na kostru",
+  quizFigureLabel: "Obrázek kostry – klepni na hledanou část",
+  quizSpot: "Místo {n}",
+  quizProgress: "Otázka {n} z {total}",
+  quizFind: "Najdi:",
+  quizHint: "Klepni na obrázek.",
+  quizMissTap: "Tady nic není. Zkus to znovu.",
+  quizPraise: ["Správně!", "Výborně!", "Přesně tak!", "Skvělé!"],
+  quizAlsoRight: "{tapped} patří k části {target}.",
+  quizWrong: "Tvoje odpověď: {tapped}.",
+  quizShowRight: "Správné místo je zvýrazněné zeleně.",
+  quizNext: "Další otázka",
+  quizResult: "Výsledek",
+  quizDone: "Hotovo!",
+  quizScore: "Správně: {score} z {total}",
+  quizGreat: "Jsi expert na kočičí kostru!",
+  quizGood: "Moc dobře!",
+  quizTryAgain: "Zkus to ještě jednou, půjde to líp!",
+  quizReview: "Na tyhle se ještě podívej:",
+  quizAgain: "Hrát znovu",
+  quizNoData: "Kvíz zatím nemá otázky."
 };

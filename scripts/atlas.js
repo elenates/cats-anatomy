@@ -358,18 +358,8 @@
       var lab = e.target.closest && e.target.closest(".atlas-label");
       if (lab) { select(lab.getAttribute("data-id")); return; }
       // Missed: pick the nearest visible hotspot within the tolerance.
-      var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
-      var ctm = svg.getScreenCTM(); if (!ctm) return;
-      var p = pt.matrixTransform(ctm.inverse());
-      var tol = TAP_TOLERANCE_PX / ctm.a;          // screen px -> figure px
-      var lay = fig.layers[state.layer] || {}, best = null;
-      visibleIds().forEach(function (id) {
-        lay[id].forEach(function (poly) {
-          var d = nearestOnPoly(p.x, p.y, poly)[2];
-          if (d <= tol && (!best || d < best.d)) best = { id: id, d: d };
-        });
-      });
-      if (best) select(best.id);
+      var id = hitTest(svg, fig.layers[state.layer] || {}, visibleIds(), e.clientX, e.clientY);
+      if (id) select(id);
     });
     document.addEventListener("keydown", function onKey(e) {
       if (!document.body.contains(container)) { document.removeEventListener("keydown", onKey); return; }
@@ -390,5 +380,27 @@
     container._atlas = { select: select, state: state, get selected() { return selected; } };
   }
 
-  window.Atlas = { mount: mount };
+  /*
+   * Shared hit test: which visible structure does a click at (clientX, clientY) mean?
+   * Inside a polygon wins; otherwise the nearest polygon within TAP_TOLERANCE_PX.
+   */
+  function hitTest(svg, layer, ids, clientX, clientY) {
+    var ctm = svg.getScreenCTM(); if (!ctm) return null;
+    var pt = svg.createSVGPoint(); pt.x = clientX; pt.y = clientY;
+    var p = pt.matrixTransform(ctm.inverse());
+    var tol = TAP_TOLERANCE_PX / ctm.a, best = null;
+    ids.forEach(function (id) {
+      (layer[id] || []).forEach(function (poly) {
+        var d = pointInPoly(p.x, p.y, poly) ? 0 : nearestOnPoly(p.x, p.y, poly)[2];
+        if (d <= tol && (!best || d < best.d)) best = { id: id, d: d };
+      });
+    });
+    return best && best.id;
+  }
+
+  window.Atlas = {
+    mount: mount,
+    hitTest: hitTest,
+    geom: { pointInPoly: pointInPoly, nearestOnPoly: nearestOnPoly, centroid: centroid, area: area }
+  };
 })();
