@@ -1,0 +1,157 @@
+/*
+ * Main stylesheet. Tablet-first: base styles target ~768-1024 px,
+ * with adjustments for phones (narrow) below.
+ * Touch targets are at least 44 x 44 px.
+ */
+
+:root {
+  --bg: #fbf7f0;
+  --surface: #ffffff;
+  --text: #2b2420;
+  --muted: #5c5149;
+  --accent: #b5562a;        /* links, active cards; 4.9:1 on white */
+  --accent-soft: #f6e3d6;
+  --border: #e4d9cc;
+  --focus: #1a5fb4;
+  --radius: 16px;
+  --tap: 44px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.app-main:focus { outline: none; }
+
+/* Header */
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.app-title {
+  display: inline-flex;
+  align-items: center;
+  min-height: 64px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.app-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.screen-title {
+  font-size: 1.75rem;
+  margin: 8px 0 24px;
+}
+
+/* Main menu: 2 columns on tablet, 3 on wide screens, 1 on phones */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 96px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+a.menu-card {
+  border-color: var(--accent);
+  box-shadow: 0 2px 0 var(--accent);
+}
+a.menu-card:hover,
+a.menu-card:active {
+  background: var(--accent-soft);
+}
+
+.menu-icon { font-size: 2.25rem; line-height: 1; }
+.menu-label { flex: 1; }
+
+.menu-card.is-soon {
+  color: var(--muted);
+  background: #f3eee7;
+  cursor: default;
+}
+.menu-card.is-soon .menu-icon { filter: grayscale(1); opacity: 0.6; }
+
+.menu-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--border);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Section screen */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 4px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.back-link:hover { text-decoration: underline; }
+
+.placeholder {
+  padding: 32px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+.noscript { padding: 24px; text-align: center; }
+
+/* Wide screens */
+@media (min-width: 1100px) {
+  .menu { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .app-header { padding: 0 16px; }
+  .app-main { padding: 16px; }
+  .menu { grid-template-columns: 1fr; gap: 12px; }
+  .menu-card { min-height: 72px; }
+  .screen-title { font-size: 1.5rem; }
+}
