@@ -48,10 +48,16 @@ Notes:
 | IMA-VERT | IMAIOS vet-Anatomy: Vertebral numbering (text only, verification) | Caudal vertebra count | https://www.imaios.cn/en/vet-anatomy/anatomical-structures/vertebral-numbering-11073892640 | verified |
 | IMA-CLAV | IMAIOS vet-Anatomy: Clavicle (text only, verification) | Reduced clavicle | https://www.imaios.cn/en/vet-anatomy/anatomical-structures/clavicle-11073897868 | verified |
 
+## Figures
+
+| ID | Reference | Used for | Access | Status |
+|----|-----------|----------|--------|--------|
+| RJ1901 | Reighard, J., Jennings, H. S. *Anatomy of the Cat*. New York: Henry Holt, 1901. Figures drawn by Louise Burridge Jennings. Project Gutenberg eBook #58394 (2018). | Figures (see `image-licenses.md`, `figures.md`); historical captions, always cross-checked against NAV | https://www.gutenberg.org/ebooks/58394 | verified |
+| SIA-JEN | Smithsonian Institution Archives, SIA Acc. 90-105: "Herbert Spencer Jennings (1868-1947) and his Wife" (Mary Louise Burridge Jennings died before H. S. Jennings remarried in 1939) | Copyright term of the figures in the EU | https://siarchives.si.edu/collections/siris_arc_297399 | verified |
+
 ## Planned
 
 | ID | Reference | Used for | Access | Status |
 |----|-----------|----------|--------|--------|
 | IVAN-CS | Constantinescu, G. M. *Ilustrovaná veterinární anatomická nomenklatura* (Czech edition of *Illustrated Veterinary Anatomical Nomenclature*, 4th ed., Thieme 2018). ISBN 978-80-271-5067-0 (print), 978-80-271-8419-4 (PDF); Czech publisher and year to be confirmed. | Czech ↔ Latin correspondence | Print / e-book | planned |
-| RJ1901 | Reighard, J., Jennings, H. S. *Anatomy of the Cat*. New York: Henry Holt, 1901. | Figures; historical descriptions (terminology may be outdated, always cross-checked) | Project Gutenberg / BHL (exact URLs recorded in stage 3) | planned |
 | UIUC | University of Illinois, veterinary imaging anatomy. | Verification only; images never copied | Online | planned |

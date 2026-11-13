@@ -40,10 +40,11 @@ cats-anatomy/
 ├── data/
 │   ├── sections.js         # the 7 sections and their status
 │   └── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
-├── images/kostra/          # optimised WebP figures (added in stage 3)
+├── images/kostra/          # skeleton.webp (Fig. 1), skull.webp (Fig. 40), lossless WebP
 ├── tools/                  # developer tools (hotspot editor, stage 4)
 ├── sources/
 │   ├── image-licenses.md   # one row per image file: source, author, licence, changes
+│   ├── figures.md          # original figure label keys mapped to data/kostra.js ids
 │   └── references.md       # scientific references used for verification
 ├── LICENSE                 # MIT, applies to code only
 └── README.md
