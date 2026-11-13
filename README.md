@@ -37,7 +37,8 @@ cats-anatomy/
 ├── styles/main.css         # all styles, tablet-first
 ├── scripts/
 │   ├── app.js              # hash routing, menu and section rendering
-│   └── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles
+│   ├── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles
+│   └── quiz.js             # quiz "Najdi kost nebo orgán" (#/kostra/kviz)
 ├── data/
 │   ├── sections.js         # the 7 sections and their status
 │   ├── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs

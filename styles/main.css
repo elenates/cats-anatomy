@@ -19,6 +19,9 @@
 
 * { box-sizing: border-box; }
 
+/* The hidden attribute must win over display rules such as grid. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -279,3 +282,37 @@ a.menu-card:active {
   .atlas-figure.has-labels { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .atlas-figure.has-labels .atlas-svg { width: 760px; max-width: none; }
 }
+
+/* ===================== Quiz (stage 6) ===================== */
+.screen-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.screen-head .screen-title { margin: 8px 0 16px; }
+.quiz-open, .quiz-next {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--tap); padding: 0 22px;
+  border-radius: 999px; border: 2px solid var(--accent);
+  background: var(--accent); color: #fff;
+  font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+}
+.quiz-secondary { background: var(--surface); color: var(--accent); }
+.quiz-head { margin: 0 0 12px; }
+.quiz-progress { margin: 0; color: var(--muted); font-weight: 600; }
+.quiz-prompt { margin: 4px 0 0; font-size: 2rem; line-height: 1.2; }
+.quiz-prompt:focus { outline: none; }
+
+/* No hover reveal in the quiz: the outline would give the answer away. */
+.quiz-svg .hotspot:hover polygon { fill: rgba(0,0,0,0); stroke: rgba(0,0,0,0); }
+.quiz-svg .hotspot.is-right polygon { fill: rgba(38, 140, 70, 0.35); stroke: #1f7a3d; stroke-width: 3px; }
+.quiz-svg .hotspot.is-wrong polygon { fill: rgba(200, 40, 40, 0.30); stroke: #b3261e; stroke-width: 3px; }
+.quiz-svg.is-answered .hotspot { cursor: default; }
+
+.quiz-verdict { margin: 0 0 8px; font-size: 1.5rem; font-weight: 700; }
+.quiz-verdict.is-right { color: #1f7a3d; }
+.quiz-verdict.is-wrong { color: #b3261e; }
+.quiz-verdict.is-right::before { content: "✓ "; }
+.quiz-verdict.is-wrong::before { content: "✗ "; }
+.quiz-miss { margin: 0; color: var(--muted); }
+.quiz-feedback .quiz-next { margin-top: 16px; }
+.quiz-summary { max-width: 640px; }
+.quiz-missed { margin: 4px 0 0; padding-left: 20px; }
+.quiz-missed li { margin: 6px 0; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }

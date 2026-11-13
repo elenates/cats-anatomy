@@ -3,7 +3,8 @@
  *
  * Routes:
  *   #/          -> main menu (7 sections)
- *   #/kostra    -> Kostra atlas (scripts/atlas.js)
+ *   #/kostra       -> Kostra atlas (scripts/atlas.js)
+ *   #/kostra/kviz  -> quiz "Najdi kost nebo orgán" (scripts/quiz.js)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -60,11 +61,19 @@
     return [el("h1", { "class": "screen-title", text: ui.menuHeading }), list];
   }
 
-  function renderSection(section) {
+  function renderSection(section, sub) {
     var back = el("a", { "class": "back-link", href: "#/", text: "← " + ui.back });
     var title = el("h1", { "class": "screen-title", text: section.cs });
+    if (section.id === "kostra" && sub === "kviz" && window.Quiz) {
+      var qback = el("a", { "class": "back-link", href: "#/kostra", text: "← " + (ui.quizBack || "Zpět na kostru") });
+      var qhost = el("div", { "class": "atlas quiz" });
+      qhost._mount = function () { window.Quiz.mount(qhost, { figure: "skeleton", layer: "kosti", rounds: 10 }); };
+      return [qback, el("h1", { "class": "screen-title", text: ui.quizTitle || "Kvíz" }), qhost];
+    }
     if (section.id === "kostra" && window.Atlas) {
       var host = el("div", { "class": "atlas" });
+      var quizLink = el("a", { "class": "quiz-open", href: "#/kostra/kviz", text: ui.quizOpen || "Hrát kvíz" });
+      title = el("div", { "class": "screen-head" }, [title, quizLink]);
       // The atlas measures text and the figure width, so it is mounted after insertion.
       host._mount = function () { window.Atlas.mount(host, { figure: "skeleton" }); };
       return [back, title, host];
@@ -74,9 +83,10 @@
   }
 
   function render() {
-    var id = location.hash.replace(/^#\/?/, "");
+    var path = location.hash.replace(/^#\/?/, "").split("/");
+    var id = path[0], sub = path[1] || "";
     var section = findSection(id);
-    var nodes = (section && section.status === "active") ? renderSection(section) : renderMenu();
+    var nodes = (section && section.status === "active") ? renderSection(section, sub) : renderMenu();
 
     app.textContent = "";
     nodes.forEach(function (n) { app.appendChild(n); });
