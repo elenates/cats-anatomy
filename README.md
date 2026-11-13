@@ -38,8 +38,8 @@ cats-anatomy/
 ├── scripts/
 │   └── app.js              # hash routing, menu and section rendering
 ├── data/
-│   └── sections.js         # the 7 sections and their status
-│   (kostra.js etc. are added per section)
+│   ├── sections.js         # the 7 sections and their status
+│   └── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
 ├── images/kostra/          # optimised WebP figures (added in stage 3)
 ├── tools/                  # developer tools (hotspot editor, stage 4)
 ├── sources/
