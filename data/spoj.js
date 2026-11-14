@@ -50,7 +50,7 @@ window.ATLAS_DATA.spoj = {
     namesLabel: "Kosti a klouby",
     answersLabel: "Co dělá?",
     pickName: "Vyber nejdřív kost nebo kloub vlevo.",
-    pickAnswer: "Teď vyber, co dělá: {name}",
+    pickAnswer: "Teď vyber odpověď pro: {name}",
     right: "{name} – správně!",
     wrong: "Tohle k sobě nepatří. Zkus to znovu.",
     funnyReplies: [
