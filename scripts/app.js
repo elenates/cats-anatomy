@@ -5,6 +5,7 @@
  *   #/          -> main menu (7 sections)
  *   #/kostra       -> Kostra atlas (scripts/atlas.js)
  *   #/kostra/kviz  -> quiz "Najdi kost nebo orgán" (scripts/quiz.js)
+ *   #/kostra/spoj  -> quiz "Spoj, co patří k sobě" (scripts/spoj.js)
  *   #/kostra/<part>[/<n>] -> part screen, figure tab n (ATLAS_DATA.kostraViews)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
@@ -94,12 +95,20 @@
       qhost._mount = function () { window.Quiz.mount(qhost, { figure: "skeleton", layer: "kosti", rounds: 10 }); };
       return [qback, el("h1", { "class": "screen-title", text: ui.quizTitle || "Kvíz" }), qhost];
     }
+    if (section.id === "kostra" && sub === "spoj" && window.Spoj) {
+      var sp = data.spoj && data.spoj.ui || {};
+      var sback = el("a", { "class": "back-link", href: "#/kostra", text: "← " + (sp.back || "Zpět na kostru") });
+      var shost = el("div", { "class": "spoj" });
+      shost._mount = function () { window.Spoj.mount(shost); };
+      return [sback, el("h1", { "class": "screen-title", text: sp.title || "Spoj, co patří k sobě" }), shost];
+    }
     var views = data.kostraViews || {};
     if (section.id === "kostra" && views[sub] && window.Atlas) return renderPart(sub, parseInt(sub2, 10) || 1);
     if (section.id === "kostra" && window.Atlas) {
       var host = el("div", { "class": "atlas" });
       var quizLink = el("a", { "class": "quiz-open", href: "#/kostra/kviz", text: ui.quizOpen || "Hrát kvíz" });
-      title = el("div", { "class": "screen-head" }, [title, quizLink]);
+      var spojLink = el("a", { "class": "quiz-open quiz-secondary", href: "#/kostra/spoj", text: (data.spoj && data.spoj.ui && data.spoj.ui.open) || "Spoj, co patří k sobě" });
+      title = el("div", { "class": "screen-head" }, [title, el("div", { "class": "quiz-actions screen-games" }, [quizLink, spojLink])]);
       // The atlas measures text and the figure width, so it is mounted after insertion.
       host._mount = function () { window.Atlas.mount(host, { figure: "skeleton" }); };
       return [back, title, partNav(), host];

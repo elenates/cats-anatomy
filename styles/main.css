@@ -318,7 +318,7 @@ a.menu-card:active {
 .quiz-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 
 /* ===================== Kostra part screens (M2 stage 4) ===================== */
-.parts { margin: 0 0 16px; }
+.parts { margin: 8px 0 16px; }
 .parts-h { margin: 0 0 8px; font-size: 1.1rem; color: var(--muted); }
 .part-nav, .fig-tabs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .part-link, .fig-tab {
@@ -348,3 +348,40 @@ a.menu-card:active {
 .zar-la { color: var(--muted); font-style: italic; font-size: 0.95rem; }
 .zar-text { margin: 4px 0 0; }
 .zar-link { display: inline-flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 700; }
+
+/* ===================== Quiz "Spoj, co patří k sobě" (M2 stage 6) ===================== */
+.screen-games { margin-top: 0; }
+.spoj-howto { margin: 4px 0 16px; color: var(--muted); }
+.spoj-board { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 16px 24px; }
+.spoj-h { margin: 0 0 8px; font-size: 1.05rem; color: var(--muted); }
+.spoj-col { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.spoj-btn {
+  position: relative; width: 100%; min-height: var(--tap); padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 2px solid var(--border); border-radius: 12px; cursor: pointer;
+}
+.spoj-name { font-weight: 700; }
+.spoj-btn:hover:not(:disabled) { border-color: var(--accent); }
+.spoj-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.spoj-btn.is-picked { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
+.spoj-btn.is-right { border-color: #1f7a3d; background: #e6f3ea; color: var(--text); cursor: default; }
+.spoj-btn.is-funny { border-style: dashed; color: var(--muted); cursor: default; }
+.spoj-btn:disabled { opacity: 1; }
+.spoj-btn.is-wrong { animation: spoj-shake 0.4s; border-color: #b3261e; }
+@keyframes spoj-shake { 0%, 100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (prefers-reduced-motion: reduce) { .spoj-btn.is-wrong { animation: none; } }
+.spoj-num {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; background: #1f7a3d; color: #fff; font-weight: 700; font-size: 0.95rem;
+}
+.spoj-badge { margin-left: auto; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 0.8rem; font-weight: 700; }
+.spoj-feedback { min-height: 1.6em; margin: 16px 0 0; font-weight: 700; font-size: 1.15rem; }
+.spoj-feedback.is-right { color: #1f7a3d; }
+.spoj-feedback.is-wrong { color: #b3261e; }
+.spoj-feedback.is-funny { color: var(--accent); }
+.spoj-game .quiz-next { margin-top: 16px; }
+@media (max-width: 600px) {
+  .spoj-board { grid-template-columns: 1fr; }
+  .spoj-names { grid-template-columns: 1fr 1fr; }
+}
