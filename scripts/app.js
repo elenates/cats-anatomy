@@ -59,7 +59,30 @@
       list.appendChild(el("li", null, [item]));
     });
 
-    return [el("h1", { "class": "screen-title", text: ui.menuHeading }), list];
+    var nodes = [el("h1", { "class": "screen-title", text: ui.menuHeading }), list];
+    if (data.zarazeni) nodes.push(renderZarazeni(data.zarazeni));
+    return nodes;
+  }
+
+  /* Mini card "Zařazení kočky v přírodě". Uses the atlas toggles: Latin names
+     with "Latinsky", extra ranks with "Pro zvídavé". */
+  function renderZarazeni(z) {
+    var t = {};
+    try { t = JSON.parse(window.localStorage.getItem("atlas.toggles") || "{}"); } catch (e) { /* no storage */ }
+    var list = el("ol", { "class": "zar-list" });
+    z.rows.forEach(function (r) {
+      if (r.level === "zvidave" && !t.zvidave) return;
+      var head = el("p", { "class": "zar-head" }, [
+        el("span", { "class": "zar-rank", text: r.rank }),
+        el("strong", { "class": "zar-name", text: r.cs })
+      ]);
+      if (t.latinsky && r.la) head.appendChild(el("span", { "class": "zar-la", lang: "la", text: r.la }));
+      var li = el("li", { "class": "zar-row" + (r.cs === "kočka domácí" ? " is-cat" : "") }, [head, el("p", { "class": "zar-text", text: r.text })]);
+      if (r.link) li.appendChild(el("a", { "class": "zar-link", href: r.link.href, text: r.link.cs + " →" }));
+      list.appendChild(li);
+    });
+    var summary = el("summary", { "class": "zar-summary", text: z.title });
+    return el("details", { "class": "zarazeni" }, [summary, el("p", { "class": "zar-intro", text: z.intro }), list]);
   }
 
   function renderSection(section, sub, sub2) {

@@ -70,6 +70,23 @@ Notes:
 | RJ1901 | Reighard, J., Jennings, H. S. *Anatomy of the Cat*. New York: Henry Holt, 1901. Figures drawn by Louise Burridge Jennings. Project Gutenberg eBook #58394 (2018). | Figures (see `image-licenses.md`, `figures.md`); historical captions, always cross-checked against NAV | https://www.gutenberg.org/ebooks/58394 | verified |
 | SIA-JEN | Smithsonian Institution Archives, SIA Acc. 90-105: "Herbert Spencer Jennings (1868-1947) and his Wife" (Mary Louise Burridge Jennings died before H. S. Jennings remarried in 1939) | Copyright term of the figures in the EU | https://siarchives.si.edu/collections/siris_arc_297399 | verified |
 
+## Classification card ("Zařazení kočky v přírodě", `data/zarazeni.js`)
+
+| ID | Reference | Used for | Access | Status |
+|----|-----------|----------|--------|--------|
+| GBIF-FC | GBIF Backbone Taxonomy: *Felis catus* Linnaeus, 1758 | Kingdom → species: Animalia, Chordata, Mammalia, Carnivora, Felidae, Felis, *Felis catus* | https://www.gbif.org/species/2435035 | verified |
+| MDD-FC | Mammal Diversity Database: *Felis catus* Linnaeus, 1758 | Valid name *Felis catus*; domestic form of *F. lybica* | https://mammaldiversity.org/taxon/1005985 | verified |
+| CSW-KD | Czech Wikipedia: Kočka domácí (taxobox and intro) | Czech rank names and group names (živočichové, strunatci, savci, šelmy, kočkovití, kočka); domesticated form of kočka plavá, living with people for millennia | https://cs.wikipedia.org/wiki/Ko%C4%8Dka_dom%C3%A1c%C3%AD | verified |
+| CSW-OBR | Czech Wikipedia: Obratlovci | Podkmen obratlovci (Vertebrata): skull and vertebrae; strunatci have a notochord (chorda) | https://cs.wikipedia.org/wiki/Obratlovci | verified |
+| CSW-SAV | Czech Wikipedia: Savci | Savci: young fed with milk, body covered with fur; class under obratlovci | https://cs.wikipedia.org/wiki/Savci | verified |
+| CSW-SEL | Czech Wikipedia: Šelmy | Šelmy: mostly predators eating meat; canines used on prey | https://cs.wikipedia.org/wiki/%C5%A0elmy | verified |
+| CSW-KOC | Czech Wikipedia: Kočkovití | Species of the genus *Felis* incl. kočka divoká, plavá, domácí | https://cs.wikipedia.org/wiki/Ko%C4%8Dkovit%C3%AD | verified |
+| CSW-POR | Czech Wikipedia: Portál:Kočky | Lion and tiger are Felidae | https://cs.wikipedia.org/wiki/Port%C3%A1l:Ko%C4%8Dky | verified |
+
+Notes:
+- The scientific classification follows GBIF and MDD. Wikipedia is used only for the standard Czech group names and for basic, textbook-level facts; nothing is copied.
+- BioLib.cz (Czech) still lists the domestic cat as *Felis silvestris* f. *catus*. The app uses *Felis catus*, as GBIF, MDD and Czech Wikipedia do.
+
 ## Planned
 
 | ID | Reference | Used for | Access | Status |
