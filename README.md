@@ -42,7 +42,7 @@ cats-anatomy/
 ├── data/
 │   ├── sections.js         # the 7 sections and their status
 │   ├── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
-│   └── hotspots-kostra.js  # hotspot polygons per figure and layer (kosti / klouby)
+│   └── hotspots-kostra.js  # hotspot polygons per figure (skeleton, skull, 7 detail figures) and layer
 ├── images/kostra/          # skeleton.webp (Fig. 1), skull.webp (Fig. 40), lossless WebP
 ├── tools/
 │   └── hotspot-editor.html # draw, check and export hotspots (open by double-click)
@@ -60,9 +60,12 @@ cats-anatomy/
 2. Pick the figure, the layer (`kosti` = bones, `klouby` = joints) and a structure.
 3. Click on the figure to add points; click the first point or press Enter to close.
    Drag a point to move it, Alt+click to delete it, Ctrl/Cmd+Z to undo.
-4. Press **Check overlaps and sizes**: no overlaps are allowed within a layer;
-   structures narrower than 44 px on a tablet are listed (the app counts a tap
-   within 22 px of a structure as a hit on the nearest one).
+4. Press **Check overlaps and sizes**: no overlaps are allowed within a layer,
+   except for pairs listed under `nested` in the figure (a smaller *Pro zvídavé*
+   structure drawn inside a larger one, e.g. the three pelvic bones inside
+   *Pánevní kost*; a tap inside both picks the smaller one). Structures
+   narrower than 44 px on a tablet are listed (the app counts a tap within
+   22 px of a structure as a hit on the nearest one).
 5. Press **Copy hotspots file** and paste it over `data/hotspots-kostra.js`.
 
 ## Content rules
