@@ -74,3 +74,74 @@ features.
 
 Not on Fig. 40: `dolni-celist` (mandible). Use Fig. 1, or add the 1901 mandible
 figure later.
+
+## Detail figures (Milestone 2)
+
+All seven are the large versions linked from the 1901 figures in the Gutenberg
+HTML edition. The original letters are **kept** (decision in #3). Captions
+are quoted from the eBook; where a figure has no letter key in its caption, the
+letters are taken from the body text.
+
+### Fig. 47 — Humerus, Ventral Side (`images/kostra/humerus.webp`, 257×1000)
+
+| Label | 1901 text | Item id | Notes |
+|-------|-----------|---------|-------|
+| whole bone | humerus | `kost-pazni` | |
+| q | supracondyloid foramen | `kost-pazni` | The hole named in the *Zajímavost* text (cat has it, dog does not) |
+| other letters | head, tubercles, fossae, condyles | — | Too detailed for the app |
+
+### Fig. 49 — Radius and Ulna, Dorsolateral View (`images/kostra/radius-ulna.webp`, 336×1500)
+
+| Label | 1901 text | Item id | Notes |
+|-------|-----------|---------|-------|
+| I | radius | `kost-vretenni` | |
+| II | ulna | `kost-loketni` | Upper end of II is the olecranon (point of the elbow) |
+| other letters | notches, processes | — | Too detailed for the app |
+
+### Fig. 51 — Carpus, Metacarpus and Phalanges, Dorsal Surface (`images/kostra/forepaw.webp`, 499×1000)
+
+| Label | 1901 caption | Item id | Notes |
+|-------|--------------|---------|-------|
+| a–g | scapholunar, cuneiform, pisiform, trapezium, trapezoid, os magnum, unciform | `kosti-zapestni` | Carpal bones |
+| h | radial sesamoid | — | |
+| 1–5 | metacarpals, from the radial side | `kosti-zaprstni` | 1 is the short first metacarpal |
+| i, j | proximal and second phalanges | `prsty-predni` | Digit 1 (dewclaw) has no second phalanx |
+| k | distal phalanges | `clanek-drapovy` | With the claws |
+
+### Fig. 55 — Innominate Bone of Adult Cat, Ventrolateral View (`images/kostra/pelvis.webp`, 683×1250)
+
+| Label | 1901 caption | Item id | Notes |
+|-------|--------------|---------|-------|
+| whole bone | innominate bone | `panev` | = Os coxae, *Pánevní kost* |
+| I | ilium | `kost-kycelni` | |
+| II | ischium | `kost-sedaci` | g = tuberosity of the ischium (hamstring origin, see NCSU-THIGH) |
+| III | pubis | `kost-stydka` | |
+| d | acetabulum | `kycelni-kloub` | The "socket" of the ball-and-socket hip |
+| other letters | spines, notches, foramen, lines | — | Too detailed for the app |
+
+### Fig. 56 — Left Femur, Ventral Side (`images/kostra/femur.webp`, 353×1250)
+
+| Label | 1901 caption | Item id | Notes |
+|-------|--------------|---------|-------|
+| whole bone | femur | `kost-stehenni` | |
+| a | head | `kost-stehenni` | The "ball" of the hip joint |
+| other letters | neck, trochanters, condyles, fossae | — | Too detailed for the app |
+
+### Fig. 57 — Tibia and Fibula of Left Leg, Dorsal View (`images/kostra/tibia-fibula.webp`, 281×1250)
+
+| Label | 1901 caption | Item id | Notes |
+|-------|--------------|---------|-------|
+| I | tibia | `kost-holenni` | e = tubercle for the patellar ligament |
+| II | fibula | `kost-lytkova` | h = head, i = lateral malleolus |
+| other letters | condyles, spine, crest, malleoli | — | Too detailed for the app |
+
+### Fig. 58 — Tarsus, Metatarsus and Phalanges of Left Foot, Ventral View (`images/kostra/hindpaw.webp`, 371×1250)
+
+| Label | 1901 caption | Item id | Notes |
+|-------|--------------|---------|-------|
+| a | calcaneus | `kost-patni` | |
+| b–g | astragalus, cuboid, scaphoid, lateral and medial cuneiform | `kosti-zanartni` | Tarsal bones |
+| 1 | rudimentary first (medial) metatarsal | `kosti-nartni` | Matches the review note on MT I |
+| 2–5 | the other metatarsals | `kosti-nartni` | The 4 developed metatarsals |
+| i, j, k | proximal, second, distal phalanges | `prsty-zadni` | |
+| h, l | peroneal groove, sesamoid bones | — | |
