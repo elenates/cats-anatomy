@@ -50,7 +50,7 @@ window.ATLAS_DATA.ui = {
   partsHeading: "Části kostry",
   partBack: "Zpět na celou kostru",
   partFiguresLabel: "Obrázky",
-  cardOnlyZvidave: "Na tomhle obrázku jsou jen věci pro zvídavé. Zapni „Pro zvídavé“.",
+  cardOnlyZvidave: "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.",
 
   // Quiz (stage 6) – to be proofread
   quizTitle: "Kvíz: Najdi kost nebo orgán",
