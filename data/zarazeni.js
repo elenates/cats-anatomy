@@ -5,7 +5,7 @@
  * From the largest group to the cat itself. level "zvidave" rows are shown
  * only with "Pro zvídavé" on; la only with "Latinsky" on (same toggles as the
  * atlas). link: optional atlas screen that shows what the row talks about.
- * refs: sources/references.md. Child-facing Czech text: to be proofread.
+ * refs: sources/references.md. Child-facing Czech text: proofread (v0.2); new text must be proofread.
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 

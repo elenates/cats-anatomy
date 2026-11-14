@@ -5,7 +5,7 @@
  * Pairs come from data/kostra.js: the Czech name of a Základ structure and its
  * "Co dělá?" text. Structures in one "conflicts" group have similar texts and
  * never appear in the same round. "funny" are made-up answers mixed in among the
- * real ones; they belong to nothing. All Czech text here: to be proofread.
+ * real ones; they belong to nothing. Czech text: proofread (v0.2); new text must be proofread.
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
