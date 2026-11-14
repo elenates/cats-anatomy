@@ -27,7 +27,7 @@ window.ATLAS_DATA.ui = {
   back: "Zpět na menu",
   kostraPlaceholder: "Tady brzy bude obrázek kostry, na který půjde klepat.",
 
-  // Atlas screen (stage 5) – to be proofread
+  // Atlas screen (stage 5) – proofread (v0.2)
   layerLabel: "Zobrazit",
   layerKosti: "Kosti",
   layerKlouby: "Klouby",
@@ -46,13 +46,13 @@ window.ATLAS_DATA.ui = {
   moreInPart: "Další v části",
   close: "Zavřít",
 
-  // Kostra part screens (M2 stage 4) – to be proofread
+  // Kostra part screens (M2 stage 4) – proofread (v0.2)
   partsHeading: "Části kostry",
   partBack: "Zpět na celou kostru",
   partFiguresLabel: "Obrázky",
   cardOnlyZvidave: "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.",
 
-  // Quiz (stage 6) – to be proofread
+  // Quiz (stage 6) – proofread (v0.2)
   quizTitle: "Kvíz: Najdi kost nebo orgán",
   quizOpen: "Hrát kvíz",
   quizBack: "Zpět na kostru",
