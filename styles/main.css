@@ -331,3 +331,20 @@ a.menu-card:active {
 .fig-nav { margin: 0 0 16px; }
 .fig-tab[aria-current="page"] { background: var(--accent); color: #fff; }
 .part-link:focus-visible, .fig-tab:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* ===================== Mini card "Zařazení kočky v přírodě" (M2 stage 5) ===================== */
+.zarazeni { margin: 24px 0 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0 16px; }
+.zar-summary { min-height: var(--tap); display: flex; align-items: center; cursor: pointer; font-weight: 700; font-size: 1.15rem; color: var(--accent); }
+.zar-summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
+.zar-intro { margin: 0 0 12px; color: var(--muted); }
+.zar-list { list-style: none; margin: 0 0 16px; padding: 0; }
+.zar-row { position: relative; margin: 0 0 0 12px; padding: 8px 0 12px 20px; border-left: 3px solid var(--accent-soft); }
+.zar-row::before { content: ""; position: absolute; left: -8px; top: 16px; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); }
+.zar-row.is-cat { border-left-color: transparent; }
+.zar-row.is-cat .zar-name { font-size: 1.25rem; }
+.zar-head { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.zar-rank { color: var(--muted); font-size: 0.9rem; min-width: 4.5em; }
+.zar-name { font-size: 1.1rem; }
+.zar-la { color: var(--muted); font-style: italic; font-size: 0.95rem; }
+.zar-text { margin: 4px 0 0; }
+.zar-link { display: inline-flex; align-items: center; min-height: var(--tap); color: var(--accent); font-weight: 700; }
