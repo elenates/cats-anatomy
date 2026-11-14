@@ -375,7 +375,6 @@ a.menu-card:active {
   flex: none; display: inline-flex; align-items: center; justify-content: center;
   width: 28px; height: 28px; border-radius: 50%; background: #1f7a3d; color: #fff; font-weight: 700; font-size: 0.95rem;
 }
-.spoj-badge { margin-left: auto; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 0.8rem; font-weight: 700; }
 .spoj-feedback { min-height: 1.6em; margin: 16px 0 0; font-weight: 700; font-size: 1.15rem; }
 .spoj-feedback.is-right { color: #1f7a3d; }
 .spoj-feedback.is-wrong { color: #b3261e; }

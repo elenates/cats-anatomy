@@ -6,7 +6,7 @@
  * The child taps a name and an answer, in either order.
  *   - a right pair turns green and gets a number, so the pairs are easy to see;
  *   - a wrong pair flashes red; that structure no longer counts as "first try";
- *   - a funny answer gets a funny reply and is set aside.
+ *   - a funny answer gets a funny reply and is set aside (greyed out, no label).
  * Score: structures matched on the first try.
  * Content: data/kostra.js (names, texts) and data/spoj.js (rules, funny answers).
  *
@@ -134,7 +134,6 @@
       if (b.disabled) return;
       if (!a.id) {   // a funny answer: never right, never a penalty for the child
         b.disabled = true; b.classList.add("is-funny");
-        b.appendChild(el("span", { "class": "spoj-badge", text: t.funnyBadge || "vtip" }));
         if (sel.answer) { press(sel.answer.b, false); sel.answer = null; }
         say(pick(t.funnyReplies || ["Ha!"]), "funny");
         return;

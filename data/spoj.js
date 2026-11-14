@@ -59,7 +59,6 @@ window.ATLAS_DATA.spoj = {
       "To je jen vtip. Zkus jinou odpověď.",
       "Takovou kost má jen kočka z pohádky."
     ],
-    funnyBadge: "vtip",
     nextRound: "Další kolo",
     finish: "Výsledek",
     score: "Napoprvé správně: {score} z {total}",
