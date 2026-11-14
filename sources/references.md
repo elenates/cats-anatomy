@@ -87,6 +87,21 @@ Notes:
 - The scientific classification follows GBIF and MDD. Wikipedia is used only for the standard Czech group names and for basic, textbook-level facts; nothing is copied.
 - BioLib.cz (Czech) still lists the domestic cat as *Felis silvestris* f. *catus*. The app uses *Felis catus*, as GBIF, MDD and Czech Wikipedia do.
 
+## Vnější stavba těla (`data/vnejsi.js`)
+
+Also used here: NAV (Partes corporis pp. 4–6, Integumentum commune p. 155: Pili tactiles incl. *Pili tactiles carpales* (fe), Tori, Unguicula), CSW-KD, CSW-KOC, CSW-SAV, LAWSON-SK, UMN-RUN, UMN-FEL, POL15, MUNI-OST, RANDAU17, TF-META, IMA-VERT (see above).
+
+| ID | Reference | Used for | Access | Status |
+|----|-----------|----------|--------|--------|
+| CSW-AKD | Czech Wikipedia: Anatomie kočky domácí | Tail used for balance; fur protects and its density depends on surroundings; stomach and intestines in the abdomen | https://cs.wikipedia.org/wiki/Anatomie_ko%C4%8Dky_dom%C3%A1c%C3%AD | verified (page text via search) |
+| CSW-DRAP | Czech Wikipedia: Dráp | Claws used for defence, holding food, climbing; retractable in cats | https://cs.wikipedia.org/wiki/Dr%C3%A1p | verified (page text via search) |
+| VFU-CHOV | Veterinary University Brno (VFU), course material "Chování koček" (PDF, no author shown) | Tactile hairs help cats hunt, especially at night; tapetum lucidum listed under sight | https://cit.vfu.cz/oz/Oz/mvdrcv9.pdf | verified |
+| LAWSON-RIB | Lawson R. *Anatomy and Physiology of Animals*, 6.3 The Ribs (LibreTexts, CC BY-SA 3.0) | Rib cage protects the heart and lungs | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/06%3A_The_Skeleton/6.03%3A_The_Ribs | verified |
+
+Notes:
+- The NAV PDF (6th ed., 2017) was downloaded from wava-amav.org as `nav_6_2017.zip` (SHA-256 `9b0ca232…b684698c2`) and read as text; page numbers are the printed ones.
+- CSW-KD figures used for a child (about 200 million olfactory cells, up to 20 000 hairs per cm², ears turning up to 180°) are textbook-level facts; they are marked in the review sheet for checking.
+
 ## Planned
 
 | ID | Reference | Used for | Access | Status |
