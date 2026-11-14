@@ -7,6 +7,9 @@
  *   ATLAS_DATA.ui        Czech UI strings (data/sections.js)
  *
  * Public API:  window.Atlas.mount(container, { figure: "skeleton" })
+ *   options:    figure  hotspot figure id (data/hotspots-kostra.js)
+ *               part    show only structures of this Kostra part (part screens)
+ *               layers  list of layer ids to offer (default: all of the figure)
  *
  * Interaction:
  *   - tap / click a hotspot, or Tab to it and press Enter / Space -> info card
@@ -102,14 +105,16 @@
       return;
     }
 
+    var part = opts && opts.part;
+    var layerIds = Object.keys(fig.layers).filter(function (l) { return !(opts && opts.layers) || opts.layers.indexOf(l) >= 0; });
     var state = loadToggles();
-    if (!fig.layers[state.layer]) state.layer = Object.keys(fig.layers)[0];
+    if (layerIds.indexOf(state.layer) < 0) state.layer = layerIds[0];
     var selected = null;
 
     // ----- toolbar -----
     var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby" };
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
-    Object.keys(fig.layers).forEach(function (ln) {
+    layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
       b.addEventListener("click", function () { state.layer = ln; selected = null; saveToggles(state); renderAll(); });
       layerGroup.appendChild(b);
@@ -120,7 +125,7 @@
       return b;
     }
     var toolbar = el("div", { "class": "atlas-toolbar" }, [
-      layerGroup,
+      layerIds.length > 1 ? layerGroup : null,
       el("div", { "class": "toggles", role: "group", "aria-label": ui.togglesLabel || "Zobrazení" }, [
         toggle("popisky", ui.togglePopisky || "Popisky"),
         toggle("latinsky", ui.toggleLatinsky || "Latinsky"),
@@ -131,7 +136,9 @@
     // ----- figure -----
     var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": ui.figureLabel || "Obrázek kostry" });
     var figBox = el("div", { "class": "atlas-figure" }, [svg]);
-    var credit = el("p", { "class": "atlas-credit", text: ui.figureCredit || "" });
+    // "Reighard & Jennings 1901, Fig. 40" -> "Obrázek 40: J. Reighard a H. S. Jennings, ..."
+    var figNo = /Fig\. (\d+)/.exec(fig.figure || "");
+    var credit = el("p", { "class": "atlas-credit", text: (ui.figurePrefix || "Obrázek") + (figNo ? " " + figNo[1] : "") + ": " + (ui.figureCredit || "") });
 
     // ----- card -----
     var card = el("section", { "class": "atlas-card", "aria-live": "polite" });
@@ -147,7 +154,7 @@
     function visibleIds() {
       var lay = fig.layers[state.layer] || {};
       return items.map(function (it) { return it.id; }).filter(function (id) {
-        return lay[id] && (byId[id].level === "zaklad" || state.zvidave);
+        return lay[id] && (!part || byId[id].part === part) && (byId[id].level === "zaklad" || state.zvidave);
       });
     }
 
@@ -179,6 +186,7 @@
 
       // Narrow screens + labels: the figure keeps a readable width and scrolls sideways (CSS).
       figBox.classList.toggle("has-labels", !!state.popisky);
+      figBox.classList.toggle("is-wide", W > H * 1.2);   // only wide figures need the sideways scroll
       // First pass with no margins, to know the on-screen scale.
       var boxW = svg.getBoundingClientRect().width || figBox.clientWidth || W;
       var scale = boxW / W;
@@ -302,7 +310,11 @@
       card.textContent = "";
       var it = selected && byId[selected];
       if (!it) {
-        card.appendChild(el("p", { "class": "card-empty", text: state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+        // Nothing to tap until "Pro zvídavé" is on (e.g. the jaw joint on the skull): say so.
+        var lay0 = fig.layers[state.layer] || {};
+        var onlyExtra = !visibleIds().length && Object.keys(lay0).some(function (id) { return byId[id] && (!part || byId[id].part === part); });
+        card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Tady jsou jen věci pro zvídavé. Zapni Pro zvídavé.") :
+          state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [

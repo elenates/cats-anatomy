@@ -36,7 +36,8 @@ window.ATLAS_DATA.ui = {
   toggleLatinsky: "Latinsky",
   toggleZvidave: "Pro zvídavé",
   figureLabel: "Obrázek kostry kočky",
-  figureCredit: "Obrázek: J. Reighard a H. S. Jennings, Anatomy of the Cat (1901), kresba Louise Burridge Jennings. Volné dílo.",
+  figurePrefix: "Obrázek",
+  figureCredit: "J. Reighard a H. S. Jennings, Anatomy of the Cat (1901), kresba Louise Burridge Jennings. Volné dílo.",
   cardEmptyKosti: "Klepni na kost na obrázku.",
   cardEmptyKlouby: "Klepni na kloub na obrázku.",
   kdeJe: "Kde je?",
@@ -44,6 +45,12 @@ window.ATLAS_DATA.ui = {
   zajimavost: "Zajímavost",
   moreInPart: "Další v části",
   close: "Zavřít",
+
+  // Kostra part screens (M2 stage 4) – to be proofread
+  partsHeading: "Části kostry",
+  partBack: "Zpět na celou kostru",
+  partFiguresLabel: "Obrázky",
+  cardOnlyZvidave: "Na tomhle obrázku jsou jen věci pro zvídavé. Zapni „Pro zvídavé“.",
 
   // Quiz (stage 6) – to be proofread
   quizTitle: "Kvíz: Najdi kost nebo orgán",
@@ -69,4 +76,38 @@ window.ATLAS_DATA.ui = {
   quizReview: "Na tyhle se ještě podívej:",
   quizAgain: "Hrát znovu",
   quizNoData: "Kvíz zatím nemá otázky."
+};
+
+/*
+ * Kostra part screens: which figures each part shows, in tab order.
+ * figure = hotspot figure id (data/hotspots-kostra.js), cs = tab label,
+ * layers = layers offered on that tab (default: all of the figure).
+ * Only structures of the part are shown on its screen.
+ */
+window.ATLAS_DATA.kostraViews = {
+  "pater-hrudnik": [
+    { figure: "skeleton", cs: "Celá kostra", layers: ["kosti"] }
+  ],
+  "lebka-celisti": [
+    { figure: "skull", cs: "Lebka z boku", layers: ["kosti"] },
+    { figure: "skeleton", cs: "Celá kostra", layers: ["kosti"] }
+  ],
+  "predni-koncetiny": [
+    { figure: "humerus", cs: "Kost pažní" },
+    { figure: "radius-ulna", cs: "Předloktí" },
+    { figure: "forepaw", cs: "Přední tlapka" },
+    { figure: "skeleton", cs: "Celá kostra", layers: ["kosti"] }
+  ],
+  "panev-zadni": [
+    { figure: "pelvis", cs: "Pánev", layers: ["kosti"] },
+    { figure: "femur", cs: "Kost stehenní" },
+    { figure: "tibia-fibula", cs: "Bérec" },
+    { figure: "hindpaw", cs: "Zadní tlapka" },
+    { figure: "skeleton", cs: "Celá kostra", layers: ["kosti"] }
+  ],
+  "klouby-pohyb": [
+    { figure: "skeleton", cs: "Celá kostra", layers: ["klouby"] },
+    { figure: "skull", cs: "Lebka", layers: ["klouby"] },
+    { figure: "pelvis", cs: "Pánev", layers: ["klouby"] }
+  ]
 };
