@@ -543,7 +543,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří dlouhou střední část zadní tlapky.",
       zajimavost: "Kočka jich má v zadní tlapce jen 4.",
       quiz: true,
-      refs: ["NAV", "TF-META"]
+      refs: ["NAV", "TF-META", "NCSU-PL"]
     },
     {
       id: "prsty-zadni",

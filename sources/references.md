@@ -34,7 +34,7 @@ Notes:
 | UMN-RUN | Univ. of Minnesota Veterinary Anatomy. Designed for Running: Carnivore & Ungulate Locomotion | Digitigrade stance, hind limbs in jumping | https://vanat.ahc.umn.edu/run/ | verified |
 | UMN-LAB7 | Univ. of Minnesota. Carnivore dissection Lab 07 (pelvic limb joints) | Stifle (knee) joint | https://vanat.ahc.umn.edu/carnLabs/Lab07/Lab07.html | verified |
 | WIKIVET-FL | WikiVet. Forelimb – Anatomy & Physiology | Scapula attachment, clavicle, olecranon | https://en.wikivet.net/Forelimb_-_Anatomy_&_Physiology | verified |
-| NCSU-PL | NC State Unit 2 Musculoskeletal, Lab 1: Pelvic limb osteology and arthrology | Hock = tarsus, calcaneus, patella | https://ncstate.pressbooks.pub/unit2musculoskeletal/?p=775 | verified |
+| NCSU-PL | NC State Unit 2 Musculoskeletal, Lab 1: Pelvic limb osteology and arthrology | Hock = tarsus, calcaneus, patella; fibula muscle origins; carnivore metatarsal I may be rudimentary | https://ncstate.pressbooks.pub/unit2musculoskeletal/?p=775 | verified |
 | MERCK-TEETH | Merck Veterinary Manual (pet owner). Dental Development of Cats (upd. Jun 2025) | Number of teeth | https://www.merckvetmanual.com/cat-owners/digestive-disorders-of-cats/dental-development-of-cats | verified |
 | MERCK-JOINT | Merck Veterinary Manual (pet owner). Joint Disorders in Cats | Joint names (wrist, knee, ankle) | https://www.merckvetmanual.com/cat-owners/bone-joint-and-muscle-disorders-of-cats/joint-disorders-in-cats | verified |
 | LAWSON | Lawson R. Anatomy and Physiology of Animals, 6.16 Locomotion (LibreTexts, CC BY-SA 3.0) | Digitigrade stance | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/06%3A_The_Skeleton/6.16%3A_Locomotion | verified |
