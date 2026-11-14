@@ -313,7 +313,7 @@
         // Nothing to tap until "Pro zvídavé" is on (e.g. the jaw joint on the skull): say so.
         var lay0 = fig.layers[state.layer] || {};
         var onlyExtra = !visibleIds().length && Object.keys(lay0).some(function (id) { return byId[id] && (!part || byId[id].part === part); });
-        card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Tady jsou jen věci pro zvídavé. Zapni Pro zvídavé.") :
+        card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.") :
           state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
