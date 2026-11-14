@@ -279,8 +279,8 @@ a.menu-card:active {
 
 /* Phones: with labels on, keep the figure readable and let it scroll sideways. */
 @media (max-width: 600px) {
-  .atlas-figure.has-labels { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .atlas-figure.has-labels .atlas-svg { width: 760px; max-width: none; }
+  .atlas-figure.has-labels.is-wide { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .atlas-figure.has-labels.is-wide .atlas-svg { width: 760px; max-width: none; }
 }
 
 /* ===================== Quiz (stage 6) ===================== */
@@ -316,3 +316,18 @@ a.menu-card:active {
 .quiz-missed { margin: 4px 0 0; padding-left: 20px; }
 .quiz-missed li { margin: 6px 0; }
 .quiz-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+/* ===================== Kostra part screens (M2 stage 4) ===================== */
+.parts { margin: 0 0 16px; }
+.parts-h { margin: 0 0 8px; font-size: 1.1rem; color: var(--muted); }
+.part-nav, .fig-tabs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.part-link, .fig-tab {
+  display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 16px;
+  border-radius: 999px; border: 2px solid var(--accent);
+  background: var(--surface); color: var(--accent);
+  font-weight: 700; text-decoration: none;
+}
+.part-link:hover, .fig-tab:hover { background: var(--accent-soft); }
+.fig-nav { margin: 0 0 16px; }
+.fig-tab[aria-current="page"] { background: var(--accent); color: #fff; }
+.part-link:focus-visible, .fig-tab:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

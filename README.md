@@ -36,11 +36,11 @@ cats-anatomy/
 ├── index.html              # app entry point (open this)
 ├── styles/main.css         # all styles, tablet-first
 ├── scripts/
-│   ├── app.js              # hash routing, menu and section rendering
+│   ├── app.js              # hash routing, menu and section rendering; part screens #/kostra/<part>
 │   ├── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles
 │   └── quiz.js             # quiz "Najdi kost nebo orgán" (#/kostra/kviz)
 ├── data/
-│   ├── sections.js         # the 7 sections and their status
+│   ├── sections.js         # the 7 sections, UI strings, figures of each Kostra part screen
 │   ├── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
 │   └── hotspots-kostra.js  # hotspot polygons per figure (skeleton, skull, 7 detail figures) and layer
 ├── images/kostra/          # skeleton.webp (Fig. 1), skull.webp (Fig. 40), lossless WebP
