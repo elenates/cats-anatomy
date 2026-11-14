@@ -50,9 +50,17 @@ cats-anatomy/
 │   ├── image-licenses.md   # one row per image file: source, author, licence, changes
 │   ├── figures.md          # original figure label keys mapped to data/kostra.js ids
 │   └── references.md       # scientific references used for verification
+├── docs/
+│   └── test-session-guide.md  # how to run a test session with the child
 ├── LICENSE                 # MIT, applies to code only
 └── README.md
 ```
+
+## Testing
+
+- **QA checklist** (59 checks, Pass / Fail per desktop, tablet and phone) and the **test session log**:
+  [Kostra v0.1 – QA checklist and test session log](https://claude.ai/artifact/GcmqWwtULZxHNMB2cYxCjJ) (shared sheet).
+- **Test session with the child:** [`docs/test-session-guide.md`](docs/test-session-guide.md).
 
 ## Editing hotspots
 
