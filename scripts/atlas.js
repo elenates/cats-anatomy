@@ -227,7 +227,8 @@
       svg.lastChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", fig.image);
 
       var gHot = svgEl("g", { "class": "hotspots" });
-      ids.forEach(function (id) {
+      // Larger structures first, so smaller ones drawn inside them (fig.nested) stay on top.
+      ids.slice().sort(function (a, b) { return bigArea(lay[b]) - bigArea(lay[a]); }).forEach(function (id) {
         var it = byId[id];
         var g = svgEl("g", {
           "class": "hotspot" + (id === selected ? " is-selected" : ""),
@@ -384,6 +385,8 @@
    * Shared hit test: which visible structure does a click at (clientX, clientY) mean?
    * Inside a polygon wins; otherwise the nearest polygon within TAP_TOLERANCE_PX.
    */
+  function bigArea(polys) { return (polys || []).reduce(function (m, p) { return Math.max(m, area(p)); }, 0); }
+
   function hitTest(svg, layer, ids, clientX, clientY) {
     var ctm = svg.getScreenCTM(); if (!ctm) return null;
     var pt = svg.createSVGPoint(); pt.x = clientX; pt.y = clientY;
@@ -392,7 +395,11 @@
     ids.forEach(function (id) {
       (layer[id] || []).forEach(function (poly) {
         var d = pointInPoly(p.x, p.y, poly) ? 0 : nearestOnPoly(p.x, p.y, poly)[2];
-        if (d <= tol && (!best || d < best.d)) best = { id: id, d: d };
+        if (d > tol) return;
+        // Inside two polygons (a smaller structure drawn inside a larger one, see
+        // fig.nested): the smaller one wins.
+        var a = d === 0 ? area(poly) : Infinity;
+        if (!best || d < best.d || (d === 0 && best.d === 0 && a < best.a)) best = { id: id, d: d, a: a };
       });
     });
     return best && best.id;

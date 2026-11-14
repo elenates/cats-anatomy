@@ -53,8 +53,10 @@
     items.forEach(function (it) { byId[it.id] = it; });
     var alsoCounts = (fig && fig.alsoCounts) || {};
 
-    // Every structure on the layer can be tapped; only some can be asked.
-    var tappable = items.filter(function (it) { return layer[it.id]; }).map(function (it) { return it.id; });
+    // Every Základ structure on the layer can be tapped; only some can be asked.
+    // Pro zvídavé hotspots (drawn inside larger ones) stay out, so a tap on the
+    // thoracic spine still counts as "Páteř".
+    var tappable = items.filter(function (it) { return it.level === "zaklad" && layer[it.id]; }).map(function (it) { return it.id; });
     var pool = items.filter(function (it) {
       return it.level === "zaklad" && it.quiz !== false && layer[it.id];
     }).map(function (it) { return it.id; });
