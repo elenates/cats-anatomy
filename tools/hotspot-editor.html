@@ -61,7 +61,7 @@
   <select id="layer"></select>
   <div class="row"><input id="newLayer" placeholder="new layer name" style="flex:1"><button id="addLayer">Add</button></div>
 
-  <label for="items">Structure (from data/kostra.js)</label>
+  <label for="items">Structure (from data/kostra.js or the figure's content file)</label>
   <select id="items" size="12"></select>
   <div class="hint" id="itemInfo"></div>
 
@@ -107,12 +107,18 @@
 
 <!-- Content and existing hotspots. Plain scripts, so this works from file://. -->
 <script src="../data/kostra.js"></script>
+<script src="../data/vnejsi.js"></script>
 <script src="../data/hotspots-kostra.js"></script>
 <script>
 (function () {
   "use strict";
   var D = window.ATLAS_DATA || {};
-  var items = (D.kostra && D.kostra.items) || [];
+  var items = [];   // the structures of the current figure's content set (fig.content, default "kostra")
+  function setItems() {
+    var f = figures[st.fig] || {};
+    var set = D[f.content || "kostra"];
+    items = (set && set.items) || [];
+  }
   var figures = D.hotspots || {};      // { figureId: {image,width,height,layers,alsoCounts,...} }
   var NS = "http://www.w3.org/2000/svg";
 
@@ -153,6 +159,7 @@
     });
     if (!st.fig) st.fig = Object.keys(figures)[0] || null;
     sel.value = st.fig;
+    setItems();
   }
   function fillLayers() {
     var sel = $("layer"); sel.innerHTML = "";
@@ -300,7 +307,7 @@
     var it = itemById(st.item);
     $("itemInfo").textContent = it ? (it.cs + " · " + it.la + " · " + (it.level === "zaklad" ? "Základ" : "Pro zvídavé")) : "";
   }
-  $("figure").onchange = function () { st.fig = this.value; st.draft = null; fillLayers(); fillItems(); loadFigureImage(); };
+  $("figure").onchange = function () { st.fig = this.value; setItems(); st.draft = null; fillLayers(); fillItems(); loadFigureImage(); };
   $("layer").onchange = function () { st.layer = this.value; st.draft = null; fillItems(); render(); };
   $("addLayer").onclick = function () {
     var n = $("newLayer").value.trim(); if (!n) return;
@@ -402,6 +409,9 @@
       " * lists them under \"nested\" (check in the editor).",
       " *   kosti  - bones (overview screen, part screens, quiz)",
       " *   klouby - joints (\"Klouby a pohyb\" screen, part screens)",
+      " * content: which data set the item ids belong to (\"kostra\" when left out,",
+      " *   \"vnejsi\" = data/vnejsi.js). credit: caption for a figure that is not",
+      " *   one of the 1901 drawings (e.g. a photo with its licence).",
       " * labelSides: where each label goes when \"Popisky\" is on (left/right/top/bottom).",
       " * alsoCounts: a tap on any listed item also counts as the key item.",
       " * nested: larger item -> smaller items drawn over it (e.g. the pelvis and its",
@@ -418,6 +428,8 @@
       lines.push("  width: " + f.width + ",");
       lines.push("  height: " + f.height + ",");
       if (f.figure) lines.push("  figure: " + JSON.stringify(f.figure) + ",");
+      if (f.content) lines.push("  content: " + JSON.stringify(f.content) + ",");
+      if (f.credit) lines.push("  credit: " + JSON.stringify(f.credit) + ",");
       lines.push("  layers: {");
       ln.forEach(function (l, li) {
         lines.push("    " + l + ": {");
