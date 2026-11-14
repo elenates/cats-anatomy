@@ -39,7 +39,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Drží tělo pohromadě a chrání míchu, která vede zprávy mezi mozkem a tělem.",
       zajimavost: "Kočka má v páteři kolem 50 obratlů, ty jich máš asi 33.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"]
+      refs: ["NAV", "POL15", "MUNI-OST", "LAWSON-VC"]
     },
     {
       id: "krcni-obratle",
@@ -63,7 +63,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Hlava se na něm kývá nahoru a dolů.",
       zajimavost: "Jmenuje se podle obra Atlase z řeckých bájí, který nesl nebe na ramenou.",
       quiz: true,
-      refs: ["NAV", "MUNI-OST", "MUNI-NAZ"]
+      refs: ["NAV", "MUNI-OST", "MUNI-NAZ", "CSU-AX", "LAWSON-VC"]
     },
     {
       id: "cepovec",
@@ -75,7 +75,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Má výběžek jako čep, kolem kterého se nosič i s hlavou otáčí.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "MUNI-NAZ"]
+      refs: ["NAV", "MUNI-NAZ", "UEN-AX", "LAWSON-VC"]
     },
     {
       id: "hrudni-obratle",
@@ -99,7 +99,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nesou zadní část trupu a pomáhají kočce prohnout hřbet.",
       zajimavost: "Kočka jich má 7, ty jen 5.",
       quiz: true,
-      refs: ["NAV", "POL15", "MUNI-OST"]
+      refs: ["NAV", "POL15", "MUNI-OST", "RANDAU17"]
     },
     {
       id: "kost-krizova",
@@ -159,7 +159,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání mozek a oči.",
       zajimavost: "Lebka se skládá z mnoha kostí, které jsou pevně spojené.",
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "LAWSON-SK"]
     },
     {
       id: "dolni-celist",
@@ -183,7 +183,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří velkou část obličeje a patra.",
       zajimavost: "Horní řezáky nejsou v horní čelisti, ale v malé kosti řezákové.",
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "REITER14"]
     },
     {
       id: "zuby",
@@ -231,7 +231,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začíná na něm silný žvýkací sval.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "NLK-MeSH", "ELS-ZYG"]
+      refs: ["NAV", "NLK-MeSH", "ELS-ZYG", "IMA-MASS"]
     },
     {
       id: "kost-tylni",
@@ -243,7 +243,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje lebku s páteří.",
       zajimavost: "Má velký otvor, kterým vede mícha z mozku do páteře.",
       quiz: true,
-      refs: ["NAV", "SLU-NAZ"]
+      refs: ["NAV", "SLU-NAZ", "LAWSON-SK"]
     },
     {
       id: "kost-celni",
@@ -255,7 +255,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Chrání přední část mozku.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "LF2-LEB"]
     },
     {
       id: "kost-temenni",
@@ -267,7 +267,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tvoří střechu lebky a chrání mozek.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "LF2-LEB"]
     },
     {
       id: "kost-nosni",
@@ -279,7 +279,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Kryje nosní dutinu shora.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "LF2-LEB"]
     },
     {
       id: "kost-spankova",
@@ -291,7 +291,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Je v ní ukryté vnitřní ucho.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "LF2-LEB", "WIKIVET-EAR"]
     },
     {
       id: "kost-licni",
@@ -351,7 +351,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje loket se zápěstím a nese váhu těla.",
       zajimavost: "Spolu s kostí loketní tvoří předloktí – stejně jako u tebe.",
       quiz: true,
-      refs: ["NAV", "MUNI-KOST"]
+      refs: ["NAV", "MUNI-KOST", "UMN-LA"]
     },
     {
       id: "kost-loketni",
@@ -447,7 +447,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začínají na ní svaly zadní nohy.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV", "LF2-DK"]
+      refs: ["NAV", "LF2-DK", "NCSU-THIGH"]
     },
     {
       id: "kost-stydka",
@@ -471,7 +471,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nese váhu těla a pomáhá při odrazu ke skoku.",
       zajimavost: "Její hlavice zapadá do jamky v pánvi jako kulička do misky.",
       quiz: true,
-      refs: ["NAV", "UMN-RUN"]
+      refs: ["NAV", "UMN-RUN", "LAWSON-J"]
     },
     {
       id: "ceska",
@@ -495,7 +495,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Nese váhu těla v bérci.",
       zajimavost: "Svou holenní kost si nahmatáš vpředu na noze pod kolenem.",
       quiz: true,
-      refs: ["NAV", "LF2-DK"]
+      refs: ["NAV", "LF2-DK", "IMA-FIB"]
     },
     {
       id: "kost-lytkova",
@@ -507,7 +507,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Začínají na ní svaly bérce.",
       zajimavost: "U kočky je mezi holenní a lýtkovou kostí skoro všude stejně široká mezera.",
       quiz: true,
-      refs: ["NAV", "UMN-FEL"]
+      refs: ["NAV", "UMN-FEL", "NCSU-PL", "IMA-FIB"]
     },
     {
       id: "kosti-zanartni",
@@ -639,7 +639,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Spojuje dolní čelist s lebkou, takže kočka může otevřít tlamu.",
       zajimavost: null,
       quiz: true,
-      refs: ["NAV"]
+      refs: ["NAV", "RJ1901"]
     },
     {
       id: "plotenka",
@@ -651,7 +651,7 @@ window.ATLAS_DATA.kostra = {
       coDela: "Tlumí nárazy a dovoluje páteři se ohýbat.",
       zajimavost: "Kočce chybí vaz, který má pes na krku, a proto je její páteř ohebnější.",
       quiz: false,
-      refs: ["NAV", "UMN-FEL"]
+      refs: ["NAV", "UMN-FEL", "UIUC-DISC", "LAWSON-J"]
     }
   ]
 };
