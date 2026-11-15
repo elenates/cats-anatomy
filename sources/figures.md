@@ -145,3 +145,16 @@ letters are taken from the body text.
 | 2–5 | the other metatarsals | `kosti-nartni` | The 4 developed metatarsals |
 | i, j, k | proximal, second, distal phalanges | `prsty-zadni` | |
 | h, l | peroneal groove, sesamoid bones | — | |
+
+## Organ close-ups (Milestone 4, `images/organy/`)
+
+Letter keys from the captions, or from the text where the caption has none. Which labels get a hotspot is decided with the content in stage 5b; the 1901 letters stay on the figures, as on the Kostra detail figures.
+
+- **Fig. 97** (`stomach.webp`, 350×321): Stomach, Ventral View. a, œsophagus; b, cardiac end of the stomach; c, lesser curvature; d, greater curvature; e, fundus; f, pyloric valve; g, part of duodenum.
+- **Fig. 102** (`pancreas-spleen.webp`, 1000×809): Pancreas and Spleen (stomach turned caudad). a, pancreas (duodenal and gastric portion); b, pancreatic duct; c, duodenum; d, stomach; e, spleen.
+- **Fig. 106** (`lungs.webp`, 450×441): Ramifications of the Bronchi, with Outlines of the Lobes of the Lungs, Ventral View. 1–4, lobes of the right lung; 1′–3′, lobes of the left lung; a, trachea; b, eparterial bronchus.
+- **Fig. 108** (`kidney.webp`, 531×500): Left Kidney, Ventral Surface. a, renal artery; b, renal vein; c, ureter (key in the text, p. 255).
+- **Fig. 109** (`kidney-section.webp`, 461×500): Median Longitudinal Section of Kidney. a, medullary portion; b, cortical portion; c, papilla; d, pelvis; e, renal artery; f, renal vein; g, ureter (key in the text, p. 255).
+- **Fig. 115** (`heart.webp`, 558×1250): Heart, Ventral View. Key in the text (pp. 274–275): a, right ventricle; b, left ventricle; c, right auricular appendage; d, left auricular appendage; f, pulmonary artery; g, aorta; q, coronary artery; other letters are vessels.
+- **Fig. 117** (`heart-open.webp`, 878×750): Heart, with Right Ventricle laid open to show the Tricuspid Valve. a, trabeculæ; b, columnæ carneæ; c, chordæ tendineæ; d, d′, d″, the three flaps of the tricuspid valve; e, aorta; f, conus arteriosus, laid open; g, semilunar valves of the pulmonary artery.
+- **Fig. 137** (`brain.webp`, 500×548): Dorsal Surface of the Brain. I, olfactory bulbs; II, cerebral hemispheres; III, cerebellum; IV, medulla; a–i sulci; j, vermis; k, cerebellar hemispheres; l, roof of fourth ventricle; m, first cervical nerve; 1–8 gyri.
