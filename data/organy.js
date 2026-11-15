@@ -65,7 +65,7 @@ window.ATLAS_DATA.organy = {
       soustava: "travici",
       kdeJe: "Uvnitř tlamy.",
       coDela: "Kočka v ní zuby kouše potravu a sliny ji zvlhčí. Jazykem pije a olizuje se.",
-      zajimavost: "Jazyk je drsný, pokrytý drobnými ostny. Kočka jím umí olízat maso z kosti.",
+      zajimavost: "Jazyk je drsný. Pokrývají ho drobné výrůstky, kterým se říká papily. Kočka jím umí olízat maso z kosti.",
       kostra: "lebka-celisti",
       refs: ["NAV", "MERCK-DESC"]
     },
@@ -77,7 +77,7 @@ window.ATLAS_DATA.organy = {
       soustava: "dychaci",
       kdeJe: "V krku, pod jícnem. Vede až do hrudníku.",
       coDela: "Vede vzduch z nosu a tlamy do plic.",
-      zajimavost: "Otevřenou ji drží chrupavčité kroužky. Při polykání se nad ní zavře malá záklopka, aby do ní nezapadlo jídlo.",
+      zajimavost: "Otevřenou ji drží chrupavčité kroužky. Při polykání zakryje vchod do hrtanu příklopka hrtanová, aby jídlo nezapadlo do průdušnice.",
       kostra: null,
       refs: ["NAV", "LAWSON-AIR", "RJ1901"]
     },
@@ -113,7 +113,7 @@ window.ATLAS_DATA.organy = {
       soustava: "obehova",
       kdeJe: "V hrudníku mezi plícemi, trochu víc vlevo.",
       coDela: "Je to dutý sval, který pumpuje krev do celého těla.",
-      zajimavost: "V klidu bije víc než 120krát za minutu. Zkus si spočítat, kolikrát za minutu bije tvoje srdce.",
+      zajimavost: "V klidu může bít víc než 120krát za minutu. Zkus si spočítat, kolikrát za minutu bije tvoje srdce.",
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "MERCK-HEART"]
     },
@@ -172,7 +172,7 @@ window.ATLAS_DATA.organy = {
       level: "zvidave",
       soustava: "obehova",
       kdeJe: "V břiše, vlevo podél žaludku.",
-      coDela: "Čistí krev od starých krvinek a pomáhá tělu bránit se nemocem.",
+      coDela: "Odstraňuje z krve staré červené krvinky a pomáhá tělu bránit se nemocem.",
       zajimavost: null,
       kostra: null,
       refs: ["NAV", "RJ1901", "BRIT-SPL"]
@@ -185,7 +185,7 @@ window.ATLAS_DATA.organy = {
       soustava: "travici",
       kdeJe: "V břiše, stočené do mnoha kliček. Zabírá většinu břicha.",
       coDela: "Dokončí trávení a vstřebá živiny z potravy do krve.",
-      zajimavost: "Je asi třikrát delší než kočičí tělo. Do břicha se vejde jen proto, že je stočené.",
+      zajimavost: "Podle staré knihy o kočičí anatomii je asi třikrát delší než kočičí tělo. Do břicha se vejde jen proto, že je stočené.",
       kostra: null,
       refs: ["NAV", "LAWSON-SI", "RJ1901"]
     },
@@ -197,7 +197,7 @@ window.ATLAS_DATA.organy = {
       soustava: "travici",
       kdeJe: "V břiše, za tenkým střevem. Vede až k pánvi.",
       coDela: "Vstřebává vodu, a tak ze zbytků potravy vzniká trus.",
-      zajimavost: "Je mnohem kratší než tenké střevo, měří asi polovinu délky kočičího těla. Masožravci mají střeva kratší než býložravci.",
+      zajimavost: "Je mnohem kratší než tenké střevo. Masožravci mají střeva kratší než býložravci.",
       kostra: null,
       refs: ["NAV", "LAWSON-LI", "LAWSON-CARN", "RJ1901"]
     },

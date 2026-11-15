@@ -129,8 +129,8 @@ Also used here: NAV (Diaphragma p. 41; Splanchnologia pp. 49–59; Cor p. 73; Li
 
 Notes:
 - BRIT-SPL is general (human-based) anatomy: no cat-specific source on the spleen could be opened (a Tufts newsletter page redirects, PMC pages ask for a browser check).
-- The intestine lengths (small intestine about three times the body, large intestine about half) come from RJ1901 only; marked in the review sheet.
-- Heart and breathing rates: sources differ (Merck table 120–140 bpm; clinic values 140–220). The app says only "more than 120".
+- The small-intestine length (about three times the body) comes from RJ1901 only, so the app calls it an estimate from an old book. The large-intestine length was removed: no modern source confirms it.
+- Heart and breathing rates: sources differ (Merck table 120–140 bpm; clinic values 140–220). The app says only that it can be more than 120.
 
 ## Planned
 
