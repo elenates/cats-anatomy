@@ -23,8 +23,8 @@ No installation, no build step, no server.
 |---|--------------|--------|
 | 1 | Kostra | done (v0.1, v0.2) |
 | 2 | Vnější stavba těla | done (v0.3) |
-| 3 | Vnitřní orgány | v0.4 in progress |
-| 4 | Tělesné soustavy | v0.4 in progress |
+| 3 | Vnitřní orgány | done (v0.4) |
+| 4 | Tělesné soustavy | done (v0.4) |
 | 5 | Svaly | planned |
 | 6 | Smysly | planned |
 | 7 | Procvičování | planned |
