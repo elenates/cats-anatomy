@@ -7,7 +7,8 @@
  *   klouby - joints ("Klouby a pohyb" screen, part screens)
  * content: which data set the item ids belong to ("kostra" when left out,
  *   "vnejsi" = data/vnejsi.js). credit: caption for a figure that is not
- *   one of the 1901 drawings (e.g. a photo with its licence).
+ *   one of the 1901 drawings (e.g. a photo with its licence); creditParts:
+ *   the same caption split into pieces, with links where a piece has href.
  * labelSides: where each label goes when "Popisky" is on (left/right/top/bottom).
  * alsoCounts: a tap on any listed item also counts as the key item.
  * nested: larger item -> smaller items drawn over it (e.g. the pelvis and its
@@ -206,6 +207,7 @@ window.ATLAS_DATA.hotspots["cat-side"] = {
   figure: "Photo: Felis catus-cat on snow",
   content: "vnejsi",
   credit: "Foto: Von.grzanka, Wikimedia Commons, CC BY-SA 3.0",
+  creditParts: [{"text":"Foto: "},{"text":"Von.grzanka, "},{"text":"Wikimedia Commons","href":"https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg"},{"text":", licence "},{"text":"CC BY-SA 3.0","href":"https://creativecommons.org/licenses/by-sa/3.0/"},{"text":". Upraveno: zmenšeno."}],
   layers: {
     telo: {
       "hlava": [[[308,95],[308.1,96.2],[305,95],[318,200],[300,250],[310.1,350.3],[308,385],[345,422],[347.7,421.2],[400,445],[470,455],[530,440],[550.1,419.9],[560,422],[574,396],[580,390],[581.9,381.2],[588,370],[585.5,365.1],[600,300],[575,230],[575,150],[555,100],[553.4,101],[553,100],[535.3,112.8],[470,155],[400,160],[359.7,123.3],[345,105]]],

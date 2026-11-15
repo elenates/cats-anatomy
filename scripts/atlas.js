@@ -95,8 +95,11 @@
   function mount(container, opts) {
     var figId = (opts && opts.figure) || "skeleton";
     var fig = (D.hotspots || {})[figId];
-    var items = (D.kostra && D.kostra.items) || [];
-    var parts = (D.kostra && D.kostra.parts) || [];
+    var sections = D.sections || [];
+    // Which content file the hotspots belong to ("kostra" unless the figure says otherwise).
+    var content = (fig && fig.content) || "kostra";
+    var items = (D[content] && D[content].items) || [];
+    var parts = (D[content] && D[content].parts) || [];
     var byId = {};
     items.forEach(function (it) { byId[it.id] = it; });
 
@@ -112,7 +115,7 @@
     var selected = null;
 
     // ----- toolbar -----
-    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby" };
+    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla" };
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
     layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
@@ -134,11 +137,20 @@
     ]);
 
     // ----- figure -----
-    var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": ui.figureLabel || "Obrázek kostry" });
+    var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") : (ui.figureLabel || "Obrázek kostry") });
     var figBox = el("div", { "class": "atlas-figure" }, [svg]);
     // "Reighard & Jennings 1901, Fig. 40" -> "Obrázek 40: J. Reighard a H. S. Jennings, ..."
     var figNo = /Fig\. (\d+)/.exec(fig.figure || "");
-    var credit = el("p", { "class": "atlas-credit", text: (ui.figurePrefix || "Obrázek") + (figNo ? " " + figNo[1] : "") + ": " + (ui.figureCredit || "") });
+    var credit;
+    if (fig.credit) {
+      // Licensed photo: author, source and licence, each linked (CC BY-SA asks for this).
+      credit = el("p", { "class": "atlas-credit" });
+      (fig.creditParts || [{ text: fig.credit }]).forEach(function (c) {
+        credit.appendChild(c.href ? el("a", { href: c.href, target: "_blank", rel: "noopener", text: c.text }) : document.createTextNode(c.text));
+      });
+    } else {
+      credit = el("p", { "class": "atlas-credit", text: (ui.figurePrefix || "Obrázek") + (figNo ? " " + figNo[1] : "") + ": " + (ui.figureCredit || "") });
+    }
 
     // ----- card -----
     var card = el("section", { "class": "atlas-card", "aria-live": "polite" });
@@ -314,7 +326,8 @@
         var lay0 = fig.layers[state.layer] || {};
         var onlyExtra = !visibleIds().length && Object.keys(lay0).some(function (id) { return byId[id] && (!part || byId[id].part === part); });
         card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.") :
-          state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+          state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") :
+          state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [
@@ -330,8 +343,13 @@
         card.appendChild(el("h3", { "class": "card-h", text: f[1] }));
         card.appendChild(el("p", { "class": "card-p", text: it[f[0]] }));
       });
+      // Body part -> the Kostra part screen with the bones underneath.
+      if (it.kostra && (D.kostraViews || {})[it.kostra]) {
+        card.appendChild(el("p", { "class": "card-link" }, [
+          el("a", { "class": "part-link", href: "#/kostra/" + it.kostra, text: ui.seeBones || "Podívej se na kosti →" })]));
+      }
       // Pro zvídavé: other structures of the same part that have no hotspot here.
-      if (state.zvidave) {
+      if (state.zvidave && it.part) {
         var lay = fig.layers[state.layer] || {};
         var extra = items.filter(function (x) { return x.part === it.part && x.level === "zvidave" && !lay[x.id] && x.id !== it.id; });
         if (extra.length) {

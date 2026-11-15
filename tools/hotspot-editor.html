@@ -411,7 +411,8 @@
       " *   klouby - joints (\"Klouby a pohyb\" screen, part screens)",
       " * content: which data set the item ids belong to (\"kostra\" when left out,",
       " *   \"vnejsi\" = data/vnejsi.js). credit: caption for a figure that is not",
-      " *   one of the 1901 drawings (e.g. a photo with its licence).",
+      " *   one of the 1901 drawings (e.g. a photo with its licence); creditParts:",
+      " *   the same caption split into pieces, with links where a piece has href.",
       " * labelSides: where each label goes when \"Popisky\" is on (left/right/top/bottom).",
       " * alsoCounts: a tap on any listed item also counts as the key item.",
       " * nested: larger item -> smaller items drawn over it (e.g. the pelvis and its",
@@ -430,6 +431,7 @@
       if (f.figure) lines.push("  figure: " + JSON.stringify(f.figure) + ",");
       if (f.content) lines.push("  content: " + JSON.stringify(f.content) + ",");
       if (f.credit) lines.push("  credit: " + JSON.stringify(f.credit) + ",");
+      if (f.creditParts) lines.push("  creditParts: " + JSON.stringify(f.creditParts) + ",");
       lines.push("  layers: {");
       ln.forEach(function (l, li) {
         lines.push("    " + l + ": {");
