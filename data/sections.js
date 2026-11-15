@@ -56,7 +56,7 @@ window.ATLAS_DATA.ui = {
   // Organ quiz (v0.4, stage 8) – to be proofread
   quizOpenOrgany: "Najdi orgán",
   quizTitleOrgany: "Kvíz: Najdi orgán",
-  quizFigureLabelOrgany: "Obrázek vnitřních orgánů – klepni na hledaný orgán",
+  quizFigureLabelOrgany: "Obrázek vnitřních orgánů kočky – klepni na orgán, který hledáš",
   quizGreatOrgany: "Jsi expert na kočičí orgány!",
   quizBackOrgany: "Zpět na vnitřní orgány",
   layerOrgany: "Orgány",
