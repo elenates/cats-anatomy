@@ -11,7 +11,7 @@
  *   kostra    Kostra part screen with the bones around this organ, or null
  *   part      (close-up parts only) organ whose close-up screen shows the item; see parts
  *
- * soustavy: id, cs, text (Základ), zvidave (extra sentence for Pro zvídavé), refs
+ * soustavy: id, cs, text (Základ), note (optional, always shown), zvidave (extra for Pro zvídavé), refs
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -21,7 +21,7 @@ window.ATLAS_DATA.organy = {
     { id: "dychaci", cs: "Dýchací soustava", text: "Kočka vdechne vzduch nosem. Průdušnicí jde do plic a tam se z něj kyslík dostane do krve. Bránice pomáhá plícím nadechovat.", zvidave: "Při výdechu jde z plic ven oxid uhličitý. Je to odpad, kterého se tělo musí zbavit.", refs: ["LAWSON-AIR", "LAWSON-RO", "LAWSON-BR"] },
     { id: "obehova", cs: "Oběhová soustava", text: "Srdce pumpuje krev do celého těla. Krev roznáší kyslík z plic a živiny ze střev.", zvidave: "Patří sem i slezina. Odstraňuje z krve staré červené krvinky.", refs: ["MERCK-HEART", "LAWSON-SI", "LAWSON-RO", "BRIT-SPL"] },
     { id: "travici", cs: "Trávicí soustava", text: "Potrava jde z tlamy jícnem do žaludku a pak do střev. Cestou se rozloží a živiny se vstřebají do krve. Co tělo nepotřebuje, odchází ven jako trus.", zvidave: "Játra a slinivka vyrábějí šťávy, které pomáhají trávit. Potrava jimi ale neprochází.", refs: ["LAWSON-OES", "LAWSON-ST", "LAWSON-SI", "LAWSON-LI", "LAWSON-LIV", "LAWSON-PJ"] },
-    { id: "mocova", cs: "Močová soustava", text: "Ledviny čistí krev a vyrábějí moč. Moč teče močovody do močového měchýře. Když je měchýř plný, kočka se vyčůrá.", zvidave: "Z močového měchýře vede moč ven ještě jedna trubička, močová trubice.", refs: ["LAWSON-KID", "MERCK-DESC"] },
+    { id: "mocova", cs: "Močová soustava", text: "Ledviny čistí krev a vyrábějí moč. Moč teče močovody do močového měchýře. Když je měchýř plný, kočka se vyčůrá.", note: "Někdy se jí říká také vylučovací soustava, protože vylučuje z těla odpadní látky. Když veterinář mluví o nemocech nebo o vyšetření moči, říká močová soustava.", zvidave: "Z močového měchýře vede moč ven ještě jedna trubička, močová trubice. Odpadní látky ale odcházejí z těla i jinudy: oxid uhličitý plícemi a zbytky potravy střevem.", refs: ["MUNI-VYL", "LAWSON-RO", "LAWSON-LI", "LAWSON-KID", "MERCK-DESC"] },
     { id: "rozmnozovaci", cs: "Rozmnožovací soustava", text: "Díky rozmnožovací soustavě se rodí koťata. Kočka má vaječníky a dělohu, kocour má varlata. Koťata rostou v děloze asi dva měsíce a po narození pijí mateřské mléko.", zvidave: "Kočka mívá v jednom vrhu nejčastěji asi čtyři koťata. Narodí se se zavřenýma očima i ušima a mámu najdou po čichu.", refs: ["LAWSON-FR", "LAWSON-MR", "MERCK-REPRO", "RUTGERS-KIT"] }
   ],
   parts: [
