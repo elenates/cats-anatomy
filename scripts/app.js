@@ -129,6 +129,7 @@
         el("h2", { "class": "parts-h", text: ui.closeupsHeading || "Orgány zblízka" }), clist]);
       return [back, title, cnav, ohost];
     }
+    if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -165,6 +166,26 @@
     if (view.note) nodes.push(el("p", { "class": "fig-note", text: view.note }));
     var host = el("div", { "class": "atlas" });
     host._mount = function () { window.Atlas.mount(host, { figure: view.figure }); };
+    nodes.push(host);
+    return nodes;
+  }
+
+  /* Tělesné soustavy: one tab per body system; its organs light up on the organ figure. */
+  function renderSystems(sysId) {
+    var systems = data.organy.soustavy || [];
+    var sys = systems.filter(function (x) { return x.id === sysId; })[0] || systems[0];
+    var back = el("a", { "class": "back-link", href: "#/", text: "← " + ui.back });
+    var nodes = [back, el("h1", { "class": "screen-title", text: (data.sections.filter(function (x) { return x.id === "soustavy"; })[0] || {}).cs })];
+    var tabList = el("ul", { "class": "fig-tabs system-tabs" });
+    systems.forEach(function (x) {
+      var a = el("a", { "class": "fig-tab", href: "#/soustavy/" + x.id, text: x.cs });
+      if (x.id === sys.id) a.setAttribute("aria-current", "page");
+      tabList.appendChild(el("li", null, [a]));
+    });
+    nodes.push(el("nav", { "class": "fig-nav", "aria-label": ui.systemsLabel || "Soustavy" }, [tabList]));
+    var ids = (data.organy.items || []).filter(function (it) { return it.soustava === sys.id; }).map(function (it) { return it.id; });
+    var host = el("div", { "class": "atlas" });
+    host._mount = function () { window.Atlas.mount(host, { figure: "organs-side", only: ids, system: sys }); };
     nodes.push(host);
     return nodes;
   }

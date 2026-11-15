@@ -131,11 +131,14 @@ Also used here: NAV (Diaphragma p. 41; Splanchnologia pp. 49–59; Cor p. 73; Li
 | LAWSON-PAN | Lawson R. Anatomy and Physiology of Animals, 16.8 The Pancreas | Islets of Langerhans secrete insulin, which regulates blood glucose | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/16%3A_Endocrine_System/16.08%3A_The_Pancreas | verified |
 | LAWSON-NEPH | Lawson R. Anatomy and Physiology of Animals, 12.6 Kidney Tubules or Nephrons | Glomeruli in the cortex; loops of Henle and collecting ducts in the medulla; urine formation | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/12%3A_Urinary_System/12.06%3A_Kidney_Tubules_or_Nephrons | verified |
 | ALVITES23 | Alvites R et al. The Olfactory Bulb in Companion Animals—Anatomy, Physiology, and Clinical Importance. Brain Sci 2023;13(5):713. doi:10.3390/brainsci13050713 | Olfactory bulb links the olfactory epithelium of the nasal cavity with the brain | https://mdpi.com/2076-3425/13/5/713 | verified |
+| LAWSON-NSY | Lawson R. Anatomy and Physiology of Animals, 14.2 The Nervous System | Sense organs send information that is processed; the response makes muscles contract; neurons carry high-speed nerve impulses (Tělesné soustavy) | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/14%3A_Nervous_System/14.02%3A_The_Nervous_System | verified |
+| LAWSON-RO | Lawson R. Anatomy and Physiology of Animals, 9.1 Overview (Respiratory System) | Oxygen passes from the alveoli into the blood; carbon dioxide is a waste product removed where oxygen enters; cells need oxygen and glucose (Tělesné soustavy) | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/09%3A_Respiratory_System/9.01%3A_Overview | verified |
 
 Notes:
 - Close-up parts (stage 5b) also use NAV pp. 52–59, 74, 119–124, RJ1901 (Figs. 97–137 and pp. 255, 274–275), LAWSON-SI, LAWSON-AIR, LAWSON-KID, LAWSON-NS, VETHISTO and MERCK-HEART.
 - BRIT-SPL is general (human-based) anatomy: no cat-specific source on the spleen could be opened (a Tufts newsletter page redirects, PMC pages ask for a browser check).
 - The small-intestine length (about three times the body) comes from RJ1901 only, so the app calls it an estimate from an old book. The large-intestine length was removed: no modern source confirms it.
+- Tělesné soustavy (stage 6): system texts in `data/organy.js` (`soustavy`) use LAWSON-NS, LAWSON-NSY, LAWSON-AIR, LAWSON-RO, LAWSON-BR, MERCK-HEART, LAWSON-SI, LAWSON-OES, LAWSON-ST, LAWSON-LI, LAWSON-LIV, LAWSON-PJ, LAWSON-KID, MERCK-DESC and BRIT-SPL. Lawson files the spleen under the cardiovascular chapter (8.35 The Spleen), which supports grouping it with Oběhová soustava.
 - Heart and breathing rates: sources differ (Merck table 120–140 bpm; clinic values 140–220). The app says only that it can be more than 120.
 
 ## Planned

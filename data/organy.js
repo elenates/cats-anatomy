@@ -10,16 +10,18 @@
  *   soustava  body system the organ belongs to (see soustavy)
  *   kostra    Kostra part screen with the bones around this organ, or null
  *   part      (close-up parts only) organ whose close-up screen shows the item; see parts
+ *
+ * soustavy: id, cs, text (Základ), zvidave (extra sentence for Pro zvídavé), refs
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
 window.ATLAS_DATA.organy = {
   soustavy: [
-    { id: "nervova", cs: "Nervová soustava" },
-    { id: "dychaci", cs: "Dýchací soustava" },
-    { id: "obehova", cs: "Oběhová soustava" },
-    { id: "travici", cs: "Trávicí soustava" },
-    { id: "mocova", cs: "Močová soustava" }
+    { id: "nervova", cs: "Nervová soustava", text: "Mozek a mícha řídí celé tělo. Nervy jim přinášejí zprávy od očí, uší, nosu i kůže a odnášejí pokyny svalům.", zvidave: "Zprávy běží po nervech velmi rychle, proto kočka dokáže bleskově zareagovat.", refs: ["LAWSON-NS", "LAWSON-NSY"] },
+    { id: "dychaci", cs: "Dýchací soustava", text: "Kočka vdechne vzduch nosem. Průdušnicí jde do plic a tam se z něj kyslík dostane do krve. Bránice pomáhá plícím nadechovat.", zvidave: "Při výdechu jde z plic ven oxid uhličitý. Je to odpad, kterého se tělo musí zbavit.", refs: ["LAWSON-AIR", "LAWSON-RO", "LAWSON-BR"] },
+    { id: "obehova", cs: "Oběhová soustava", text: "Srdce pumpuje krev do celého těla. Krev roznáší kyslík z plic a živiny ze střev.", zvidave: "Patří sem i slezina. Odstraňuje z krve staré červené krvinky.", refs: ["MERCK-HEART", "LAWSON-SI", "LAWSON-RO", "BRIT-SPL"] },
+    { id: "travici", cs: "Trávicí soustava", text: "Potrava jde z tlamy jícnem do žaludku a pak do střev. Cestou se rozloží a živiny se vstřebají do krve. Co tělo nepotřebuje, odchází ven jako trus.", zvidave: "Játra a slinivka vyrábějí šťávy, které pomáhají trávit. Potrava jimi ale neprochází.", refs: ["LAWSON-OES", "LAWSON-ST", "LAWSON-SI", "LAWSON-LI", "LAWSON-LIV", "LAWSON-PJ"] },
+    { id: "mocova", cs: "Močová soustava", text: "Ledviny čistí krev a vyrábějí moč. Moč teče močovody do močového měchýře. Když je měchýř plný, kočka se vyčůrá.", zvidave: "Z močového měchýře vede moč ven ještě jedna trubička, močová trubice.", refs: ["LAWSON-KID", "MERCK-DESC"] }
   ],
   parts: [
     { id: "zaludek", cs: "Žaludek a slinivka", figures: [{ figure: "stomach", cs: "Žaludek" }, { figure: "pancreas-spleen", cs: "Slinivka a slezina" }] },

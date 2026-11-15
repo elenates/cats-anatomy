@@ -13,7 +13,7 @@ window.ATLAS_DATA.sections = [
   { id: "kostra",      cs: "Kostra",              icon: "🦴", status: "active" },
   { id: "vnejsi",      cs: "Vnější stavba těla",  icon: "🐈", status: "active" },
   { id: "organy",      cs: "Vnitřní orgány",      icon: "🫀", status: "active" },
-  { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "soon" },
+  { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "active" },
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "soon" },
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "soon" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "soon" }
@@ -48,6 +48,10 @@ window.ATLAS_DATA.ui = {
   closeupBack: "Zpět na vnitřní orgány",
   closeupsHeading: "Orgány zblízka",
   moreInCloseup: "Na dalším obrázku najdeš ještě:",
+  // Tělesné soustavy (v0.4, stage 6) – to be proofread
+  systemsLabel: "Soustavy",
+  systemOrgans: "Patří sem:",
+  systemMoreZvidave: "V režimu „Pro zvídavé“ uvidíš i další orgány.",
   layerOrgany: "Orgány",
   cardEmptyOrgany: "Klepni na orgán na obrázku.",
   figureLabelOrgany: "Obrázek vnitřních orgánů kočky",

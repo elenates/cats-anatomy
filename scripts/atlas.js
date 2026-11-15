@@ -109,6 +109,9 @@
     }
 
     var part = opts && opts.part;
+    // Body system view (Tělesné soustavy): only these organs, all tinted, with the system's text.
+    var only = opts && opts.only;
+    var system = opts && opts.system;
     var layerIds = Object.keys(fig.layers).filter(function (l) { return !(opts && opts.layers) || opts.layers.indexOf(l) >= 0; });
     var state = loadToggles();
     if (layerIds.indexOf(state.layer) < 0) state.layer = layerIds[0];
@@ -139,7 +142,7 @@
     // ----- figure -----
     var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") :
       content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") : (ui.figureLabel || "Obrázek kostry") });
-    var figBox = el("div", { "class": "atlas-figure" }, [svg]);
+    var figBox = el("div", { "class": "atlas-figure" + (only ? " is-system" : "") }, [svg]);
     // "Reighard & Jennings 1901, Fig. 40" -> "Obrázek 40: J. Reighard a H. S. Jennings, ..."
     var figNo = /Fig\. (\d+)/.exec(fig.figure || "");
     var credit;
@@ -167,7 +170,7 @@
     function visibleIds() {
       var lay = fig.layers[state.layer] || {};
       return items.map(function (it) { return it.id; }).filter(function (id) {
-        return lay[id] && (!part || byId[id].part === part) && (byId[id].level === "zaklad" || state.zvidave);
+        return lay[id] && (!part || byId[id].part === part) && (!only || only.indexOf(id) >= 0) && (byId[id].level === "zaklad" || state.zvidave);
       });
     }
 
@@ -255,6 +258,14 @@
       // Older Safari needs xlink:href for <image>.
       svg.lastChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", fig.image);
 
+      // System view: fade everything outside the system's organs, so they stand out in their own colours.
+      if (only && ids.length) {
+        var d = "M0 0H" + W + "V" + H + "H0Z";
+        ids.forEach(function (id) {
+          lay[id].forEach(function (p) { d += "M" + p.map(function (q) { return q.join(" "); }).join("L") + "Z"; });
+        });
+        svg.appendChild(svgEl("path", { "class": "system-fade", d: d, "fill-rule": "evenodd", "aria-hidden": "true" }));
+      }
       var gHot = svgEl("g", { "class": "hotspots" });
       // Larger structures first, so smaller ones drawn inside them (fig.nested) stay on top.
       ids.slice().sort(function (a, b) { return bigArea(lay[b]) - bigArea(lay[a]); }).forEach(function (id) {
@@ -336,6 +347,31 @@
     function renderCard() {
       card.textContent = "";
       var it = selected && byId[selected];
+      if (!it && system) {
+        // System view: what the system does, and its organs as buttons.
+        card.appendChild(el("h2", { "class": "card-title", text: system.cs }));
+        card.appendChild(el("p", { "class": "card-p", text: system.text }));
+        if (state.zvidave && system.zvidave) {
+          card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
+          card.appendChild(el("p", { "class": "card-p", text: system.zvidave }));
+        }
+        var shown = visibleIds();
+        if (shown.length) {
+          card.appendChild(el("h3", { "class": "card-h", text: ui.systemOrgans || "Patří sem:" }));
+          var ol = el("ul", { "class": "system-organs" });
+          shown.forEach(function (id) {
+            var b = el("button", { type: "button", "class": "organ-chip", text: byId[id].cs });
+            b.addEventListener("click", function () { select(id, true); });
+            ol.appendChild(el("li", null, [b]));
+          });
+          card.appendChild(ol);
+        }
+        var lay1 = fig.layers[state.layer] || {};
+        var hidden = only.some(function (id) { return lay1[id] && byId[id] && shown.indexOf(id) < 0; });
+        if (hidden) card.appendChild(el("p", { "class": "card-empty", text: ui.systemMoreZvidave || "V režimu „Pro zvídavé“ uvidíš i další orgány." }));
+        card.appendChild(el("p", { "class": "card-empty", text: ui.cardEmptyOrgany || "Klepni na orgán na obrázku." }));
+        return;
+      }
       if (!it) {
         // Nothing to tap until "Pro zvídavé" is on (e.g. the jaw joint on the skull): say so.
         var lay0 = fig.layers[state.layer] || {};
@@ -384,6 +420,11 @@
             break;
           }
         }
+      }
+      // Organ -> its body system (Tělesné soustavy), unless we are on it already.
+      var sys = it.soustava && ((D.organy && D.organy.soustavy) || []).filter(function (x) { return x.id === it.soustava; })[0];
+      if (sys && !(system && system.id === sys.id) && (D.sections || []).some(function (x) { return x.id === "soustavy" && x.status === "active"; })) {
+        links.push(el("a", { "class": "part-link", href: "#/soustavy/" + sys.id, text: sys.cs + " →" }));
       }
       if (links.length) card.appendChild(el("p", { "class": "card-link" }, links));
       // Pro zvídavé: other structures of the same part that have no hotspot here.

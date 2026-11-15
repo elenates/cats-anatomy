@@ -389,3 +389,13 @@ a.menu-card:active {
   .spoj-board { grid-template-columns: 1fr; }
   .spoj-names { grid-template-columns: 1fr 1fr; }
 }
+
+/* Tělesné soustavy: the chosen system's organs stay in colour and are outlined; the rest is faded. */
+.system-fade { fill: rgba(255, 255, 255, 0.72); pointer-events: none; }
+.atlas-figure.is-system .hotspot polygon { stroke: rgba(181, 86, 42, 0.9); stroke-width: 3px; }
+.atlas-figure.is-system .hotspot:hover polygon { fill: rgba(181, 86, 42, 0.18); }
+.atlas-figure.is-system .hotspot.is-selected polygon { fill: rgba(181, 86, 42, 0.40); stroke: var(--accent); stroke-width: 3px; }
+.system-organs { list-style: none; margin: 4px 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.organ-chip { font: inherit; min-height: 44px; padding: 8px 14px; border-radius: 22px; border: 2px solid var(--accent); background: transparent; color: inherit; cursor: pointer; }
+.organ-chip:hover { background: rgba(181, 86, 42, 0.10); }
+.organ-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
