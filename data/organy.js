@@ -22,11 +22,11 @@ window.ATLAS_DATA.organy = {
     { id: "mocova", cs: "Močová soustava" }
   ],
   parts: [
-    { id: "zaludek", cs: "Žaludek a slinivka", figures: ["stomach", "pancreas-spleen"] },
-    { id: "plice", cs: "Plíce zblízka", figures: ["lungs"] },
-    { id: "srdce", cs: "Srdce zblízka", figures: ["heart", "heart-open"] },
-    { id: "ledvina", cs: "Ledvina zblízka", figures: ["kidney", "kidney-section"] },
-    { id: "mozek", cs: "Mozek zblízka", figures: ["brain"] }
+    { id: "zaludek", cs: "Žaludek a slinivka", figures: [{ figure: "stomach", cs: "Žaludek" }, { figure: "pancreas-spleen", cs: "Slinivka a slezina" }] },
+    { id: "plice", cs: "Plíce zblízka", figures: [{ figure: "lungs", cs: "Průdušky a laloky" }] },
+    { id: "srdce", cs: "Srdce zblízka", figures: [{ figure: "heart", cs: "Srdce zvenku", note: "Na obrázku je pravá strana srdce vlevo a levá strana vpravo." }, { figure: "heart-open", cs: "Otevřené srdce" }] },
+    { id: "ledvina", cs: "Ledvina zblízka", figures: [{ figure: "kidney", cs: "Ledvina zvenku" }, { figure: "kidney-section", cs: "Ledvina v řezu" }] },
+    { id: "mozek", cs: "Mozek zblízka", figures: [{ figure: "brain", cs: "Mozek shora" }] }
   ],
   items: [
     {

@@ -333,6 +333,7 @@ a.menu-card:active {
 }
 .part-link:hover, .fig-tab:hover { background: var(--accent-soft); }
 .fig-nav { margin: 0 0 16px; }
+.fig-note { margin: 0 0 12px; color: var(--muted); }
 .fig-tab[aria-current="page"] { background: var(--accent); color: #fff; }
 .part-link:focus-visible, .fig-tab:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 

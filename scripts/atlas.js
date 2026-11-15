@@ -354,6 +354,23 @@
       if (it.organy && (D.sections || []).some(function (x) { return x.id === "organy" && x.status === "active"; })) {
         links.push(el("a", { "class": "part-link", href: "#/organy", text: ui.seeOrgans || "Podívej se dovnitř →" }));
       }
+      // Organ -> its close-up screen (Vnitřní orgány), unless we are on it already.
+      if (content === "organy") {
+        var cps = (D.organy && D.organy.parts) || [];
+        for (var ci = 0; ci < cps.length; ci++) {
+          var figs = cps[ci].figures.map(function (f) { return f.figure; });
+          if (figs.indexOf(figId) >= 0) continue;
+          var at = -1;
+          figs.forEach(function (f, fi) {
+            var h = (D.hotspots || {})[f];
+            if (at < 0 && h && h.layers && Object.keys(h.layers).some(function (l) { return h.layers[l][it.id]; })) at = fi;
+          });
+          if (at >= 0) {
+            links.push(el("a", { "class": "part-link", href: "#/organy/" + cps[ci].id + "/" + (at + 1), text: ui.seeCloseup || "Podívej se zblízka →" }));
+            break;
+          }
+        }
+      }
       if (links.length) card.appendChild(el("p", { "class": "card-link" }, links));
       // Pro zvídavé: other structures of the same part that have no hotspot here.
       if (state.zvidave && it.part) {
@@ -361,7 +378,7 @@
         var extra = items.filter(function (x) { return x.part === it.part && x.level === "zvidave" && !lay[x.id] && x.id !== it.id; });
         if (extra.length) {
           var partName = (parts.filter(function (p) { return p.id === it.part; })[0] || {}).cs || "";
-          card.appendChild(el("h3", { "class": "card-h card-extra-h", text: (ui.moreInPart || "Další v části") + " " + partName }));
+          card.appendChild(el("h3", { "class": "card-h card-extra-h", text: content === "organy" ? (ui.moreInCloseup || "Na dalším obrázku najdeš ještě:") : (ui.moreInPart || "Další v části") + " " + partName }));
           extra.forEach(function (x) {
             var body = el("div", { "class": "extra-body" });
             if (state.latinsky && x.la) body.appendChild(el("p", { "class": "card-latin", lang: "la", text: x.la }));
