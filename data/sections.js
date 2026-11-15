@@ -52,6 +52,7 @@ window.ATLAS_DATA.ui = {
   systemsLabel: "Soustavy",
   systemOrgans: "Patří sem:",
   systemMoreZvidave: "V režimu „Pro zvídavé“ uvidíš i další orgány.",
+  systemNotOnFigure: "Tyto orgány na obrázku nejsou.",
   layerOrgany: "Orgány",
   cardEmptyOrgany: "Klepni na orgán na obrázku.",
   figureLabelOrgany: "Obrázek vnitřních orgánů kočky",

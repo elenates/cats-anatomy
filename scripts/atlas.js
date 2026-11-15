@@ -259,7 +259,8 @@
       svg.lastChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", fig.image);
 
       // System view: fade everything outside the system's organs, so they stand out in their own colours.
-      if (only && ids.length) {
+      // A system with no organs on the drawing (rozmnožovací) fades the whole picture.
+      if (only) {
         var d = "M0 0H" + W + "V" + H + "H0Z";
         ids.forEach(function (id) {
           lay[id].forEach(function (p) { d += "M" + p.map(function (q) { return q.join(" "); }).join("L") + "Z"; });
@@ -367,8 +368,12 @@
           card.appendChild(ol);
         }
         var lay1 = fig.layers[state.layer] || {};
-        var hidden = only.some(function (id) { return lay1[id] && byId[id] && shown.indexOf(id) < 0; });
-        if (hidden) card.appendChild(el("p", { "class": "card-empty", text: ui.systemMoreZvidave || "V režimu „Pro zvídavé“ uvidíš i další orgány." }));
+        var onFig = only.filter(function (id) { return lay1[id] && byId[id]; });
+        if (!onFig.length) {
+          card.appendChild(el("p", { "class": "card-empty", text: ui.systemNotOnFigure || "Tyto orgány na obrázku nejsou." }));
+          return;
+        }
+        if (onFig.length > shown.length) card.appendChild(el("p", { "class": "card-empty", text: ui.systemMoreZvidave || "V režimu „Pro zvídavé“ uvidíš i další orgány." }));
         card.appendChild(el("p", { "class": "card-empty", text: ui.cardEmptyOrgany || "Klepni na orgán na obrázku." }));
         return;
       }
