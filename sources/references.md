@@ -102,6 +102,36 @@ Notes:
 - The NAV PDF (6th ed., 2017) was downloaded from wava-amav.org as `nav_6_2017.zip` (SHA-256 `9b0ca232…b684698c2`) and read as text; page numbers are the printed ones.
 - CSW-KD figures used for a child (about 200 million olfactory cells, up to 20 000 hairs per cm², ears turning up to 180°) are textbook-level facts; they are marked in the review sheet for checking.
 
+## Vnitřní orgány (`data/organy.js`)
+
+Also used here: NAV (Diaphragma p. 41; Splanchnologia pp. 49–59; Cor p. 73; Lien p. 106; Medulla spinalis p. 118; Encephalon p. 119) and RJ1901 (organ positions, intestine lengths, Fig. 136; see above).
+
+| ID | Reference | Used for | Access | Status |
+|----|-----------|----------|--------|--------|
+| LAWSON-NS | Lawson R. Anatomy and Physiology of Animals, 14.5 Parts of the Nervous System (LibreTexts, CC BY-SA 3.0) | Brain and spinal cord form the CNS; brain in the cranium; cerebrum (memory, learning, senses), cerebellum (balance) | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/14%3A_Nervous_System/14.05%3A_Parts_of_the_Nervous_System | verified |
+| LAWSON-AIR | Lawson R. Anatomy and Physiology of Animals, 9.4 The Air Passages | Nasal cavity warms and moistens air; tracheal cartilage rings; epiglottis closes during swallowing | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/09%3A_Respiratory_System/9.04%3A_The_Air_Passages | verified |
+| LAWSON-LUNG | Lawson R. Anatomy and Physiology of Animals, 9.5 The Lungs and Pleural Cavities | Lungs fill most of the thoracic cavity; diaphragm separates chest and abdomen | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/09%3A_Respiratory_System/9.05%3A_The_Lungs_and_Pleural_Cavities | verified |
+| LAWSON-BR | Lawson R. Anatomy and Physiology of Animals, 9.6 Breathing | Breathing by the diaphragm and ribs | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/09%3A_Respiratory_System/9.06%3A_Breathing | verified |
+| LAWSON-CARN | Lawson R. Anatomy and Physiology of Animals, 11.2 Carnivores | Carnivore guts are shorter than those of herbivores | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.02%3A_Carnivores | verified |
+| LAWSON-OES | Lawson R. Anatomy and Physiology of Animals, 11.8 Oesophagus | Oesophagus carries food to the stomach by peristalsis | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.08%3A_Oesophagus | verified |
+| LAWSON-ST | Lawson R. Anatomy and Physiology of Animals, 11.9 Stomach | Stomach stores and mixes food; gastric juice with acid digests protein and fat | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.09%3A_Stomach | verified |
+| LAWSON-SI | Lawson R. Anatomy and Physiology of Animals, 11.10 Small Intestine | Small intestine: digestion and absorption into the blood | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.10%3A_Small_Intestine | verified |
+| LAWSON-LI | Lawson R. Anatomy and Physiology of Animals, 11.12 Large Intestine | Colon absorbs water; rectum is part of the large intestine | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.12%3A_Large_Intestine | verified |
+| LAWSON-LIV | Lawson R. Anatomy and Physiology of Animals, 11.19 The Liver | Liver: largest single organ, next to the diaphragm; bile, glycogen store, removes toxic substances | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/11%3A_The_Gut_and_Digestion/11.19%3A_The_Liver | verified |
+| LAWSON-KID | Lawson R. Anatomy and Physiology of Animals, 12.5 The Kidneys and Urinary System | Kidneys bean-shaped, on either side of the spine; ureter, bladder, urethra | https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Anatomy_and_Physiology_of_Animals_(Lawson)/12%3A_Urinary_System/12.05%3A_The_Kidneys_and_Urinary_System | verified |
+| MERCK-DESC | Merck Veterinary Manual (pet owner). Description and Physical Characteristics of Cats (Bukowski JA, Aiello S; rev. Jul 2011, mod. Sep 2024) | Tongue papillae, saliva; kidneys filter waste, urine path | https://www.merckvetmanual.com/veterinary/cat-owners/description-and-physical-characteristics-of-cats/description-and-physical-characteristics-of-cats | verified |
+| MERCK-HEART | Merck Veterinary Manual (pet owner). Introduction to Heart and Blood Vessel Disorders in Cats (Cunningham SM, Roderick KV) | Heart: hollow muscle with 4 chambers, pumps blood; > 120 beats/min at rest; blood takes up oxygen in the lungs | https://merckvetmanual.com/cat-owners/heart-and-blood-vessel-disorders-of-cats/introduction-to-heart-and-blood-vessel-disorders-in-cats | verified |
+| MERCK-RESP | Merck Veterinary Manual. Table: Resting Respiratory Rates (adapted from Dukes' Physiology of Domestic Animals, 12th ed.) | Resting respiratory rate of the cat: 16–40 breaths/min | https://www.merckvetmanual.com/multimedia/table/resting-respiratory-rates | verified |
+| RICHTER24 | Richter J, Mülling CKW, Röhrmann N. A Morphometric Study on the Dimensions of the Vertebral Canal and Intervertebral Discs from Th1 to S1 in Cats. Vet Sci 2024;11(9):429. doi:10.3390/vetsci11090429 | Spinal cord ends at the level of the sacrum (conus medullaris in 90% of adult cats); cauda equina runs on to the tail | https://mdpi.com/2306-7381/11/9/429 | verified |
+| VETHISTO | Jennings R, Premanandan C. Veterinary Histology, ch. 9 Hepatobiliary System (Ohio State Univ. Pressbooks, CC BY-NC 4.0) | Gallbladder stores and concentrates bile, releases it after a meal | https://ohiostate.pressbooks.pub/vethisto/?p=505 | verified |
+| WIKIVET-GB | WikiVet. Gall Bladder – Anatomy & Physiology | Horses have no gallbladder | https://en.wikivet.net/Gall_Bladder_-_Anatomy_&_Physiology | verified |
+| BRIT-SPL | Encyclopaedia Britannica: Spleen (anatomy) | Spleen filters the blood, removes old red blood cells, makes lymphocytes (general anatomy) | https://www.britannica.com/science/spleen-anatomy | verified |
+
+Notes:
+- BRIT-SPL is general (human-based) anatomy: no cat-specific source on the spleen could be opened (a Tufts newsletter page redirects, PMC pages ask for a browser check).
+- The small-intestine length (about three times the body) comes from RJ1901 only, so the app calls it an estimate from an old book. The large-intestine length was removed: no modern source confirms it.
+- Heart and breathing rates: sources differ (Merck table 120–140 bpm; clinic values 140–220). The app says only that it can be more than 120.
+
 ## Planned
 
 | ID | Reference | Used for | Access | Status |
