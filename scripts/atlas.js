@@ -352,6 +352,7 @@
         // System view: what the system does, and its organs as buttons.
         card.appendChild(el("h2", { "class": "card-title", text: system.cs }));
         card.appendChild(el("p", { "class": "card-p", text: system.text }));
+        if (system.note) card.appendChild(el("p", { "class": "card-p system-note", text: system.note }));
         if (state.zvidave && system.zvidave) {
           card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
           card.appendChild(el("p", { "class": "card-p", text: system.zvidave }));
