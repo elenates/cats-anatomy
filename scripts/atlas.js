@@ -211,7 +211,15 @@
         var REF = 100;
         var probe = svgEl("text", { "class": "atlas-label", "font-size": REF });
         svg.appendChild(probe);
-        ids.forEach(function (id) {
+        // A larger structure whose smaller parts are all shown (fig.nested) gets no label:
+        // the parts cover it, so its leader line could only point at one of them.
+        var nestedKids = function (id) { return ((fig.nested || {})[id] || []).filter(function (k) { return ids.indexOf(k) >= 0; }); };
+        var sumArea = function (polys) { return polys.reduce(function (a, p) { return a + area(p); }, 0); };
+        ids.filter(function (id) {
+          var shown = nestedKids(id);
+          var covered = shown.reduce(function (a, k) { return a + sumArea(lay[k]); }, 0);
+          return !(shown.length && covered > 0.8 * sumArea(lay[id]));
+        }).forEach(function (id) {
           var big = lay[id].reduce(function (a, b) { return area(a) >= area(b) ? a : b; });
           probe.textContent = byId[id].cs;
           // getComputedTextLength() can return 0 while the page is not rendered
@@ -308,7 +316,13 @@
           if (!best || n[2] < best[2]) { best = n; best.c = centroid(p); }
         });
         var vx = best.c[0] - best[0], vy = best.c[1] - best[1], vl = Math.hypot(vx, vy) || 1;
-        var ax = best[0] + vx / vl * Math.min(5, vl), ay = best[1] + vy / vl * Math.min(5, vl);
+        // Go a little way in (about one letter height), so the dot sits clearly inside;
+        // fall back to 5 px where that would leave the structure (thin or curved shapes).
+        var step = Math.min(font * 0.9, vl * 0.35);
+        var ax = best[0] + vx / vl * step, ay = best[1] + vy / vl * step;
+        if (!lay[l.id].some(function (p) { return pointInPoly(ax, ay, p); })) {
+          ax = best[0] + vx / vl * Math.min(5, vl); ay = best[1] + vy / vl * Math.min(5, vl);
+        }
         var sel = l.id === selected ? " is-selected" : "";
         g.appendChild(svgEl("line", { x1: lx, y1: ly, x2: ax, y2: ay, "class": "atlas-leader" + sel }));
         g.appendChild(svgEl("circle", { cx: ax, cy: ay, r: font * 0.18, "class": "atlas-dot" + sel }));
@@ -354,6 +368,23 @@
       if (it.organy && (D.sections || []).some(function (x) { return x.id === "organy" && x.status === "active"; })) {
         links.push(el("a", { "class": "part-link", href: "#/organy", text: ui.seeOrgans || "Podívej se dovnitř →" }));
       }
+      // Organ -> its close-up screen (Vnitřní orgány), unless we are on it already.
+      if (content === "organy") {
+        var cps = (D.organy && D.organy.parts) || [];
+        for (var ci = 0; ci < cps.length; ci++) {
+          var figs = cps[ci].figures.map(function (f) { return f.figure; });
+          if (figs.indexOf(figId) >= 0) continue;
+          var at = -1;
+          figs.forEach(function (f, fi) {
+            var h = (D.hotspots || {})[f];
+            if (at < 0 && h && h.layers && Object.keys(h.layers).some(function (l) { return h.layers[l][it.id]; })) at = fi;
+          });
+          if (at >= 0) {
+            links.push(el("a", { "class": "part-link", href: "#/organy/" + cps[ci].id + "/" + (at + 1), text: ui.seeCloseup || "Podívej se zblízka →" }));
+            break;
+          }
+        }
+      }
       if (links.length) card.appendChild(el("p", { "class": "card-link" }, links));
       // Pro zvídavé: other structures of the same part that have no hotspot here.
       if (state.zvidave && it.part) {
@@ -361,7 +392,7 @@
         var extra = items.filter(function (x) { return x.part === it.part && x.level === "zvidave" && !lay[x.id] && x.id !== it.id; });
         if (extra.length) {
           var partName = (parts.filter(function (p) { return p.id === it.part; })[0] || {}).cs || "";
-          card.appendChild(el("h3", { "class": "card-h card-extra-h", text: (ui.moreInPart || "Další v části") + " " + partName }));
+          card.appendChild(el("h3", { "class": "card-h card-extra-h", text: content === "organy" ? (ui.moreInCloseup || "Na dalším obrázku najdeš ještě:") : (ui.moreInPart || "Další v části") + " " + partName }));
           extra.forEach(function (x) {
             var body = el("div", { "class": "extra-body" });
             if (state.latinsky && x.la) body.appendChild(el("p", { "class": "card-latin", lang: "la", text: x.la }));

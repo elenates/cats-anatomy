@@ -118,10 +118,16 @@
       vhost._mount = function () { window.Atlas.mount(vhost, { figure: "cat-side" }); };
       return [back, title, vhost];
     }
+    var cparts = (data.organy && data.organy.parts) || [];
+    if (section.id === "organy" && window.Atlas && cparts.some(function (p) { return p.id === sub; })) return renderCloseup(sub, parseInt(sub2, 10) || 1);
     if (section.id === "organy" && window.Atlas) {
       var ohost = el("div", { "class": "atlas" });
       ohost._mount = function () { window.Atlas.mount(ohost, { figure: "organs-side" }); };
-      return [back, title, ohost];
+      var clist = el("ul", { "class": "part-nav" });
+      cparts.forEach(function (p) { clist.appendChild(el("li", null, [el("a", { "class": "part-link", href: "#/organy/" + p.id, text: p.cs })])); });
+      var cnav = el("nav", { "class": "parts", "aria-label": ui.closeupsHeading || "Orgány zblízka" }, [
+        el("h2", { "class": "parts-h", text: ui.closeupsHeading || "Orgány zblízka" }), clist]);
+      return [back, title, cnav, ohost];
     }
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
@@ -137,6 +143,30 @@
     });
     return el("nav", { "class": "parts", "aria-label": ui.partsHeading || "Části kostry" }, [
       el("h2", { "class": "parts-h", text: ui.partsHeading || "Části kostry" }), list]);
+  }
+
+  /* Organ close-up screen (Vnitřní orgány): tabs for its 1901 figures. */
+  function renderCloseup(partId, n) {
+    var part = data.organy.parts.filter(function (p) { return p.id === partId; })[0];
+    var tabs = part.figures;
+    if (n < 1 || n > tabs.length) n = 1;
+    var view = tabs[n - 1];
+    var back = el("a", { "class": "back-link", href: "#/organy", text: "← " + (ui.closeupBack || "Zpět na vnitřní orgány") });
+    var nodes = [back, el("h1", { "class": "screen-title", text: part.cs })];
+    if (tabs.length > 1) {
+      var tabList = el("ul", { "class": "fig-tabs" });
+      tabs.forEach(function (t, i) {
+        var a = el("a", { "class": "fig-tab", href: "#/organy/" + partId + "/" + (i + 1), text: t.cs });
+        if (i === n - 1) a.setAttribute("aria-current", "page");
+        tabList.appendChild(el("li", null, [a]));
+      });
+      nodes.push(el("nav", { "class": "fig-nav", "aria-label": ui.partFiguresLabel || "Obrázky" }, [tabList]));
+    }
+    if (view.note) nodes.push(el("p", { "class": "fig-note", text: view.note }));
+    var host = el("div", { "class": "atlas" });
+    host._mount = function () { window.Atlas.mount(host, { figure: view.figure }); };
+    nodes.push(host);
+    return nodes;
   }
 
   /* Part screen: tabs for its figures, atlas showing only this part. */
