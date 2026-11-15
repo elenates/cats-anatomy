@@ -119,6 +119,24 @@
       return [back, title, vhost];
     }
     var cparts = (data.organy && data.organy.parts) || [];
+    var sk = data.soustavyKviz && data.soustavyKviz.ui || {};
+    if (section.id === "organy" && sub === "kviz" && window.Quiz) {
+      var oqback = el("a", { "class": "back-link", href: "#/organy", text: "← " + (ui.quizBackOrgany || "Zpět na vnitřní orgány") });
+      var oqhost = el("div", { "class": "atlas quiz" });
+      oqhost._mount = function () {
+        window.Quiz.mount(oqhost, { figure: "organs-side", layer: "organy", rounds: 10, texts: {
+          figureLabel: ui.quizFigureLabelOrgany, great: ui.quizGreatOrgany, back: ui.quizBackOrgany, backHref: "#/organy" } });
+      };
+      return [oqback, el("h1", { "class": "screen-title", text: ui.quizTitleOrgany || "Kvíz: Najdi orgán" }), oqhost];
+    }
+    if ((section.id === "organy" && sub === "soustavy-kviz" || section.id === "soustavy" && sub === "kviz") && window.SoustavyKviz) {
+      var from = section.id === "organy" ? "#/organy" : "#/soustavy";
+      var backText = section.id === "organy" ? (sk.back || "Zpět na vnitřní orgány") : (sk.backSoustavy || "Zpět na tělesné soustavy");
+      var skhost = el("div", { "class": "atlas quiz soustavy-kviz" });
+      skhost._mount = function () { window.SoustavyKviz.mount(skhost, { backHref: from, back: backText }); };
+      return [el("a", { "class": "back-link", href: from, text: "← " + backText }),
+        el("h1", { "class": "screen-title", text: sk.title || "Do které soustavy patří?" }), skhost];
+    }
     if (section.id === "organy" && window.Atlas && cparts.some(function (p) { return p.id === sub; })) return renderCloseup(sub, parseInt(sub2, 10) || 1);
     if (section.id === "organy" && window.Atlas) {
       var ohost = el("div", { "class": "atlas" });
@@ -127,9 +145,12 @@
       cparts.forEach(function (p) { clist.appendChild(el("li", null, [el("a", { "class": "part-link", href: "#/organy/" + p.id, text: p.cs })])); });
       var cnav = el("nav", { "class": "parts", "aria-label": ui.closeupsHeading || "Orgány zblízka" }, [
         el("h2", { "class": "parts-h", text: ui.closeupsHeading || "Orgány zblízka" }), clist]);
-      return [back, title, cnav, ohost];
+      var oGames = el("div", { "class": "quiz-actions screen-games" }, [
+        el("a", { "class": "quiz-open", href: "#/organy/kviz", text: ui.quizOpenOrgany || "Najdi orgán" }),
+        el("a", { "class": "quiz-open quiz-secondary", href: "#/organy/soustavy-kviz", text: sk.open || "Do které soustavy patří?" })]);
+      return [back, el("div", { "class": "screen-head" }, [title, oGames]), cnav, ohost];
     }
-    if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub);
+    if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub, sk);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -171,11 +192,14 @@
   }
 
   /* Tělesné soustavy: one tab per body system; its organs light up on the organ figure. */
-  function renderSystems(sysId) {
+  function renderSystems(sysId, sk) {
     var systems = data.organy.soustavy || [];
     var sys = systems.filter(function (x) { return x.id === sysId; })[0] || systems[0];
     var back = el("a", { "class": "back-link", href: "#/", text: "← " + ui.back });
-    var nodes = [back, el("h1", { "class": "screen-title", text: (data.sections.filter(function (x) { return x.id === "soustavy"; })[0] || {}).cs })];
+    var sTitle = el("h1", { "class": "screen-title", text: (data.sections.filter(function (x) { return x.id === "soustavy"; })[0] || {}).cs });
+    var sGames = window.SoustavyKviz ? el("div", { "class": "quiz-actions screen-games" }, [
+      el("a", { "class": "quiz-open", href: "#/soustavy/kviz", text: (sk && sk.open) || "Do které soustavy patří?" })]) : null;
+    var nodes = [back, el("div", { "class": "screen-head" }, [sTitle, sGames])];
     var tabList = el("ul", { "class": "fig-tabs system-tabs" });
     systems.forEach(function (x) {
       var a = el("a", { "class": "fig-tab", href: "#/soustavy/" + x.id, text: x.cs });

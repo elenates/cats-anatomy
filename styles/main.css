@@ -399,3 +399,9 @@ a.menu-card:active {
 .organ-chip { font: inherit; min-height: 44px; padding: 8px 14px; border-radius: 22px; border: 2px solid var(--accent); background: transparent; color: inherit; cursor: pointer; }
 .organ-chip:hover { background: rgba(181, 86, 42, 0.10); }
 .organ-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Quiz "Do které soustavy patří?" */
+.sk-answers { margin-bottom: 4px; }
+.sk-option { width: 100%; text-align: left; }
+.spoj-btn.is-chosen-wrong { background: #fbe9e7; }
+.sk-spot polygon { fill: rgba(181, 86, 42, 0.12); stroke: var(--accent); stroke-width: 4px; }
