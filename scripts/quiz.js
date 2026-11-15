@@ -10,7 +10,11 @@
  * 22 screen px). fig.alsoCounts lets e.g. a tap on the neck count as "Páteř".
  * One attempt per question; a tap on empty space does not count.
  *
- * Public API: window.Quiz.mount(container, { figure: "skeleton", layer: "kosti", rounds: 10 })
+ * Items come from the figure's content (fig.content: "kostra" or "organy").
+ * opts.texts overrides the figure label, the top-score praise and the back link
+ * (used by the organ quiz on Vnitřní orgány).
+ *
+ * Public API: window.Quiz.mount(container, { figure: "skeleton", layer: "kosti", rounds: 10, texts: {...} })
  */
 (function () {
   "use strict";
@@ -48,7 +52,9 @@
     var fig = (D.hotspots || {})[opts.figure || "skeleton"];
     var layerName = opts.layer || "kosti";
     var layer = (fig && fig.layers[layerName]) || {};
-    var items = (D.kostra && D.kostra.items) || [];
+    var content = (fig && fig.content) || "kostra";
+    var items = (D[content] && D[content].items) || [];
+    var tx = opts.texts || {};
     var byId = {};
     items.forEach(function (it) { byId[it.id] = it; });
     var alsoCounts = (fig && fig.alsoCounts) || {};
@@ -67,7 +73,7 @@
     // ----- static parts -----
     var progress = el("p", { "class": "quiz-progress" });
     var prompt = el("h2", { "class": "quiz-prompt", "aria-live": "polite" });
-    var svg = svgEl("svg", { "class": "atlas-svg quiz-svg", role: "group", "aria-label": ui.quizFigureLabel || "Obrázek kostry – klepni na hledanou část" });
+    var svg = svgEl("svg", { "class": "atlas-svg quiz-svg", role: "group", "aria-label": tx.figureLabel || ui.quizFigureLabel || "Obrázek kostry – klepni na hledanou část" });
     var figBox = el("div", { "class": "atlas-figure" }, [svg]);
     var feedback = el("section", { "class": "atlas-card quiz-feedback", "aria-live": "polite" });
     var layout = el("div", { "class": "atlas-layout" }, [el("div", { "class": "atlas-figure-col" }, [figBox]), feedback]);
@@ -185,7 +191,7 @@
       prompt.textContent = fmt(ui.quizScore || "Správně: {score} z {total}", { score: q.score, total: q.list.length });
       var box = el("section", { "class": "atlas-card quiz-summary" });
       var ratio = q.score / q.list.length;
-      box.appendChild(el("p", { "class": "quiz-verdict", text: ratio >= 0.9 ? (ui.quizGreat || "Jsi expert na kočičí kostru!") : ratio >= 0.6 ? (ui.quizGood || "Moc dobře!") : (ui.quizTryAgain || "Zkus to ještě jednou, půjde to líp!") }));
+      box.appendChild(el("p", { "class": "quiz-verdict", text: ratio >= 0.9 ? (tx.great || ui.quizGreat || "Jsi expert na kočičí kostru!") : ratio >= 0.6 ? (ui.quizGood || "Moc dobře!") : (ui.quizTryAgain || "Zkus to ještě jednou, půjde to líp!") }));
       if (q.missed.length) {
         box.appendChild(el("h3", { "class": "card-h", text: ui.quizReview || "Na tyhle se ještě podívej:" }));
         var ul = el("ul", { "class": "quiz-missed" });
@@ -196,7 +202,7 @@
       }
       var again = el("button", { type: "button", "class": "quiz-next", text: ui.quizAgain || "Hrát znovu" });
       again.addEventListener("click", function () { box.remove(); start(); });
-      var back = el("a", { "class": "quiz-next quiz-secondary", href: "#/kostra", text: ui.quizBack || "Zpět na kostru" });
+      var back = el("a", { "class": "quiz-next quiz-secondary", href: tx.backHref || "#/kostra", text: tx.back || ui.quizBack || "Zpět na kostru" });
       box.appendChild(el("div", { "class": "quiz-actions" }, [again, back]));
       container.appendChild(box);
       again.focus({ preventScroll: true });

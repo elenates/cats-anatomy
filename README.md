@@ -36,14 +36,19 @@ cats-anatomy/
 ├── index.html              # app entry point (open this)
 ├── styles/main.css         # all styles, tablet-first
 ├── scripts/
-│   ├── app.js              # hash routing, menu and section rendering; part screens #/kostra/<part>
-│   ├── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles
-│   └── quiz.js             # quiz "Najdi kost nebo orgán" (#/kostra/kviz)
+│   ├── app.js              # hash routing, menu and section rendering; part and close-up screens
+│   ├── atlas.js            # atlas screen: figure, hotspots, labels, info card, toggles, body systems
+│   ├── quiz.js             # quiz "Najdi kost nebo orgán" (#/kostra/kviz, #/organy/kviz)
+│   ├── spoj.js             # game "Spoj, co patří k sobě" (#/kostra/spoj)
+│   └── soustavy-kviz.js    # quiz "Do které soustavy patří?" (#/organy/soustavy-kviz, #/soustavy/kviz)
 ├── data/
 │   ├── sections.js         # the 7 sections, UI strings, figures of each Kostra part screen
 │   ├── kostra.js           # Kostra content: 52 structures, Czech texts, Latin, refs
-│   └── hotspots-kostra.js  # hotspot polygons per figure (skeleton, skull, 7 detail figures) and layer
-├── images/kostra/          # skeleton.webp (Fig. 1), skull.webp (Fig. 40), lossless WebP
+│   ├── vnejsi.js           # Vnější stavba těla content
+│   ├── organy.js           # Vnitřní orgány content, body systems (soustavy), close-up screens
+│   ├── spoj.js, soustavy-kviz.js  # quiz rules, funny answers and texts
+│   └── hotspots-kostra.js  # hotspot polygons for every figure and layer
+├── images/                 # kostra/, vnejsi/, organy/ (lossless WebP)
 ├── tools/
 │   └── hotspot-editor.html # draw, check and export hotspots (open by double-click)
 ├── sources/

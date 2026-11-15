@@ -53,6 +53,12 @@ window.ATLAS_DATA.ui = {
   systemOrgans: "Patří sem:",
   systemMoreZvidave: "V režimu „Pro zvídavé“ uvidíš i další orgány.",
   systemNotOnFigure: "Tyto orgány na obrázku nejsou.",
+  // Organ quiz (v0.4, stage 8) – to be proofread
+  quizOpenOrgany: "Najdi orgán",
+  quizTitleOrgany: "Kvíz: Najdi orgán",
+  quizFigureLabelOrgany: "Obrázek vnitřních orgánů – klepni na hledaný orgán",
+  quizGreatOrgany: "Jsi expert na kočičí orgány!",
+  quizBackOrgany: "Zpět na vnitřní orgány",
   layerOrgany: "Orgány",
   cardEmptyOrgany: "Klepni na orgán na obrázku.",
   figureLabelOrgany: "Obrázek vnitřních orgánů kočky",
