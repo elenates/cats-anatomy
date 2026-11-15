@@ -9,6 +9,7 @@
  *   id, cs, la (NAV 2017), level, kdeJe, coDela, zajimavost (may be null), refs
  *   soustava  body system the organ belongs to (see soustavy)
  *   kostra    Kostra part screen with the bones around this organ, or null
+ *   part      (close-up parts only) organ whose close-up screen shows the item; see parts
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -19,6 +20,13 @@ window.ATLAS_DATA.organy = {
     { id: "obehova", cs: "Oběhová soustava" },
     { id: "travici", cs: "Trávicí soustava" },
     { id: "mocova", cs: "Močová soustava" }
+  ],
+  parts: [
+    { id: "zaludek", cs: "Žaludek a slinivka", figures: ["stomach", "pancreas-spleen"] },
+    { id: "plice", cs: "Plíce zblízka", figures: ["lungs"] },
+    { id: "srdce", cs: "Srdce zblízka", figures: ["heart", "heart-open"] },
+    { id: "ledvina", cs: "Ledvina zblízka", figures: ["kidney", "kidney-section"] },
+    { id: "mozek", cs: "Mozek zblízka", figures: ["brain"] }
   ],
   items: [
     {
@@ -248,6 +256,253 @@ window.ATLAS_DATA.organy = {
       zajimavost: "Má tvar hrušky.",
       kostra: null,
       refs: ["NAV", "LAWSON-KID", "RJ1901"]
+    },
+    {
+      id: "vratnik",
+      cs: "Vrátník",
+      la: "Pylorus",
+      level: "zvidave",
+      soustava: "travici",
+      kdeJe: "Na konci žaludku, tam kde začíná střevo.",
+      coDela: "Je to svalový prstenec. Pouští natrávenou potravu ze žaludku dál do střeva.",
+      zajimavost: null,
+      kostra: null,
+      part: "zaludek",
+      refs: ["NAV", "RJ1901", "MERCK-CONG"]
+    },
+    {
+      id: "dvanactnik",
+      cs: "Dvanáctník",
+      la: "Duodenum",
+      level: "zvidave",
+      soustava: "travici",
+      kdeJe: "První kousek tenkého střeva, hned za žaludkem.",
+      coDela: "Přitéká do něj žluč z jater a šťáva ze slinivky. Obě pomáhají trávit potravu.",
+      zajimavost: null,
+      kostra: null,
+      part: "zaludek",
+      refs: ["NAV", "LAWSON-SI", "LAWSON-PJ", "VETHISTO", "RJ1901"]
+    },
+    {
+      id: "slinivka",
+      cs: "Slinivka břišní",
+      la: "Pancreas",
+      level: "zvidave",
+      soustava: "travici",
+      kdeJe: "V břiše, v ohybu dvanáctníku a za žaludkem.",
+      coDela: "Vyrábí šťávu, která tráví bílkoviny, tuky i škrob. Vyrábí také hormon inzulin, který hlídá, kolik cukru je v krvi.",
+      zajimavost: null,
+      kostra: null,
+      part: "zaludek",
+      refs: ["NAV", "LAWSON-PJ", "LAWSON-PAN", "RJ1901"]
+    },
+    {
+      id: "prudusky",
+      cs: "Průdušky",
+      la: "Bronchi principales",
+      level: "zvidave",
+      soustava: "dychaci",
+      kdeJe: "V hrudníku. Průdušnice se rozdělí na dvě průdušky, do pravé a do levé plíce.",
+      coDela: "Rozvádějí vzduch do plic. Uvnitř plic se větví na menší a menší trubičky.",
+      zajimavost: null,
+      kostra: null,
+      part: "plice",
+      refs: ["NAV", "LAWSON-AIR", "RJ1901"]
+    },
+    {
+      id: "plicni-laloky",
+      cs: "Plicní laloky",
+      la: "Lobi pulmonis",
+      level: "zvidave",
+      soustava: "dychaci",
+      kdeJe: "Plíce nejsou z jednoho kusu. Každá se dělí na několik laloků.",
+      coDela: "Dohromady tvoří plíce. Do každého laloku vede vlastní větev průdušek.",
+      zajimavost: "Pravá plíce má navíc jeden malý lalok, který levá plíce nemá.",
+      kostra: null,
+      part: "plice",
+      refs: ["NAV", "RJ1901"]
+    },
+    {
+      id: "prava-komora",
+      cs: "Pravá komora",
+      la: "Ventriculus dexter",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "V pravé dolní části srdce.",
+      coDela: "Pumpuje krev do plic, kde krev nabere kyslík.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "leva-komora",
+      cs: "Levá komora",
+      la: "Ventriculus sinister",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "V levé dolní části srdce. Tvoří špičku srdce.",
+      coDela: "Pumpuje krev s kyslíkem do celého těla.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "prava-sin",
+      cs: "Pravá síň",
+      la: "Atrium dextrum",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "Nahoře v pravé části srdce, nad pravou komorou.",
+      coDela: "Přijímá krev, která se vrací z celého těla.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "leva-sin",
+      cs: "Levá síň",
+      la: "Atrium sinistrum",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "Nahoře v levé části srdce, nad levou komorou.",
+      coDela: "Přijímá krev s kyslíkem, která přitéká z plic.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "aorta",
+      cs: "Srdečnice",
+      la: "Aorta",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "Vychází z levé komory a vede od srdce nahoru.",
+      coDela: "Je to velká tepna. Vede krev s kyslíkem z levé komory do celého těla.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "plicnice",
+      cs: "Plicnice",
+      la: "Truncus pulmonalis",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "Vychází z pravé komory a stáčí se doleva nahoru.",
+      coDela: "Vede krev z pravé komory do plic.",
+      zajimavost: null,
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "trojcipa-chlopen",
+      cs: "Trojcípá chlopeň",
+      la: "Valva atrioventricularis dextra",
+      level: "zvidave",
+      soustava: "obehova",
+      kdeJe: "Mezi pravou síní a pravou komorou.",
+      coDela: "Funguje jako dvířka. Pouští krev jen jedním směrem, ze síně do komory.",
+      zajimavost: "Má tři cípy, a proto se jmenuje trojcípá.",
+      kostra: null,
+      part: "srdce",
+      refs: ["NAV", "RJ1901", "MERCK-HEART"]
+    },
+    {
+      id: "ledvinova-kura",
+      cs: "Ledvinová kůra",
+      la: "Cortex renis",
+      level: "zvidave",
+      soustava: "mocova",
+      kdeJe: "Vnější vrstva ledviny, hned pod jejím povrchem.",
+      coDela: "Tady se z krve odfiltruje tekutina, ze které potom vzniká moč.",
+      zajimavost: null,
+      kostra: null,
+      part: "ledvina",
+      refs: ["NAV", "RJ1901", "LAWSON-NEPH"]
+    },
+    {
+      id: "ledvinova-dren",
+      cs: "Ledvinová dřeň",
+      la: "Medulla renis",
+      level: "zvidave",
+      soustava: "mocova",
+      kdeJe: "Vnitřní část ledviny, pod kůrou.",
+      coDela: "Vedou jí tenké kanálky. V nich se z tekutiny stává moč a teče dál k pánvičce.",
+      zajimavost: null,
+      kostra: null,
+      part: "ledvina",
+      refs: ["NAV", "RJ1901", "LAWSON-NEPH"]
+    },
+    {
+      id: "ledvinova-panvicka",
+      cs: "Ledvinová pánvička",
+      la: "Pelvis renalis",
+      level: "zvidave",
+      soustava: "mocova",
+      kdeJe: "Uvnitř ledviny, u zářezu na její vnitřní straně.",
+      coDela: "Sbírá moč z ledviny a posílá ji do močovodu.",
+      zajimavost: null,
+      kostra: null,
+      part: "ledvina",
+      refs: ["NAV", "RJ1901", "LAWSON-KID"]
+    },
+    {
+      id: "mozkove-hemisfery",
+      cs: "Mozkové hemisféry",
+      la: "Hemispherium",
+      level: "zvidave",
+      soustava: "nervova",
+      kdeJe: "Velká přední část mozku. Dělí se na pravou a levou polovinu.",
+      coDela: "Kočka jimi myslí, učí se a pamatuje si. Rozumí v nich tomu, co vidí, slyší a cítí.",
+      zajimavost: "Povrch hemisfér je zvrásněný do záhybů, kterým se říká závity.",
+      kostra: null,
+      part: "mozek",
+      refs: ["NAV", "LAWSON-NS", "RJ1901"]
+    },
+    {
+      id: "mozecek",
+      cs: "Mozeček",
+      la: "Cerebellum",
+      level: "zvidave",
+      soustava: "nervova",
+      kdeJe: "Vzadu za hemisférami.",
+      coDela: "Pomáhá kočce udržet rovnováhu a postoj.",
+      zajimavost: null,
+      kostra: null,
+      part: "mozek",
+      refs: ["NAV", "LAWSON-NS", "RJ1901"]
+    },
+    {
+      id: "prodlouzena-micha",
+      cs: "Prodloužená mícha",
+      la: "Medulla oblongata",
+      level: "zvidave",
+      soustava: "nervova",
+      kdeJe: "Nejzadnější část mozku. Tady mozek přechází v míchu.",
+      coDela: "Řídí věci, na které kočka nemusí myslet, třeba dýchání a tlukot srdce.",
+      zajimavost: null,
+      kostra: null,
+      part: "mozek",
+      refs: ["NAV", "LAWSON-NS", "RJ1901"]
+    },
+    {
+      id: "cichovy-bulbus",
+      cs: "Čichový bulbus",
+      la: "Bulbus olfactorius",
+      level: "zvidave",
+      soustava: "nervova",
+      kdeJe: "Úplně vpředu na mozku, nad nosní dutinou.",
+      coDela: "Přicházejí sem zprávy z nosu. Odtud pak putují dál do mozku, kde kočka pozná, co cítí.",
+      zajimavost: null,
+      kostra: null,
+      part: "mozek",
+      refs: ["NAV", "ALVITES23", "RJ1901"]
     }
   ]
 };
