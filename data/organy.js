@@ -29,7 +29,8 @@ window.ATLAS_DATA.organy = {
     { id: "plice", cs: "Plíce zblízka", figures: [{ figure: "lungs", cs: "Průdušky a laloky" }] },
     { id: "srdce", cs: "Srdce zblízka", figures: [{ figure: "heart", cs: "Srdce zvenku", note: "Na obrázku je pravá strana srdce vlevo a levá strana vpravo." }, { figure: "heart-open", cs: "Vnitřek srdce" }] },
     { id: "ledvina", cs: "Ledvina zblízka", figures: [{ figure: "kidney", cs: "Ledvina zvenku" }, { figure: "kidney-section", cs: "Ledvina v řezu" }] },
-    { id: "mozek", cs: "Mozek zblízka", figures: [{ figure: "brain", cs: "Mozek shora" }] }
+    { id: "mozek", cs: "Mozek zblízka", figures: [{ figure: "brain", cs: "Mozek shora" }] },
+    { id: "varle", cs: "Rozmnožovací orgány", figures: [{ figure: "repro-male", cs: "Kocour" }, { figure: "repro-female", cs: "Kočka" }] }
   ],
   items: [
     {
@@ -259,6 +260,18 @@ window.ATLAS_DATA.organy = {
       zajimavost: "Má tvar hrušky.",
       kostra: null,
       refs: ["NAV", "LAWSON-KID", "RJ1901"]
+    },
+    {
+      id: "varle",
+      cs: "Varle",
+      la: "Testis",
+      level: "zaklad",
+      soustava: "rozmnozovaci",
+      kdeJe: "U kocoura pod ocasem, v kožním váčku zvaném šourek. Kocour má dvě varlata.",
+      coDela: "Vyrábí spermie, samčí pohlavní buňky.",
+      zajimavost: "Leží mimo břicho, protože spermie potřebují o něco chladnější prostředí, než je uvnitř těla.",
+      kostra: null,
+      refs: ["NAV", "RJ1901", "LAWSON-MR"]
     },
     {
       id: "vratnik",
@@ -506,6 +519,32 @@ window.ATLAS_DATA.organy = {
       kostra: null,
       part: "mozek",
       refs: ["NAV", "ALVITES23", "RJ1901"]
+    },
+    {
+      id: "vajecnik",
+      cs: "Vaječník",
+      la: "Ovarium",
+      level: "zvidave",
+      soustava: "rozmnozovaci",
+      kdeJe: "U kočky v břiše, za ledvinami směrem k ocasu. Kočka má dva vaječníky.",
+      coDela: "Vznikají v něm vajíčka.",
+      zajimavost: null,
+      kostra: null,
+      part: "varle",
+      refs: ["NAV", "RJ1901", "LAWSON-FR"]
+    },
+    {
+      id: "deloha",
+      cs: "Děloha",
+      la: "Uterus",
+      level: "zvidave",
+      soustava: "rozmnozovaci",
+      kdeJe: "U kočky v zadní části břicha, nad močovým měchýřem.",
+      coDela: "Rostou v ní koťata, dokud se nenarodí.",
+      zajimavost: "Kočičí děloha má tvar písmene Y: krátké tělo a dva dlouhé rohy.",
+      kostra: null,
+      part: "varle",
+      refs: ["NAV", "RJ1901", "LAWSON-FR"]
     }
   ]
 };

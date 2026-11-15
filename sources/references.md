@@ -143,7 +143,7 @@ Notes:
 - BRIT-SPL is general (human-based) anatomy: no cat-specific source on the spleen could be opened (a Tufts newsletter page redirects, PMC pages ask for a browser check).
 - The small-intestine length (about three times the body) comes from RJ1901 only, so the app calls it an estimate from an old book. The large-intestine length was removed: no modern source confirms it.
 - Tělesné soustavy (stage 6): system texts in `data/organy.js` (`soustavy`) use LAWSON-NS, LAWSON-NSY, LAWSON-AIR, LAWSON-RO, LAWSON-BR, MERCK-HEART, LAWSON-SI, LAWSON-OES, LAWSON-ST, LAWSON-LI, LAWSON-LIV, LAWSON-PJ, LAWSON-KID, MERCK-DESC and BRIT-SPL. Lawson files the spleen under the cardiovascular chapter (8.35 The Spleen), which supports grouping it with Oběhová soustava.
-- Rozmnožovací soustava (stage 7) uses LAWSON-FR, LAWSON-MR, MERCK-REPRO and RUTGERS-KIT. "Asi dva měsíce" rounds the 60–65 days (MERCK-REPRO) and the 63-day average (RUTGERS-KIT). Its organs are not on the drawing (varle was left out in stage 1), so the app shows the drawing fully faded.
+- Rozmnožovací soustava (stage 7) uses LAWSON-FR, LAWSON-MR, MERCK-REPRO and RUTGERS-KIT. "Asi dva měsíce" rounds the 60–65 days (MERCK-REPRO) and the 63-day average (RUTGERS-KIT). Lenka asked for drawings: varle is now a hotspot on the whole-body drawing (the drawing's own testis label), and a close-up screen *Rozmnožovací orgány* uses RJ1901 Figs. 111–112 (pp. 258 and the female genital organs section) with NAV pp. 59, 61–62.
 - Heart and breathing rates: sources differ (Merck table 120–140 bpm; clinic values 140–220). The app says only that it can be more than 120.
 
 ## Planned
