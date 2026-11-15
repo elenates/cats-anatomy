@@ -115,7 +115,7 @@
     var selected = null;
 
     // ----- toolbar -----
-    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla" };
+    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla", organy: ui.layerOrgany || "Orgány" };
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
     layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
@@ -137,7 +137,8 @@
     ]);
 
     // ----- figure -----
-    var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") : (ui.figureLabel || "Obrázek kostry") });
+    var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") :
+      content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") : (ui.figureLabel || "Obrázek kostry") });
     var figBox = el("div", { "class": "atlas-figure" }, [svg]);
     // "Reighard & Jennings 1901, Fig. 40" -> "Obrázek 40: J. Reighard a H. S. Jennings, ..."
     var figNo = /Fig\. (\d+)/.exec(fig.figure || "");
@@ -327,7 +328,8 @@
         var onlyExtra = !visibleIds().length && Object.keys(lay0).some(function (id) { return byId[id] && (!part || byId[id].part === part); });
         card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.") :
           state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") :
-          state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+          state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") :
+          state.layer === "organy" ? (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [
@@ -344,10 +346,15 @@
         card.appendChild(el("p", { "class": "card-p", text: it[f[0]] }));
       });
       // Body part -> the Kostra part screen with the bones underneath.
+      var links = [];
       if (it.kostra && (D.kostraViews || {})[it.kostra]) {
-        card.appendChild(el("p", { "class": "card-link" }, [
-          el("a", { "class": "part-link", href: "#/kostra/" + it.kostra, text: ui.seeBones || "Podívej se na kosti →" })]));
+        links.push(el("a", { "class": "part-link", href: "#/kostra/" + it.kostra, text: ui.seeBones || "Podívej se na kosti →" }));
       }
+      // Body part -> the organ screen ("Vnitřní orgány"), when that section is on.
+      if (it.organy && (D.sections || []).some(function (x) { return x.id === "organy" && x.status === "active"; })) {
+        links.push(el("a", { "class": "part-link", href: "#/organy", text: ui.seeOrgans || "Podívej se dovnitř →" }));
+      }
+      if (links.length) card.appendChild(el("p", { "class": "card-link" }, links));
       // Pro zvídavé: other structures of the same part that have no hotspot here.
       if (state.zvidave && it.part) {
         var lay = fig.layers[state.layer] || {};
