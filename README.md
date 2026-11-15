@@ -50,7 +50,10 @@ cats-anatomy/
 │   └── hotspots-kostra.js  # hotspot polygons for every figure and layer
 ├── images/                 # kostra/, vnejsi/, organy/ (lossless WebP)
 ├── tools/
-│   └── hotspot-editor.html # draw, check and export hotspots (open by double-click)
+│   ├── hotspot-editor.html # draw, check and export hotspots (open by double-click)
+│   ├── content/            # content sources (*_content.py) and generators for data/kostra.js, vnejsi.js, organy.js
+│   └── hotspots/           # reference scripts that built the organ hotspots
+├── tests/                  # browser tests (Playwright): python3 tests/run_all.py
 ├── sources/
 │   ├── image-licenses.md   # one row per image file: source, author, licence, changes
 │   ├── figures.md          # original figure label keys mapped to data/kostra.js ids
