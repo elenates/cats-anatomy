@@ -4,7 +4,7 @@ An interactive atlas of domestic cat anatomy for a 9-year-old learner (4th grade
 All app content is in **Czech**; Latin names are an optional layer (off by default).
 
 > Status: **v0.1 in progress** — Milestone 0 (project setup) done, Milestone 1 (Kostra / skeleton) in progress.
-> Only the *Kostra* section is active; the other six sections are shown as "Připravujeme".
+> The *Kostra* and *Vnější stavba těla* sections are active; the other five sections are shown as "Připravujeme".
 
 ## How to run
 
@@ -21,8 +21,8 @@ No installation, no build step, no server.
 
 | # | Section (cs) | Status |
 |---|--------------|--------|
-| 1 | Kostra | v0.1 in progress |
-| 2 | Vnější stavba těla | planned |
+| 1 | Kostra | done (v0.1, v0.2) |
+| 2 | Vnější stavba těla | v0.3 in progress |
 | 3 | Vnitřní orgány | planned |
 | 4 | Tělesné soustavy | planned |
 | 5 | Svaly | planned |

@@ -11,7 +11,7 @@ window.ATLAS_DATA = window.ATLAS_DATA || {};
 
 window.ATLAS_DATA.sections = [
   { id: "kostra",      cs: "Kostra",              icon: "🦴", status: "active" },
-  { id: "vnejsi",      cs: "Vnější stavba těla",  icon: "🐈", status: "soon" },
+  { id: "vnejsi",      cs: "Vnější stavba těla",  icon: "🐈", status: "active" },
   { id: "organy",      cs: "Vnitřní orgány",      icon: "🫀", status: "soon" },
   { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "soon" },
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "soon" },
@@ -39,6 +39,10 @@ window.ATLAS_DATA.ui = {
   figurePrefix: "Obrázek",
   figureCredit: "J. Reighard a H. S. Jennings, Anatomy of the Cat (1901), kresba Louise Burridge Jennings. Volné dílo.",
   cardEmptyKosti: "Klepni na kost na obrázku.",
+  cardEmptyTelo: "Klepni na část těla na fotce.",
+  layerTelo: "Části těla",
+  figureLabelVnejsi: "Fotka kočky",
+  seeBones: "Podívej se na kosti →",
   cardEmptyKlouby: "Klepni na kloub na obrázku.",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",

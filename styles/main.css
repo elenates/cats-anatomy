@@ -216,6 +216,10 @@ a.menu-card:active {
 }
 .atlas-svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
 .atlas-credit { margin: 6px 4px 0; font-size: 0.78rem; color: var(--muted); }
+.atlas-credit a { color: var(--accent); }
+/* "Podívej se na kosti →" under a body-part card. */
+.card-link { margin: 16px 0 0; }
+.card-link .part-link { display: inline-flex; }
 
 /* Hotspots: invisible until hovered, focused or selected. */
 .hotspot polygon {
