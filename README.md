@@ -86,5 +86,6 @@ cats-anatomy/
 - **Code** (HTML, CSS, JavaScript): MIT, see [`LICENSE`](LICENSE).
 - **Images:** not covered by the MIT licence. Each image keeps the status recorded in
   `sources/image-licenses.md` (the 1901 figures are public domain; the cat photo in
-  `images/vnejsi/` is CC BY-SA 3.0 by Von.grzanka, Wikimedia Commons).
+  `images/vnejsi/` is CC BY-SA 3.0 by Von.grzanka, Wikimedia Commons; the organ drawing in
+  `images/organy/` is CC BY-SA 3.0 by Persian Poet Gal, Surachit, Whidou and others, Wikimedia Commons).
 - **Text content** (Czech texts in `data/`): not covered by the MIT licence unless stated otherwise.
