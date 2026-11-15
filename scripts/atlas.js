@@ -367,6 +367,14 @@
           });
           card.appendChild(ol);
         }
+        // Close-up screens of this system's organs (Vnitřní orgány).
+        var sysParts = ((D.organy && D.organy.parts) || []).filter(function (p) { return byId[p.id] && byId[p.id].soustava === system.id; });
+        if (sysParts.length) {
+          card.appendChild(el("h3", { "class": "card-h", text: ui.closeupsHeading || "Orgány zblízka" }));
+          card.appendChild(el("p", { "class": "card-link" }, sysParts.map(function (p) {
+            return el("a", { "class": "part-link", href: "#/organy/" + p.id, text: p.cs + " →" });
+          })));
+        }
         var lay1 = fig.layers[state.layer] || {};
         var onFig = only.filter(function (id) { return lay1[id] && byId[id]; });
         if (!onFig.length) {
