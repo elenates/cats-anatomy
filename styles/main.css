@@ -218,7 +218,7 @@ a.menu-card:active {
 .atlas-credit { margin: 6px 4px 0; font-size: 0.78rem; color: var(--muted); }
 .atlas-credit a { color: var(--accent); }
 /* "Podívej se na kosti →" under a body-part card. */
-.card-link { margin: 16px 0 0; }
+.card-link { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .card-link .part-link { display: inline-flex; }
 
 /* Hotspots: invisible until hovered, focused or selected. */

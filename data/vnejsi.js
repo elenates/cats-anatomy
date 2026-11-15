@@ -8,6 +8,7 @@
  * Fields per item (same meaning as in data/kostra.js):
  *   id, cs, la (NAV 2017), level, kdeJe, coDela, zajimavost (may be null), refs
  *   kostra   Kostra part screen that shows the bones under this body part, or null
+ *   organy   true: the card links to the Vnitřní orgány screen (organs inside)
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -22,6 +23,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Jsou na ní oči, uši, nos a tlama. Uvnitř lebky je ukrytý mozek.",
       zajimavost: null,
       kostra: "lebka-celisti",
+      organy: false,
       refs: ["NAV", "LAWSON-SK"]
     },
     {
@@ -33,6 +35,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Zachytává zvuky. Kočka slyší i vysoké zvuky, které ty neslyšíš.",
       zajimavost: "Kočka umí každým uchem otáčet samostatně, dokonce skoro dozadu.",
       kostra: null,
+      organy: false,
       refs: ["NAV", "CSW-KD"]
     },
     {
@@ -44,6 +47,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka jím vidí, a to dobře i v šeru.",
       zajimavost: "Ve tmě kočičí oči svítí. Vzadu v oku mají vrstvu, která odráží světlo.",
       kostra: "lebka-celisti",
+      organy: false,
       refs: ["NAV", "CSW-KD", "VFU-CHOV"]
     },
     {
@@ -55,6 +59,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka jím dýchá a čichá. Čichem pozná jídlo i jiné kočky.",
       zajimavost: "V nose má kočka asi 200 milionů čichových buněk.",
       kostra: null,
+      organy: false,
       refs: ["NAV", "CSW-KD"]
     },
     {
@@ -66,6 +71,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka jimi vnímá doteky a okolí. Pomáhají jí při lovu i při pohybu ve tmě.",
       zajimavost: "Kočka má hmatové chlupy i na předních nohou, u zápěstí.",
       kostra: null,
+      organy: false,
       refs: ["NAV", "VFU-CHOV", "CSW-KD"]
     },
     {
@@ -77,6 +83,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Nese hlavu a umožňuje kočce otáčet hlavou.",
       zajimavost: "Uvnitř krku je 7 krčních obratlů – stejně jako u tebe.",
       kostra: "pater-hrudnik",
+      organy: false,
       refs: ["NAV", "POL15", "MUNI-OST"]
     },
     {
@@ -88,6 +95,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Uvnitř vede páteř. Kočka umí hřbet prohnout do oblouku.",
       zajimavost: "Kočičí páteř je tak ohebná, že se kočka umí stočit skoro do klubíčka.",
       kostra: "pater-hrudnik",
+      organy: false,
       refs: ["NAV", "RANDAU17", "CSW-KD"]
     },
     {
@@ -99,6 +107,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Uvnitř jsou srdce a plíce. Chrání je žebra.",
       zajimavost: null,
       kostra: "pater-hrudnik",
+      organy: true,
       refs: ["NAV", "LAWSON-RIB"]
     },
     {
@@ -110,6 +119,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Uvnitř jsou žaludek a střeva, ve kterých se tráví potrava.",
       zajimavost: null,
       kostra: null,
+      organy: true,
       refs: ["NAV", "CSW-AKD"]
     },
     {
@@ -121,6 +131,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka na předních nohách chodí a běhá. Přidržuje jimi také kořist.",
       zajimavost: "Na přední tlapce má kočka 5 prstů.",
       kostra: "predni-koncetiny",
+      organy: false,
       refs: ["NAV", "CSW-KOC", "TF-META", "CSW-KD"]
     },
     {
@@ -132,6 +143,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Pomáhá kočce silně se odrazit při skoku.",
       zajimavost: "Na zadní tlapce má kočka jen 4 prsty.",
       kostra: "panev-zadni",
+      organy: false,
       refs: ["NAV", "UMN-RUN", "CSW-KD"]
     },
     {
@@ -143,6 +155,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka našlapuje na prsty a měkké polštářky, a proto chodí potichu.",
       zajimavost: null,
       kostra: "predni-koncetiny",
+      organy: false,
       refs: ["NAV", "CSW-KD", "UMN-RUN"]
     },
     {
@@ -154,6 +167,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Kočka je vysune, když šplhá, loví nebo se brání.",
       zajimavost: "Drápy umí schovat všechny kočkovité šelmy kromě geparda.",
       kostra: "predni-koncetiny",
+      organy: false,
       refs: ["NAV", "CSW-KD", "CSW-DRAP", "UMN-FEL"]
     },
     {
@@ -165,6 +179,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Pomáhá kočce udržet rovnováhu.",
       zajimavost: "V ocasu je 20 až 23 ocasních obratlů.",
       kostra: "pater-hrudnik",
+      organy: false,
       refs: ["NAV", "CSW-AKD", "POL15", "IMA-VERT"]
     },
     {
@@ -176,6 +191,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Chrání kůži a pomáhá kočce udržet teplo.",
       zajimavost: "Na jednom čtverečním centimetru kůže může mít kočka až 20 000 chlupů.",
       kostra: null,
+      organy: false,
       refs: ["NAV", "CSW-AKD", "CSW-SAV", "CSW-KD"]
     },
     {
@@ -187,6 +203,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Je to jedno z mála míst na těle, kde kočka nemá srst.",
       zajimavost: null,
       kostra: null,
+      organy: false,
       refs: ["NAV", "CSW-KD"]
     },
     {
@@ -198,6 +215,7 @@ window.ATLAS_DATA.vnejsi = {
       coDela: "Jsou měkké a holé. Kočka na nich našlapuje tiše a vnímá jimi i chvění země.",
       zajimavost: "Kočka má malý polštářek i na zápěstí přední nohy.",
       kostra: null,
+      organy: false,
       refs: ["NAV", "CSW-KD"]
     }
   ]

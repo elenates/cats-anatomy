@@ -118,6 +118,11 @@
       vhost._mount = function () { window.Atlas.mount(vhost, { figure: "cat-side" }); };
       return [back, title, vhost];
     }
+    if (section.id === "organy" && window.Atlas) {
+      var ohost = el("div", { "class": "atlas" });
+      ohost._mount = function () { window.Atlas.mount(ohost, { figure: "organs-side" }); };
+      return [back, title, ohost];
+    }
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
