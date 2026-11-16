@@ -11,6 +11,9 @@
  *               part    show only structures of this Kostra part (part screens)
  *               layers  list of layer ids to offer (default: all of the figure)
  *               maxHeightVh  tall figure: at most this share of the window height (Svaly, Fig. 90)
+ *               anyLevel  with only: show those ids at both levels (Jak kočka skáče)
+ *               system.chipsHeading / system.links  heading over the buttons, extra links (Jak kočka skáče)
+ *               system.alsoIds / system.alsoHeading  ids from earlier steps: lighter outline, own list
  *
  * Interaction:
  *   - tap / click a hotspot, or Tab to it and press Enter / Space -> info card
@@ -174,7 +177,7 @@
     function visibleIds() {
       var lay = fig.layers[state.layer] || {};
       return items.map(function (it) { return it.id; }).filter(function (id) {
-        return lay[id] && (!part || byId[id].part === part) && (!only || only.indexOf(id) >= 0) && (byId[id].level === "zaklad" || state.zvidave);
+        return lay[id] && (!part || byId[id].part === part) && (!only || only.indexOf(id) >= 0) && (byId[id].level === "zaklad" || state.zvidave || (only && opts.anyLevel));
       });
     }
 
@@ -266,7 +269,7 @@
 
       // System view: fade everything outside the system's organs, so they stand out in their own colours.
       // A system with no organs on the drawing (rozmnožovací) fades the whole picture.
-      if (only) {
+      if (only && (only.length || !(system && system.links))) {   // a jump step with no muscles stays unfaded
         var d = "M0 0H" + W + "V" + H + "H0Z";
         ids.forEach(function (id) {
           lay[id].forEach(function (p) { d += "M" + p.map(function (q) { return q.join(" "); }).join("L") + "Z"; });
@@ -278,7 +281,7 @@
       ids.slice().sort(function (a, b) { return bigArea(lay[b]) - bigArea(lay[a]); }).forEach(function (id) {
         var it = byId[id];
         var g = svgEl("g", {
-          "class": "hotspot" + (id === selected ? " is-selected" : ""),
+          "class": "hotspot" + (id === selected ? " is-selected" : "") + (system && (system.alsoIds || []).indexOf(id) >= 0 ? " is-also" : ""),
           tabindex: "0", role: "button",
           "aria-label": it.cs, "aria-pressed": String(id === selected), "data-id": id
         });
@@ -363,17 +366,20 @@
           card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
           card.appendChild(el("p", { "class": "card-p", text: system.zvidave }));
         }
-        var shown = visibleIds();
-        if (shown.length) {
-          card.appendChild(el("h3", { "class": "card-h", text: ui.systemOrgans || "Patří sem:" }));
+        var shown = visibleIds(), also = system.alsoIds || [];
+        // Two lists when some muscles carry on from earlier steps (Jak kočka skáče); one list otherwise.
+        [[shown.filter(function (id) { return also.indexOf(id) < 0; }), system.chipsHeading || ui.systemOrgans || "Patří sem:", ""],
+         [shown.filter(function (id) { return also.indexOf(id) >= 0; }), system.alsoHeading, " is-also"]].forEach(function (grp) {
+          if (!grp[0].length) return;
+          card.appendChild(el("h3", { "class": "card-h", text: grp[1] }));
           var ol = el("ul", { "class": "system-organs" });
-          shown.forEach(function (id) {
-            var b = el("button", { type: "button", "class": "organ-chip", text: byId[id].cs });
+          grp[0].forEach(function (id) {
+            var b = el("button", { type: "button", "class": "organ-chip" + grp[2], text: byId[id].cs });
             b.addEventListener("click", function () { select(id, true); });
             ol.appendChild(el("li", null, [b]));
           });
           card.appendChild(ol);
-        }
+        });
         // Close-up screens of this system's organs (Vnitřní orgány).
         var sysParts = ((D.organy && D.organy.parts) || []).filter(function (p) { return byId[p.id] && byId[p.id].soustava === system.id; });
         if (sysParts.length) {
@@ -382,6 +388,12 @@
             return el("a", { "class": "part-link", href: "#/organy/" + p.id, text: p.cs + " →" });
           })));
         }
+        if (system.links && system.links.length) {
+          card.appendChild(el("p", { "class": "card-link" }, system.links.map(function (l) {
+            return el("a", { "class": "part-link", href: l.href, text: l.cs });
+          })));
+        }
+        if (!only.length && system.links) return;   // a step with no muscles (Přikrčení)
         var lay1 = fig.layers[state.layer] || {};
         var onFig = only.filter(function (id) { return lay1[id] && byId[id]; });
         if (!onFig.length) {
@@ -389,7 +401,7 @@
           return;
         }
         if (onFig.length > shown.length) card.appendChild(el("p", { "class": "card-empty", text: ui.systemMoreZvidave || "V režimu „Pro zvídavé“ uvidíš i další orgány." }));
-        card.appendChild(el("p", { "class": "card-empty", text: ui.cardEmptyOrgany || "Klepni na orgán na obrázku." }));
+        card.appendChild(el("p", { "class": "card-empty", text: content === "svaly" ? (ui.cardEmptySvaly || "Klepni na sval na obrázku.") : (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") }));
         return;
       }
       if (!it) {

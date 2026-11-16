@@ -334,7 +334,7 @@ a.menu-card:active {
 .part-link:hover, .fig-tab:hover { background: var(--accent-soft); }
 .fig-nav { margin: 0 0 16px; }
 .fig-note { margin: 0 0 12px; color: var(--muted); }
-.fig-tab[aria-current="page"] { background: var(--accent); color: #fff; }
+.fig-tab[aria-current="page"], .fig-tab[aria-current="step"] { background: var(--accent); color: #fff; }
 .part-link:focus-visible, .fig-tab:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
 /* ===================== Mini card "Zařazení kočky v přírodě" (M2 stage 5) ===================== */
@@ -406,3 +406,10 @@ a.menu-card:active {
 .spoj-btn.is-chosen-wrong { background: #fbe9e7; }
 .sk-spot polygon { fill: rgba(181, 86, 42, 0.12); stroke: var(--accent); stroke-width: 4px; }
 .system-note { padding: 8px 12px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; }
+
+/* Jak kočka skáče (M5 stage 5): numbered step tabs, previous / next under the figure. */
+.step-tabs { list-style: none; }
+.step-nav { display: flex; justify-content: space-between; gap: 8px; margin: 16px 0 0; }
+.step-nav .part-link:only-child { margin-left: auto; }
+.atlas-figure.is-system .hotspot.is-also polygon { stroke: rgba(181, 86, 42, 0.55); stroke-dasharray: 6 4; }
+.organ-chip.is-also { border-style: dashed; }

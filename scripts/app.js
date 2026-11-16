@@ -8,6 +8,7 @@
  *   #/kostra/spoj  -> quiz "Spoj, co patří k sobě" (scripts/spoj.js)
  *   #/kostra/<part>[/<n>] -> part screen, figure tab n (ATLAS_DATA.kostraViews)
  *   #/svaly[/<n>]  -> Svaly, figure tab n (ATLAS_DATA.svaly.views)
+ *   #/svaly/skok[/<n>] -> Jak kočka skáče, step n (ATLAS_DATA.svaly.skok)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -152,7 +153,7 @@
       return [back, el("div", { "class": "screen-head" }, [title, oGames]), cnav, ohost];
     }
     if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub, sk);
-    if (section.id === "svaly" && window.Atlas && data.svaly) return renderSvaly(section, parseInt(sub, 10) || 1);
+    if (section.id === "svaly" && window.Atlas && data.svaly) return sub === "skok" ? renderSkok(parseInt(sub2, 10) || 1) : renderSvaly(section, parseInt(sub, 10) || 1);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -221,7 +222,11 @@
     var tabs = data.svaly.views || [];
     if (n < 1 || n > tabs.length) n = 1;
     var view = tabs[n - 1];
-    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs })];
+    var skok = data.svaly.skok;
+    var sTitle = el("h1", { "class": "screen-title", text: section.cs });
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }),
+      skok ? el("div", { "class": "screen-head" }, [sTitle, el("div", { "class": "quiz-actions screen-games" }, [
+        el("a", { "class": "quiz-open", href: "#/svaly/skok", text: skok.open })])]) : sTitle];
     var tabList = el("ul", { "class": "fig-tabs" });
     tabs.forEach(function (t, i) {
       var a = el("a", { "class": "fig-tab", href: "#/svaly/" + (i + 1), text: t.cs });
@@ -233,6 +238,36 @@
     var host = el("div", { "class": "atlas" });
     host._mount = function () { window.Atlas.mount(host, { figure: view.figure, maxHeightVh: view.maxHeightVh }); };
     nodes.push(host);
+    return nodes;
+  }
+
+  /* Jak kočka skáče: one step per tab on the hind-leg figure; the step's muscles are lit up, the rest is faded. */
+  function renderSkok(n) {
+    var skok = data.svaly.skok, steps = skok.steps;
+    if (n < 1 || n > steps.length) n = 1;
+    var st = steps[n - 1];
+    // Muscles that switched on in earlier steps keep working (lighter outline).
+    var earlier = [];
+    steps.slice(0, n - 1).forEach(function (s) { s.muscles.forEach(function (m) { if (st.muscles.indexOf(m) < 0 && earlier.indexOf(m) < 0) earlier.push(m); }); });
+    var hind = (data.svaly.views || []).filter(function (v) { return v.figure === "muscles-hindleg"; })[0] || {};
+    var nodes = [el("a", { "class": "back-link", href: "#/svaly/3", text: "← " + skok.back }), el("h1", { "class": "screen-title", text: skok.cs })];
+    if (skok.intro) nodes.push(el("p", { "class": "fig-note", text: skok.intro }));
+    var tabList = el("ol", { "class": "fig-tabs step-tabs" });
+    steps.forEach(function (t, i) {
+      var a = el("a", { "class": "fig-tab", href: "#/svaly/skok/" + (i + 1), text: (i + 1) + ". " + t.cs });
+      if (i === n - 1) a.setAttribute("aria-current", "step");
+      tabList.appendChild(el("li", null, [a]));
+    });
+    nodes.push(el("nav", { "class": "fig-nav", "aria-label": skok.cs }, [tabList]));
+    var host = el("div", { "class": "atlas" });
+    host._mount = function () {
+      window.Atlas.mount(host, { figure: "muscles-hindleg", only: st.muscles.concat(earlier), anyLevel: true, maxHeightVh: hind.maxHeightVh,
+        system: { id: "skok-" + st.id, cs: n + ". " + st.cs, text: st.text, zvidave: st.zvidave, chipsHeading: skok.muscles, alsoIds: earlier, alsoHeading: skok.still, links: st.links } });
+    };
+    nodes.push(host);
+    nodes.push(el("p", { "class": "step-nav" }, [
+      n > 1 ? el("a", { "class": "part-link", href: "#/svaly/skok/" + (n - 1), text: skok.prev }) : null,
+      n < steps.length ? el("a", { "class": "part-link", href: "#/svaly/skok/" + (n + 1), text: skok.next }) : null].filter(Boolean)));
     return nodes;
   }
 

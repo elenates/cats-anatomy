@@ -1,4 +1,4 @@
-"""Svaly screen (M5 stage 4): menu, three tabs, hotspots per level, every hotspot opens its card,
+"""Svaly screen (M5 stages 4–5): menu, three tabs, Jak kočka skáče, hotspots per level, every hotspot opens its card,
 links Svaly <-> Kostra, the Pro zvídavé sentence, height limit of the tall hind-leg figure, phone layout."""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -58,6 +58,33 @@ with sync_playwright() as p:
         pg.locator(f".hotspot[data-id='{bone}']").first.focus(); pg.keyboard.press("Enter"); pg.wait_for_timeout(150)
         hs = [a.get_attribute("href") for a in pg.locator(".card-link a").all()]
         r.ok(href in hs, f"{bone} links {hs}")
+    # Jak kočka skáče: button on the Svaly screen, 4 steps, lit muscles at Základ, prev/next, links
+    pg.goto(url("/svaly/1")); pg.wait_for_timeout(300)
+    r.ok(pg.locator("a.quiz-open[href='#/svaly/skok']").count() == 1, "Jak kočka skáče button")
+    skok = pg.evaluate("ATLAS_DATA.svaly.skok")
+    earlier = []
+    for n, st in enumerate(skok["steps"], 1):
+        pg.goto(url(f"/svaly/skok/{n}")); pg.wait_for_timeout(300)
+        r.ok(pg.locator(".fig-note").inner_text() == skok["intro"], f"step {n} intro")
+        r.ok(sorted(pg.eval_on_selector_all(".hotspot.is-also", "e=>e.map(x=>x.dataset.id)")) == sorted(earlier), f"step {n} earlier muscles lighter")
+        r.ok(pg.locator(".organ-chip.is-also").count() == len(earlier), f"step {n} 'Pořád pracují' chips")
+        r.ok(pg.locator(".fig-tab[aria-current='step']").inner_text() == f"{n}. {st['cs']}", f"step {n} tab")
+        r.ok(sorted(pg.eval_on_selector_all(".hotspot", "e=>e.map(x=>x.dataset.id)")) == sorted(st["muscles"] + earlier), f"step {n} hotspots")
+        r.ok(pg.locator(".organ-chip:not(.is-also)").count() == len(st["muscles"]), f"step {n} chips")
+        r.ok(pg.locator(".system-fade").count() == (1 if st["muscles"] + earlier else 0), f"step {n} fade")
+        r.ok([a.get_attribute("href") for a in pg.locator(".atlas-card .card-link a").all()] == [l["href"] for l in st["links"]], f"step {n} links")
+        nav = [a.get_attribute("href") for a in pg.locator(".step-nav a").all()]
+        want = ([f"#/svaly/skok/{n-1}"] if n > 1 else []) + ([f"#/svaly/skok/{n+1}"] if n < len(skok["steps"]) else [])
+        r.ok(nav == want, f"step {n} nav {nav}")
+        if st["muscles"]:
+            chip = pg.locator(".organ-chip").first; name = chip.inner_text(); chip.click(); pg.wait_for_timeout(100)
+            r.ok(pg.locator(".card-title").inner_text() == name, f"step {n} chip opens the muscle card")
+        earlier += st["muscles"]
+    pg.locator("[data-toggle='zvidave']").click(); pg.wait_for_timeout(150)
+    pg.goto(url("/svaly/skok/3")); pg.wait_for_timeout(200); pg.goto(url("/svaly/skok/4")); pg.wait_for_timeout(300)
+    r.ok("0,15 sekundy" in pg.locator(".atlas-card").inner_text(), "step 4 Pro zvídavé sentence")
+    pg.screenshot(path=shot("m5-stage5-skok-4.png"), full_page=True)
+    pg.locator("[data-toggle='zvidave']").click(); pg.wait_for_timeout(100)
     # Popisky on, phone: no page-wide sideways overflow
     pg.set_viewport_size(VIEWPORTS["phone"])
     for n in (1, 3):
