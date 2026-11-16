@@ -10,7 +10,10 @@
  * Score: structures matched on the first try.
  * Content: data/kostra.js (names, texts) and data/spoj.js (rules, funny answers).
  *
- * Public API: window.Spoj.mount(container)
+ * opts.content (default "kostra") and opts.config (default ATLAS_DATA.spoj) give the same game
+ * for another section (Svaly: content "svaly", config ATLAS_DATA.spojSvaly).
+ *
+ * Public API: window.Spoj.mount(container, { content, config })
  */
 (function () {
   "use strict";
@@ -57,9 +60,10 @@
 
   function mount(container, opts) {
     opts = opts || {};
-    var cfg = D.spoj || {};
+    var cfg = opts.config || D.spoj || {};
     var t = cfg.ui || {};
-    var items = (D.kostra && D.kostra.items) || [];
+    var content = opts.content || "kostra";
+    var items = (D[content] && D[content].items) || [];
     var pool = items.filter(function (it) { return it.level === "zaklad" && it.quiz !== false && it.coDela; });
     var rounds = 0, roundList = [], r = 0, failed = {}, funnyLeft = [];
     var sel = { name: null, answer: null }, matched = {}, pairNo = 0;
@@ -179,7 +183,7 @@
       var ratio = all.length ? score / all.length : 0;
       summary.textContent = "";
       summary.appendChild(el("h2", { "class": "quiz-prompt", text: fmt(t.score || "{score} z {total}", { score: score, total: all.length }) }));
-      summary.appendChild(el("p", { "class": "quiz-verdict", text: ratio >= 0.9 ? (ui.quizGreat || "") : ratio >= 0.6 ? (ui.quizGood || "") : (ui.quizTryAgain || "") }));
+      summary.appendChild(el("p", { "class": "quiz-verdict", text: ratio >= 0.9 ? (t.great || ui.quizGreat || "") : ratio >= 0.6 ? (ui.quizGood || "") : (ui.quizTryAgain || "") }));
       var missed = all.filter(function (it) { return failed[it.id]; });
       if (missed.length) {
         summary.appendChild(el("p", { text: ui.quizReview || "Na tyhle se ještě podívej:" }));
@@ -189,7 +193,7 @@
       }
       var again = el("button", { type: "button", "class": "quiz-next", text: t.again || "Hrát znovu" });
       again.addEventListener("click", start);
-      summary.appendChild(el("div", { "class": "quiz-actions" }, [again, el("a", { "class": "quiz-next quiz-secondary", href: "#/kostra", text: t.back || "Zpět na kostru" })]));
+      summary.appendChild(el("div", { "class": "quiz-actions" }, [again, el("a", { "class": "quiz-next quiz-secondary", href: t.backHref || "#/kostra", text: t.back || "Zpět na kostru" })]));
       game.hidden = true; summary.hidden = false;
       summary.querySelector("h2").setAttribute("tabindex", "-1"); summary.querySelector("h2").focus();
     }
