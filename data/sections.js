@@ -14,7 +14,7 @@ window.ATLAS_DATA.sections = [
   { id: "vnejsi",      cs: "Vnější stavba těla",  icon: "🐈", status: "active" },
   { id: "organy",      cs: "Vnitřní orgány",      icon: "🫀", status: "active" },
   { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "active" },
-  { id: "svaly",       cs: "Svaly",               icon: "💪", status: "soon" },
+  { id: "svaly",       cs: "Svaly",               icon: "💪", status: "active" },
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "soon" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "soon" }
 ];
@@ -63,6 +63,13 @@ window.ATLAS_DATA.ui = {
   cardEmptyOrgany: "Klepni na orgán na obrázku.",
   figureLabelOrgany: "Obrázek vnitřních orgánů kočky",
   cardEmptyKlouby: "Klepni na kloub na obrázku.",
+
+  // Svaly (M5 stage 4) – to proofread
+  layerSvaly: "Svaly",
+  cardEmptySvaly: "Klepni na sval na obrázku.",
+  figureLabelSvaly: "Obrázek svalů kočky",
+  svalyTabsLabel: "Obrázky svalů",
+  seeMuscles: "Podívej se na svaly →",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",

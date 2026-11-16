@@ -9,6 +9,9 @@
  *   id, cs, la (NAV 2017, or null when NAV has no term), level, kdeJe, coDela, zajimavost (may be null), refs
  *   zvidave  extra sentence shown only at the Pro zvídavé level, or null
  *   kostra   Kostra part screen with the bones this muscle moves, or null
+ *
+ * views: tabs of the Svaly screen (figure, cs, note, kostra = Kostra parts that link to the tab,
+ *   maxHeightVh = height limit for a tall figure)
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -302,5 +305,10 @@ window.ATLAS_DATA.svaly = {
       kostra: "panev-zadni",
       refs: ["NAV", "RJ1901", "OSX-LOWER", "LT-KNEE", "KTV-TUL"]
     }
+  ],
+  views: [
+    { figure: "muscles-superficial", cs: "Svaly pod kůží", note: null, kostra: ["pater-hrudnik", "lebka-celisti", "predni-koncetiny"] },
+    { figure: "muscles-deep", cs: "Hlubší svaly", note: "Svaly, které leží pod svaly z prvního obrázku. Přední noha je odebraná, aby byly vidět žebra a svaly mezi nimi.", kostra: [] },
+    { figure: "muscles-hindleg", cs: "Svaly zadní nohy", note: "Zadní noha z boku. Některé svaly z prvního obrázku jsou odebrané, aby byly vidět svaly pod nimi.", kostra: ["panev-zadni"], maxHeightVh: 85 }
   ]
 };

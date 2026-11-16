@@ -473,6 +473,7 @@ window.ATLAS_DATA.hotspots["muscles-superficial"] = {
       "dvojhlavy-sval-stehenni": [[[120,600],[150,622],[190,622],[235,610],[258,580],[268,520],[262,450],[240,420],[185,385],[160,360],[130,340],[105,350],[101.5,400],[104.5,479.9],[111.5,559.8],[114.2,570.5],[113.5,573.9]]]
     }
   },
+  labelSides: {"zevni-sikmy-sval-bricni":"bottom","prsni-svaly":"bottom","svaly-stehna":"left","svaly-ocasu":"left","dvojhlavy-sval-stehenni":"left","sval-poloslasity":"left","napinac-stehenni-povazky":"top","krejcovsky-sval":"top","siroky-sval-zadovy":"top","trapezovy-sval":"top","zvykaci-sval":"right","deltovy-sval":"right","trojhlavy-sval-pazni":"right"},
   nested: {"svaly-stehna":["dvojhlavy-sval-stehenni","sval-poloslasity","krejcovsky-sval","napinac-stehenni-povazky"]},
   alsoCounts: {}
 };

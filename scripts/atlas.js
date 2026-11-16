@@ -10,6 +10,7 @@
  *   options:    figure  hotspot figure id (data/hotspots-kostra.js)
  *               part    show only structures of this Kostra part (part screens)
  *               layers  list of layer ids to offer (default: all of the figure)
+ *               maxHeightVh  tall figure: at most this share of the window height (Svaly, Fig. 90)
  *
  * Interaction:
  *   - tap / click a hotspot, or Tab to it and press Enter / Space -> info card
@@ -118,7 +119,7 @@
     var selected = null;
 
     // ----- toolbar -----
-    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla", organy: ui.layerOrgany || "Orgány" };
+    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla", organy: ui.layerOrgany || "Orgány", svaly: ui.layerSvaly || "Svaly" };
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
     layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
@@ -141,7 +142,10 @@
 
     // ----- figure -----
     var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") :
-      content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") : (ui.figureLabel || "Obrázek kostry") });
+      content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") :
+      content === "svaly" ? (ui.figureLabelSvaly || "Obrázek svalů kočky") : (ui.figureLabel || "Obrázek kostry") });
+    var maxVh = opts && opts.maxHeightVh;
+    if (maxVh) svg.style.margin = "0 auto";
     var figBox = el("div", { "class": "atlas-figure" + (only ? " is-system" : "") }, [svg]);
     // "Reighard & Jennings 1901, Fig. 40" -> "Obrázek 40: J. Reighard a H. S. Jennings, ..."
     var figNo = /Fig\. (\d+)/.exec(fig.figure || "");
@@ -254,6 +258,8 @@
       }
 
       svg.setAttribute("viewBox", [-mL, -mT, W + mL + mR, H + mT + mB].join(" "));
+      // Tall figure: keep it within maxHeightVh of the window by limiting its width (keeps the aspect ratio).
+      if (maxVh) svg.style.maxWidth = "calc(" + maxVh + "vh * " + ((W + mL + mR) / (H + mT + mB)).toFixed(4) + ")";
       svg.appendChild(svgEl("image", { href: fig.image, x: 0, y: 0, width: W, height: H, "class": "atlas-img" }));
       // Older Safari needs xlink:href for <image>.
       svg.lastChild.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", fig.image);
@@ -393,7 +399,8 @@
         card.appendChild(el("p", { "class": "card-empty", text: onlyExtra ? (ui.cardOnlyZvidave || "Na tomhle obrázku najdeš jen zajímavosti pro zvídavé. Zapni si režim „Pro zvídavé“.") :
           state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") :
           state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") :
-          state.layer === "organy" ? (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+          state.layer === "organy" ? (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") :
+          state.layer === "svaly" ? (ui.cardEmptySvaly || "Klepni na sval na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [
@@ -409,10 +416,23 @@
         card.appendChild(el("h3", { "class": "card-h", text: f[1] }));
         card.appendChild(el("p", { "class": "card-p", text: it[f[0]] }));
       });
+      // Extra sentence shown only at "Pro zvídavé" (Svaly: e.g. the scientific name of the Achilles tendon).
+      if (state.zvidave && it.zvidave && it.level !== "zvidave") {
+        card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
+        card.appendChild(el("p", { "class": "card-p", text: it.zvidave }));
+      }
       // Body part -> the Kostra part screen with the bones underneath.
       var links = [];
       if (it.kostra && (D.kostraViews || {})[it.kostra]) {
         links.push(el("a", { "class": "part-link", href: "#/kostra/" + it.kostra, text: ui.seeBones || "Podívej se na kosti →" }));
+      }
+      // Bone (Kostra) -> the Svaly tab that shows the muscles of its part, when that section is on.
+      if (content === "kostra" && it.part && D.svaly && (D.sections || []).some(function (x) { return x.id === "svaly" && x.status === "active"; })) {
+        (D.svaly.views || []).some(function (v, vi) {
+          if ((v.kostra || []).indexOf(it.part) < 0) return false;
+          links.push(el("a", { "class": "part-link", href: "#/svaly/" + (vi + 1), text: ui.seeMuscles || "Podívej se na svaly →" }));
+          return true;
+        });
       }
       // Body part -> the organ screen ("Vnitřní orgány"), when that section is on.
       if (it.organy && (D.sections || []).some(function (x) { return x.id === "organy" && x.status === "active"; })) {

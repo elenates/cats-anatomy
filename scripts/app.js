@@ -7,6 +7,7 @@
  *   #/kostra/kviz  -> quiz "Najdi kost nebo orgán" (scripts/quiz.js)
  *   #/kostra/spoj  -> quiz "Spoj, co patří k sobě" (scripts/spoj.js)
  *   #/kostra/<part>[/<n>] -> part screen, figure tab n (ATLAS_DATA.kostraViews)
+ *   #/svaly[/<n>]  -> Svaly, figure tab n (ATLAS_DATA.svaly.views)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -151,6 +152,7 @@
       return [back, el("div", { "class": "screen-head" }, [title, oGames]), cnav, ohost];
     }
     if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub, sk);
+    if (section.id === "svaly" && window.Atlas && data.svaly) return renderSvaly(section, parseInt(sub, 10) || 1);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -210,6 +212,26 @@
     var ids = (data.organy.items || []).filter(function (it) { return it.soustava === sys.id; }).map(function (it) { return it.id; });
     var host = el("div", { "class": "atlas" });
     host._mount = function () { window.Atlas.mount(host, { figure: "organs-side", only: ids, system: sys }); };
+    nodes.push(host);
+    return nodes;
+  }
+
+  /* Svaly: one tab per 1901 muscle figure (ATLAS_DATA.svaly.views). */
+  function renderSvaly(section, n) {
+    var tabs = data.svaly.views || [];
+    if (n < 1 || n > tabs.length) n = 1;
+    var view = tabs[n - 1];
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs })];
+    var tabList = el("ul", { "class": "fig-tabs" });
+    tabs.forEach(function (t, i) {
+      var a = el("a", { "class": "fig-tab", href: "#/svaly/" + (i + 1), text: t.cs });
+      if (i === n - 1) a.setAttribute("aria-current", "page");
+      tabList.appendChild(el("li", null, [a]));
+    });
+    nodes.push(el("nav", { "class": "fig-nav", "aria-label": ui.svalyTabsLabel || "Obrázky svalů" }, [tabList]));
+    if (view.note) nodes.push(el("p", { "class": "fig-note", text: view.note }));
+    var host = el("div", { "class": "atlas" });
+    host._mount = function () { window.Atlas.mount(host, { figure: view.figure, maxHeightVh: view.maxHeightVh }); };
     nodes.push(host);
     return nodes;
   }
