@@ -65,3 +65,56 @@ window.ATLAS_DATA.spoj = {
     again: "Hrát znovu"
   }
 };
+
+/*
+ * The same game for Svaly (M5 stage 6): names and "Co dělá?" texts of the Základ muscles
+ * (data/svaly.js). 12 muscles, so 3 rounds of 3. Czech text: to proofread.
+ */
+window.ATLAS_DATA.spojSvaly = {
+  rounds: 3,
+  pairs: 3,
+  funnyPerRound: 2,
+
+  conflicts: [
+    ["deltovy-sval", "siroky-sval-zadovy", "prsni-svaly"],          // move the front leg at the shoulder
+    ["svaly-stehna", "ctyrhlavy-sval-stehenni"],                      // knee, "odrazit se"
+    ["trojhlavy-sval-lytkovy", "achillova-slacha"]                    // the heel
+  ],
+
+  funny: [
+    "Hraje na buben, když kočka přede.",
+    "Nafukuje kočku jako balonek.",
+    "Drží kočce brýle na nose.",
+    "Šlape do pedálů, když kočka jede na kole.",
+    "Zvedá činky v kočičí posilovně.",
+    "Tleská, když kočka chytí myš.",
+    "Pomáhá kočce zpívat v kočičím sboru.",
+    "Uklízí kočce pelíšek, když spí."
+  ],
+
+  ui: {
+    title: "Spoj, co patří k sobě",
+    open: "Spoj, co patří k sobě",
+    back: "Zpět na svaly",
+    backHref: "#/svaly",
+    great: "Jsi expert na kočičí svaly!",
+    howTo: "Klepni na sval a pak na to, co dělá. Pozor, některé odpovědi jsou jen pro legraci!",
+    round: "Kolo {n} z {total}",
+    namesLabel: "Svaly",
+    answersLabel: "Co dělá?",
+    pickName: "Vyber nejdřív sval vlevo.",
+    pickAnswer: "Teď vyber odpověď pro: {name}",
+    right: "{name} – správně!",
+    wrong: "Tohle k sobě nepatří. Zkus to znovu.",
+    funnyReplies: [
+      "Ha, to by byla legrace! Ale to žádný sval neumí.",
+      "Kdepak, to by se kočka divila!",
+      "To je jen vtip. Zkus jinou odpověď.",
+      "Takový sval má jen kočka z pohádky."
+    ],
+    nextRound: "Další kolo",
+    finish: "Výsledek",
+    score: "Napoprvé správně: {score} z {total}",
+    again: "Hrát znovu"
+  }
+};

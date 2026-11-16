@@ -14,7 +14,7 @@ with sync_playwright() as p:
         pg = r.watch(b.new_page(viewport=vp))
         pg.goto(url()); pg.evaluate("localStorage.clear()"); pg.goto(url("/svaly")); pg.wait_for_timeout(300)
         hs = [a.get_attribute("href") for a in pg.locator(".screen-games a").all()]
-        r.ok(hs == ["#/svaly/kviz", "#/svaly/skok"], f"{name}: Svaly buttons {hs}")
+        r.ok(hs == ["#/svaly/kviz", "#/svaly/spoj", "#/svaly/skok"], f"{name}: Svaly buttons {hs}")
         pg.goto(url("/svaly/kviz")); pg.wait_for_timeout(400)
         r.ok(pg.locator(".screen-title").inner_text() == "Kvíz: Najdi sval", f"{name}: title")
         Q = "document.querySelector('.atlas.quiz')._quiz"
