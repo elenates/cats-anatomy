@@ -13,6 +13,7 @@
  *               maxHeightVh  tall figure: at most this share of the window height (Svaly, Fig. 90)
  *               anyLevel  with only: show those ids at both levels (Jak kočka skáče)
  *               system.chipsHeading / system.links  heading over the buttons, extra links (Jak kočka skáče)
+ *               system.alsoIds / system.alsoHeading  ids from earlier steps: lighter outline, own list
  *
  * Interaction:
  *   - tap / click a hotspot, or Tab to it and press Enter / Space -> info card
@@ -280,7 +281,7 @@
       ids.slice().sort(function (a, b) { return bigArea(lay[b]) - bigArea(lay[a]); }).forEach(function (id) {
         var it = byId[id];
         var g = svgEl("g", {
-          "class": "hotspot" + (id === selected ? " is-selected" : ""),
+          "class": "hotspot" + (id === selected ? " is-selected" : "") + (system && (system.alsoIds || []).indexOf(id) >= 0 ? " is-also" : ""),
           tabindex: "0", role: "button",
           "aria-label": it.cs, "aria-pressed": String(id === selected), "data-id": id
         });
@@ -365,17 +366,20 @@
           card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
           card.appendChild(el("p", { "class": "card-p", text: system.zvidave }));
         }
-        var shown = visibleIds();
-        if (shown.length) {
-          card.appendChild(el("h3", { "class": "card-h", text: system.chipsHeading || ui.systemOrgans || "Patří sem:" }));
+        var shown = visibleIds(), also = system.alsoIds || [];
+        // Two lists when some muscles carry on from earlier steps (Jak kočka skáče); one list otherwise.
+        [[shown.filter(function (id) { return also.indexOf(id) < 0; }), system.chipsHeading || ui.systemOrgans || "Patří sem:", ""],
+         [shown.filter(function (id) { return also.indexOf(id) >= 0; }), system.alsoHeading, " is-also"]].forEach(function (grp) {
+          if (!grp[0].length) return;
+          card.appendChild(el("h3", { "class": "card-h", text: grp[1] }));
           var ol = el("ul", { "class": "system-organs" });
-          shown.forEach(function (id) {
-            var b = el("button", { type: "button", "class": "organ-chip", text: byId[id].cs });
+          grp[0].forEach(function (id) {
+            var b = el("button", { type: "button", "class": "organ-chip" + grp[2], text: byId[id].cs });
             b.addEventListener("click", function () { select(id, true); });
             ol.appendChild(el("li", null, [b]));
           });
           card.appendChild(ol);
-        }
+        });
         // Close-up screens of this system's organs (Vnitřní orgány).
         var sysParts = ((D.organy && D.organy.parts) || []).filter(function (p) { return byId[p.id] && byId[p.id].soustava === system.id; });
         if (sysParts.length) {

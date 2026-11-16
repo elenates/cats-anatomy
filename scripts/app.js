@@ -246,8 +246,12 @@
     var skok = data.svaly.skok, steps = skok.steps;
     if (n < 1 || n > steps.length) n = 1;
     var st = steps[n - 1];
+    // Muscles that switched on in earlier steps keep working (lighter outline).
+    var earlier = [];
+    steps.slice(0, n - 1).forEach(function (s) { s.muscles.forEach(function (m) { if (st.muscles.indexOf(m) < 0 && earlier.indexOf(m) < 0) earlier.push(m); }); });
     var hind = (data.svaly.views || []).filter(function (v) { return v.figure === "muscles-hindleg"; })[0] || {};
     var nodes = [el("a", { "class": "back-link", href: "#/svaly/3", text: "← " + skok.back }), el("h1", { "class": "screen-title", text: skok.cs })];
+    if (skok.intro) nodes.push(el("p", { "class": "fig-note", text: skok.intro }));
     var tabList = el("ol", { "class": "fig-tabs step-tabs" });
     steps.forEach(function (t, i) {
       var a = el("a", { "class": "fig-tab", href: "#/svaly/skok/" + (i + 1), text: (i + 1) + ". " + t.cs });
@@ -257,8 +261,8 @@
     nodes.push(el("nav", { "class": "fig-nav", "aria-label": skok.cs }, [tabList]));
     var host = el("div", { "class": "atlas" });
     host._mount = function () {
-      window.Atlas.mount(host, { figure: "muscles-hindleg", only: st.muscles, anyLevel: true, maxHeightVh: hind.maxHeightVh,
-        system: { id: "skok-" + st.id, cs: n + ". " + st.cs, text: st.text, zvidave: st.zvidave, chipsHeading: skok.muscles, links: st.links } });
+      window.Atlas.mount(host, { figure: "muscles-hindleg", only: st.muscles.concat(earlier), anyLevel: true, maxHeightVh: hind.maxHeightVh,
+        system: { id: "skok-" + st.id, cs: n + ". " + st.cs, text: st.text, zvidave: st.zvidave, chipsHeading: skok.muscles, alsoIds: earlier, alsoHeading: skok.still, links: st.links } });
     };
     nodes.push(host);
     nodes.push(el("p", { "class": "step-nav" }, [

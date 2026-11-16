@@ -411,3 +411,5 @@ a.menu-card:active {
 .step-tabs { list-style: none; }
 .step-nav { display: flex; justify-content: space-between; gap: 8px; margin: 16px 0 0; }
 .step-nav .part-link:only-child { margin-left: auto; }
+.atlas-figure.is-system .hotspot.is-also polygon { stroke: rgba(181, 86, 42, 0.55); stroke-dasharray: 6 4; }
+.organ-chip.is-also { border-style: dashed; }

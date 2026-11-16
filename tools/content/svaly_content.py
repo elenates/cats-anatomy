@@ -225,7 +225,8 @@ VIEWS = [
        kostra=["panev-zadni"], maxHeightVh=85),
 ]
 
-# "Jak kočka skáče" (stage 5): steps on Fig. 90. muscles = hotspot ids lit up in the step (any level);
+# "Jak kočka skáče" (stage 5): steps on Fig. 90. muscles = hotspot ids that switch on in the step (any level);
+# the muscles of earlier steps stay lit in a lighter outline ("Pořád pracují"): ZAJAC81, extensors fully active in the jump;
 # links = buttons under the text. Sources: ZAJAC81 (abstract: a preparatory phase, then a launching phase of
 # about 150 ms; proximal extensors are activated before distal ones: hip, knee, ankle); muscle actions as on
 # the cards (LT-KNEE, OSX-LOWER, RJ1901).
@@ -233,7 +234,9 @@ SKOK = dict(
   cs="Jak kočka skáče",
   open="Jak kočka skáče →",
   back="Zpět na svaly",
-  muscles="Pracují tyto svaly:",
+  intro="Při skoku pracuje mnoho svalů najednou. Kroky ukazují, které svaly se zapínají dřív a které později.",
+  muscles="Teď se zapínají:",
+  still="Pořád pracují:",
   prev="← Předchozí krok",
   next="Další krok →",
   steps=[
@@ -242,14 +245,14 @@ SKOK = dict(
          zvidave=None, muscles=[],
          links=[dict(href="#/kostra/klouby-pohyb", cs="Podívej se na klouby →")]),
     dict(id="kycel", cs="Kyčel",
-         text="Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a noha se v kyčli natahuje.",
+         text="Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a zadní noha se v kyčli natahuje.",
          zvidave=None, muscles=["sval-poloblanity", "sval-poloslasity"], links=[]),
     dict(id="koleno", cs="Koleno",
          text="Hned potom se zapne čtyřhlavý sval stehenní a natáhne nohu v koleni.",
          zvidave=None, muscles=["ctyrhlavy-sval-stehenni"], links=[]),
     dict(id="hlezno", cs="Hlezno a pata",
-         text="Nakonec trojhlavý sval lýtkový zatáhne Achillovou šlachou za patu. Noha se natáhne v hlezně a kočka vyletí do výšky.",
-         zvidave="Svaly se zapínají postupně, od kyčle dolů k tlapce. Samotný odraz trvá jen asi 0,15 sekundy.",
+         text="Nakonec se stáhne trojhlavý sval lýtkový a přes Achillovu šlachu zatáhne za patní kost. Noha se natáhne v hlezně a kočka vyletí do výšky.",
+         zvidave="Svaly se zapínají postupně: nejdřív svaly kyčle, potom kolena a nakonec hlezna. Ty, které začaly dřív, pracují dál, takže na konci odrazu pracují všechny společně. Poslední a nejsilnější část odrazu, než se tlapky odlepí od země, trvá jen asi 0,15 sekundy.",
          muscles=["trojhlavy-sval-lytkovy", "achillova-slacha"],
          links=[dict(href="#/kostra/panev-zadni", cs="Podívej se na kosti zadní nohy →")]),
   ])

@@ -62,12 +62,16 @@ with sync_playwright() as p:
     pg.goto(url("/svaly/1")); pg.wait_for_timeout(300)
     r.ok(pg.locator("a.quiz-open[href='#/svaly/skok']").count() == 1, "Jak kočka skáče button")
     skok = pg.evaluate("ATLAS_DATA.svaly.skok")
+    earlier = []
     for n, st in enumerate(skok["steps"], 1):
         pg.goto(url(f"/svaly/skok/{n}")); pg.wait_for_timeout(300)
+        r.ok(pg.locator(".fig-note").inner_text() == skok["intro"], f"step {n} intro")
+        r.ok(sorted(pg.eval_on_selector_all(".hotspot.is-also", "e=>e.map(x=>x.dataset.id)")) == sorted(earlier), f"step {n} earlier muscles lighter")
+        r.ok(pg.locator(".organ-chip.is-also").count() == len(earlier), f"step {n} 'Pořád pracují' chips")
         r.ok(pg.locator(".fig-tab[aria-current='step']").inner_text() == f"{n}. {st['cs']}", f"step {n} tab")
-        r.ok(sorted(pg.eval_on_selector_all(".hotspot", "e=>e.map(x=>x.dataset.id)")) == sorted(st["muscles"]), f"step {n} hotspots")
-        r.ok(pg.locator(".organ-chip").count() == len(st["muscles"]), f"step {n} chips")
-        r.ok(pg.locator(".system-fade").count() == (1 if st["muscles"] else 0), f"step {n} fade")
+        r.ok(sorted(pg.eval_on_selector_all(".hotspot", "e=>e.map(x=>x.dataset.id)")) == sorted(st["muscles"] + earlier), f"step {n} hotspots")
+        r.ok(pg.locator(".organ-chip:not(.is-also)").count() == len(st["muscles"]), f"step {n} chips")
+        r.ok(pg.locator(".system-fade").count() == (1 if st["muscles"] + earlier else 0), f"step {n} fade")
         r.ok([a.get_attribute("href") for a in pg.locator(".atlas-card .card-link a").all()] == [l["href"] for l in st["links"]], f"step {n} links")
         nav = [a.get_attribute("href") for a in pg.locator(".step-nav a").all()]
         want = ([f"#/svaly/skok/{n-1}"] if n > 1 else []) + ([f"#/svaly/skok/{n+1}"] if n < len(skok["steps"]) else [])
@@ -75,6 +79,7 @@ with sync_playwright() as p:
         if st["muscles"]:
             chip = pg.locator(".organ-chip").first; name = chip.inner_text(); chip.click(); pg.wait_for_timeout(100)
             r.ok(pg.locator(".card-title").inner_text() == name, f"step {n} chip opens the muscle card")
+        earlier += st["muscles"]
     pg.locator("[data-toggle='zvidave']").click(); pg.wait_for_timeout(150)
     pg.goto(url("/svaly/skok/3")); pg.wait_for_timeout(200); pg.goto(url("/svaly/skok/4")); pg.wait_for_timeout(300)
     r.ok("0,15 sekundy" in pg.locator(".atlas-card").inner_text(), "step 4 Pro zvídavé sentence")

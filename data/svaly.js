@@ -316,14 +316,16 @@ window.ATLAS_DATA.svaly = {
     cs: "Jak kočka skáče",
     open: "Jak kočka skáče →",
     back: "Zpět na svaly",
-    muscles: "Pracují tyto svaly:",
+    intro: "Při skoku pracuje mnoho svalů najednou. Kroky ukazují, které svaly se zapínají dřív a které později.",
+    muscles: "Teď se zapínají:",
+    still: "Pořád pracují:",
     prev: "← Předchozí krok",
     next: "Další krok →",
     steps: [
       { id: "prikrceni", cs: "Přikrčení", text: "Než kočka skočí, přikrčí se. Ohne zadní nohy v kyčli, v koleni i v hlezně a chvíli se na skok připravuje.", zvidave: null, muscles: [], links: [{ href: "#/kostra/klouby-pohyb", cs: "Podívej se na klouby →" }] },
-      { id: "kycel", cs: "Kyčel", text: "Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a noha se v kyčli natahuje.", zvidave: null, muscles: ["sval-poloblanity", "sval-poloslasity"], links: [] },
+      { id: "kycel", cs: "Kyčel", text: "Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a zadní noha se v kyčli natahuje.", zvidave: null, muscles: ["sval-poloblanity", "sval-poloslasity"], links: [] },
       { id: "koleno", cs: "Koleno", text: "Hned potom se zapne čtyřhlavý sval stehenní a natáhne nohu v koleni.", zvidave: null, muscles: ["ctyrhlavy-sval-stehenni"], links: [] },
-      { id: "hlezno", cs: "Hlezno a pata", text: "Nakonec trojhlavý sval lýtkový zatáhne Achillovou šlachou za patu. Noha se natáhne v hlezně a kočka vyletí do výšky.", zvidave: "Svaly se zapínají postupně, od kyčle dolů k tlapce. Samotný odraz trvá jen asi 0,15 sekundy.", muscles: ["trojhlavy-sval-lytkovy", "achillova-slacha"], links: [{ href: "#/kostra/panev-zadni", cs: "Podívej se na kosti zadní nohy →" }] }
+      { id: "hlezno", cs: "Hlezno a pata", text: "Nakonec se stáhne trojhlavý sval lýtkový a přes Achillovu šlachu zatáhne za patní kost. Noha se natáhne v hlezně a kočka vyletí do výšky.", zvidave: "Svaly se zapínají postupně: nejdřív svaly kyčle, potom kolena a nakonec hlezna. Ty, které začaly dřív, pracují dál, takže na konci odrazu pracují všechny společně. Poslední a nejsilnější část odrazu, než se tlapky odlepí od země, trvá jen asi 0,15 sekundy.", muscles: ["trojhlavy-sval-lytkovy", "achillova-slacha"], links: [{ href: "#/kostra/panev-zadni", cs: "Podívej se na kosti zadní nohy →" }] }
     ]
   }
 };

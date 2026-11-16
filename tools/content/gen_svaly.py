@@ -42,7 +42,7 @@ for i,v in enumerate(VIEWS):
     if v.get("maxHeightVh"): parts.append(f"maxHeightVh: {v['maxHeightVh']}")
     L.append("    { "+", ".join(parts)+" }"+("," if i<len(VIEWS)-1 else ""))
 L+=["  ],","  skok: {"]
-for k in ("cs","open","back","muscles","prev","next"):
+for k in ("cs","open","back","intro","muscles","still","prev","next"):
     L.append(f"    {k}: {js(SKOK[k])},")
 L.append("    steps: [")
 for i,st in enumerate(SKOK["steps"]):
