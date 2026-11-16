@@ -12,6 +12,7 @@
  *
  * views: tabs of the Svaly screen (figure, cs, note, kostra = Kostra parts that link to the tab,
  *   maxHeightVh = height limit for a tall figure)
+ * skok: "Jak kočka skáče" – UI texts and steps (id, cs, text, zvidave, muscles = hotspots lit up, links)
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -310,5 +311,19 @@ window.ATLAS_DATA.svaly = {
     { figure: "muscles-superficial", cs: "Svaly pod kůží", note: null, kostra: ["pater-hrudnik", "lebka-celisti", "predni-koncetiny"] },
     { figure: "muscles-deep", cs: "Hlubší svaly", note: "Svaly, které leží pod svaly z prvního obrázku. Přední noha je odebraná, aby byly vidět žebra a svaly mezi nimi.", kostra: [] },
     { figure: "muscles-hindleg", cs: "Svaly zadní nohy", note: "Zadní noha z boku. Některé svaly z prvního obrázku jsou odebrané, aby byly vidět svaly pod nimi.", kostra: ["panev-zadni"], maxHeightVh: 85 }
-  ]
+  ],
+  skok: {
+    cs: "Jak kočka skáče",
+    open: "Jak kočka skáče →",
+    back: "Zpět na svaly",
+    muscles: "Pracují tyto svaly:",
+    prev: "← Předchozí krok",
+    next: "Další krok →",
+    steps: [
+      { id: "prikrceni", cs: "Přikrčení", text: "Než kočka skočí, přikrčí se. Ohne zadní nohy v kyčli, v koleni i v hlezně a chvíli se na skok připravuje.", zvidave: null, muscles: [], links: [{ href: "#/kostra/klouby-pohyb", cs: "Podívej se na klouby →" }] },
+      { id: "kycel", cs: "Kyčel", text: "Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a noha se v kyčli natahuje.", zvidave: null, muscles: ["sval-poloblanity", "sval-poloslasity"], links: [] },
+      { id: "koleno", cs: "Koleno", text: "Hned potom se zapne čtyřhlavý sval stehenní a natáhne nohu v koleni.", zvidave: null, muscles: ["ctyrhlavy-sval-stehenni"], links: [] },
+      { id: "hlezno", cs: "Hlezno a pata", text: "Nakonec trojhlavý sval lýtkový zatáhne Achillovou šlachou za patu. Noha se natáhne v hlezně a kočka vyletí do výšky.", zvidave: "Svaly se zapínají postupně, od kyčle dolů k tlapce. Samotný odraz trvá jen asi 0,15 sekundy.", muscles: ["trojhlavy-sval-lytkovy", "achillova-slacha"], links: [{ href: "#/kostra/panev-zadni", cs: "Podívej se na kosti zadní nohy →" }] }
+    ]
+  }
 };

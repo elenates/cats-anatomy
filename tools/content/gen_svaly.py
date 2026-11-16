@@ -3,7 +3,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
-from svaly_content import ROWS, SOURCES, VIEWS
+from svaly_content import ROWS, SOURCES, VIEWS, SKOK
 ids = {s[0] for s in SOURCES}
 def refs(src):
     out=[]
@@ -26,6 +26,7 @@ L=["/*",
 " *",
 " * views: tabs of the Svaly screen (figure, cs, note, kostra = Kostra parts that link to the tab,",
 " *   maxHeightVh = height limit for a tall figure)",
+" * skok: \"Jak kočka skáče\" – UI texts and steps (id, cs, text, zvidave, muscles = hotspots lit up, links)",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};","",
 "window.ATLAS_DATA.svaly = {","  items: ["]
@@ -40,6 +41,13 @@ for i,v in enumerate(VIEWS):
     parts=[f"figure: {js(v['figure'])}", f"cs: {js(v['cs'])}", f"note: {js(v['note'])}", f"kostra: {js(v['kostra'])}"]
     if v.get("maxHeightVh"): parts.append(f"maxHeightVh: {v['maxHeightVh']}")
     L.append("    { "+", ".join(parts)+" }"+("," if i<len(VIEWS)-1 else ""))
-L+=["  ]","};",""]
+L+=["  ],","  skok: {"]
+for k in ("cs","open","back","muscles","prev","next"):
+    L.append(f"    {k}: {js(SKOK[k])},")
+L.append("    steps: [")
+for i,st in enumerate(SKOK["steps"]):
+    links="["+", ".join("{ href: %s, cs: %s }" % (js(l["href"]), js(l["cs"])) for l in st["links"])+"]"
+    L.append("      { "+", ".join([f"id: {js(st['id'])}", f"cs: {js(st['cs'])}", f"text: {js(st['text'])}", f"zvidave: {js(st['zvidave'])}", f"muscles: {js(st['muscles'])}", f"links: {links}"])+" }"+("," if i<len(SKOK["steps"])-1 else ""))
+L+=["    ]","  }","};",""]
 open(os.path.join(ROOT, "data/svaly.js"),"w",encoding="utf-8").write("\n".join(L))
 print(len(ROWS))

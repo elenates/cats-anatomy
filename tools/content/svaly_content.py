@@ -225,6 +225,35 @@ VIEWS = [
        kostra=["panev-zadni"], maxHeightVh=85),
 ]
 
+# "Jak kočka skáče" (stage 5): steps on Fig. 90. muscles = hotspot ids lit up in the step (any level);
+# links = buttons under the text. Sources: ZAJAC81 (abstract: a preparatory phase, then a launching phase of
+# about 150 ms; proximal extensors are activated before distal ones: hip, knee, ankle); muscle actions as on
+# the cards (LT-KNEE, OSX-LOWER, RJ1901).
+SKOK = dict(
+  cs="Jak kočka skáče",
+  open="Jak kočka skáče →",
+  back="Zpět na svaly",
+  muscles="Pracují tyto svaly:",
+  prev="← Předchozí krok",
+  next="Další krok →",
+  steps=[
+    dict(id="prikrceni", cs="Přikrčení",
+         text="Než kočka skočí, přikrčí se. Ohne zadní nohy v kyčli, v koleni i v hlezně a chvíli se na skok připravuje.",
+         zvidave=None, muscles=[],
+         links=[dict(href="#/kostra/klouby-pohyb", cs="Podívej se na klouby →")]),
+    dict(id="kycel", cs="Kyčel",
+         text="Odraz začíná nahoře u kyčle. Svaly na zadní straně stehna táhnou stehno dozadu a noha se v kyčli natahuje.",
+         zvidave=None, muscles=["sval-poloblanity", "sval-poloslasity"], links=[]),
+    dict(id="koleno", cs="Koleno",
+         text="Hned potom se zapne čtyřhlavý sval stehenní a natáhne nohu v koleni.",
+         zvidave=None, muscles=["ctyrhlavy-sval-stehenni"], links=[]),
+    dict(id="hlezno", cs="Hlezno a pata",
+         text="Nakonec trojhlavý sval lýtkový zatáhne Achillovou šlachou za patu. Noha se natáhne v hlezně a kočka vyletí do výšky.",
+         zvidave="Svaly se zapínají postupně, od kyčle dolů k tlapce. Samotný odraz trvá jen asi 0,15 sekundy.",
+         muscles=["trojhlavy-sval-lytkovy", "achillova-slacha"],
+         links=[dict(href="#/kostra/panev-zadni", cs="Podívej se na kosti zadní nohy →")]),
+  ])
+
 SOURCES = [
   ("NAV", "ICVGAN. Nomina Anatomica Veterinaria, 6th ed. WAVA 2017 (Myologia pp. 40–43)", "https://wava-amav.org/wava-documents.html"),
   ("RJ1901", "Reighard & Jennings, Anatomy of the Cat (1901), muscle descriptions ('Action' lines)", "https://gutenberg.org/files/58394/58394-h/58394-h.htm"),
