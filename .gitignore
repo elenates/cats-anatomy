@@ -3,5 +3,7 @@ tests/out/
 tools/hotspots/*/hs.json
 tools/hotspots/*/varle.json
 tools/hotspots/*/ov_*.png
+tools/hotspots/svaly/hs*.json
+tools/hotspots/svaly/ov*.png
 tools/hotspots/organs-side/nolabels.svg
 tools/content/*.xlsx

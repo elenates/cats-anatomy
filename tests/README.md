@@ -24,6 +24,7 @@ python3 tests/test_soustavy.py    # one test
 | `test_soustavy.py` | Tělesné soustavy: organs per system at both levels, faded drawing, notes, links |
 | `test_organ_quizzes.py` | "Najdi orgán" and "Do které soustavy patří?" (funny answers never count) |
 | `test_content.py` | No browser: generators rebuild every data file byte for byte; every ref id exists in `sources/references.md`; every item has its card fields |
+| `test_svaly_hotspots.py` | No browser: every Svaly hotspot id exists in `data/svaly.js`, every muscle has a hotspot, valid polygons, no overlaps except `nested` |
 | `test_editor_roundtrip.py` | The hotspot editor loads every figure and exports `data/hotspots-kostra.js` byte for byte |
 
 When a feature changes, update its test in the same PR. Each new section gets its own `test_<section>.py`.
