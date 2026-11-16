@@ -316,7 +316,7 @@ window.ATLAS_DATA.svaly = {
     cs: "Jak kočka skáče",
     open: "Jak kočka skáče →",
     back: "Zpět na svaly",
-    intro: "Při skoku pracuje mnoho svalů najednou. Kroky ukazují, které svaly se zapínají dřív a které později.",
+    intro: "Při skoku pracuje mnoho svalů najednou. Kroky ukazují, v jakém pořadí se jednotlivé svaly zapojují.",
     muscles: "Teď se zapínají:",
     still: "Pořád pracují:",
     prev: "← Předchozí krok",
