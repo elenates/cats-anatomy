@@ -212,6 +212,19 @@ ROWS = [
        flags=""),
 ]
 
+# Tabs of the Svaly screen (stage 4), in order. figure = hotspot figure id; note = line above the figure;
+# kostra = Kostra parts whose cards link here ("Podívej se na svaly →"); maxHeightVh = height limit of a tall figure.
+VIEWS = [
+  dict(figure="muscles-superficial", cs="Svaly pod kůží", note=None,
+       kostra=["pater-hrudnik", "lebka-celisti", "predni-koncetiny"]),
+  dict(figure="muscles-deep", cs="Hlubší svaly",
+       note="Svaly, které leží pod svaly z prvního obrázku. Přední noha je odebraná, aby byly vidět žebra a svaly mezi nimi.",
+       kostra=[]),
+  dict(figure="muscles-hindleg", cs="Svaly zadní nohy",
+       note="Zadní noha z boku. Některé svaly z prvního obrázku jsou odebrané, aby byly vidět svaly pod nimi.",
+       kostra=["panev-zadni"], maxHeightVh=85),
+]
+
 SOURCES = [
   ("NAV", "ICVGAN. Nomina Anatomica Veterinaria, 6th ed. WAVA 2017 (Myologia pp. 40–43)", "https://wava-amav.org/wava-documents.html"),
   ("RJ1901", "Reighard & Jennings, Anatomy of the Cat (1901), muscle descriptions ('Action' lines)", "https://gutenberg.org/files/58394/58394-h/58394-h.htm"),

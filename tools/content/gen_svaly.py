@@ -3,7 +3,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
-from svaly_content import ROWS, SOURCES
+from svaly_content import ROWS, SOURCES, VIEWS
 ids = {s[0] for s in SOURCES}
 def refs(src):
     out=[]
@@ -23,6 +23,9 @@ L=["/*",
 " *   id, cs, la (NAV 2017, or null when NAV has no term), level, kdeJe, coDela, zajimavost (may be null), refs",
 " *   zvidave  extra sentence shown only at the Pro zvídavé level, or null",
 " *   kostra   Kostra part screen with the bones this muscle moves, or null",
+" *",
+" * views: tabs of the Svaly screen (figure, cs, note, kostra = Kostra parts that link to the tab,",
+" *   maxHeightVh = height limit for a tall figure)",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};","",
 "window.ATLAS_DATA.svaly = {","  items: ["]
@@ -32,6 +35,11 @@ for i,r in enumerate(ROWS):
         L.append(f"      {k}: {js(v)},")
     L[-1]=L[-1].rstrip(",")
     L.append("    }"+("," if i<len(ROWS)-1 else ""))
+L+=["  ],","  views: ["]
+for i,v in enumerate(VIEWS):
+    parts=[f"figure: {js(v['figure'])}", f"cs: {js(v['cs'])}", f"note: {js(v['note'])}", f"kostra: {js(v['kostra'])}"]
+    if v.get("maxHeightVh"): parts.append(f"maxHeightVh: {v['maxHeightVh']}")
+    L.append("    { "+", ".join(parts)+" }"+("," if i<len(VIEWS)-1 else ""))
 L+=["  ]","};",""]
 open(os.path.join(ROOT, "data/svaly.js"),"w",encoding="utf-8").write("\n".join(L))
 print(len(ROWS))
