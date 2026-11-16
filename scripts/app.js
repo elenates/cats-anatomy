@@ -9,6 +9,7 @@
  *   #/kostra/<part>[/<n>] -> part screen, figure tab n (ATLAS_DATA.kostraViews)
  *   #/svaly[/<n>]  -> Svaly, figure tab n (ATLAS_DATA.svaly.views)
  *   #/svaly/skok[/<n>] -> Jak kočka skáče, step n (ATLAS_DATA.svaly.skok)
+ *   #/svaly/kviz   -> quiz Najdi sval (Figs. 68 and 90)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -153,6 +154,17 @@
       return [back, el("div", { "class": "screen-head" }, [title, oGames]), cnav, ohost];
     }
     if (section.id === "soustavy" && window.Atlas && data.organy) return renderSystems(sub, sk);
+    if (section.id === "svaly" && sub === "kviz" && window.Quiz && data.svaly) {
+      var mqhost = el("div", { "class": "atlas quiz" });
+      var mvh = {};
+      (data.svaly.views || []).forEach(function (v) { if (v.maxHeightVh) mvh[v.figure] = v.maxHeightVh; });
+      mqhost._mount = function () {
+        window.Quiz.mount(mqhost, { figures: ["muscles-superficial", "muscles-hindleg"], layer: "svaly", rounds: 10, maxHeightVh: mvh, texts: {
+          figureLabel: ui.quizFigureLabelSvaly, great: ui.quizGreatSvaly, back: ui.quizBackSvaly, backHref: "#/svaly" } });
+      };
+      return [el("a", { "class": "back-link", href: "#/svaly", text: "← " + (ui.quizBackSvaly || "Zpět na svaly") }),
+        el("h1", { "class": "screen-title", text: ui.quizTitleSvaly || "Kvíz: Najdi sval" }), mqhost];
+    }
     if (section.id === "svaly" && window.Atlas && data.svaly) return sub === "skok" ? renderSkok(parseInt(sub2, 10) || 1) : renderSvaly(section, parseInt(sub, 10) || 1);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
@@ -226,7 +238,8 @@
     var sTitle = el("h1", { "class": "screen-title", text: section.cs });
     var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }),
       skok ? el("div", { "class": "screen-head" }, [sTitle, el("div", { "class": "quiz-actions screen-games" }, [
-        el("a", { "class": "quiz-open", href: "#/svaly/skok", text: skok.open })])]) : sTitle];
+        el("a", { "class": "quiz-open", href: "#/svaly/kviz", text: ui.quizOpenSvaly || "Najdi sval" }),
+        el("a", { "class": "quiz-open quiz-secondary", href: "#/svaly/skok", text: skok.open })])]) : sTitle];
     var tabList = el("ul", { "class": "fig-tabs" });
     tabs.forEach(function (t, i) {
       var a = el("a", { "class": "fig-tab", href: "#/svaly/" + (i + 1), text: t.cs });
