@@ -7,6 +7,7 @@
  *
  * Fields per item (same meaning as in data/kostra.js):
  *   id, cs, la (NAV 2017, or null when NAV has no term), level, kdeJe, coDela, zajimavost (may be null), refs
+ *   zvidave  extra sentence shown only at the Pro zvídavé level, or null
  *   kostra   Kostra part screen with the bones this muscle moves, or null
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
@@ -21,6 +22,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na tváři, nad zadní částí dolní čelisti.",
       coDela: "Zvedá dolní čelist, takže kočka zavře tlamu a může kousat a žvýkat.",
       zajimavost: "Je velmi silný, a tak kočka dokáže pevně skousnout.",
+      zvidave: null,
       kostra: "lebka-celisti",
       refs: ["NAV", "RJ1901", "OSX-HEAD", "NLK-MASS"]
     },
@@ -32,6 +34,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na hřbetě, za krkem a nad lopatkou.",
       coDela: "Táhne lopatku nahoru a dozadu, a tím pomáhá hýbat přední nohou.",
       zajimavost: null,
+      zvidave: null,
       kostra: "predni-koncetiny",
       refs: ["NAV", "RJ1901", "OSX-UPPER", "KTV-TUL"]
     },
@@ -43,6 +46,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na rameni, nad ramenním kloubem.",
       coDela: "Hýbe přední nohou v rameni.",
       zajimavost: null,
+      zvidave: null,
       kostra: "predni-koncetiny",
       refs: ["NAV", "RJ1901", "OSX-UPPER", "KTV-TUL"]
     },
@@ -53,7 +57,8 @@ window.ATLAS_DATA.svaly = {
       level: "zaklad",
       kdeJe: "Na zadní straně přední nohy, mezi ramenem a loktem.",
       coDela: "Natahuje přední nohu v lokti.",
-      zajimavost: "Pracuje ve dvojici se svalem na přední straně nohy: jeden nohu v lokti natahuje, druhý ji ohýbá.",
+      zajimavost: "Spolupracuje se svalem na přední straně paže, který se jmenuje dvojhlavý sval pažní. Ten naopak ohýbá nohu v lokti.",
+      zvidave: null,
       kostra: "predni-koncetiny",
       refs: ["NAV", "RJ1901", "LAWSON-MUS", "OSX-UPPER", "KTV-TUL"]
     },
@@ -65,6 +70,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na boku hrudníku, za přední nohou.",
       coDela: "Táhne přední nohu dozadu, třeba když kočka běží.",
       zajimavost: null,
+      zvidave: null,
       kostra: "predni-koncetiny",
       refs: ["NAV", "RJ1901", "OSX-UPPER", "KTV-TUL"]
     },
@@ -73,9 +79,10 @@ window.ATLAS_DATA.svaly = {
       cs: "Prsní svaly",
       la: "Mm. pectorales",
       level: "zaklad",
-      kdeJe: "Dole na hrudníku, mezi předníma nohama.",
-      coDela: "Přitahují přední nohu k tělu.",
+      kdeJe: "Dole na hrudníku, mezi předními nohami.",
+      coDela: "Přitahují přední nohy k tělu.",
       zajimavost: null,
+      zvidave: null,
       kostra: "predni-koncetiny",
       refs: ["NAV", "RJ1901", "OSX-UPPER", "KTV-TUL"]
     },
@@ -85,8 +92,9 @@ window.ATLAS_DATA.svaly = {
       la: "M. obliquus externus abdominis",
       level: "zaklad",
       kdeJe: "Na boku břicha.",
-      coDela: "Stahuje břicho a spolu s dalšími břišními svaly chrání orgány uvnitř.",
+      coDela: "Pomáhá stahovat břišní stěnu a podpírá orgány uvnitř břicha.",
       zajimavost: "Pod ním leží ještě další dvě vrstvy svalů. Vlákna každé vrstvy vedou jiným směrem.",
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "OSX-ABD", "KTV-TUL"]
     },
@@ -95,9 +103,10 @@ window.ATLAS_DATA.svaly = {
       cs: "Svaly stehna",
       la: null,
       level: "zaklad",
-      kdeJe: "Na stehně zadní nohy, mezi kyčlí a kolenem.",
-      coDela: "Hýbou zadní nohou v kyčli a v koleni. Když kočka skáče, pomáhají jí odrazit se.",
+      kdeJe: "Na zadní noze, mezi kyčlí a kolenem.",
+      coDela: "Pomáhají pohybovat zadní nohou v kyčli a koleni. Když kočka skáče, některé z nich jí pomáhají odrazit se.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["RJ1901", "OSX-LOWER", "ZAJAC81"]
     },
@@ -107,10 +116,11 @@ window.ATLAS_DATA.svaly = {
       la: "M. biceps femoris",
       level: "zvidave",
       kdeJe: "Velký sval na vnější a zadní straně stehna.",
-      coDela: "Ohýbá zadní nohu v koleni.",
+      coDela: "Pomáhá ohýbat nohu v koleni a natahovat stehno dozadu v kyčli.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
-      refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL"]
+      refs: ["NAV", "RJ1901", "OSX-LOWER", "LT-KNEE", "KTV-TUL"]
     },
     {
       id: "sval-poloslasity",
@@ -118,10 +128,11 @@ window.ATLAS_DATA.svaly = {
       la: "M. semitendinosus",
       level: "zvidave",
       kdeJe: "Na zadní straně stehna.",
-      coDela: "Ohýbá zadní nohu v koleni.",
+      coDela: "Pomáhá ohýbat nohu v koleni a natahovat stehno dozadu v kyčli.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
-      refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL"]
+      refs: ["NAV", "RJ1901", "OSX-LOWER", "LT-KNEE", "KTV-TUL"]
     },
     {
       id: "krejcovsky-sval",
@@ -129,19 +140,21 @@ window.ATLAS_DATA.svaly = {
       la: "M. sartorius",
       level: "zvidave",
       kdeJe: "Dlouhý úzký sval na přední straně stehna.",
-      coDela: "Přitahuje stehno k tělu a pomáhá natáhnout nohu v koleni.",
+      coDela: "Pomáhá ohýbat stehno v kyčli a natahovat nohu v koleni.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
-      refs: ["NAV", "RJ1901", "OSX-LOWER", "DBP-SART"]
+      refs: ["NAV", "RJ1901", "OSX-LOWER", "UEN-LOWER", "DBP-SART"]
     },
     {
       id: "napinac-stehenni-povazky",
-      cs: "Napínač stehenní povázky",
+      cs: "Napínač povázky stehenní",
       la: "M. tensor fasciae latae",
       level: "zvidave",
       kdeJe: "Vpředu na stehně, pod kyčlí.",
       coDela: "Napíná pevnou blánu na boku stehna, které se říká povázka, a pomáhá natáhnout nohu v koleni.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["NAV", "RJ1901", "OSX-LOWER", "CUNI-SVALY"]
     },
@@ -153,6 +166,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Po celé délce ocasu.",
       coDela: "Zvedají ocas, ohýbají ho dolů a hýbou jím do stran.",
       zajimavost: null,
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901"]
     },
@@ -164,6 +178,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Mezi žebry.",
       coDela: "Zvedají žebra, takže se hrudník zvětší a kočka se nadechne.",
       zajimavost: null,
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "OSX-ABD", "CUNI-HRUD"]
     },
@@ -173,8 +188,9 @@ window.ATLAS_DATA.svaly = {
       la: "M. rectus abdominis",
       level: "zvidave",
       kdeJe: "Na spodní straně břicha, od hrudní kosti až k pánvi.",
-      coDela: "Stahuje břicho a pomáhá prohnout hřbet nahoru.",
+      coDela: "Stahuje břicho a pomáhá kočce zakulatit hřbet.",
       zajimavost: null,
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "OSX-ABD", "KTV-TUL"]
     },
@@ -186,6 +202,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na boku břicha, pod zevním šikmým svalem.",
       coDela: "Stahuje břicho.",
       zajimavost: null,
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "OSX-ABD", "KTV-TUL"]
     },
@@ -195,10 +212,11 @@ window.ATLAS_DATA.svaly = {
       la: "M. serratus ventralis",
       level: "zvidave",
       kdeJe: "Na boku hrudníku, pod lopatkou.",
-      coDela: "Táhne lopatku dolů k hrudníku.",
+      coDela: "Přidržuje lopatku u hrudníku a pomáhá nést trup mezi předními nohami.",
       zajimavost: null,
+      zvidave: null,
       kostra: "predni-koncetiny",
-      refs: ["NAV", "RJ1901", "OSX-UPPER", "KTV-TUL"]
+      refs: ["NAV", "RJ1901", "OSX-UPPER", "WIKIVET-THL", "KTV-TUL"]
     },
     {
       id: "remenovy-sval",
@@ -206,8 +224,9 @@ window.ATLAS_DATA.svaly = {
       la: "M. splenius",
       level: "zvidave",
       kdeJe: "Na zadní straně krku, nahoře.",
-      coDela: "Zvedá hlavu a otáčí jí do strany.",
+      coDela: "Zvedá hlavu a krk a otáčí je do strany.",
       zajimavost: null,
+      zvidave: null,
       kostra: "pater-hrudnik",
       refs: ["NAV", "RJ1901", "OSX-HEAD", "CUNI-SVALY"]
     },
@@ -219,6 +238,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na přední straně stehna.",
       coDela: "Natahuje zadní nohu v koleni. Při skoku pomáhá kočce odrazit se.",
       zajimavost: "Skládá se ze čtyř částí, kterým se říká hlavy. Proto se jmenuje čtyřhlavý.",
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL", "CUNI-SVALY", "ZAJAC81"]
     },
@@ -229,7 +249,8 @@ window.ATLAS_DATA.svaly = {
       level: "zaklad",
       kdeJe: "Na zadní straně bérce, nad patou.",
       coDela: "Natahuje nohu v hleznu a zvedá patu. Tak se kočka odrazí od země.",
-      zajimavost: "Kočka chodí po prstech a pata je vysoko nad zemí. Tento sval ji drží nahoře.",
+      zajimavost: "Kočka chodí po prstech a její pata se při chůzi nedotýká země. Tento sval pomáhá při odrazu a pohybu zadní nohy.",
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL", "CUNI-SVALY", "ZAJAC81"]
     },
@@ -239,10 +260,11 @@ window.ATLAS_DATA.svaly = {
       la: "Tendo calcaneus communis",
       level: "zaklad",
       kdeJe: "Na zadní straně nohy, těsně nad patou.",
-      coDela: "Spojuje lýtkový sval s patní kostí. Když se sval stáhne, šlacha zatáhne za patu.",
+      coDela: "Spojuje několik svalů zadní nohy s patní kostí. Když se tyto svaly stáhnou, šlacha zatáhne za patu.",
       zajimavost: "Šlachy jsou pevné bílé pruhy, které připojují svaly ke kostem.",
+      zvidave: "Odborně se jí říká společná patní šlacha, protože se v ní spojují šlachy několika svalů.",
       kostra: "panev-zadni",
-      refs: ["NAV", "RJ1901", "OSX-LOWER", "LAWSON-MUS", "CUNI-SVALY"]
+      refs: ["NAV", "RJ1901", "OSX-LOWER", "LAWSON-MUS", "CUNI-SVALY", "VANAT-CCT"]
     },
     {
       id: "predni-sval-holenni",
@@ -252,6 +274,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na přední straně bérce.",
       coDela: "Ohýbá nohu v hleznu, takže se tlapka zvedne od země.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["NAV", "OSX-LOWER"]
     },
@@ -263,6 +286,7 @@ window.ATLAS_DATA.svaly = {
       kdeJe: "Na zádi, nad kyčelním kloubem.",
       coDela: "Odtahuje stehno od těla do strany.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
       refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL"]
     },
@@ -272,10 +296,11 @@ window.ATLAS_DATA.svaly = {
       la: "M. semimembranosus",
       level: "zvidave",
       kdeJe: "Na zadní a vnitřní straně stehna.",
-      coDela: "Táhne stehno dozadu.",
+      coDela: "Táhne stehno dozadu a pomáhá ohýbat nohu v koleni.",
       zajimavost: null,
+      zvidave: null,
       kostra: "panev-zadni",
-      refs: ["NAV", "RJ1901", "OSX-LOWER", "KTV-TUL"]
+      refs: ["NAV", "RJ1901", "OSX-LOWER", "LT-KNEE", "KTV-TUL"]
     }
   ]
 };

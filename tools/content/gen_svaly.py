@@ -21,13 +21,14 @@ L=["/*",
 " *",
 " * Fields per item (same meaning as in data/kostra.js):",
 " *   id, cs, la (NAV 2017, or null when NAV has no term), level, kdeJe, coDela, zajimavost (may be null), refs",
+" *   zvidave  extra sentence shown only at the Pro zvídavé level, or null",
 " *   kostra   Kostra part screen with the bones this muscle moves, or null",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};","",
 "window.ATLAS_DATA.svaly = {","  items: ["]
 for i,r in enumerate(ROWS):
     L.append("    {")
-    for k,v in [("id",r["id"]),("cs",r["cs"]),("la",r["la"]),("level",r["level"]),("kdeJe",r["kdeJe"]),("coDela",r["coDela"]),("zajimavost",r["zajimavost"] or None),("kostra",r["kostra"]),("refs",refs(r["sources"]))]:
+    for k,v in [("id",r["id"]),("cs",r["cs"]),("la",r["la"]),("level",r["level"]),("kdeJe",r["kdeJe"]),("coDela",r["coDela"]),("zajimavost",r["zajimavost"] or None),("zvidave",r.get("zvidave")),("kostra",r["kostra"]),("refs",refs(r["sources"]))]:
         L.append(f"      {k}: {js(v)},")
     L[-1]=L[-1].rstrip(",")
     L.append("    }"+("," if i<len(ROWS)-1 else ""))
