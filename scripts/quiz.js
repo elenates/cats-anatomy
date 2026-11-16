@@ -14,6 +14,10 @@
  * opts.texts overrides the figure label, the top-score praise and the back link
  * (used by the organ quiz on Vnitřní orgány).
  *
+ * opts.figures (instead of figure) spreads the questions over several figures of one content:
+ * each question shows the figure that has the asked structure (Najdi sval: Figs. 68 and 90).
+ * opts.maxHeightVh: { figureId: vh } limits tall figures as on the Svaly screen.
+ *
  * Public API: window.Quiz.mount(container, { figure: "skeleton", layer: "kosti", rounds: 10, texts: {...} })
  */
 (function () {
@@ -49,22 +53,26 @@
 
   function mount(container, opts) {
     opts = opts || {};
-    var fig = (D.hotspots || {})[opts.figure || "skeleton"];
+    var figIds = (opts.figures || [opts.figure || "skeleton"]).filter(function (f) { return (D.hotspots || {})[f]; });
     var layerName = opts.layer || "kosti";
-    var layer = (fig && fig.layers[layerName]) || {};
+    var fig = (D.hotspots || {})[figIds[0]];
     var content = (fig && fig.content) || "kostra";
     var items = (D[content] && D[content].items) || [];
     var tx = opts.texts || {};
     var byId = {};
     items.forEach(function (it) { byId[it.id] = it; });
-    var alsoCounts = (fig && fig.alsoCounts) || {};
-
-    // Every Základ structure on the layer can be tapped; only some can be asked.
+    var layer = {}, alsoCounts = {}, tappable = [], curFig = null;
+    function layerOf(f) { return ((D.hotspots[f] || {}).layers || {})[layerName] || {}; }
+    // Show figure f: every Základ structure on its layer can be tapped; only some can be asked.
     // Pro zvídavé hotspots (drawn inside larger ones) stay out, so a tap on the
     // thoracic spine still counts as "Páteř".
-    var tappable = items.filter(function (it) { return it.level === "zaklad" && layer[it.id]; }).map(function (it) { return it.id; });
+    function useFigure(f) {
+      curFig = f; fig = D.hotspots[f]; layer = layerOf(f); alsoCounts = fig.alsoCounts || {};
+      tappable = items.filter(function (it) { return it.level === "zaklad" && layer[it.id]; }).map(function (it) { return it.id; });
+    }
+    function figureFor(id) { return figIds.filter(function (f) { return layerOf(f)[id]; })[0]; }
     var pool = items.filter(function (it) {
-      return it.level === "zaklad" && it.quiz !== false && layer[it.id];
+      return it.level === "zaklad" && it.quiz !== false && figureFor(it.id);
     }).map(function (it) { return it.id; });
     var rounds = Math.min(opts.rounds || 10, pool.length);
 
@@ -90,6 +98,9 @@
     function drawFigure() {
       while (svg.firstChild) svg.removeChild(svg.firstChild);
       nodes = {};
+      var vh = (opts.maxHeightVh || {})[curFig];
+      svg.style.maxWidth = vh ? "calc(" + vh + "vh * " + (fig.width / fig.height).toFixed(4) + ")" : "";
+      svg.style.margin = vh ? "0 auto" : "";
       svg.setAttribute("viewBox", "0 0 " + fig.width + " " + fig.height);
       var img = svgEl("image", { href: fig.image, x: 0, y: 0, width: fig.width, height: fig.height });
       img.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", fig.image);
@@ -122,7 +133,7 @@
       q.i = 0; q.score = 0; q.missed = [];
       container.classList.remove("quiz-done");
       layout.hidden = false;
-      drawFigure();
+      curFig = null;
       ask();
     }
 
@@ -131,6 +142,8 @@
       clearMarks();
       svg.classList.remove("is-answered");
       var target = byId[q.list[q.i]];
+      var f = figureFor(target.id);
+      if (f !== curFig) { useFigure(f); drawFigure(); }
       progress.textContent = fmt(ui.quizProgress || "Otázka {n} z {total}", { n: q.i + 1, total: q.list.length });
       prompt.textContent = (ui.quizFind || "Najdi:") + " " + target.cs;
       feedback.textContent = "";
@@ -216,7 +229,7 @@
     });
 
     start();
-    container._quiz = { state: q, answer: answer, start: start, pool: pool };
+    container._quiz = { state: q, answer: answer, start: start, pool: pool, figure: function () { return curFig; } };
   }
 
   window.Quiz = { mount: mount };

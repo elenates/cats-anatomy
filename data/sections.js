@@ -70,6 +70,13 @@ window.ATLAS_DATA.ui = {
   figureLabelSvaly: "Obrázek svalů kočky",
   svalyTabsLabel: "Obrázky svalů",
   seeMuscles: "Podívej se na svaly →",
+
+  // Quiz Najdi sval (M5 stage 6) – to proofread
+  quizOpenSvaly: "Najdi sval",
+  quizTitleSvaly: "Kvíz: Najdi sval",
+  quizFigureLabelSvaly: "Obrázek svalů kočky – klepni na sval, který hledáš",
+  quizGreatSvaly: "Jsi expert na kočičí svaly!",
+  quizBackSvaly: "Zpět na svaly",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",

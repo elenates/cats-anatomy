@@ -25,6 +25,7 @@ python3 tests/test_soustavy.py    # one test
 | `test_organ_quizzes.py` | "Najdi orgán" and "Do které soustavy patří?" (funny answers never count) |
 | `test_content.py` | No browser: generators rebuild every data file byte for byte; every ref id exists in `sources/references.md`; every item has its card fields |
 | `test_svaly.py` | Svaly screen: three tabs, *Jak kočka skáče* (4 steps, lit muscles, chips, prev/next, links), hotspots per level, every hotspot opens its card, links Svaly ↔ Kostra, Pro zvídavé sentence, height limit of the hind-leg figure, phone layout |
+| `test_svaly_quiz.py` | Quiz *Najdi sval*: 10 questions over Figs. 68 and 90, figure follows the question, score, missed list, back link, real tap, tablet and phone |
 | `test_svaly_hotspots.py` | No browser: every Svaly hotspot id exists in `data/svaly.js`, every muscle has a hotspot, valid polygons, no overlaps except `nested` |
 | `test_editor_roundtrip.py` | The hotspot editor loads every figure and exports `data/hotspots-kostra.js` byte for byte |
 
