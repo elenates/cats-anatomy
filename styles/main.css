@@ -443,3 +443,28 @@ a.menu-card:active {
 .popisky-spot.is-wrong circle { fill: #f6d4d1; stroke: #b3261e; }
 .popisky-ghost { position: fixed; z-index: 50; transform: translate(-50%, -120%); pointer-events: none; padding: 8px 14px;
   background: var(--accent); color: #fff; border-radius: 999px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+
+/* Závěrečný kvíz and Diplom (M7 stage 3) */
+.final-choice { max-width: 720px; }
+.final-answers { margin-bottom: 8px; }
+.final-card:empty { display: none; }
+.final-card { margin-top: 12px; }
+.diplom-box { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+.diplom-box label { display: block; font-weight: 700; margin-bottom: 6px; }
+.diplom-input { font: inherit; font-size: 1.2rem; min-height: var(--tap); padding: 6px 12px; width: min(100%, 360px);
+  border: 2px solid var(--border); border-radius: 12px; }
+.diplom-input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.diplom { margin-top: 20px; padding: 32px 24px; text-align: center; background: #fffdf8;
+  border: 6px double var(--accent); border-radius: 12px; }
+.diplom p { margin: 6px 0; }
+.diplom-cat { font-size: 3rem; }
+.diplom-title { font-size: 2.6rem; margin: 0; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.diplom-name { font-size: 2rem; font-weight: 700; }
+.diplom-text { font-size: 1.15rem; }
+.diplom-score { font-weight: 700; }
+.diplom-date { color: var(--muted); }
+@media print {
+  body.print-diplom * { visibility: hidden; }
+  body.print-diplom .diplom, body.print-diplom .diplom * { visibility: visible; }
+  body.print-diplom .diplom { position: absolute; left: 0; top: 0; width: 100%; box-sizing: border-box; margin: 0; }
+}
