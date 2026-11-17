@@ -14,7 +14,7 @@ with sync_playwright() as p:
         pg = r.watch(b.new_page(viewport=VIEWPORTS[vn]))
         pg.goto(url()); pg.evaluate("localStorage.clear()"); pg.goto(url("/procvicovani")); pg.wait_for_timeout(200)
         P = pg.evaluate("ATLAS_DATA.popisky"); H = pg.evaluate("ATLAS_DATA.hotspots")
-        links = [a.get_attribute("href") for a in pg.locator(".hub-group a[href^='#/procvicovani/popisky/']").all()]
+        links = [a.get_attribute("href") for a in pg.locator(".hub-group[data-game='popisky'] a").all()]
         r.ok(links == ["#/procvicovani/popisky/" + f["figure"] for f in P["figures"]], f"{vn}: five pictures {links}")
         for f in P["figures"]:
             pg.goto(url("/procvicovani/popisky/" + f["figure"])); pg.wait_for_timeout(400)
@@ -66,7 +66,7 @@ with sync_playwright() as p:
             r.ok(hs == ["#/procvicovani/popisky", "#/procvicovani"], f"{vn} {f['figure']}: end links {hs}")
             r.ok(pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), f"{vn} {f['figure']}: no sideways overflow")
         pg.goto(url("/procvicovani/popisky")); pg.wait_for_timeout(200)
-        r.ok(pg.locator(".hub-group a").count() == 5, f"{vn}: Jiný obrázek shows the five pictures")
+        r.ok(pg.locator(".hub-group[data-game='popisky'] a").count() == 5, f"{vn}: Jiný obrázek shows the five pictures")
         if vn == "phone":
             pg.goto(url("/procvicovani/popisky/cat-side")); pg.wait_for_timeout(300); pg.screenshot(path=shot("m7-stage2-popisky-phone.png"), full_page=True)
         pg.close()

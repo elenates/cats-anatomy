@@ -239,7 +239,7 @@
     (data.procvicovani || []).forEach(function (g) {
       var s = findSection(g.section);
       if (!s || s.status !== "active") return;
-      list.appendChild(el("section", { "class": "hub-group" }, [
+      list.appendChild(el("section", { "class": "hub-group", "data-section": g.section }, [
         el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: s.icon + " " }), document.createTextNode(s.cs)]),
         el("div", { "class": "quiz-actions" }, g.games.map(function (x, i) {
           return el("a", { "class": "quiz-open" + (i ? " quiz-secondary" : ""), href: x.href + "?od=procvicovani", text: gameTitle(x.title) });
@@ -253,7 +253,7 @@
   /* Doplň popisky: a card with one button per picture; the game screen. */
   function popiskyCard() {
     var pt = data.popisky.ui || {};
-    return el("section", { "class": "hub-group" }, [
+    return el("section", { "class": "hub-group", "data-game": "popisky" }, [
       el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: "🏷️ " }), document.createTextNode(pt.title || "Doplň popisky")]),
       el("p", { "class": "fig-note", text: pt.intro || "" }),
       el("div", { "class": "quiz-actions" }, data.popisky.figures.map(function (f, i) {
