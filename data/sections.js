@@ -101,7 +101,7 @@ window.ATLAS_DATA.ui = {
   // Quiz Najdi část těla (Vnější stavba těla, M7) – to proofread
   quizOpenVnejsi: "Najdi část těla",
   quizTitleVnejsi: "Kvíz: Najdi část těla",
-  quizFigureLabelVnejsi: "Fotka kočky. Klepni na část těla, kterou hledáš.",
+  quizFigureLabelVnejsi: "Fotka kočky. Klepni na část těla, kterou chceš najít.",
   quizGreatVnejsi: "Jsi expert na kočičí tělo!",
   quizBackVnejsi: "Zpět na vnější stavbu těla",
   kdeJe: "Kde je?",

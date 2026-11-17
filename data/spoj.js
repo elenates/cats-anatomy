@@ -197,7 +197,7 @@ window.ATLAS_DATA.spojVnejsi = {
     "Nosí kočce klobouk.",
     "Hraje na klavír, když nikdo není doma.",
     "Řídí kočičí autíčko.",
-    "Zalévá kočce kytky na okně.",
+    "Zalévá kočce květiny na okně.",
     "Drží kočce deštník, když prší.",
     "Zavazuje kočce tkaničky."
   ],
