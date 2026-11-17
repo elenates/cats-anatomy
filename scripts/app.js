@@ -18,6 +18,7 @@
  *   #/vnejsi/kviz  -> quiz Najdi část těla (cat photo)
  *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
+ *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
  *   <game route>?od=procvicovani -> the game, with its back links returning to Procvičování
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
@@ -220,6 +221,7 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSmysly || "Kvíz: Najdi část oka, ucha nebo jazyka" }), yqhost];
     }
     if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
+    if (section.id === "procvicovani" && sub === "popisky" && data.popisky) return renderPopisky(sub2);
     if (section.id === "procvicovani") return renderProcvicovani(section);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
@@ -237,14 +239,38 @@
     (data.procvicovani || []).forEach(function (g) {
       var s = findSection(g.section);
       if (!s || s.status !== "active") return;
-      list.appendChild(el("section", { "class": "hub-group" }, [
+      list.appendChild(el("section", { "class": "hub-group", "data-section": g.section }, [
         el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: s.icon + " " }), document.createTextNode(s.cs)]),
         el("div", { "class": "quiz-actions" }, g.games.map(function (x, i) {
           return el("a", { "class": "quiz-open" + (i ? " quiz-secondary" : ""), href: x.href + "?od=procvicovani", text: gameTitle(x.title) });
         }))]));
     });
+    if (data.popisky && window.Popisky) list.appendChild(popiskyCard());
     nodes.push(list);
     return nodes;
+  }
+
+  /* Doplň popisky: a card with one button per picture; the game screen. */
+  function popiskyCard() {
+    var pt = data.popisky.ui || {};
+    return el("section", { "class": "hub-group", "data-game": "popisky" }, [
+      el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: "🏷️ " }), document.createTextNode(pt.title || "Doplň popisky")]),
+      el("p", { "class": "fig-note", text: pt.intro || "" }),
+      el("div", { "class": "quiz-actions" }, data.popisky.figures.map(function (f, i) {
+        return el("a", { "class": "quiz-open" + (i ? " quiz-secondary" : ""), href: "#/procvicovani/popisky/" + f.figure, text: f.cs });
+      }))]);
+  }
+  function renderPopisky(figId) {
+    var pt = data.popisky.ui || {};
+    var f = data.popisky.figures.filter(function (x) { return x.figure === figId; })[0];
+    var back = el("a", { "class": "back-link", href: "#/procvicovani", text: "← " + (pt.back || "Zpět na procvičování") });
+    if (!f || !window.Popisky) {
+      var hub = el("div", { "class": "hub" }, [popiskyCard()]);
+      return [back, el("h1", { "class": "screen-title", text: pt.title || "Doplň popisky" }), hub];
+    }
+    var host = el("div", { "class": "atlas popisky" });
+    host._mount = function () { window.Popisky.mount(host, { figure: f.figure, layer: f.layer }); };
+    return [back, el("h1", { "class": "screen-title", text: (pt.title || "Doplň popisky") + ": " + f.cs }), host];
   }
 
   /* Links to the five Kostra part screens (on the overview). */
