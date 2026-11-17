@@ -7,6 +7,7 @@ The child-facing content in `data/kostra.js`, `data/vnejsi.js`, `data/organy.js`
 | `data/kostra.js` | `kostra_content.py` | `gen_kostra.py` |
 | `data/vnejsi.js` | `vnejsi_content.py` | `gen_vnejsi.py` |
 | `data/svaly.js` | `svaly_content.py` | `gen_svaly.py` |
+| `data/smysly.js` | `smysly_content.py` | `gen_smysly.py` |
 | `data/organy.js` | `organy_content.py` (organs on the whole-body drawing), `organy_parts_content.py` (close-up screens and their parts), `soustavy_content.py` (body systems) | `gen_organy.py` |
 
 Not generated (edit directly): `data/sections.js` (menu and UI strings), `data/spoj.js`, `data/soustavy-kviz.js`, `data/zarazeni.js`, `data/hotspots-kostra.js` (use `tools/hotspot-editor.html`).
@@ -19,7 +20,7 @@ Not generated (edit directly): `data/sections.js` (menu and UI strings), `data/s
    - `kdeJe`, `coDela`, `zajimavost`
    - `sources`: reference ids from `sources/references.md`, each with what was checked
    - `flags`: notes for review, e.g. Lenka's decisions
-2. Run the generator from anywhere: `python3 tools/content/gen_organy.py` (or `gen_kostra.py`, `gen_vnejsi.py`, `gen_svaly.py`). It writes the data file in place.
+2. Run the generator from anywhere: `python3 tools/content/gen_organy.py` (or `gen_kostra.py`, `gen_vnejsi.py`, `gen_svaly.py`, `gen_smysly.py`). It writes the data file in place.
 3. `git diff data/` must show only the change you meant. Running a generator on unchanged content gives a byte-identical file.
 4. Run the tests: `python3 tests/run_all.py`.
 5. List every new or changed Czech text in the PR for Lenka to proofread.
