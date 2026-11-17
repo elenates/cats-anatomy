@@ -77,7 +77,7 @@ window.ATLAS_DATA.organy = {
       level: "zvidave",
       soustava: "travici",
       kdeJe: "Uvnitř tlamy.",
-      coDela: "Kočka v ní zuby kouše potravu a sliny ji zvlhčí. Jazykem pije a olizuje se.",
+      coDela: "Kočka v ústní dutině zuby kouše potravu a sliny ji zvlhčí. Jazykem pije a olizuje se.",
       zajimavost: "Jazyk je drsný. Pokrývají ho drobné výrůstky, kterým se říká papily. Kočka jím umí olízat maso z kosti.",
       kostra: "lebka-celisti",
       refs: ["NAV", "MERCK-DESC"]
