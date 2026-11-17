@@ -141,9 +141,9 @@ window.ATLAS_DATA.spojSmysly = {
     "Šeptá kočce do ucha vtipy.",
     "Ochutnává za kočku zmrzlinu.",
     "Počítá, kolik myší kočka chytila.",
-    "Hlídá, aby kočka nezaspala snídani.",
+    "Hlídá, aby kočka nezaspala čas na snídani.",
     "Píská, když se blíží pes.",
-    "Vybírá kočce ten nejměkčí polštář.",
+    "Vybírá kočce nejměkčí polštář.",
     "Zpívá kočce ukolébavku."
   ],
 
@@ -153,7 +153,7 @@ window.ATLAS_DATA.spojSmysly = {
     back: "Zpět na smysly",
     backHref: "#/smysly",
     great: "Jsi expert na kočičí smysly!",
-    howTo: "Klepni na část oka, ucha nebo jazyka a pak na to, co dělá. Pozor, některé odpovědi jsou jen pro legraci!",
+    howTo: "Klepni na část oka, ucha nebo jazyka a potom na to, co dělá. Pozor, některé odpovědi jsou jen pro legraci!",
     round: "Kolo {n} z {total}",
     namesLabel: "Části",
     answersLabel: "Co dělá?",
@@ -162,7 +162,7 @@ window.ATLAS_DATA.spojSmysly = {
     right: "{name} – správně!",
     wrong: "Tohle k sobě nepatří. Zkus to znovu.",
     funnyReplies: [
-      "Ha, to by byla legrace! Ale to žádná část kočičího těla neumí.",
+      "Ha, to by byla legrace! Ale žádná část kočičího těla to neumí.",
       "Kdepak, to by se kočka divila!",
       "To je jen vtip. Zkus jinou odpověď.",
       "Tohle umí jen kočka z pohádky."
