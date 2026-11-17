@@ -14,6 +14,7 @@
  *   #/smysly[/<n>] -> Smysly, figure tab n (ATLAS_DATA.smysly.views)
  *   #/smysly/zajimavosti[/<id>] -> Zajímavosti tab: the fact cards (ATLAS_DATA.smysly.fakta), card id highlighted
  *   #/smysly/kviz  -> quiz Najdi část oka, ucha nebo jazyka (Figs. 167, 173, 95)
+ *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -177,6 +178,13 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSvaly || "Kvíz: Najdi sval" }), mqhost];
     }
     if (section.id === "svaly" && window.Atlas && data.svaly) return sub === "skok" ? renderSkok(parseInt(sub2, 10) || 1) : renderSvaly(section, parseInt(sub, 10) || 1);
+    if (section.id === "smysly" && sub === "spoj" && window.Spoj && data.smysly && data.spojSmysly) {
+      var ysp = data.spojSmysly.ui || {};
+      var yshost = el("div", { "class": "spoj" });
+      yshost._mount = function () { window.Spoj.mount(yshost, { content: "smysly", config: data.spojSmysly }); };
+      return [el("a", { "class": "back-link", href: "#/smysly", text: "← " + (ysp.back || "Zpět na smysly") }),
+        el("h1", { "class": "screen-title", text: ysp.title || "Spoj, co patří k sobě" }), yshost];
+    }
     if (section.id === "smysly" && sub === "kviz" && window.Quiz && data.smysly) {
       var yqhost = el("div", { "class": "atlas quiz" });
       var yvh = {};
@@ -292,7 +300,8 @@
   }
   function smyslyHead(section) {
     return el("div", { "class": "screen-head" }, [el("h1", { "class": "screen-title", text: section.cs }), el("div", { "class": "quiz-actions screen-games" }, [
-      el("a", { "class": "quiz-open", href: "#/smysly/kviz", text: ui.quizOpenSmysly || "Najdi část oka, ucha nebo jazyka" })])]);
+      el("a", { "class": "quiz-open", href: "#/smysly/kviz", text: ui.quizOpenSmysly || "Najdi část oka, ucha nebo jazyka" }),
+      data.spojSmysly ? el("a", { "class": "quiz-open quiz-secondary", href: "#/smysly/spoj", text: data.spojSmysly.ui.open }) : null].filter(Boolean))]);
   }
   function renderSmysly(section, n) {
     var tabs = data.smysly.views || [];
