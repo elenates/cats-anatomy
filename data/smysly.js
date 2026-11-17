@@ -22,7 +22,7 @@ window.ATLAS_DATA.smysly = {
       level: "zaklad",
       organ: "oko",
       kdeJe: "Vpředu na oku. Je průhledná jako okénko.",
-      coDela: "Pouští do oka světlo a pomáhá ho zaostřit. Zároveň chrání oko zepředu.",
+      coDela: "Propouští světlo do oka a pomáhá ho lámat tak, aby se obraz mohl zaostřit. Zároveň chrání oko zepředu.",
       zajimavost: null,
       zvidave: null,
       refs: ["NAV", "RJ1901", "LAWSON-SENSES", "CUNI-OKO1"]
@@ -34,7 +34,7 @@ window.ATLAS_DATA.smysly = {
       level: "zaklad",
       organ: "oko",
       kdeJe: "Za rohovkou. Je to barevná část oka a uprostřed má otvor, kterému se říká zornice.",
-      coDela: "Mění velikost zornice, a tak řídí, kolik světla vejde do oka.",
+      coDela: "Mění velikost zornice, a tak řídí, kolik světla vstoupí do oka.",
       zajimavost: "Na prudkém světle se kočce zornice zúží do úzké svislé štěrbinky. Ve tmě se zornice rozšíří.",
       zvidave: null,
       refs: ["NAV", "RJ1901", "LAWSON-SENSES", "CUNI-OKO1"]
@@ -105,7 +105,7 @@ window.ATLAS_DATA.smysly = {
       la: "Corpus ciliare",
       level: "zvidave",
       organ: "oko",
-      kdeJe: "Kolem čočky, na okraji duhovky.",
+      kdeJe: "Za duhovkou, kolem čočky.",
       coDela: "Drží čočku na tenkých vláknech a pomáhá jí měnit tvar, když kočka zaostřuje.",
       zajimavost: null,
       zvidave: null,
@@ -118,10 +118,10 @@ window.ATLAS_DATA.smysly = {
       level: "zvidave",
       organ: "oko",
       kdeJe: "Vyplňuje vnitřek oka za čočkou.",
-      coDela: "Je to průhledný rosol, který drží oku jeho kulatý tvar.",
+      coDela: "Je to průhledný rosol, který pomáhá udržovat tvar oka a drží sítnici na svém místě.",
       zajimavost: null,
       zvidave: null,
-      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "CUNI-OKO1"]
+      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "WIKI-VITR", "CUNI-OKO1"]
     },
     {
       id: "predni-komora",
@@ -130,10 +130,10 @@ window.ATLAS_DATA.smysly = {
       level: "zvidave",
       organ: "oko",
       kdeJe: "Mezi rohovkou a duhovkou.",
-      coDela: "Je vyplněná čirou tekutinou, která udržuje tvar rohovky.",
+      coDela: "Je vyplněná čirou tekutinou, která vyživuje rohovku a čočku a pomáhá udržovat správný tlak uvnitř oka.",
       zajimavost: null,
       zvidave: null,
-      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "CUNI-OKO1"]
+      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "MUNI-OKO", "CUNI-OKO1"]
     },
     {
       id: "hlemyzd",
@@ -148,16 +148,16 @@ window.ATLAS_DATA.smysly = {
       refs: ["NAV", "RJ1901", "LAWSON-SENSES", "CUNI-UCHO"]
     },
     {
-      id: "polokruhovite-kanalky",
-      cs: "Polokruhovité kanálky",
+      id: "polokruhove-kanalky",
+      cs: "Polokruhové kanálky",
       la: "Ductus semicirculares",
       level: "zaklad",
       organ: "ucho",
       kdeJe: "Ve vnitřním uchu, vedle hlemýždě. Jsou tři a každý tvoří oblouček.",
-      coDela: "Hlídají rovnováhu. Poznají, když kočka otočí nebo nakloní hlavu.",
-      zajimavost: "Pomáhají kočce, aby se při pádu ve vzduchu otočila a dopadla na nohy.",
+      coDela: "Pomáhají udržovat rovnováhu. Poznají, když kočka otáčí hlavou.",
+      zajimavost: "Spolu s dalšími částmi rovnovážného ústrojí pomáhají kočce, aby se při pádu ve vzduchu otočila a dopadla na nohy.",
       zvidave: null,
-      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "LS-RIGHT", "CUNI-UCHO"]
+      refs: ["NAV", "RJ1901", "LAWSON-SENSES", "LS-RIGHT", "CUNI-UCHO", "NLK-SEMI"]
     },
     {
       id: "predsin",
@@ -166,7 +166,7 @@ window.ATLAS_DATA.smysly = {
       level: "zvidave",
       organ: "ucho",
       kdeJe: "Uprostřed vnitřního ucha, mezi hlemýžděm a kanálky.",
-      coDela: "Spojuje hlemýždě s kanálky. Je v ní čidlo, které pozná, kde je nahoře a kde dole.",
+      coDela: "Spojuje hlemýždě s kanálky. Jsou v ní čidla, která poznají, kde je nahoře a kde dole.",
       zajimavost: null,
       zvidave: null,
       refs: ["NAV", "RJ1901", "LAWSON-SENSES", "LS-RIGHT", "CUNI-UCHO"]
@@ -189,7 +189,7 @@ window.ATLAS_DATA.smysly = {
       la: "Malleus",
       level: "zvidave",
       organ: "ucho",
-      kdeJe: "Ve středním uchu. Jeho rukojeť je přirostlá k bubínku.",
+      kdeJe: "Ve středním uchu. Jeho rukojeť je připojená k bubínku.",
       coDela: "Přenáší chvění bubínku na kovadlinku.",
       zajimavost: "Kladívko, kovadlinka a třmínek patří k nejmenším kostem v těle.",
       zvidave: null,
@@ -213,7 +213,7 @@ window.ATLAS_DATA.smysly = {
       la: "Papillae filiformes",
       level: "zaklad",
       organ: "jazyk",
-      kdeJe: "Po celém hřbetu jazyka, nejvíc uprostřed jeho přední části.",
+      kdeJe: "Po většině hřbetu jazyka.",
       coDela: "Jsou tvrdé, špičaté a míří dozadu. Kočka si s nimi češe srst, když se olizuje.",
       zajimavost: "Proto je kočičí jazyk tak drsný.",
       zvidave: null,
@@ -225,9 +225,9 @@ window.ATLAS_DATA.smysly = {
       la: "Papillae fungiformes",
       level: "zaklad",
       organ: "jazyk",
-      kdeJe: "Uprostřed jazyka, za ostrými papilami. Pár velkých je i na okrajích jazyka.",
+      kdeJe: "Na hřbetu jazyka, hlavně na jeho přední části a po stranách.",
       coDela: "Jsou v nich chuťové pohárky, kterými kočka cítí chuť.",
-      zajimavost: "Kočka necítí sladkou chuť. Sladkosti ji proto nelákají.",
+      zajimavost: "Kočka nedokáže vnímat sladkou chuť jako člověk.",
       zvidave: null,
       refs: ["NAV", "RJ1901", "NZIP-PAPILY", "LI2005"]
     },
@@ -238,7 +238,7 @@ window.ATLAS_DATA.smysly = {
       level: "zaklad",
       organ: "jazyk",
       kdeJe: "Vzadu na jazyku. Jsou velké a kolem každé je příkop. Tvoří písmeno V.",
-      coDela: "Je v nich hodně chuťových pohárků.",
+      coDela: "Obsahují mnoho chuťových pohárků.",
       zajimavost: null,
       zvidave: null,
       refs: ["NAV", "RJ1901", "NZIP-PAPILY", "LFP-JAZYK"]
@@ -250,7 +250,7 @@ window.ATLAS_DATA.smysly = {
       level: "zvidave",
       organ: "jazyk",
       kdeJe: "Vzadu v krku, po stranách za jazykem.",
-      coDela: "Pomáhají chránit tělo před bacily, které se dostanou do úst.",
+      coDela: "Pomáhají imunitnímu systému bránit tělo před mikroby, které se dostanou do úst.",
       zajimavost: null,
       zvidave: null,
       refs: ["NAV", "RJ1901", "NLK-TONS"]
@@ -262,7 +262,7 @@ window.ATLAS_DATA.smysly = {
       level: "zvidave",
       organ: "jazyk",
       kdeJe: "Za kořenem jazyka, nad vchodem do hrtanu.",
-      coDela: "Když kočka polyká, příklopka zakryje vchod do hrtanu, aby jídlo nezabloudilo do průdušnice.",
+      coDela: "Když kočka polyká, příklopka zakryje vchod do hrtanu, aby se jídlo nedostalo do průdušnice.",
       zajimavost: null,
       zvidave: null,
       refs: ["NAV", "RJ1901", "LFP-JAZYK"]
@@ -272,7 +272,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "svitici-oci",
       cs: "Svítící oči",
-      text: "Za sítnicí má kočka lesklou vrstvu, která odráží světlo jako zrcátko. Světlo tak sítnicí projde dvakrát a kočka vidí i v šeru. Proto jí ve tmě svítí oči, když na ně posvítíš.",
+      text: "Za sítnicí má kočka lesklou vrstvu, která odráží světlo jako zrcátko. Světlo tak sítnicí projde dvakrát a kočka vidí i v šeru. Proto jí oči svítí, když na ně posvítíš, a lépe vidí v šeru.",
       zvidave: "Odborně se té vrstvě říká tapetum lucidum.",
       image: null,
       organ: "oko",
@@ -282,7 +282,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "treti-vicko",
       cs: "Třetí víčko",
-      text: "Ve vnitřním koutku oka má kočka ještě třetí víčko. Je to tenká blána, která se může přetáhnout přes celé oko a chránit ho.",
+      text: "Ve vnitřním koutku oka má kočka ještě třetí víčko. Je to tenká blána, která se může částečně přetáhnout přes oko a chránit ho.",
       zvidave: "Odborně se mu říká mžurka. Na obrázku je zevnitř: uprostřed je chrupavka (a), která ho zpevňuje, a vedle ní žláza (b).",
       image: "third-eyelid",
       organ: "oko",
@@ -293,7 +293,7 @@ window.ATLAS_DATA.smysly = {
       id: "super-sluch",
       cs: "Super sluch",
       text: "Kočka slyší mnohem vyšší tóny než člověk. Zaslechne i velmi tenké pištění, které my vůbec neslyšíme.",
-      zvidave: "Člověk slyší tóny asi do 20 000 kmitů za sekundu, kočka až do 85 000. Patří k savcům s nejširším rozsahem sluchu.",
+      zvidave: "Člověk slyší tóny asi do 20 000 Hz, kočka až do 85 000 Hz. V jedné studii dokázaly kočky při hlasitosti 70 dB slyšet zvuky od 48 do 85 000 Hz. Patří k savcům s nejširším rozsahem sluchu.",
       image: null,
       organ: "ucho",
       vnejsi: "ucho",
@@ -302,7 +302,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "otacive-usi",
       cs: "Uši jako radar",
-      text: "Kočka umí natočit každé ucho zvlášť, a tak pozná, odkud zvuk přichází. Ucho jí natáčí mnoho malých svalů.",
+      text: "Kočka umí natočit každé ucho zvlášť, a tak pozná, odkud zvuk přichází. Pohyb uší řídí mnoho drobných svalů.",
       zvidave: null,
       image: null,
       organ: "ucho",
@@ -312,7 +312,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "hmatove-vousy",
       cs: "Hmatové vousy",
-      text: "Vousy jsou citlivé jako konečky našich prstů. Kočka jimi ucítí i slabý závan vzduchu, a tak ve tmě nenarazí do překážky.",
+      text: "Vousy jsou velmi citlivé hmatové chlupy. Kočka jimi vnímá doteky i drobné pohyby vzduchu, což jí pomáhá orientovat se v blízkém okolí.",
       zvidave: "Hmatové vousy nemá jen na tváři, ale i nad očima, na bradě a na předních nohou.",
       image: null,
       organ: null,
@@ -322,7 +322,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "jacobsonuv-organ",
       cs: "Čich a Jacobsonův orgán",
-      text: "Za předními zuby má kočka na patře dva malé otvory. Vedou do zvláštního čichového orgánu, kterým zkoumá pachy jiných koček. Když ho používá, pootevře tlamu a vypadá, jako by se šklebila.",
+      text: "Za předními zuby má kočka na patře dva malé otvory, kterými se pachové látky dostávají do zvláštního čichového orgánu. Díky němu vnímá například pachové signály jiných koček. Když ho používá, pootevře tlamu a vypadá, jako by se šklebila.",
       zvidave: "Odborně se mu říká vomeronazální orgán a tomu šklebení flémování.",
       image: null,
       organ: null,
@@ -332,7 +332,7 @@ window.ATLAS_DATA.smysly = {
     {
       id: "dopad-na-nohy",
       cs: "Dopad na nohy",
-      text: "Když kočka padá, polokruhovité kanálky v uchu jí řeknou, kde je nahoře. Kočka se ve vzduchu otočí a dopadne na nohy. I tak se ale při pádu může zranit.",
+      text: "Když kočka padá, její rovnovážné ústrojí jí pomáhá poznat polohu hlavy a těla. Kočka se ve vzduchu otočí a dopadne na nohy. I tak se ale při pádu může zranit.",
       zvidave: null,
       image: null,
       organ: "ucho",
