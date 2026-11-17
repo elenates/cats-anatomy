@@ -31,6 +31,14 @@ for name, items in data.items():
             if r not in known: fails.append(f"{name}/{it['id']}: ref {r} not in references.md")
         if not it.get("refs"): fails.append(f"{name}/{it['id']}: no refs")
 
+# Every image file has a row in sources/image-licenses.md (rule from the brief).
+_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+_lic = open(os.path.join(_ROOT, "sources", "image-licenses.md"), encoding="utf-8").read()
+for _d, _, _fs in os.walk(os.path.join(_ROOT, "images")):
+    for _f in _fs:
+        _rel = os.path.relpath(os.path.join(_d, _f), _ROOT).replace(os.sep, "/")
+        if "| `" + _rel + "` |" not in _lic: fails.append(f"{_rel}: no row in sources/image-licenses.md")
+
 print("PASS content" if not fails else "FAIL content")
 for f in fails: print("  failed:", f)
 sys.exit(1 if fails else 0)
