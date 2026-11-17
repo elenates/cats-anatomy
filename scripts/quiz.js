@@ -84,7 +84,16 @@
     var svg = svgEl("svg", { "class": "atlas-svg quiz-svg", role: "group", "aria-label": tx.figureLabel || ui.quizFigureLabel || "Obrázek kostry – klepni na hledanou část" });
     var figBox = el("div", { "class": "atlas-figure" }, [svg]);
     var feedback = el("section", { "class": "atlas-card quiz-feedback", "aria-live": "polite" });
-    var layout = el("div", { "class": "atlas-layout" }, [el("div", { "class": "atlas-figure-col" }, [figBox]), feedback]);
+    // A licensed photo (fig.credit) keeps its author, source and licence under it, as on the atlas screen.
+    var credit = el("p", { "class": "atlas-credit" });
+    function showCredit() {
+      credit.textContent = ""; credit.hidden = !(fig && fig.credit);
+      if (credit.hidden) return;
+      (fig.creditParts || [{ text: fig.credit }]).forEach(function (c) {
+        credit.appendChild(c.href ? el("a", { href: c.href, target: "_blank", rel: "noopener", text: c.text }) : document.createTextNode(c.text));
+      });
+    }
+    var layout = el("div", { "class": "atlas-layout" }, [el("div", { "class": "atlas-figure-col" }, [figBox, credit]), feedback]);
     container.appendChild(el("div", { "class": "quiz-head" }, [progress, prompt]));
     container.appendChild(layout);
 
@@ -96,6 +105,7 @@
     // ----- figure -----
     var nodes = {};
     function drawFigure() {
+      showCredit();
       while (svg.firstChild) svg.removeChild(svg.firstChild);
       nodes = {};
       var vh = (opts.maxHeightVh || {})[curFig];

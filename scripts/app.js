@@ -15,6 +15,8 @@
  *   #/smysly/zajimavosti[/<id>] -> Zajímavosti tab: the fact cards (ATLAS_DATA.smysly.fakta), card id highlighted
  *   #/smysly/kviz  -> quiz Najdi část oka, ucha nebo jazyka (Figs. 167, 173, 95)
  *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
+ *   #/vnejsi/kviz  -> quiz Najdi část těla (cat photo)
+ *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   <game route>?od=procvicovani -> the game, with its back links returning to Procvičování
  *
@@ -123,10 +125,29 @@
       host._mount = function () { window.Atlas.mount(host, { figure: "skeleton" }); };
       return [back, title, partNav(), host];
     }
+    if (section.id === "vnejsi" && sub === "kviz" && window.Quiz) {
+      var vqhost = el("div", { "class": "atlas quiz" });
+      vqhost._mount = function () {
+        window.Quiz.mount(vqhost, { figure: "cat-side", layer: "telo", rounds: 10, texts: {
+          figureLabel: ui.quizFigureLabelVnejsi, great: ui.quizGreatVnejsi, back: ui.quizBackVnejsi, backHref: "#/vnejsi" } });
+      };
+      return [el("a", { "class": "back-link", href: "#/vnejsi", text: "← " + (ui.quizBackVnejsi || "Zpět na vnější stavbu těla") }),
+        el("h1", { "class": "screen-title", text: ui.quizTitleVnejsi || "Kvíz: Najdi část těla" }), vqhost];
+    }
+    if (section.id === "vnejsi" && sub === "spoj" && window.Spoj && data.spojVnejsi) {
+      var vsp = data.spojVnejsi.ui || {};
+      var vshost = el("div", { "class": "spoj" });
+      vshost._mount = function () { window.Spoj.mount(vshost, { content: "vnejsi", config: data.spojVnejsi }); };
+      return [el("a", { "class": "back-link", href: "#/vnejsi", text: "← " + (vsp.back || "Zpět na vnější stavbu těla") }),
+        el("h1", { "class": "screen-title", text: vsp.title || "Spoj, co patří k sobě" }), vshost];
+    }
     if (section.id === "vnejsi" && window.Atlas) {
       var vhost = el("div", { "class": "atlas" });
       vhost._mount = function () { window.Atlas.mount(vhost, { figure: "cat-side" }); };
-      return [back, title, vhost];
+      var vGames = el("div", { "class": "quiz-actions screen-games" }, [
+        el("a", { "class": "quiz-open", href: "#/vnejsi/kviz", text: ui.quizOpenVnejsi || "Najdi část těla" }),
+        data.spojVnejsi ? el("a", { "class": "quiz-open quiz-secondary", href: "#/vnejsi/spoj", text: data.spojVnejsi.ui.open }) : null].filter(Boolean));
+      return [back, el("div", { "class": "screen-head" }, [title, vGames]), vhost];
     }
     var cparts = (data.organy && data.organy.parts) || [];
     var sk = data.soustavyKviz && data.soustavyKviz.ui || {};
@@ -206,7 +227,7 @@
 
   /* Procvičování: every game, grouped by section (ATLAS_DATA.procvicovani). */
   function gameTitle(key) {
-    var cfg = { spoj: data.spoj, spojSvaly: data.spojSvaly, spojSmysly: data.spojSmysly, soustavyKviz: data.soustavyKviz }[key];
+    var cfg = { spoj: data.spoj, spojVnejsi: data.spojVnejsi, spojSvaly: data.spojSvaly, spojSmysly: data.spojSmysly, soustavyKviz: data.soustavyKviz }[key];
     return cfg ? (cfg.ui && cfg.ui.title) || key : ui[key] || key;
   }
   function renderProcvicovani(section) {
