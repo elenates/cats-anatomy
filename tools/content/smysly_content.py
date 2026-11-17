@@ -230,7 +230,7 @@ VIEWS = [
   dict(figure="inner-ear", cs="Ucho", organ="ucho", vnejsi=["ucho"], see="Podívej se, jak vypadá ucho uvnitř →",
        note="Na obrázku je vnitřní ucho. Je schované hluboko v kosti lebky."),
   dict(figure="eardrum", cs="Bubínek a kůstky", organ=None, vnejsi=[], see=None,
-       note="Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tenhle obrázek je pro zvídavé."),
+       note="Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tento obrázek je určený pro zvídavé."),
   dict(figure="tongue", cs="Jazyk", organ="jazyk", vnejsi=[], see=None, maxHeightVh=85,
-       note="Jazyk při pohledu shora. Vzadu jsou vidět i krční mandle a hrtanová příklopka."),
+       note="Jazyk při pohledu shora. Vzadu jsou vidět také krční mandle a hrtanová příklopka."),
 ]

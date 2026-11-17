@@ -353,7 +353,7 @@ window.ATLAS_DATA.smysly = {
   views: [
     { figure: "eye", cs: "Oko", note: "Oko je na obrázku rozříznuté, aby bylo vidět, co je uvnitř.", organ: "oko", vnejsi: ["oko"], see: "Podívej se, jak vypadá oko uvnitř →" },
     { figure: "inner-ear", cs: "Ucho", note: "Na obrázku je vnitřní ucho. Je schované hluboko v kosti lebky.", organ: "ucho", vnejsi: ["ucho"], see: "Podívej se, jak vypadá ucho uvnitř →" },
-    { figure: "eardrum", cs: "Bubínek a kůstky", note: "Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tenhle obrázek je pro zvídavé.", organ: null, vnejsi: [], see: null },
-    { figure: "tongue", cs: "Jazyk", note: "Jazyk při pohledu shora. Vzadu jsou vidět i krční mandle a hrtanová příklopka.", organ: "jazyk", vnejsi: [], see: null, maxHeightVh: 85 }
+    { figure: "eardrum", cs: "Bubínek a kůstky", note: "Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tento obrázek je určený pro zvídavé.", organ: null, vnejsi: [], see: null },
+    { figure: "tongue", cs: "Jazyk", note: "Jazyk při pohledu shora. Vzadu jsou vidět také krční mandle a hrtanová příklopka.", organ: "jazyk", vnejsi: [], see: null, maxHeightVh: 85 }
   ]
 };

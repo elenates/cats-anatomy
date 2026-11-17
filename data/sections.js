@@ -79,11 +79,11 @@ window.ATLAS_DATA.ui = {
   quizBackSvaly: "Zpět na svaly",
 
   // Smysly (M6 stage 4) – to proofread
-  cardEmptySmysly: "Klepni na nějakou část obrázku.",
-  figureLabelSmysly: "Obrázek smyslového orgánu kočky",
+  cardEmptySmysly: "Klepni na část obrázku.",
+  figureLabelSmysly: "Obrázek smyslového orgánu u kočky",
   smyslyTabsLabel: "Obrázky smyslů",
   faktaTab: "Zajímavosti",
-  faktaIntro: "Co všechno kočka dokáže díky svým smyslům.",
+  faktaIntro: "Co všechno kočka dokáže díky svým smyslům?",
   seeFakt: "Přečti si zajímavost →",
   faktaSeeFigure: "Podívej se na obrázek →",
   kdeJe: "Kde je?",

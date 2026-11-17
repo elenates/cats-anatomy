@@ -147,7 +147,7 @@
     var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") :
       content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") :
       content === "svaly" ? (ui.figureLabelSvaly || "Obrázek svalů kočky") :
-      content === "smysly" ? (ui.figureLabelSmysly || "Obrázek smyslového orgánu kočky") : (ui.figureLabel || "Obrázek kostry") });
+      content === "smysly" ? (ui.figureLabelSmysly || "Obrázek smyslového orgánu u kočky") : (ui.figureLabel || "Obrázek kostry") });
     var maxVh = opts && opts.maxHeightVh;
     if (maxVh) svg.style.margin = "0 auto";
     var figBox = el("div", { "class": "atlas-figure" + (only ? " is-system" : "") }, [svg]);
@@ -414,7 +414,7 @@
           state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") :
           state.layer === "organy" ? (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") :
           state.layer === "svaly" ? (ui.cardEmptySvaly || "Klepni na sval na obrázku.") :
-          state.layer === "smysly" ? (ui.cardEmptySmysly || "Klepni na nějakou část obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+          state.layer === "smysly" ? (ui.cardEmptySmysly || "Klepni na část obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [
