@@ -19,6 +19,7 @@
  *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
+ *   #/procvicovani/zaverecny -> Závěrečný kvíz with the Diplom (ATLAS_DATA.zaverecny)
  *   <game route>?od=procvicovani -> the game, with its back links returning to Procvičování
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
@@ -222,6 +223,13 @@
     }
     if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
     if (section.id === "procvicovani" && sub === "popisky" && data.popisky) return renderPopisky(sub2);
+    if (section.id === "procvicovani" && sub === "zaverecny" && data.zaverecny && window.Zaverecny) {
+      var zt = data.zaverecny.ui || {};
+      var zhost = el("div", { "class": "atlas final" });
+      zhost._mount = function () { window.Zaverecny.mount(zhost); };
+      return [el("a", { "class": "back-link", href: "#/procvicovani", text: "← " + (zt.back || "Zpět na procvičování") }),
+        el("h1", { "class": "screen-title", text: zt.title || "Závěrečný kvíz" }), zhost];
+    }
     if (section.id === "procvicovani") return renderProcvicovani(section);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
@@ -246,6 +254,13 @@
         }))]));
     });
     if (data.popisky && window.Popisky) list.appendChild(popiskyCard());
+    if (data.zaverecny && window.Zaverecny) {
+      var zt = data.zaverecny.ui || {};
+      list.appendChild(el("section", { "class": "hub-group", "data-game": "zaverecny" }, [
+        el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: "🏆 " }), document.createTextNode(zt.title || "Závěrečný kvíz")]),
+        el("p", { "class": "fig-note", text: zt.intro || "" }),
+        el("div", { "class": "quiz-actions" }, [el("a", { "class": "quiz-open", href: "#/procvicovani/zaverecny", text: zt.open || "Závěrečný kvíz" })])]));
+    }
     nodes.push(list);
     return nodes;
   }
