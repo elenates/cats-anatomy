@@ -429,3 +429,17 @@ a.menu-card:active {
 .hub-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
 .hub-h { font-size: 1.25rem; margin: 0 0 12px; }
 .hub .quiz-actions { flex-direction: column; align-items: stretch; }
+
+/* Doplň popisky (M7 stage 2) */
+.popisky-labels { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.popisky-label { touch-action: none; cursor: grab; }
+.popisky-label.is-right { cursor: default; }
+.popisky-spot { cursor: pointer; outline: none; }
+.popisky-spot circle { fill: #fff; stroke: var(--accent); stroke-width: 3px; vector-effect: non-scaling-stroke; }
+.popisky-spot text { fill: var(--accent); font-weight: 700; pointer-events: none; }
+.popisky-spot:focus-visible circle { stroke: var(--focus); stroke-width: 5px; }
+.popisky-spot.is-right circle { fill: #1f7a3d; stroke: #1f7a3d; }
+.popisky-spot.is-right text { fill: #fff; }
+.popisky-spot.is-wrong circle { fill: #f6d4d1; stroke: #b3261e; }
+.popisky-ghost { position: fixed; z-index: 50; transform: translate(-50%, -120%); pointer-events: none; padding: 8px 14px;
+  background: var(--accent); color: #fff; border-radius: 999px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
