@@ -159,7 +159,7 @@ FAKTA = [
   dict(id="treti-vicko", cs="Třetí víčko",
        text="Ve vnitřním koutku oka má kočka ještě třetí víčko. Je to tenká blána, která se může částečně přetáhnout přes oko a chránit ho.",
        zvidave="Odborně se mu říká mžurka. Na obrázku je zevnitř: uprostřed je chrupavka (a), která ho zpevňuje, a vedle ní žláza (b).",
-       image="third-eyelid", organ="oko", vnejsi="oko",
+       image="third-eyelid", imageFig="165", organ="oko", vnejsi="oko",
        sources="RJ1901 (nictitating membrane or 'third eyelid' at the medial angle of the eye; in the cat large, may cover the whole surface of the eye; supported by cartilage a, Harderian glands b, Fig. 165); NLK-NICT (mžurka, třetí oční víčko); NAV (Palpebra tertia p. 150)",
        flags="Picture: Fig. 165 (inner surface). Its letters a, b, c stay on the picture, so the Pro zvídavé text explains a and b."),
   dict(id="super-sluch", cs="Super sluch",
@@ -218,4 +218,19 @@ SOURCES = [
   ("PETMD-VNO", "Seraydar K (DVM). What Is the Flehmen Response in Cats? PetMD, 26 Jun 2023", "https://www.petmd.com/cat/general-health/cat-sneering-what-flehmen-response"),
   ("LS-RIGHT", "Why do cats land on their feet? Live Science", "https://www.livescience.com/32117-why-do-cats-land-on-their-feet.html"),
   ("CATSTER-EAR", "Catster (vet-reviewed): How Does a Cat's Ear Pinna Work?", "https://www.catster.com/lifestyle/weird-science-cats-ears-hearing"),
+]
+
+# Tabs of the Smysly screen (stage 4), in order; the Zajímavosti tab (the fact cards) comes after them.
+# figure = hotspot figure id; note = line above the figure; organ = which fact cards link to the tab;
+# vnejsi = Vnější stavba těla items whose cards link to the tab; see = text of those links;
+# maxHeightVh = height limit of a tall figure.
+VIEWS = [
+  dict(figure="eye", cs="Oko", organ="oko", vnejsi=["oko"], see="Podívej se, jak vypadá oko uvnitř →",
+       note="Oko je na obrázku rozříznuté, aby bylo vidět, co je uvnitř."),
+  dict(figure="inner-ear", cs="Ucho", organ="ucho", vnejsi=["ucho"], see="Podívej se, jak vypadá ucho uvnitř →",
+       note="Na obrázku je vnitřní ucho. Je schované hluboko v kosti lebky."),
+  dict(figure="eardrum", cs="Bubínek a kůstky", organ=None, vnejsi=[], see=None,
+       note="Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tento obrázek je určený pro zvídavé."),
+  dict(figure="tongue", cs="Jazyk", organ="jazyk", vnejsi=[], see=None, maxHeightVh=85,
+       note="Jazyk při pohledu shora. Vzadu jsou vidět také krční mandle a hrtanová příklopka."),
 ]

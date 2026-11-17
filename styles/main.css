@@ -160,7 +160,7 @@ a.menu-card:active {
 }
 
 /* ===================== Atlas (stage 5) ===================== */
-.app-main:has(.atlas) { max-width: 1400px; }
+.app-main:has(.atlas), .app-main:has(.fakta) { max-width: 1400px; }
 
 .atlas-toolbar {
   display: flex;
@@ -413,3 +413,13 @@ a.menu-card:active {
 .step-nav .part-link:only-child { margin-left: auto; }
 .atlas-figure.is-system .hotspot.is-also polygon { stroke: rgba(181, 86, 42, 0.55); stroke-dasharray: 6 4; }
 .organ-chip.is-also { border-style: dashed; }
+
+/* Smysly: Zajímavosti tab (fact cards) */
+.fakta-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 12px; }
+.fakta-head .fig-note { margin: 0; }
+.fakta { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.fakt { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.fakt.is-focus { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fakt .card-title { font-size: 1.25rem; margin: 0 0 8px; }
+.fakt-fig { margin: 12px 0 0; }
+.fakt-fig img { display: block; max-width: 100%; height: auto; margin: 0 auto; }

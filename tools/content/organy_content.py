@@ -39,7 +39,7 @@ ROWS = [
        flags="Smell fact (200 million cells) is already on the Vnější card 'Nos', so not repeated."),
   dict(id="ustni-dutina", cs="Ústní dutina", la="Cavum oris", nav="49", level=V, soustava=TRAV,
        kdeJe="Uvnitř tlamy.",
-       coDela="Kočka v ní zuby kouše potravu a sliny ji zvlhčí. Jazykem pije a olizuje se.",
+       coDela="Kočka v ústní dutině zuby kouše potravu a sliny ji zvlhčí. Jazykem pije a olizuje se.",
        zajimavost="Jazyk je drsný. Pokrývají ho drobné výrůstky, kterým se říká papily. Kočka jím umí olízat maso z kosti.",
        kostra="lebka-celisti",
        sources="NAV (Cavum oris p. 49); MERCK-DESC (salivary glands lubricate food; tongue covered with papillae, rough; laps water, grooming, scrapes meat off bones)",

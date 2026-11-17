@@ -11,6 +11,8 @@
  *   #/svaly/skok[/<n>] -> Jak kočka skáče, step n (ATLAS_DATA.svaly.skok)
  *   #/svaly/kviz   -> quiz Najdi sval (Figs. 68 and 90)
  *   #/svaly/spoj   -> Spoj, co patří k sobě with muscles (ATLAS_DATA.spojSvaly)
+ *   #/smysly[/<n>] -> Smysly, figure tab n (ATLAS_DATA.smysly.views)
+ *   #/smysly/zajimavosti[/<id>] -> Zajímavosti tab: the fact cards (ATLAS_DATA.smysly.fakta), card id highlighted
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -174,6 +176,7 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSvaly || "Kvíz: Najdi sval" }), mqhost];
     }
     if (section.id === "svaly" && window.Atlas && data.svaly) return sub === "skok" ? renderSkok(parseInt(sub2, 10) || 1) : renderSvaly(section, parseInt(sub, 10) || 1);
+    if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
   }
@@ -260,6 +263,71 @@
     var host = el("div", { "class": "atlas" });
     host._mount = function () { window.Atlas.mount(host, { figure: view.figure, maxHeightVh: view.maxHeightVh }); };
     nodes.push(host);
+    return nodes;
+  }
+
+  /* Smysly: one tab per 1901 figure (ATLAS_DATA.smysly.views), then the Zajímavosti tab with the fact cards. */
+  function smyslyTabs(current) {
+    var tabList = el("ul", { "class": "fig-tabs" });
+    (data.smysly.views || []).map(function (t, i) { return { cs: t.cs, href: "#/smysly/" + (i + 1), key: i + 1 }; })
+      .concat([{ cs: ui.faktaTab || "Zajímavosti", href: "#/smysly/zajimavosti", key: "zajimavosti" }])
+      .forEach(function (t) {
+        var a = el("a", { "class": "fig-tab", href: t.href, text: t.cs });
+        if (t.key === current) a.setAttribute("aria-current", "page");
+        tabList.appendChild(el("li", null, [a]));
+      });
+    return el("nav", { "class": "fig-nav", "aria-label": ui.smyslyTabsLabel || "Obrázky smyslů" }, [tabList]);
+  }
+  function renderSmysly(section, n) {
+    var tabs = data.smysly.views || [];
+    if (n < 1 || n > tabs.length) n = 1;
+    var view = tabs[n - 1];
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs }), smyslyTabs(n)];
+    if (view.note) nodes.push(el("p", { "class": "fig-note", text: view.note }));
+    var host = el("div", { "class": "atlas" });
+    host._mount = function () { window.Atlas.mount(host, { figure: view.figure, maxHeightVh: view.maxHeightVh }); };
+    nodes.push(host);
+    return nodes;
+  }
+
+  /* The "Pro zvídavé" switch is shared with the atlas screens (same stored setting). */
+  var TOGGLES_KEY = "atlas.toggles";
+  function zvidaveOn() { try { return !!JSON.parse(localStorage.getItem(TOGGLES_KEY) || "{}").zvidave; } catch (e) { return false; } }
+  function setZvidave(on) {
+    try { var t = JSON.parse(localStorage.getItem(TOGGLES_KEY) || "{}"); t.zvidave = on; localStorage.setItem(TOGGLES_KEY, JSON.stringify(t)); } catch (e) { /* ignore */ }
+  }
+  function renderFakta(section, focusId) {
+    var fakta = data.smysly.fakta || [], views = data.smysly.views || [];
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs }), smyslyTabs("zajimavosti")];
+    var on = zvidaveOn();
+    var tg = el("button", { type: "button", "class": "toggle", "data-toggle": "zvidave", "aria-pressed": String(on), text: ui.toggleZvidave || "Pro zvídavé" });
+    var list = el("div", { "class": "fakta" });
+    nodes.push(el("div", { "class": "fakta-head" }, [el("p", { "class": "fig-note", text: ui.faktaIntro || "" }), tg]), list);
+    function fill() {
+      list.textContent = "";
+      fakta.forEach(function (f) {
+        var card = el("article", { "class": "fakt" + (f.id === focusId ? " is-focus" : ""), id: "fakt-" + f.id }, [
+          el("h2", { "class": "card-title", text: f.cs }), el("p", { "class": "card-p", text: f.text })]);
+        if (f.image) {
+          card.appendChild(el("figure", { "class": "fakt-fig" }, [
+            el("img", { src: "images/smysly/" + f.image + ".webp", alt: f.cs }),
+            el("figcaption", { "class": "atlas-credit", text: (ui.figurePrefix || "Obrázek") + (f.imageFig ? " " + f.imageFig : "") + ": " + (ui.figureCredit || "") })]));
+        }
+        if (on && f.zvidave) {
+          card.appendChild(el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }));
+          card.appendChild(el("p", { "class": "card-p", text: f.zvidave }));
+        }
+        var vi = -1;
+        views.forEach(function (v, i) { if (vi < 0 && f.organ && v.organ === f.organ) vi = i; });
+        if (vi >= 0) card.appendChild(el("p", { "class": "card-link" }, [el("a", { "class": "part-link", href: "#/smysly/" + (vi + 1), text: (ui.faktaSeeFigure || "Podívej se na obrázek →") })]));
+        list.appendChild(card);
+      });
+    }
+    tg.addEventListener("click", function () { on = !on; setZvidave(on); tg.setAttribute("aria-pressed", String(on)); fill(); });
+    fill();
+    list._mount = function () {   // after render() has moved focus to the screen top
+      setTimeout(function () { var c = focusId && document.getElementById("fakt-" + focusId); if (c) c.scrollIntoView({ block: "center" }); }, 0);
+    };
     return nodes;
   }
 

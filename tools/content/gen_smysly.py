@@ -3,7 +3,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
-from smysly_content import ROWS, FAKTA, SOURCES
+from smysly_content import ROWS, FAKTA, SOURCES, VIEWS
 ids = {s[0] for s in SOURCES}
 def refs(src):
     out=[]
@@ -23,7 +23,10 @@ L=["/*",
 " *   id, cs, la (NAV 2017), level, organ (oko / ucho / jazyk), kdeJe, coDela, zajimavost (may be null),",
 " *   zvidave (extra sentence at the Pro zvídavé level, or null), refs",
 " * fakta: Zajímavosti cards: id, cs, text, zvidave (or null), image (images/smysly/<image>.webp or null),",
+" *   imageFig (1901 figure number of the image, for its caption),",
 " *   organ (related tab or null), vnejsi (related item on Vnější stavba těla or null), refs",
+" * views: tabs of the Smysly screen before the Zajímavosti tab (figure, cs, note, organ, vnejsi = Vnější items",
+" *   whose cards link to the tab, see = text of those links, maxHeightVh = height limit for a tall figure)",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};","",
 "window.ATLAS_DATA.smysly = {","  items: ["]
@@ -36,10 +39,15 @@ for i,r in enumerate(ROWS):
 L+=["  ],","  fakta: ["]
 for i,f in enumerate(FAKTA):
     L.append("    {")
-    for k,v in [("id",f["id"]),("cs",f["cs"]),("text",f["text"]),("zvidave",f["zvidave"]),("image",f["image"]),("organ",f["organ"]),("vnejsi",f["vnejsi"]),("refs",refs(f["sources"]))]:
+    for k,v in [("id",f["id"]),("cs",f["cs"]),("text",f["text"]),("zvidave",f["zvidave"]),("image",f["image"]),("imageFig",f.get("imageFig")),("organ",f["organ"]),("vnejsi",f["vnejsi"]),("refs",refs(f["sources"]))]:
         L.append(f"      {k}: {js(v)},")
     L[-1]=L[-1].rstrip(",")
     L.append("    }"+("," if i<len(FAKTA)-1 else ""))
+L+=["  ],","  views: ["]
+for i,v in enumerate(VIEWS):
+    parts=[f"figure: {js(v['figure'])}", f"cs: {js(v['cs'])}", f"note: {js(v['note'])}", f"organ: {js(v['organ'])}", f"vnejsi: {js(v['vnejsi'])}", f"see: {js(v['see'])}"]
+    if v.get("maxHeightVh"): parts.append(f"maxHeightVh: {v['maxHeightVh']}")
+    L.append("    { "+", ".join(parts)+" }"+("," if i<len(VIEWS)-1 else ""))
 L+=["  ]","};",""]
 open(os.path.join(ROOT, "data/smysly.js"),"w",encoding="utf-8").write("\n".join(L))
 print(len(ROWS), len(FAKTA))
