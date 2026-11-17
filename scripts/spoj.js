@@ -193,7 +193,7 @@
       }
       var again = el("button", { type: "button", "class": "quiz-next", text: t.again || "Hrát znovu" });
       again.addEventListener("click", start);
-      summary.appendChild(el("div", { "class": "quiz-actions" }, [again, el("a", { "class": "quiz-next quiz-secondary", href: t.backHref || "#/kostra", text: t.back || "Zpět na kostru" })]));
+      summary.appendChild(el("div", { "class": "quiz-actions" }, [again, el("a", { "class": "quiz-next quiz-secondary", href: (D.returnTo || {}).href || t.backHref || "#/kostra", text: (D.returnTo || {}).text || t.back || "Zpět na kostru" })]));
       game.hidden = true; summary.hidden = false;
       summary.querySelector("h2").setAttribute("tabindex", "-1"); summary.querySelector("h2").focus();
     }

@@ -15,6 +15,8 @@
  *   #/smysly/zajimavosti[/<id>] -> Zajímavosti tab: the fact cards (ATLAS_DATA.smysly.fakta), card id highlighted
  *   #/smysly/kviz  -> quiz Najdi část oka, ucha nebo jazyka (Figs. 167, 173, 95)
  *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
+ *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
+ *   <game route>?od=procvicovani -> the game, with its back links returning to Procvičování
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -197,8 +199,31 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSmysly || "Kvíz: Najdi část oka, ucha nebo jazyka" }), yqhost];
     }
     if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
+    if (section.id === "procvicovani") return renderProcvicovani(section);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
+  }
+
+  /* Procvičování: every game, grouped by section (ATLAS_DATA.procvicovani). */
+  function gameTitle(key) {
+    var cfg = { spoj: data.spoj, spojSvaly: data.spojSvaly, spojSmysly: data.spojSmysly, soustavyKviz: data.soustavyKviz }[key];
+    return cfg ? (cfg.ui && cfg.ui.title) || key : ui[key] || key;
+  }
+  function renderProcvicovani(section) {
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs }),
+      el("p", { "class": "fig-note", text: ui.procvicovaniIntro || "" })];
+    var list = el("div", { "class": "hub" });
+    (data.procvicovani || []).forEach(function (g) {
+      var s = findSection(g.section);
+      if (!s || s.status !== "active") return;
+      list.appendChild(el("section", { "class": "hub-group" }, [
+        el("h2", { "class": "hub-h" }, [el("span", { "aria-hidden": "true", text: s.icon + " " }), document.createTextNode(s.cs)]),
+        el("div", { "class": "quiz-actions" }, g.games.map(function (x, i) {
+          return el("a", { "class": "quiz-open" + (i ? " quiz-secondary" : ""), href: x.href + "?od=procvicovani", text: gameTitle(x.title) });
+        }))]));
+    });
+    nodes.push(list);
+    return nodes;
   }
 
   /* Links to the five Kostra part screens (on the overview). */
@@ -412,12 +437,18 @@
   }
 
   function render() {
-    var path = location.hash.replace(/^#\/?/, "").split("/");
+    var hq = location.hash.replace(/^#\/?/, "").split("?");
+    var path = hq[0].split("/");
+    // A game opened from Procvičování: its back links (top link and end screen) return there.
+    data.returnTo = /(^|&)od=procvicovani(&|$)/.test(hq[1] || "") ? { href: "#/procvicovani", text: ui.backProcvicovani || "Zpět na procvičování" } : null;
     var id = path[0], sub = path[1] || "";
     var section = findSection(id);
     var nodes = (section && section.status === "active") ? renderSection(section, sub, path[2]) : renderMenu();
 
     app.textContent = "";
+    if (data.returnTo) nodes.forEach(function (n) {
+      if (n.classList && n.classList.contains("back-link")) { n.setAttribute("href", data.returnTo.href); n.textContent = "← " + data.returnTo.text; }
+    });
     nodes.forEach(function (n) { app.appendChild(n); });
     nodes.forEach(function (n) { if (n._mount) n._mount(); });
 
