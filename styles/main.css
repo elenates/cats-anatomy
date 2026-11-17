@@ -423,3 +423,9 @@ a.menu-card:active {
 .fakt .card-title { font-size: 1.25rem; margin: 0 0 8px; }
 .fakt-fig { margin: 12px 0 0; }
 .fakt-fig img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+
+/* Procvičování: games grouped by section */
+.hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.hub-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.hub-h { font-size: 1.25rem; margin: 0 0 12px; }
+.hub .quiz-actions { flex-direction: column; align-items: stretch; }

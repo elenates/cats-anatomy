@@ -174,7 +174,7 @@
       var again = el("button", { type: "button", "class": "quiz-next", text: t.again || "Hrát znovu" });
       again.addEventListener("click", function () { start(); prompt.focus(); });
       summary.appendChild(el("div", { "class": "quiz-actions" }, [again,
-        el("a", { "class": "quiz-next quiz-secondary", href: opts.backHref || "#/organy", text: opts.back || t.back || "Zpět" })]));
+        el("a", { "class": "quiz-next quiz-secondary", href: (D.returnTo || {}).href || opts.backHref || "#/organy", text: (D.returnTo || {}).text || opts.back || t.back || "Zpět" })]));
       summary.hidden = false;
       again.focus({ preventScroll: true });
     }

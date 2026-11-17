@@ -16,7 +16,7 @@ window.ATLAS_DATA.sections = [
   { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "active" },
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "active" },
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "active" },
-  { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "soon" }
+  { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "active" }
 ];
 
 /* UI strings (Czech). Kept in one place to make proofreading easier. */
@@ -93,6 +93,10 @@ window.ATLAS_DATA.ui = {
   quizFigureLabelSmysly: "Obrázek smyslového orgánu kočky. Klepni na část, kterou hledáš.",
   quizGreatSmysly: "Jsi expert na kočičí smysly!",
   quizBackSmysly: "Zpět na smysly",
+
+  // Procvičování (M7 stage 1) – to proofread
+  procvicovaniIntro: "Tady najdeš všechny hry z celého atlasu. Vyber si, co chceš procvičit.",
+  backProcvicovani: "Zpět na procvičování",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",
@@ -164,3 +168,15 @@ window.ATLAS_DATA.kostraViews = {
     { figure: "pelvis", cs: "Pánev", layers: ["klouby"] }
   ]
 };
+
+/*
+ * Procvičování: the games of each section, in menu order. href = the game's route; title = where its
+ * name comes from (a ui key, or "spoj" / "spojSvaly" / "spojSmysly" / "soustavyKviz" for the title of
+ * that game's own texts). Opened from here, a game's back links return to Procvičování.
+ */
+window.ATLAS_DATA.procvicovani = [
+  { section: "kostra", games: [{ href: "#/kostra/kviz", title: "quizTitle" }, { href: "#/kostra/spoj", title: "spoj" }] },
+  { section: "organy", games: [{ href: "#/organy/kviz", title: "quizTitleOrgany" }, { href: "#/organy/soustavy-kviz", title: "soustavyKviz" }] },
+  { section: "svaly", games: [{ href: "#/svaly/kviz", title: "quizTitleSvaly" }, { href: "#/svaly/spoj", title: "spojSvaly" }] },
+  { section: "smysly", games: [{ href: "#/smysly/kviz", title: "quizTitleSmysly" }, { href: "#/smysly/spoj", title: "spojSmysly" }] }
+];

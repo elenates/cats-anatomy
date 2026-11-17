@@ -215,7 +215,7 @@
       }
       var again = el("button", { type: "button", "class": "quiz-next", text: ui.quizAgain || "Hrát znovu" });
       again.addEventListener("click", function () { box.remove(); start(); });
-      var back = el("a", { "class": "quiz-next quiz-secondary", href: tx.backHref || "#/kostra", text: tx.back || ui.quizBack || "Zpět na kostru" });
+      var back = el("a", { "class": "quiz-next quiz-secondary", href: (D.returnTo || {}).href || tx.backHref || "#/kostra", text: (D.returnTo || {}).text || tx.back || ui.quizBack || "Zpět na kostru" });
       box.appendChild(el("div", { "class": "quiz-actions" }, [again, back]));
       container.appendChild(box);
       again.focus({ preventScroll: true });
