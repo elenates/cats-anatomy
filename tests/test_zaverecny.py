@@ -65,6 +65,7 @@ with sync_playwright() as p:
         pg.fill("#diplom-name", "Bára"); pg.click(".diplom-box .quiz-next >> nth=0"); pg.wait_for_timeout(100)
         d = pg.locator(".diplom").inner_text()
         r.ok("Bára" in d and f"{right} z 15" in d, f"{vn}: diplom text")
+        r.ok(pg.locator(".diplom-text em").inner_text() == Z["ui"]["diplomAtlas"], f"{vn}: atlas title in italics")
         r.ok("Bára" not in pg.evaluate("JSON.stringify(localStorage)+document.cookie"), f"{vn}: name not stored")
         pg.evaluate("window.print = function () { window.__printed = true; }")
         pg.click(".diplom-box .quiz-next >> nth=1"); pg.wait_for_timeout(50)

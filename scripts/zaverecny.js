@@ -218,7 +218,8 @@
          el("h3", { "class": "diplom-title", text: t.diplomTitle || "Diplom" }),
          el("p", { "class": "diplom-for", text: t.diplomFor || "" }),
          el("p", { "class": "diplom-name", text: input.value.trim() || "…" }),
-         el("p", { "class": "diplom-text", text: t.diplomText || "" }),
+         el("p", { "class": "diplom-text" }, [document.createTextNode((t.diplomText || "") + (t.diplomAtlas ? " " : "")),
+           t.diplomAtlas ? el("em", { text: t.diplomAtlas }) : null]),
          el("p", { "class": "diplom-score", text: fmt(t.diplomScore || "", { score: score, total: total }) }),
          el("p", { "class": "diplom-date", text: fmt(t.diplomDate || "{date}", { date: d.getDate() + ". " + (d.getMonth() + 1) + ". " + d.getFullYear() }) })
         ].forEach(function (n) { paper.appendChild(n); });

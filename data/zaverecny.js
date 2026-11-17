@@ -36,19 +36,19 @@ window.ATLAS_DATA.zaverecny = {
   ui: {
     title: "Závěrečný kvíz",
     open: "Závěrečný kvíz",
-    intro: "Otázky ze všech částí atlasu. Na konci dostaneš diplom.",
+    intro: "Otázky ze všech částí atlasu. Na konci získáš diplom.",
     progress: "Otázka {n} z {total}",
     najdi: "Najdi: {name}",
     coDela: "Co dělá: {name}?",
-    kam: "Do které části patří: {name}?",
+    kam: "Do které části patří {name}?",
     hint: "Klepni na obrázek.",
     missTap: "Tady nic není. Zkus to znovu.",
     right: "Správně!",
     wrong: "Tohle není ono.",
-    rightIsFigure: "Správné místo je zvýrazněné zeleně.",
+    rightIsFigure: "Správné místo je označené zeleně.",
     rightIs: "Správná odpověď: {answer}",
     funnyReplies: [
-      "Ha, tam by se kočka divila! Zkus jinou odpověď.",
+      "Ha, to by se kočka divila! Zkus jinou odpověď.",
       "To je jen vtip. Vyber znovu.",
       "Kdepak, tohle v atlasu není!",
       "Tam patří leda ponožky. Zkus to znovu."
@@ -67,7 +67,8 @@ window.ATLAS_DATA.zaverecny = {
     print: "Vytisknout diplom",
     diplomTitle: "Diplom",
     diplomFor: "pro",
-    diplomText: "za prozkoumání kočičího těla v atlasu Kočičí tělo pod lupou",
+    diplomText: "za prozkoumání kočičího těla v atlasu",
+    diplomAtlas: "Kočičí tělo pod lupou",   // in italics after diplomText
     diplomScore: "Závěrečný kvíz – správně: {score} z {total}",
     diplomDate: "Datum: {date}"
   }
