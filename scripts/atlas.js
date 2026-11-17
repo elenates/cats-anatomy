@@ -122,7 +122,7 @@
     var selected = null;
 
     // ----- toolbar -----
-    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla", organy: ui.layerOrgany || "Orgány", svaly: ui.layerSvaly || "Svaly" };
+    var layerNames = { kosti: ui.layerKosti || "Kosti", klouby: ui.layerKlouby || "Klouby", telo: ui.layerTelo || "Části těla", organy: ui.layerOrgany || "Orgány", svaly: ui.layerSvaly || "Svaly", smysly: "Smysly" };
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
     layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
@@ -146,7 +146,8 @@
     // ----- figure -----
     var svg = svgEl("svg", { "class": "atlas-svg", role: "group", "aria-label": content === "vnejsi" ? (ui.figureLabelVnejsi || "Fotka kočky") :
       content === "organy" ? (ui.figureLabelOrgany || "Obrázek vnitřních orgánů kočky") :
-      content === "svaly" ? (ui.figureLabelSvaly || "Obrázek svalů kočky") : (ui.figureLabel || "Obrázek kostry") });
+      content === "svaly" ? (ui.figureLabelSvaly || "Obrázek svalů kočky") :
+      content === "smysly" ? (ui.figureLabelSmysly || "Obrázek smyslového orgánu kočky") : (ui.figureLabel || "Obrázek kostry") });
     var maxVh = opts && opts.maxHeightVh;
     if (maxVh) svg.style.margin = "0 auto";
     var figBox = el("div", { "class": "atlas-figure" + (only ? " is-system" : "") }, [svg]);
@@ -412,7 +413,8 @@
           state.layer === "klouby" ? (ui.cardEmptyKlouby || "Klepni na kloub na obrázku.") :
           state.layer === "telo" ? (ui.cardEmptyTelo || "Klepni na část těla na fotce.") :
           state.layer === "organy" ? (ui.cardEmptyOrgany || "Klepni na orgán na obrázku.") :
-          state.layer === "svaly" ? (ui.cardEmptySvaly || "Klepni na sval na obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
+          state.layer === "svaly" ? (ui.cardEmptySvaly || "Klepni na sval na obrázku.") :
+          state.layer === "smysly" ? (ui.cardEmptySmysly || "Klepni na nějakou část obrázku.") : (ui.cardEmptyKosti || "Klepni na kost na obrázku.") }));
         return;
       }
       var head = el("div", { "class": "card-head" }, [
@@ -445,6 +447,16 @@
           links.push(el("a", { "class": "part-link", href: "#/svaly/" + (vi + 1), text: ui.seeMuscles || "Podívej se na svaly →" }));
           return true;
         });
+      }
+      // Body part (Vnější) -> the Smysly tab that shows it inside, or else its Zajímavosti card, when that section is on.
+      if (content === "vnejsi" && D.smysly && (D.sections || []).some(function (x) { return x.id === "smysly" && x.status === "active"; })) {
+        var sv = -1;
+        (D.smysly.views || []).forEach(function (v, i) { if (sv < 0 && (v.vnejsi || []).indexOf(it.id) >= 0) sv = i; });
+        if (sv >= 0) links.push(el("a", { "class": "part-link", href: "#/smysly/" + (sv + 1), text: D.smysly.views[sv].see }));
+        else {
+          var fk = (D.smysly.fakta || []).filter(function (f) { return f.vnejsi === it.id; })[0];
+          if (fk) links.push(el("a", { "class": "part-link", href: "#/smysly/zajimavosti/" + fk.id, text: ui.seeFakt || "Přečti si zajímavost →" }));
+        }
       }
       // Body part -> the organ screen ("Vnitřní orgány"), when that section is on.
       if (it.organy && (D.sections || []).some(function (x) { return x.id === "organy" && x.status === "active"; })) {

@@ -41,7 +41,10 @@ angles = list(range(130, 405, 2))
 outer = []
 for d in angles:
     rr = [q for q in runs(d) if q[0] <= limit(d)]
-    outer.append(pt(d, rr[-1][1] + 1))
+    outer.append((d, rr[-1][1] + 1))
+r_med = np.array([r for _, r in outer], float)          # a median over 7 angles drops leader-line spikes (b′, f, g, d)
+r_med = [float(np.median(np.pad(r_med, 3, mode="edge")[i:i + 7])) for i in range(len(r_med))]
+outer = [pt(d, r) for (d, _), r in zip(outer, r_med)]
 CORNEA_OUT = [(400, 115), (350, 70), (300, 47), (260, 41), (200, 45), (150, 57), (105, 100)]
 sil = P(outer + CORNEA_OUT)
 

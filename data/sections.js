@@ -15,7 +15,7 @@ window.ATLAS_DATA.sections = [
   { id: "organy",      cs: "Vnitřní orgány",      icon: "🫀", status: "active" },
   { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "active" },
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "active" },
-  { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "soon" },
+  { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "active" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "soon" }
 ];
 
@@ -77,6 +77,15 @@ window.ATLAS_DATA.ui = {
   quizFigureLabelSvaly: "Obrázek svalů kočky – klepni na sval, který hledáš",
   quizGreatSvaly: "Jsi expert na kočičí svaly!",
   quizBackSvaly: "Zpět na svaly",
+
+  // Smysly (M6 stage 4) – to proofread
+  cardEmptySmysly: "Klepni na nějakou část obrázku.",
+  figureLabelSmysly: "Obrázek smyslového orgánu kočky",
+  smyslyTabsLabel: "Obrázky smyslů",
+  faktaTab: "Zajímavosti",
+  faktaIntro: "Co všechno kočka dokáže díky svým smyslům.",
+  seeFakt: "Přečti si zajímavost →",
+  faktaSeeFigure: "Podívej se na obrázek →",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",

@@ -30,9 +30,9 @@ with sync_playwright() as p:
         ok(pg.locator(".card-title").inner_text()=="Ocas", name+": ocas card")
         lk=pg.locator(".card-link a")
         ok(lk.count()==1 and lk.get_attribute("href")=="#/kostra/pater-hrudnik", name+": ocas bones link")
-        # ucho -> no bones link
+        # ucho -> no bones link, only the Smysly tab (M6)
         pg.locator(".hotspot[data-id='ucho']").first.focus(); pg.keyboard.press("Enter"); pg.wait_for_timeout(200)
-        ok(pg.locator(".card-title").inner_text()=="Ucho" and pg.locator(".card-link").count()==0, name+": ucho no link")
+        ok(pg.locator(".card-title").inner_text()=="Ucho" and [a.get_attribute("href") for a in pg.locator(".card-link a").all()]==["#/smysly/2"], name+": ucho links only to Smysly")
         # zvidave on -> 17
         pg.locator("[data-toggle='zvidave']").click(); pg.wait_for_timeout(200)
         ok(pg.locator(".hotspot").count()==17, name+": 17 with zvidave")

@@ -9,7 +9,10 @@
  *   id, cs, la (NAV 2017), level, organ (oko / ucho / jazyk), kdeJe, coDela, zajimavost (may be null),
  *   zvidave (extra sentence at the Pro zvídavé level, or null), refs
  * fakta: Zajímavosti cards: id, cs, text, zvidave (or null), image (images/smysly/<image>.webp or null),
+ *   imageFig (1901 figure number of the image, for its caption),
  *   organ (related tab or null), vnejsi (related item on Vnější stavba těla or null), refs
+ * views: tabs of the Smysly screen before the Zajímavosti tab (figure, cs, note, organ, vnejsi = Vnější items
+ *   whose cards link to the tab, see = text of those links, maxHeightVh = height limit for a tall figure)
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -275,6 +278,7 @@ window.ATLAS_DATA.smysly = {
       text: "Za sítnicí má kočka lesklou vrstvu, která odráží světlo jako zrcátko. Světlo tak sítnicí projde dvakrát a kočka vidí i v šeru. Proto jí oči svítí, když na ně posvítíš, a lépe vidí v šeru.",
       zvidave: "Odborně se té vrstvě říká tapetum lucidum.",
       image: null,
+      imageFig: null,
       organ: "oko",
       vnejsi: "oko",
       refs: ["RJ1901", "FOOTE22", "NAV"]
@@ -285,6 +289,7 @@ window.ATLAS_DATA.smysly = {
       text: "Ve vnitřním koutku oka má kočka ještě třetí víčko. Je to tenká blána, která se může částečně přetáhnout přes oko a chránit ho.",
       zvidave: "Odborně se mu říká mžurka. Na obrázku je zevnitř: uprostřed je chrupavka (a), která ho zpevňuje, a vedle ní žláza (b).",
       image: "third-eyelid",
+      imageFig: "165",
       organ: "oko",
       vnejsi: "oko",
       refs: ["RJ1901", "NLK-NICT", "NAV"]
@@ -295,6 +300,7 @@ window.ATLAS_DATA.smysly = {
       text: "Kočka slyší mnohem vyšší tóny než člověk. Zaslechne i velmi tenké pištění, které my vůbec neslyšíme.",
       zvidave: "Člověk slyší tóny asi do 20 000 Hz, kočka až do 85 000 Hz. V jedné studii dokázaly kočky při hlasitosti 70 dB slyšet zvuky od 48 do 85 000 Hz. Patří k savcům s nejširším rozsahem sluchu.",
       image: null,
+      imageFig: null,
       organ: "ucho",
       vnejsi: "ucho",
       refs: ["HEFFNER85", "HEFFNER07"]
@@ -305,6 +311,7 @@ window.ATLAS_DATA.smysly = {
       text: "Kočka umí natočit každé ucho zvlášť, a tak pozná, odkud zvuk přichází. Pohyb uší řídí mnoho drobných svalů.",
       zvidave: null,
       image: null,
+      imageFig: null,
       organ: "ucho",
       vnejsi: "ucho",
       refs: ["RJ1901", "CATSTER-EAR"]
@@ -315,6 +322,7 @@ window.ATLAS_DATA.smysly = {
       text: "Vousy jsou velmi citlivé hmatové chlupy. Kočka jimi vnímá doteky i drobné pohyby vzduchu, což jí pomáhá orientovat se v blízkém okolí.",
       zvidave: "Hmatové vousy nemá jen na tváři, ale i nad očima, na bradě a na předních nohou.",
       image: null,
+      imageFig: null,
       organ: null,
       vnejsi: "vousy",
       refs: ["VCA-WHISK", "NAV"]
@@ -325,6 +333,7 @@ window.ATLAS_DATA.smysly = {
       text: "Za předními zuby má kočka na patře dva malé otvory, kterými se pachové látky dostávají do zvláštního čichového orgánu. Díky němu vnímá například pachové signály jiných koček. Když ho používá, pootevře tlamu a vypadá, jako by se šklebila.",
       zvidave: "Odborně se mu říká vomeronazální orgán a tomu šklebení flémování.",
       image: null,
+      imageFig: null,
       organ: null,
       vnejsi: "nos",
       refs: ["RJ1901", "PETMD-VNO", "NAV"]
@@ -335,9 +344,16 @@ window.ATLAS_DATA.smysly = {
       text: "Když kočka padá, její rovnovážné ústrojí jí pomáhá poznat polohu hlavy a těla. Kočka se ve vzduchu otočí a dopadne na nohy. I tak se ale při pádu může zranit.",
       zvidave: null,
       image: null,
+      imageFig: null,
       organ: "ucho",
       vnejsi: null,
       refs: ["LS-RIGHT", "LAWSON-SENSES"]
     }
+  ],
+  views: [
+    { figure: "eye", cs: "Oko", note: "Oko je na obrázku rozříznuté, aby bylo vidět, co je uvnitř.", organ: "oko", vnejsi: ["oko"], see: "Podívej se, jak vypadá oko uvnitř →" },
+    { figure: "inner-ear", cs: "Ucho", note: "Na obrázku je vnitřní ucho. Je schované hluboko v kosti lebky.", organ: "ucho", vnejsi: ["ucho"], see: "Podívej se, jak vypadá ucho uvnitř →" },
+    { figure: "eardrum", cs: "Bubínek a kůstky", note: "Bubínek a sluchové kůstky při pohledu zevnitř ucha. Tenhle obrázek je pro zvídavé.", organ: null, vnejsi: [], see: null },
+    { figure: "tongue", cs: "Jazyk", note: "Jazyk při pohledu shora. Vzadu jsou vidět i krční mandle a hrtanová příklopka.", organ: "jazyk", vnejsi: [], see: null, maxHeightVh: 85 }
   ]
 };
