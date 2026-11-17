@@ -225,7 +225,7 @@ window.ATLAS_DATA.smysly = {
       la: "Papillae fungiformes",
       level: "zaklad",
       organ: "jazyk",
-      kdeJe: "Na hřbetu jazyka, hlavně na jeho přední části a po stranách.",
+      kdeJe: "Uprostřed hřbetu jazyka, mezi ostrými papilami. Po okrajích jazyka je také řada velkých papil.",
       coDela: "Jsou v nich chuťové pohárky, kterými kočka cítí chuť.",
       zajimavost: "Kočka nedokáže vnímat sladkou chuť jako člověk.",
       zvidave: null,
