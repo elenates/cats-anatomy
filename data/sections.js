@@ -90,7 +90,7 @@ window.ATLAS_DATA.ui = {
   // Quiz Najdi část oka, ucha nebo jazyka (M6 stage 5) – to proofread
   quizOpenSmysly: "Najdi část oka, ucha nebo jazyka",
   quizTitleSmysly: "Kvíz: Najdi část oka, ucha nebo jazyka",
-  quizFigureLabelSmysly: "Obrázek smyslového orgánu u kočky – klepni na část, kterou hledáš",
+  quizFigureLabelSmysly: "Obrázek smyslového orgánu kočky. Klepni na část, kterou hledáš.",
   quizGreatSmysly: "Jsi expert na kočičí smysly!",
   quizBackSmysly: "Zpět na smysly",
   kdeJe: "Kde je?",
