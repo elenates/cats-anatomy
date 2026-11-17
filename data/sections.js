@@ -86,6 +86,13 @@ window.ATLAS_DATA.ui = {
   faktaIntro: "Co všechno kočka dokáže díky svým smyslům?",
   seeFakt: "Přečti si zajímavost →",
   faktaSeeFigure: "Podívej se na obrázek →",
+
+  // Quiz Najdi část oka, ucha nebo jazyka (M6 stage 5) – to proofread
+  quizOpenSmysly: "Najdi část oka, ucha nebo jazyka",
+  quizTitleSmysly: "Kvíz: Najdi část oka, ucha nebo jazyka",
+  quizFigureLabelSmysly: "Obrázek smyslového orgánu kočky. Klepni na část, kterou hledáš.",
+  quizGreatSmysly: "Jsi expert na kočičí smysly!",
+  quizBackSmysly: "Zpět na smysly",
   kdeJe: "Kde je?",
   coDela: "Co dělá?",
   zajimavost: "Zajímavost",

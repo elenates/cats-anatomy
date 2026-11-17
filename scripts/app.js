@@ -13,6 +13,7 @@
  *   #/svaly/spoj   -> Spoj, co patří k sobě with muscles (ATLAS_DATA.spojSvaly)
  *   #/smysly[/<n>] -> Smysly, figure tab n (ATLAS_DATA.smysly.views)
  *   #/smysly/zajimavosti[/<id>] -> Zajímavosti tab: the fact cards (ATLAS_DATA.smysly.fakta), card id highlighted
+ *   #/smysly/kviz  -> quiz Najdi část oka, ucha nebo jazyka (Figs. 167, 173, 95)
  *
  * Hash routing is used because it works both on GitHub Pages and from file://.
  */
@@ -176,6 +177,17 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSvaly || "Kvíz: Najdi sval" }), mqhost];
     }
     if (section.id === "svaly" && window.Atlas && data.svaly) return sub === "skok" ? renderSkok(parseInt(sub2, 10) || 1) : renderSvaly(section, parseInt(sub, 10) || 1);
+    if (section.id === "smysly" && sub === "kviz" && window.Quiz && data.smysly) {
+      var yqhost = el("div", { "class": "atlas quiz" });
+      var yvh = {};
+      (data.smysly.views || []).forEach(function (v) { if (v.maxHeightVh) yvh[v.figure] = v.maxHeightVh; });
+      yqhost._mount = function () {
+        window.Quiz.mount(yqhost, { figures: ["eye", "inner-ear", "tongue"], layer: "smysly", rounds: 10, maxHeightVh: yvh, texts: {
+          figureLabel: ui.quizFigureLabelSmysly, great: ui.quizGreatSmysly, back: ui.quizBackSmysly, backHref: "#/smysly" } });
+      };
+      return [el("a", { "class": "back-link", href: "#/smysly", text: "← " + (ui.quizBackSmysly || "Zpět na smysly") }),
+        el("h1", { "class": "screen-title", text: ui.quizTitleSmysly || "Kvíz: Najdi část oka, ucha nebo jazyka" }), yqhost];
+    }
     if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
     var note = el("p", { "class": "placeholder", text: ui.kostraPlaceholder });
     return [back, title, note];
@@ -278,11 +290,15 @@
       });
     return el("nav", { "class": "fig-nav", "aria-label": ui.smyslyTabsLabel || "Obrázky smyslů" }, [tabList]);
   }
+  function smyslyHead(section) {
+    return el("div", { "class": "screen-head" }, [el("h1", { "class": "screen-title", text: section.cs }), el("div", { "class": "quiz-actions screen-games" }, [
+      el("a", { "class": "quiz-open", href: "#/smysly/kviz", text: ui.quizOpenSmysly || "Najdi část oka, ucha nebo jazyka" })])]);
+  }
   function renderSmysly(section, n) {
     var tabs = data.smysly.views || [];
     if (n < 1 || n > tabs.length) n = 1;
     var view = tabs[n - 1];
-    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs }), smyslyTabs(n)];
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), smyslyHead(section), smyslyTabs(n)];
     if (view.note) nodes.push(el("p", { "class": "fig-note", text: view.note }));
     var host = el("div", { "class": "atlas" });
     host._mount = function () { window.Atlas.mount(host, { figure: view.figure, maxHeightVh: view.maxHeightVh }); };
@@ -298,7 +314,7 @@
   }
   function renderFakta(section, focusId) {
     var fakta = data.smysly.fakta || [], views = data.smysly.views || [];
-    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: section.cs }), smyslyTabs("zajimavosti")];
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), smyslyHead(section), smyslyTabs("zajimavosti")];
     var on = zvidaveOn();
     var tg = el("button", { type: "button", "class": "toggle", "data-toggle": "zvidave", "aria-pressed": String(on), text: ui.toggleZvidave || "Pro zvídavé" });
     var list = el("div", { "class": "fakta" });

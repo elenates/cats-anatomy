@@ -225,7 +225,7 @@ SOURCES = [
 # vnejsi = Vnější stavba těla items whose cards link to the tab; see = text of those links;
 # maxHeightVh = height limit of a tall figure.
 VIEWS = [
-  dict(figure="eye", cs="Oko", organ="oko", vnejsi=["oko"], see="Podívej se, jak vypadá oko uvnitř →",
+  dict(figure="eye", cs="Oko", organ="oko", vnejsi=["oko"], see="Podívej se, jak vypadá oko uvnitř →", maxHeightVh=75,
        note="Oko je na obrázku rozříznuté, aby bylo vidět, co je uvnitř."),
   dict(figure="inner-ear", cs="Ucho", organ="ucho", vnejsi=["ucho"], see="Podívej se, jak vypadá ucho uvnitř →",
        note="Na obrázku je vnitřní ucho. Je schované hluboko v kosti lebky."),
