@@ -26,7 +26,7 @@ No installation, no build step, no server.
 | 3 | Vnitřní orgány | done (v0.4) |
 | 4 | Tělesné soustavy | done (v0.4) |
 | 5 | Svaly | done (v0.5) |
-| 6 | Smysly | in progress (v0.6) |
+| 6 | Smysly | done (v0.6) |
 | 7 | Procvičování | planned |
 
 ## Repository structure

@@ -118,3 +118,58 @@ window.ATLAS_DATA.spojSvaly = {
     again: "Hrát znovu"
   }
 };
+
+/*
+ * Spoj, co patří k sobě for Smysly (M6 stage 5): the Základ structures of data/smysly.js.
+ * Conflicts: texts about light coming into the eye; texts about messages for the brain
+ * (and the lens text, which names the retina); the two papillae with taste buds.
+ * Czech text: to proofread.
+ */
+window.ATLAS_DATA.spojSmysly = {
+  rounds: 3,
+  pairs: 3,
+  funnyPerRound: 2,
+
+  conflicts: [
+    ["rohovka", "duhovka", "cocka"],                       // light into the eye, focusing
+    ["zrakovy-nerv", "hlemyzd", "sitnice", "cocka"],       // messages for the brain; "sítnice" in the lens and nerve texts
+    ["houbovite-papily", "hrazene-papily"]                 // taste buds
+  ],
+
+  funny: [
+    "Pouští kočce v hlavě pohádky.",
+    "Šeptá kočce do ucha vtipy.",
+    "Ochutnává za kočku zmrzlinu.",
+    "Počítá, kolik myší kočka chytila.",
+    "Hlídá, aby kočka nezaspala čas na snídani.",
+    "Píská, když se blíží pes.",
+    "Vybírá kočce nejměkčí polštář.",
+    "Zpívá kočce ukolébavku."
+  ],
+
+  ui: {
+    title: "Spoj, co patří k sobě",
+    open: "Spoj, co patří k sobě",
+    back: "Zpět na smysly",
+    backHref: "#/smysly",
+    great: "Jsi expert na kočičí smysly!",
+    howTo: "Klepni na část oka, ucha nebo jazyka a potom na to, co dělá. Pozor, některé odpovědi jsou jen pro legraci!",
+    round: "Kolo {n} z {total}",
+    namesLabel: "Části",
+    answersLabel: "Co dělá?",
+    pickName: "Vyber nejdřív část vlevo.",
+    pickAnswer: "Teď vyber odpověď pro: {name}",
+    right: "{name} – správně!",
+    wrong: "Tohle k sobě nepatří. Zkus to znovu.",
+    funnyReplies: [
+      "Ha, to by byla legrace! Ale žádná část kočičího těla to neumí.",
+      "Kdepak, to by se kočka divila!",
+      "To je jen vtip. Zkus jinou odpověď.",
+      "Tohle umí jen kočka z pohádky."
+    ],
+    nextRound: "Další kolo",
+    finish: "Výsledek",
+    score: "Napoprvé správně: {score} z {total}",
+    again: "Hrát znovu"
+  }
+};
