@@ -515,7 +515,7 @@
       ["parts", "source", "licence", "changes"].forEach(function (k) { if (g[k]) card.appendChild(parts(g[k])); });
       if (g.figures.length > 1 || g.figures[0].no) {
         card.appendChild(el("ul", { "class": "about-figs" }, g.figures.map(function (f) {
-          return el("li", { "data-file": f.file }, [el("strong", { text: (ui.figurePrefix || "Obrázek") + " " + f.no + ": " }), document.createTextNode(f.cs)]);
+          return el("li", { "data-file": f.file }, [f.no ? el("strong", { text: (ui.figurePrefix || "Obrázek") + " " + f.no + ": " }) : null, document.createTextNode(f.cs)].filter(Boolean));
         })));
       } else card.setAttribute("data-file", g.figures[0].file);
       imgs.appendChild(card);

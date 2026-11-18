@@ -48,7 +48,9 @@ window.ATLAS_DATA.zdroje = {
         { no: "165", cs: "Třetí víčko", file: "images/smysly/third-eyelid.webp" },
         { no: "167", cs: "Oko v řezu", file: "images/smysly/eye.webp" },
         { no: "170", cs: "Bubínek a sluchové kůstky", file: "images/smysly/eardrum.webp" },
-        { no: "173", cs: "Vnitřní ucho", file: "images/smysly/inner-ear.webp" }
+        { no: "173", cs: "Vnitřní ucho", file: "images/smysly/inner-ear.webp" },
+        { cs: "Kostra přizpůsobená fotce kočky (Kočičí rentgen, z obrázku 1)", file: "images/rentgen/layer-kosti.webp" },
+        { cs: "Svaly přizpůsobené fotce kočky (Kočičí rentgen, z obrázku 68)", file: "images/rentgen/layer-svaly.webp" }
       ]
     },
     {
@@ -63,14 +65,14 @@ window.ATLAS_DATA.zdroje = {
       parts: [{ text: "Autor původní fotografie: Bhaskaranaidu. Pozadí odstranil YukiKoKo. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Black_mackerel_tabby_DSH_(no_background).jpg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: obrázek oříznut." }],
-      figures: [{ cs: "Kočka z boku", file: "images/rentgen/cat-photo.webp" }]
+      figures: [{ cs: "Kočka z boku", file: "images/rentgen/cat-photo.webp" }, { cs: "Kočka jako rentgenový snímek", file: "images/rentgen/xray-base.webp" }]
     },
     {
       heading: "Kresba vnitřních orgánů (Vnitřní orgány, Tělesné soustavy)",
       parts: [{ text: "Autoři: Persian Poet Gal, Surachit, Whidou, RuM a další, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Scheme_cat_anatomy.svg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: odstraněny popisky, obrázek oříznut a zmenšen." }],
-      figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }]
+      figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }, { cs: "Vnitřní orgány přizpůsobené fotce kočky (Kočičí rentgen)", file: "images/rentgen/layer-organy.webp" }]
     }
   ],
 
