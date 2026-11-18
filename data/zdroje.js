@@ -59,6 +59,13 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Kočka na sněhu", file: "images/vnejsi/cat-side.webp" }]
     },
     {
+      heading: "Fotka kočky z boku (Kočičí rentgen)",
+      parts: [{ text: "Autor původní fotografie: Bhaskaranaidu. Pozadí odstranil YukiKoKo. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Black_mackerel_tabby_DSH_(no_background).jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: obrázek oříznut." }],
+      figures: [{ cs: "Kočka z boku", file: "images/rentgen/cat-photo.webp" }]
+    },
+    {
       heading: "Kresba vnitřních orgánů (Vnitřní orgány, Tělesné soustavy)",
       parts: [{ text: "Autoři: Persian Poet Gal, Surachit, Whidou, RuM a další, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Scheme_cat_anatomy.svg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
