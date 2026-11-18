@@ -8,8 +8,8 @@
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
 window.ATLAS_DATA.zdroje = {
-  title: "O aplikaci a zdroje",
-  link: "O aplikaci a zdroje",
+  title: "O aplikaci a zdrojích",
+  link: "O aplikaci a zdrojích",
   intro: "Kočičí tělo pod lupou je atlas kočičí anatomie pro děti. Ukazuje kostru, vnější stavbu těla, vnitřní orgány, svaly a smysly kočky.",
 
   imagesHeading: "Obrázky",
@@ -17,19 +17,19 @@ window.ATLAS_DATA.zdroje = {
     {
       heading: "Kresby z knihy Anatomy of the Cat (1901)",
       parts: [{ text: "Autoři knihy: Jacob Reighard a Herbert Spencer Jennings. Kresby: Louise Burridge Jennings. Kniha vyšla v roce 1901 v New Yorku." }],
-      licence: [{ text: "Licence: volné dílo. Autorská práva už vypršela, obrázky smí používat kdokoli." }],
-      source: [{ text: "Odkud jsou: " }, { text: "Project Gutenberg", href: "https://www.gutenberg.org/ebooks/58394" },
-               { text: " a pro obrázky smyslů větší sken knihy v " }, { text: "Internet Archive", href: "https://archive.org/details/anatomyofcat00reig" }, { text: "." }],
-      changes: [{ text: "Úpravy: převedeno na černobílé, vyčištěno, u některých oříznuto. Písmena původních popisků jsme ponechali." }],
+      licence: [{ text: "Licence: volné dílo. Doba ochrany autorských práv již uplynula, obrázky tedy může používat kdokoli." }],
+      source: [{ text: "Zdroje: " }, { text: "Project Gutenberg", href: "https://www.gutenberg.org/ebooks/58394" },
+               { text: "; pro obrázky smyslů také rozsáhlejší sken knihy z " }, { text: "Internet Archive", href: "https://archive.org/details/anatomyofcat00reig" }, { text: "." }],
+      changes: [{ text: "Úpravy: převedeny do černobílé podoby, vyčištěny a některé oříznuty. Písmena původních popisků jsme ponechali." }],
       figures: [
         { no: "1", cs: "Kostra", file: "images/kostra/skeleton.webp" },
         { no: "40", cs: "Lebka", file: "images/kostra/skull.webp" },
         { no: "47", cs: "Kost pažní", file: "images/kostra/humerus.webp" },
-        { no: "49", cs: "Kost vřetenní a loketní", file: "images/kostra/radius-ulna.webp" },
+        { no: "49", cs: "Kost vřetenní a kost loketní", file: "images/kostra/radius-ulna.webp" },
         { no: "51", cs: "Kosti přední tlapky", file: "images/kostra/forepaw.webp" },
         { no: "55", cs: "Pánevní kost", file: "images/kostra/pelvis.webp" },
         { no: "56", cs: "Kost stehenní", file: "images/kostra/femur.webp" },
-        { no: "57", cs: "Kost holenní a lýtková", file: "images/kostra/tibia-fibula.webp" },
+        { no: "57", cs: "Kost holenní a kost lýtková", file: "images/kostra/tibia-fibula.webp" },
         { no: "58", cs: "Kosti zadní tlapky", file: "images/kostra/hindpaw.webp" },
         { no: "68", cs: "Svaly pod kůží", file: "images/svaly/muscles-superficial.webp" },
         { no: "73", cs: "Hlubší svaly", file: "images/svaly/muscles-deep.webp" },
@@ -55,14 +55,14 @@ window.ATLAS_DATA.zdroje = {
       heading: "Fotka kočky na sněhu (Vnější stavba těla)",
       parts: [{ text: "Autor: Von.grzanka, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Felis_catus-cat_on_snow.jpg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
       figures: [{ cs: "Kočka na sněhu", file: "images/vnejsi/cat-side.webp" }]
     },
     {
       heading: "Kresba vnitřních orgánů (Vnitřní orgány, Tělesné soustavy)",
       parts: [{ text: "Autoři: Persian Poet Gal, Surachit, Whidou, RuM a další, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Scheme_cat_anatomy.svg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: odstraněny popisky, oříznuto, zmenšeno." }],
+      changes: [{ text: "Úpravy: odstraněny popisky, obrázek oříznut a zmenšen." }],
       figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }]
     }
   ],
@@ -70,7 +70,7 @@ window.ATLAS_DATA.zdroje = {
   textsHeading: "Odborné zdroje",
   texts: [
     [{ text: "Latinské názvy odpovídají mezinárodnímu seznamu Nomina Anatomica Veterinaria (6. vydání, 2017)." }],
-    [{ text: "Každý údaj v textech jsme ověřili alespoň v jednom odborném zdroji. Úplný seznam zdrojů je v souboru " },
+    [{ text: "Všechny údaje v textech jsme ověřili alespoň v jednom odborném zdroji. Úplný seznam zdrojů je v souboru " },
      { text: "sources/references.md", href: "https://github.com/elenates/cats-anatomy/blob/main/sources/references.md" }, { text: "." }],
     [{ text: "Podrobnosti ke každému obrázku jsou v souboru " },
      { text: "sources/image-licenses.md", href: "https://github.com/elenates/cats-anatomy/blob/main/sources/image-licenses.md" }, { text: "." }]
@@ -79,7 +79,7 @@ window.ATLAS_DATA.zdroje = {
   privacyHeading: "Soukromí",
   privacy: [
     [{ text: "Aplikace nic neposílá na internet a neukládá žádné osobní údaje. Jméno na diplomu se nikam neukládá." }],
-    [{ text: "Prohlížeč si pamatuje jen nastavení přepínačů Popisky, Latinsky a Pro zvídavé." }]
+    [{ text: "Prohlížeč si pamatuje pouze stav přepínačů Popisky, Latinsky a Pro zvídavé." }]
   ],
 
   codeHeading: "Zdrojový kód",

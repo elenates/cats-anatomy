@@ -17,7 +17,7 @@
  *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
  *   #/vnejsi/kviz  -> quiz Najdi část těla (cat photo)
  *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
- *   #/o-aplikaci   -> O aplikaci a zdroje (ATLAS_DATA.zdroje); linked from the footer of every screen
+ *   #/o-aplikaci   -> O aplikaci a zdrojích (ATLAS_DATA.zdroje); linked from the footer of every screen
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
  *   #/procvicovani/zaverecny -> Závěrečný kvíz with the Diplom (ATLAS_DATA.zaverecny)
@@ -499,7 +499,7 @@
     return nodes;
   }
 
-  /* O aplikaci a zdroje (ATLAS_DATA.zdroje): text parts are [{ text, href? }]. */
+  /* O aplikaci a zdrojích (ATLAS_DATA.zdroje): text parts are [{ text, href? }]. */
   function parts(list, cls) {
     return el("p", { "class": cls || "about-p" }, list.map(function (x) {
       return x.href ? el("a", { href: x.href, target: "_blank", rel: "noopener", text: x.text }) : document.createTextNode(x.text);

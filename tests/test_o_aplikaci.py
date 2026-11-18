@@ -1,4 +1,4 @@
-"""O aplikaci a zdroje (M8): footer link on every screen, the page lists every image file once with author,
+"""O aplikaci a zdrojích (M8): footer link on every screen, the page lists every image file once with author,
 licence and changes, every listed file exists and has a row in sources/image-licenses.md, and the two
 CC BY-SA pictures show their credit wherever they appear (atlas, quizzes, Doplň popisky, final quiz)."""
 import os, sys, glob, re
