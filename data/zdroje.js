@@ -49,8 +49,8 @@ window.ATLAS_DATA.zdroje = {
         { no: "167", cs: "Oko v řezu", file: "images/smysly/eye.webp" },
         { no: "170", cs: "Bubínek a sluchové kůstky", file: "images/smysly/eardrum.webp" },
         { no: "173", cs: "Vnitřní ucho", file: "images/smysly/inner-ear.webp" },
-        { cs: "Kostra přizpůsobená fotce kočky (Kočičí rentgen, z obrázku 1)", file: "images/rentgen/layer-kosti.webp" },
-        { cs: "Svaly přizpůsobené fotce kočky (Kočičí rentgen, z obrázku 68)", file: "images/rentgen/layer-svaly.webp" }
+        { cs: "Kostra upravená podle fotografie kočky (Kočičí rentgen, podle obrázku 1)", file: "images/rentgen/layer-kosti.webp" },
+        { cs: "Svaly upravené podle fotografie kočky (Kočičí rentgen, podle obrázku 68)", file: "images/rentgen/layer-svaly.webp" }
       ]
     },
     {
@@ -72,7 +72,7 @@ window.ATLAS_DATA.zdroje = {
       parts: [{ text: "Autoři: Persian Poet Gal, Surachit, Whidou, RuM a další, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Scheme_cat_anatomy.svg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: odstraněny popisky, obrázek oříznut a zmenšen." }],
-      figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }, { cs: "Vnitřní orgány přizpůsobené fotce kočky (Kočičí rentgen)", file: "images/rentgen/layer-organy.webp" }]
+      figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }, { cs: "Vnitřní orgány upravené podle fotografie kočky (Kočičí rentgen)", file: "images/rentgen/layer-organy.webp" }]
     }
   ],
 
