@@ -64,59 +64,59 @@
    ],
    "shoulder": [
     235,
-    240
+    250
    ],
    "elbow_fwd": [
-    275,
-    325
+    300,
+    312
    ],
    "wrist_fwd": [
-    245,
-    455
+    255,
+    480
    ],
    "paw_fwd": [
-    220,
-    508
-   ],
-   "elbow_back": [
-    360,
-    322
-   ],
-   "wrist_back": [
-    338,
-    445
-   ],
-   "paw_back": [
-    415,
-    515
-   ],
-   "hip": [
-    800,
-    195
-   ],
-   "knee_fwd": [
-    695,
-    335
-   ],
-   "hock_fwd": [
-    750,
-    440
-   ],
-   "hpaw_fwd": [
-    625,
+    190,
     520
    ],
+   "elbow_back": [
+    400,
+    318
+   ],
+   "wrist_back": [
+    348,
+    470
+   ],
+   "paw_back": [
+    425,
+    522
+   ],
+   "hip": [
+    815,
+    207
+   ],
+   "knee_fwd": [
+    660,
+    330
+   ],
+   "hock_fwd": [
+    752,
+    452
+   ],
+   "hpaw_fwd": [
+    600,
+    522
+   ],
    "knee_back": [
-    835,
-    320
+    795,
+    305
    ],
    "hock_back": [
-    972,
-    412
+    962,
+    398
    ],
    "hpaw_back": [
-    952,
-    522
+    948,
+    528
    ],
    "tailmid": [
     1010,
@@ -233,10 +233,215 @@
    "tailtip": [
     18,
     612
+   ],
+   "paw_back": [
+    960,
+    775
    ]
   },
-  "smooth": 30,
-  "_note": "paw_back left out: in the photo that paw is lifted and bent backwards, the skeleton's paw stands on the ground; matching them folds the warp."
+  "_note": "Legs: each bone segment (fig = its two ends in the figure, from/to = the photo points of its ends) is moved by its own straight-line transform, so a bent or lifted leg follows the photo. The rest of the skeleton is fitted with the thin-plate spline through body_only.",
+  "body_only": [
+   "nose",
+   "eye",
+   "chin",
+   "poll",
+   "ear",
+   "withers",
+   "back",
+   "croup",
+   "tailbase",
+   "rump",
+   "chest",
+   "sternum",
+   "belly",
+   "groin",
+   "tailmid",
+   "tailtip",
+   "shoulder",
+   "elbow_fwd",
+   "elbow_back",
+   "hip",
+   "knee_fwd",
+   "knee_back"
+  ],
+  "segments": [
+   {
+    "name": "paw_back",
+    "from": "wrist_back",
+    "to": "paw_back",
+    "fig": [
+     [
+      905,
+      690
+     ],
+     [
+      960,
+      775
+     ]
+    ],
+    "width": 60
+   },
+   {
+    "name": "paw_fwd",
+    "from": "wrist_fwd",
+    "to": "paw_fwd",
+    "fig": [
+     [
+      1020,
+      640
+     ],
+     [
+      1125,
+      705
+     ]
+    ],
+    "width": 60
+   },
+   {
+    "name": "forearm_back",
+    "from": "elbow_back",
+    "to": "wrist_back",
+    "fig": [
+     [
+      870,
+      455
+     ],
+     [
+      905,
+      690
+     ]
+    ],
+    "width": 46
+   },
+   {
+    "name": "forearm_fwd",
+    "from": "elbow_fwd",
+    "to": "wrist_fwd",
+    "fig": [
+     [
+      930,
+      410
+     ],
+     [
+      1020,
+      640
+     ]
+    ],
+    "width": 40
+   },
+   {
+    "name": "foot_back",
+    "from": "hock_back",
+    "to": "hpaw_back",
+    "fig": [
+     [
+      195,
+      540
+     ],
+     [
+      215,
+      712
+     ]
+    ],
+    "width": 56
+   },
+   {
+    "name": "foot_fwd",
+    "from": "hock_fwd",
+    "to": "hpaw_fwd",
+    "fig": [
+     [
+      420,
+      670
+     ],
+     [
+      648,
+      752
+     ]
+    ],
+    "width": 56
+   },
+   {
+    "name": "tibia_back",
+    "from": "knee_back",
+    "to": "hock_back",
+    "fig": [
+     [
+      415,
+      405
+     ],
+     [
+      195,
+      540
+     ]
+    ],
+    "width": 40
+   },
+   {
+    "name": "tibia_fwd",
+    "from": "knee_fwd",
+    "to": "hock_fwd",
+    "fig": [
+     [
+      495,
+      415
+     ],
+     [
+      420,
+      670
+     ]
+    ],
+    "width": 40
+   },
+   {
+    "name": "humerus_back",
+    "from": "shoulder",
+    "to": "elbow_back",
+    "fig": [
+     [
+      1045,
+      325
+     ],
+     [
+      870,
+      455
+     ]
+    ],
+    "width": 44
+   },
+   {
+    "name": "femur_back",
+    "from": "hip",
+    "to": "knee_back",
+    "fig": [
+     [
+      370,
+      205
+     ],
+     [
+      415,
+      405
+     ]
+    ],
+    "width": 44
+   },
+   {
+    "name": "femur_fwd",
+    "from": "hip",
+    "to": "knee_fwd",
+    "fig": [
+     [
+      370,
+      210
+     ],
+     [
+      495,
+      415
+     ]
+    ],
+    "width": 44
+   }
+  ]
  },
  "organs": {
   "image": "images/organy/organs-side.webp",
