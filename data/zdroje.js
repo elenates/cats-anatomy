@@ -60,7 +60,7 @@ window.ATLAS_DATA.zdroje = {
     },
     {
       heading: "Fotka kočky z boku (Kočičí rentgen)",
-      parts: [{ text: "Autor: Bhaskaranaidu, pozadí odstranil YukiKoKo, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Black_mackerel_tabby_DSH_(no_background).jpg" }, { text: "." }],
+      parts: [{ text: "Autor původní fotografie: Bhaskaranaidu. Pozadí odstranil YukiKoKo. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Black_mackerel_tabby_DSH_(no_background).jpg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: obrázek oříznut." }],
       figures: [{ cs: "Kočka z boku", file: "images/rentgen/cat-photo.webp" }]
