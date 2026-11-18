@@ -15,3 +15,11 @@
   - Fig. 68 has no lower legs and no tail.
   - The organ drawing has no joints, so only its outline points are used.
   - The far upper arm of the skeleton has no segment of its own. It follows the body fit.
+- `build.py` (stage 3): builds what the screen uses. Run it with `python3 tools/rentgen/build.py`. It creates:
+  - `images/rentgen/xray-base.webp`: the cat as an X-ray film;
+  - `layer-kosti.webp`: the glowing bones;
+  - `layer-organy.webp`: the organs in colour;
+  - `layer-svaly.webp`: the muscles in pink;
+  - `data/rentgen-areas.js`: every clickable area of the three figures, warped onto the photo. Each area is filled into a mask, the mask is warped like the drawing, and its outline in the photo becomes the new area. This way an area that crosses a joint is not torn.
+
+  The layer images are twice the photo size, so lines stay sharp on a tablet. `check-hotspots.png` shows all the warped areas over the photo.

@@ -82,33 +82,47 @@ def silhouette(scale=1, grow=6):
     m = gaussian_filter(m, 1.5)
     return zoom(m, scale, order=1) if scale != 1 else m
 
+_SRC_CACHE = {}
+def source_points(fig, scale=1):
+    """For every pixel of the photo frame (x scale): where it comes from in the figure (mirrored coords), and
+    whether that pixel is drawn (inside a leg strip of its own segment, or a body pixel outside all strips)."""
+    key = (fig, scale)
+    if key in _SRC_CACHE: return _SRC_CACHE[key]
+    _, inv, _ = mapping(fig)
+    ph = L["photo"]; W, H = ph["width"] * scale, ph["height"] * scale
+    yy, xx = np.mgrid[0:H, 0:W]
+    q = np.c_[xx.ravel(), yy.ravel()].astype(float) / scale
+    src = inv(q); owner = np.full(len(q), -1)
+    segs = segments(fig)
+    body_in_seg = np.zeros(len(q), bool)
+    for s_ in segs: body_in_seg |= s_.inside(src)
+    for i, s_ in enumerate(segs):            # a segment draws the photo pixels whose source lies in its strip
+        f = s_.inv(q); m = s_.inside(f) & (owner < 0)
+        src[m] = f[m]; owner[m] = i
+    keep = (owner >= 0) | ~body_in_seg       # the body spline does not draw leg strips
+    _SRC_CACHE[key] = (src, keep, W, H)
+    return _SRC_CACHE[key]
+
+def warp_array(fig, arr, scale=1, order=1):
+    """Warps any array the size of the (mirrored) figure image onto the photo frame."""
+    src, keep, W, H = source_points(fig, scale)
+    sh, sw = arr.shape[:2]
+    inside = (src[:, 0] >= 0) & (src[:, 0] < sw) & (src[:, 1] >= 0) & (src[:, 1] < sh) & keep
+    chans = arr[..., None] if arr.ndim == 2 else arr
+    out = np.zeros((len(src), chans.shape[2]))
+    for c in range(chans.shape[2]):
+        out[:, c] = map_coordinates(chans[..., c].astype(float), [src[:, 1], src[:, 0]], order=order, mode="constant", cval=0)
+    out[~inside] = 0
+    return out.reshape(H, W, chans.shape[2]) if arr.ndim == 3 else out.reshape(H, W)
+
 def warp_image(fig, scale=1, clip=True):
     """The figure warped onto the photo frame (RGBA, photo size x scale), bilinear sampling. clip: nothing is
     drawn outside the cat (stray letters and line ends of the figure)."""
-    _, inv, _ = mapping(fig)
-    ph = L["photo"]; W, H = ph["width"] * scale, ph["height"] * scale
     src = Image.open(os.path.join(ROOT, L[fig]["image"])).convert("RGBA")
     if L[fig]["mirror"]: src = src.transpose(Image.FLIP_LEFT_RIGHT)
-    s = np.array(src).astype(float); sh, sw = s.shape[:2]
-    yy, xx = np.mgrid[0:H, 0:W]
-    q = np.c_[xx.ravel(), yy.ravel()].astype(float) / scale
-    src_pts = inv(q); owner = np.full(len(q), -1)
-    segs = segments(fig)
-    body_in_seg = np.zeros(len(q), bool)
-    for s_ in segs: body_in_seg |= s_.inside(src_pts)
-    for i, s_ in enumerate(segs):            # a segment draws the photo pixels whose source lies in its strip
-        f = s_.inv(q); m = s_.inside(f) & (owner < 0)
-        src_pts[m] = f[m]; owner[m] = i
-    keep = (owner >= 0) | ~body_in_seg       # the body spline does not draw leg strips
-    out = np.zeros((len(q), 4))
-    for c in range(4):
-        out[:, c] = map_coordinates(s[..., c], [src_pts[:, 1], src_pts[:, 0]], order=1, mode="constant", cval=0)
-    inside = (src_pts[:, 0] >= 0) & (src_pts[:, 0] < sw) & (src_pts[:, 1] >= 0) & (src_pts[:, 1] < sh) & keep
-    out[~inside] = 0
-    if clip:
-        m = silhouette(scale).ravel()[: len(out)]
-        out[:, 3] *= m
-    return Image.fromarray(out.reshape(H, W, 4).clip(0, 255).astype(np.uint8)), segs
+    out = warp_array(fig, np.array(src), scale)
+    if clip: out[..., 3] *= silhouette(scale)[: out.shape[0], : out.shape[1]]
+    return Image.fromarray(out.clip(0, 255).astype(np.uint8)), segments(fig)
 
 if __name__ == "__main__":
     photo = Image.open(os.path.join(ROOT, L["photo"]["image"])).convert("RGBA")
