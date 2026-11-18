@@ -1,0 +1,405 @@
+{
+ "_about": "Kočičí rentgen (#43): matching landmarks on the photo and on the three figures, in each image's own pixel coordinates. mirror: the figure faces right and is flipped before fitting (x -> width - x). A landmark missing on a figure is simply not used for it. fwd/back = the leg that is forward / back on the picture facing left.",
+ "photo": {
+  "image": "images/rentgen/cat-photo.webp",
+  "width": 1235,
+  "height": 562,
+  "mirror": false,
+  "points": {
+   "nose": [
+    38,
+    192
+   ],
+   "eye": [
+    95,
+    155
+   ],
+   "chin": [
+    57,
+    222
+   ],
+   "poll": [
+    120,
+    75
+   ],
+   "ear": [
+    25,
+    22
+   ],
+   "withers": [
+    300,
+    88
+   ],
+   "back": [
+    650,
+    72
+   ],
+   "croup": [
+    810,
+    108
+   ],
+   "tailbase": [
+    850,
+    140
+   ],
+   "rump": [
+    868,
+    215
+   ],
+   "chest": [
+    215,
+    255
+   ],
+   "sternum": [
+    430,
+    312
+   ],
+   "belly": [
+    570,
+    322
+   ],
+   "groin": [
+    640,
+    300
+   ],
+   "shoulder": [
+    235,
+    240
+   ],
+   "elbow_fwd": [
+    275,
+    325
+   ],
+   "wrist_fwd": [
+    245,
+    455
+   ],
+   "paw_fwd": [
+    220,
+    508
+   ],
+   "elbow_back": [
+    360,
+    322
+   ],
+   "wrist_back": [
+    338,
+    445
+   ],
+   "paw_back": [
+    415,
+    515
+   ],
+   "hip": [
+    800,
+    195
+   ],
+   "knee_fwd": [
+    695,
+    335
+   ],
+   "hock_fwd": [
+    750,
+    440
+   ],
+   "hpaw_fwd": [
+    625,
+    520
+   ],
+   "knee_back": [
+    835,
+    320
+   ],
+   "hock_back": [
+    972,
+    412
+   ],
+   "hpaw_back": [
+    952,
+    522
+   ],
+   "tailmid": [
+    1010,
+    245
+   ],
+   "tailtip": [
+    1205,
+    268
+   ]
+  }
+ },
+ "skeleton": {
+  "image": "images/kostra/skeleton.webp",
+  "width": 1500,
+  "height": 804,
+  "mirror": true,
+  "points": {
+   "nose": [
+    1475,
+    215
+   ],
+   "chin": [
+    1420,
+    240
+   ],
+   "poll": [
+    1300,
+    30
+   ],
+   "withers": [
+    1000,
+    100
+   ],
+   "back": [
+    620,
+    32
+   ],
+   "croup": [
+    440,
+    80
+   ],
+   "tailbase": [
+    300,
+    140
+   ],
+   "rump": [
+    310,
+    250
+   ],
+   "chest": [
+    1095,
+    290
+   ],
+   "sternum": [
+    900,
+    332
+   ],
+   "shoulder": [
+    1045,
+    325
+   ],
+   "elbow_back": [
+    870,
+    455
+   ],
+   "wrist_back": [
+    905,
+    690
+   ],
+   "elbow_fwd": [
+    930,
+    410
+   ],
+   "wrist_fwd": [
+    1020,
+    640
+   ],
+   "paw_fwd": [
+    1100,
+    695
+   ],
+   "hip": [
+    370,
+    205
+   ],
+   "knee_fwd": [
+    495,
+    415
+   ],
+   "hock_fwd": [
+    415,
+    670
+   ],
+   "hpaw_fwd": [
+    600,
+    745
+   ],
+   "knee_back": [
+    415,
+    405
+   ],
+   "hock_back": [
+    195,
+    540
+   ],
+   "hpaw_back": [
+    215,
+    700
+   ],
+   "tailmid": [
+    150,
+    440
+   ],
+   "tailtip": [
+    18,
+    612
+   ]
+  },
+  "smooth": 30,
+  "_note": "paw_back left out: in the photo that paw is lifted and bent backwards, the skeleton's paw stands on the ground; matching them folds the warp."
+ },
+ "organs": {
+  "image": "images/organy/organs-side.webp",
+  "width": 1500,
+  "height": 782,
+  "mirror": false,
+  "points": {
+   "nose": [
+    58,
+    225
+   ],
+   "chin": [
+    130,
+    300
+   ],
+   "ear": [
+    35,
+    32
+   ],
+   "poll": [
+    180,
+    72
+   ],
+   "withers": [
+    320,
+    125
+   ],
+   "back": [
+    800,
+    120
+   ],
+   "croup": [
+    1050,
+    165
+   ],
+   "tailbase": [
+    1082,
+    190
+   ],
+   "rump": [
+    1088,
+    268
+   ],
+   "chest": [
+    235,
+    345
+   ],
+   "sternum": [
+    500,
+    462
+   ],
+   "belly": [
+    700,
+    462
+   ],
+   "groin": [
+    960,
+    515
+   ],
+   "wrist_fwd": [
+    215,
+    650
+   ],
+   "paw_fwd": [
+    200,
+    712
+   ],
+   "wrist_back": [
+    470,
+    630
+   ],
+   "paw_back": [
+    455,
+    690
+   ],
+   "hock_fwd": [
+    870,
+    640
+   ],
+   "hpaw_fwd": [
+    795,
+    730
+   ],
+   "hock_back": [
+    1165,
+    560
+   ],
+   "hpaw_back": [
+    1145,
+    715
+   ],
+   "tailmid": [
+    1260,
+    420
+   ],
+   "tailtip": [
+    1460,
+    635
+   ]
+  }
+ },
+ "muscles": {
+  "image": "images/svaly/muscles-superficial.webp",
+  "width": 1250,
+  "height": 705,
+  "mirror": true,
+  "points": {
+   "nose": [
+    1240,
+    322
+   ],
+   "eye": [
+    1160,
+    215
+   ],
+   "chin": [
+    1170,
+    350
+   ],
+   "ear": [
+    1152,
+    10
+   ],
+   "poll": [
+    1040,
+    120
+   ],
+   "withers": [
+    900,
+    215
+   ],
+   "back": [
+    500,
+    235
+   ],
+   "croup": [
+    250,
+    268
+   ],
+   "tailbase": [
+    120,
+    330
+   ],
+   "rump": [
+    95,
+    420
+   ],
+   "chest": [
+    960,
+    420
+   ],
+   "sternum": [
+    700,
+    540
+   ],
+   "belly": [
+    500,
+    548
+   ],
+   "groin": [
+    300,
+    525
+   ]
+  }
+ }
+}
