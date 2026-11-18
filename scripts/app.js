@@ -17,6 +17,7 @@
  *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
  *   #/vnejsi/kviz  -> quiz Najdi část těla (cat photo)
  *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
+ *   #/o-aplikaci   -> O aplikaci a zdrojích (ATLAS_DATA.zdroje); linked from the footer of every screen
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
  *   #/procvicovani/zaverecny -> Závěrečný kvíz with the Diplom (ATLAS_DATA.zaverecny)
@@ -498,6 +499,34 @@
     return nodes;
   }
 
+  /* O aplikaci a zdrojích (ATLAS_DATA.zdroje): text parts are [{ text, href? }]. */
+  function parts(list, cls) {
+    return el("p", { "class": cls || "about-p" }, list.map(function (x) {
+      return x.href ? el("a", { href: x.href, target: "_blank", rel: "noopener", text: x.text }) : document.createTextNode(x.text);
+    }));
+  }
+  function renderAbout() {
+    var z = data.zdroje;
+    var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: z.title }),
+      el("p", { "class": "about-p", text: z.intro })];
+    var imgs = el("section", { "class": "about-section" }, [el("h2", { text: z.imagesHeading })]);
+    z.images.forEach(function (g) {
+      var card = el("article", { "class": "about-card" }, [el("h3", { text: g.heading })]);
+      ["parts", "source", "licence", "changes"].forEach(function (k) { if (g[k]) card.appendChild(parts(g[k])); });
+      if (g.figures.length > 1 || g.figures[0].no) {
+        card.appendChild(el("ul", { "class": "about-figs" }, g.figures.map(function (f) {
+          return el("li", { "data-file": f.file }, [el("strong", { text: (ui.figurePrefix || "Obrázek") + " " + f.no + ": " }), document.createTextNode(f.cs)]);
+        })));
+      } else card.setAttribute("data-file", g.figures[0].file);
+      imgs.appendChild(card);
+    });
+    nodes.push(imgs);
+    [["textsHeading", "texts"], ["privacyHeading", "privacy"], ["codeHeading", "code"]].forEach(function (k) {
+      nodes.push(el("section", { "class": "about-section" }, [el("h2", { text: z[k[0]] })].concat(z[k[1]].map(function (x) { return parts(x); }))));
+    });
+    return nodes;
+  }
+
   function render() {
     var hq = location.hash.replace(/^#\/?/, "").split("?");
     var path = hq[0].split("/");
@@ -505,7 +534,8 @@
     data.returnTo = /(^|&)od=procvicovani(&|$)/.test(hq[1] || "") ? { href: "#/procvicovani", text: ui.backProcvicovani || "Zpět na procvičování" } : null;
     var id = path[0], sub = path[1] || "";
     var section = findSection(id);
-    var nodes = (section && section.status === "active") ? renderSection(section, sub, path[2]) : renderMenu();
+    var nodes = id === "o-aplikaci" && data.zdroje ? renderAbout()
+      : (section && section.status === "active") ? renderSection(section, sub, path[2]) : renderMenu();
 
     app.textContent = "";
     if (data.returnTo) nodes.forEach(function (n) {
