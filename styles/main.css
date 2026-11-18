@@ -468,3 +468,16 @@ a.menu-card:active {
   body.print-diplom .diplom, body.print-diplom .diplom * { visibility: visible; }
   body.print-diplom .diplom { position: absolute; left: 0; top: 0; width: 100%; box-sizing: border-box; margin: 0; }
 }
+
+/* O aplikaci a zdroje (M8) */
+.app-footer { max-width: 1000px; margin: 0 auto; padding: 8px 24px 32px; }
+.app-main:has(.atlas) + .app-footer, .app-main:has(.fakta) + .app-footer { max-width: 1400px; }
+.app-footer a, .about-section a { color: var(--accent); font-weight: 600; }
+.about-section { margin-top: 24px; }
+.about-section h2 { font-size: 1.3rem; margin: 0 0 8px; }
+.about-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.about-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.about-p { margin: 6px 0; line-height: 1.5; }
+.about-figs { columns: 2 260px; margin: 8px 0 0; padding-left: 20px; }
+.about-figs li { break-inside: avoid; margin-bottom: 2px; }
+@media print { .app-footer { display: none; } }
