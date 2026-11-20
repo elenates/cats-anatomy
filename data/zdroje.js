@@ -71,8 +71,9 @@ window.ATLAS_DATA.zdroje = {
       heading: [{ text: "Kočka a její kostra z knihy " }, { text: "Anatomie descriptive et comparative du chat", em: true }, { text: " (1845)" }],
       parts: [{ text: "Autor: Hercule Straus-Durkheim. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Anatomie_descriptive_et_comparative_du_chat_(1845)_Pl-XI.jpg" }, { text: ". Na tabuli I je kočka divoká." }],
       licence: [{ text: "Licence: volné dílo." }],
-      changes: [{ text: "Úpravy: žádné." }],
-      figures: [{ cs: "Kočka divoká (tabule I)", file: "images/rentgen/1845/kocka.webp" }, { cs: "Kostra kočky (tabule XI)", file: "images/rentgen/1845/kostra.webp" }]
+      changes: [{ text: "Úpravy: kostru z tabule XI jsme trochu posunuli, aby seděla na kočku z tabule I." }],
+      figures: [{ cs: "Kočka divoká (tabule I)", file: "images/rentgen/1845/kocka.webp" }, { cs: "Kostra kočky (tabule XI)", file: "images/rentgen/1845/kostra.webp" },
+        { cs: "Kostra posunutá na kočku z tabule I (Kočičí rentgen)", file: "images/rentgen/1845/kostra-na-kocce.webp" }]
     },
     {
       heading: "Rentgen: přední část těla (Kočičí rentgen)",
