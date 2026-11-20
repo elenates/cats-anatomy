@@ -13,9 +13,8 @@
  * opts.content (default "kostra") and opts.config (default ATLAS_DATA.spoj) give the same game
  * for another section (Svaly: content "svaly", config ATLAS_DATA.spojSvaly).
  *
- * Cards (scripts/infocard.js): a 💡 next to each name opens its card as a hint, without "Co dělá?" until the
- * pair is found; after a pair (right or wrong) "Přečti si kartičku" opens the name's card (after a wrong pair
- * still without "Co dělá?").
+ * Cards (scripts/infocard.js): a 💡 next to each name opens its whole card as a hint (that name then no longer
+ * counts as "first try"); after a pair (right or wrong) "Přečti si kartičku" opens the name's card.
  *
  * Public API: window.Spoj.mount(container, { content, config })
  */
@@ -70,7 +69,7 @@
     var items = (D[content] && D[content].items) || [];
     var pool = items.filter(function (it) { return it.level === "zaklad" && it.quiz !== false && it.coDela; });
     var rounds = 0, roundList = [], r = 0, failed = {}, funnyLeft = [];
-    var sel = { name: null, answer: null }, matched = {}, pairNo = 0;
+    var sel = { name: null, answer: null }, matched = {}, pairNo = 0, hinted = {};
 
     container.textContent = "";
     var progress = el("p", { "class": "quiz-progress" });
@@ -95,7 +94,7 @@
     function start() {
       roundList = makeRounds(pool, { rounds: cfg.rounds || 3, pairs: cfg.pairs || 4, conflicts: cfg.conflicts });
       funnyLeft = shuffle((cfg.funny || []).slice());
-      r = 0; failed = {};
+      r = 0; failed = {}; hinted = {};
       game.hidden = false; summary.hidden = true;
       startRound();
     }
@@ -115,8 +114,10 @@
       round.forEach(function (it) {
         var b = el("button", { type: "button", "class": "spoj-btn spoj-name", "data-id": it.id, "aria-pressed": "false", text: it.cs });
         b.addEventListener("click", function () { tapName(it, b); });
-        // Hint: the card without "Co dělá?" (that is the answer) until the pair is found.
-        var hint = window.InfoCard ? window.InfoCard.hintIcon(content, it.id, function () { return matched[it.id] ? { hint: false } : { hide: ["coDela"] }; }) : null;
+        // Hint: the whole card; a structure whose hint was opened no longer counts as "first try".
+        var hint = window.InfoCard ? window.InfoCard.hintIcon(content, it.id, {
+          onOpen: function (id) { if (!matched[id]) { failed[id] = true; hinted[id] = true; } },
+          done: function (id) { return !!matched[id]; } }) : null;
         names.appendChild(el("li", { "class": hint ? "has-hint" : null }, [b, hint]));
       });
       var fun = [];
@@ -167,7 +168,7 @@
           b.disabled = true; b.classList.remove("is-wrong"); b.classList.add("is-right");
           b.insertBefore(el("span", { "class": "spoj-num", "aria-hidden": "true", text: String(pairNo) }), b.firstChild);
         });
-        say(fmt(t.right || "{name} – správně!", { name: n.it.cs }), "right", n.it.id);
+        say(fmt(t.right || "{name} – správně!", { name: n.it.cs }) + (hinted[n.it.id] ? " " + (ui.hintNoScore || "S nápovědou se odpověď do výsledku nepočítá.") : ""), "right", n.it.id);
         var done = roundList[r].every(function (it) { return matched[it.id]; });
         if (done) {
           // Funny answers that were not tapped stay as they are; the round is over.
@@ -181,7 +182,7 @@
           b.classList.remove("is-wrong"); void b.offsetWidth; b.classList.add("is-wrong");
           setTimeout(function () { b.classList.remove("is-wrong"); }, 900);   // red only for a moment
         });
-        say(t.wrong || "Tohle k sobě nepatří.", "wrong", n.it.id, { hint: true, hide: ["coDela"] });
+        say(t.wrong || "Tohle k sobě nepatří.", "wrong", n.it.id);
       }
     }
 

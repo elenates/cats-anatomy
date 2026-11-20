@@ -7,7 +7,8 @@
  * - A funny system gets a funny reply and is set aside; it is not a mistake.
  * Content: data/organy.js (organs, systems), data/soustavy-kviz.js (rules, texts).
  *
- * Cards (scripts/infocard.js): "Nápověda" while asking, "Přečti si kartičku" after the answer.
+ * Cards (scripts/infocard.js): "Nápověda" while asking (a right answer after it does not count),
+ * "Přečti si kartičku" after the answer.
  *
  * Public API: window.SoustavyKviz.mount(container, { backHref: "#/organy" })
  */
@@ -126,7 +127,8 @@
       });
       feedback.textContent = ""; feedback.className = "spoj-feedback";
       more.textContent = "";
-      if (window.InfoCard) more.appendChild(window.InfoCard.hintButton("organy", it.id));
+      q.hinted = false;
+      if (window.InfoCard) more.appendChild(window.InfoCard.hintButton("organy", it.id, { onOpen: function () { q.hinted = true; } }));
       next.hidden = true;
     }
 
@@ -149,8 +151,9 @@
         if (x.getAttribute("data-id") === right.id) x.classList.add("is-right");
       });
       if (o.id === right.id) {
-        q.score++;
-        say(t.right || "Správně!", "right");
+        // After a hint the answer is right, but it does not count (Lenka, 2026-11-20).
+        if (q.hinted) q.missed.push(it); else q.score++;
+        say((t.right || "Správně!") + (q.hinted ? " " + (ui.hintNoScore || "S nápovědou se odpověď do výsledku nepočítá.") : ""), "right");
       } else {
         q.missed.push(it);
         b.classList.add("is-wrong", "is-chosen-wrong");

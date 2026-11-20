@@ -7,7 +7,8 @@
  * A circle sits on a point inside the structure that is not inside a smaller structure drawn over it
  * (fig.nested), and circles of one round keep apart from each other.
  *
- * Cards (scripts/infocard.js): a 💡 next to each label opens its card as a hint; after placing a label (right
+ * Cards (scripts/infocard.js): a 💡 next to each label opens its card as a hint (that label then no longer
+ * counts as "first try"); after placing a label (right
  * or wrong) "Přečti si kartičku" opens it.
  *
  * Public API: window.Popisky.mount(container, { figure, layer })
@@ -113,7 +114,7 @@
     var summary = el("section", { "class": "atlas-card quiz-summary", hidden: "hidden" });
     container.appendChild(game); container.appendChild(summary);
 
-    var roundList = [], ri = 0, failed = {}, sel = null, placed = {}, count = 0, circles = {}, chips = {};
+    var roundList = [], ri = 0, failed = {}, hinted = {}, sel = null, placed = {}, count = 0, circles = {}, chips = {};
     function say(text, kind, cardId) {
       feedback.textContent = text; feedback.className = "spoj-feedback" + (kind ? " is-" + kind : "");
       more.textContent = "";
@@ -151,7 +152,10 @@
         b.addEventListener("click", function () { if (b._dragged) { b._dragged = false; return; } choose(it); });
         b.addEventListener("pointerdown", function (e) { dragStart(e, it, b); });
         chips[it.id] = b;
-        var hint = window.InfoCard ? window.InfoCard.hintIcon(content, it.id) : null;
+        // A label whose hint was opened no longer counts as "first try".
+        var hint = window.InfoCard ? window.InfoCard.hintIcon(content, it.id, {
+          onOpen: function (id) { if (!placed[id]) { failed[id] = true; hinted[id] = true; } },
+          done: function (id) { return !!placed[id]; } }) : null;
         labels.appendChild(el("li", { "class": hint ? "has-hint" : null }, [b, hint]));
       });
       draw();
@@ -171,7 +175,7 @@
         count += 1; placed[it.id] = count; sel = null;
         b.setAttribute("aria-pressed", "false"); b.disabled = true; b.classList.remove("is-picked"); b.classList.add("is-right");
         b.insertBefore(el("span", { "class": "spoj-num", "aria-hidden": "true", text: String(count) }), b.firstChild);
-        say(fmt(t.right || "{name}", { name: it.cs }), "right", it.id);
+        say(fmt(t.right || "{name}", { name: it.cs }) + (hinted[it.id] ? " " + ((D.ui || {}).hintNoScore || "S nápovědou se odpověď do výsledku nepočítá.") : ""), "right", it.id);
         draw();
         if (count === roundList[ri].length) {
           next.textContent = ri < roundList.length - 1 ? (t.nextRound || "Další kolo") : (t.finish || "Výsledek");
@@ -235,7 +239,7 @@
       game.hidden = true; summary.hidden = false;
       summary.querySelector("h2").setAttribute("tabindex", "-1"); summary.querySelector("h2").focus();
     }
-    function start() { roundList = makeRounds(); ri = 0; failed = {}; game.hidden = false; summary.hidden = true; startRound(); }
+    function start() { roundList = makeRounds(); ri = 0; failed = {}; hinted = {}; game.hidden = false; summary.hidden = true; startRound(); }
 
     var redraw = function () {
       if (!document.body.contains(container)) { window.removeEventListener("resize", redraw); return; }

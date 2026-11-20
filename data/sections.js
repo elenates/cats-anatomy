@@ -130,7 +130,7 @@ window.ATLAS_DATA.ui = {
   hint: "Nápověda",
   hintFor: "Nápověda: {name}",
   hintBadge: "Nápověda",
-  hintHiddenCoDela: "Co dělá, se dozvíš, až odpovíš.",
+  hintNoScore: "S nápovědou se odpověď do výsledku nepočítá.",
   readCard: "Přečti si kartičku: {name} →",
   quizMissTap: "Tady nic není. Zkus to znovu.",
   quizPraise: ["Správně!", "Výborně!", "Přesně tak!", "Skvělé!"],

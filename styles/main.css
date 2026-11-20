@@ -551,6 +551,6 @@ a.menu-card:active {
 .info-dialog::backdrop { background: rgba(43, 36, 32, .45); }
 .info-dialog .info-card { box-shadow: 0 12px 40px rgba(0, 0, 0, .25); }
 .info-badge { margin: 0 0 8px; }
-.info-hidden { margin: 16px 0 0; text-align: left; }
+.hint-note { color: var(--muted); }
 .more-btn { font: inherit; font-weight: 700; cursor: pointer; }
 .more-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
