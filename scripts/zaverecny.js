@@ -6,6 +6,9 @@
  * Questions are spread over the sections (each about equally often), no structure twice.
  * At the end: score, missed list, and a Diplom with the typed-in name (not saved) to print.
  *
+ * Cards (scripts/infocard.js): "Nápověda" on every question (in "Co dělá?" questions without that part),
+ * "Přečti si kartičku" after the answer.
+ *
  * Public API: window.Zaverecny.mount(container)
  */
 (function () {
@@ -96,11 +99,16 @@
     nextBtn.addEventListener("click", function () { qi += 1; if (qi < qs.length) ask(); else finish(); });
 
     function feedbackBox() { return el("section", { "class": "atlas-card quiz-feedback", "aria-live": "polite" }); }
-    function done(fb, ok, q, extra) {
+    function done(fb, ok, q, extra, tappedId) {
       if (ok) score += 1; else missed.push(q);
       fb.textContent = "";
       fb.appendChild(el("p", { "class": "quiz-verdict " + (ok ? "is-right" : "is-wrong"), text: ok ? (t.right || "Správně!") : (t.wrong || "") }));
       if (!ok && extra) fb.appendChild(el("p", { "class": "card-p", text: extra }));
+      if (window.InfoCard) {
+        var more = [window.InfoCard.moreButton(q.sec.id, q.it.id)];
+        if (tappedId && tappedId !== q.it.id) more.push(window.InfoCard.moreButton(q.sec.id, tappedId));
+        fb.appendChild(el("p", { "class": "card-link quiz-more" }, more));
+      }
       nextBtn.textContent = qi < qs.length - 1 ? (t.next || "Další otázka") : (t.finish || "Výsledek");
       fb.appendChild(nextBtn);
       nextBtn.focus({ preventScroll: true });
@@ -128,6 +136,7 @@
       svg.appendChild(img);
       var nodes = {}, answered = false, fb = feedbackBox();
       fb.appendChild(el("p", { "class": "card-empty", text: t.hint || "" }));
+      if (window.InfoCard) fb.appendChild(el("p", { "class": "hint-row" }, [window.InfoCard.hintButton(q.sec.id, q.it.id)]));
       ids.forEach(function (id, n) {
         var g = svgEl("g", { "class": "hotspot quiz-spot", tabindex: "0", role: "button", "data-id": id, "aria-label": fmt((D.ui || {}).quizSpot || "Místo {n}", { n: n + 1 }) });
         layer[id].forEach(function (p) { g.appendChild(svgEl("polygon", { points: p.map(function (c) { return c.join(","); }).join(" ") })); });
@@ -145,7 +154,7 @@
         var ok = id === q.it.id || (also[q.it.id] || []).indexOf(id) >= 0;
         nodes[q.it.id].classList.add("is-right");
         if (!ok) nodes[id].classList.add("is-wrong");
-        done(fb, ok, q, t.rightIsFigure);
+        done(fb, ok, q, t.rightIsFigure, id);
       }
       var credit = el("p", { "class": "atlas-credit" });
       if (fig.credit) (fig.creditParts || [{ text: fig.credit }]).forEach(function (c) {
@@ -192,6 +201,8 @@
         list.appendChild(el("li", null, [b]));
       });
       var card = el("section", { "class": "atlas-card quiz-feedback final-card", "aria-live": "polite" });
+      // Hint: the card; in a "Co dělá?" question without that part, which is the answer.
+      if (window.InfoCard) card.appendChild(el("p", { "class": "hint-row" }, [window.InfoCard.hintButton(q.sec.id, q.it.id, q.kind === "coDela" ? { hide: ["coDela"] } : {})]));
       body.appendChild(el("div", { "class": "final-choice" }, [list, fb, card]));
     }
 

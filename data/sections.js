@@ -126,6 +126,12 @@ window.ATLAS_DATA.ui = {
   quizProgress: "Otázka {n} z {total}",
   quizFind: "Najdi:",
   quizHint: "Klepni na obrázek.",
+  // Hints and cards in the games (scripts/infocard.js) – to be proofread
+  hint: "Nápověda",
+  hintFor: "Nápověda: {name}",
+  hintBadge: "Nápověda",
+  hintHiddenCoDela: "Co dělá, se dozvíš, až odpovíš.",
+  readCard: "Přečti si kartičku: {name} →",
   quizMissTap: "Tady nic není. Zkus to znovu.",
   quizPraise: ["Správně!", "Výborně!", "Přesně tak!", "Skvělé!"],
   quizAlsoRight: "{tapped} patří k části {target}.",

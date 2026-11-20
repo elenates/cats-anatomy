@@ -7,6 +7,8 @@
  * - A funny system gets a funny reply and is set aside; it is not a mistake.
  * Content: data/organy.js (organs, systems), data/soustavy-kviz.js (rules, texts).
  *
+ * Cards (scripts/infocard.js): "Nápověda" while asking, "Přečti si kartičku" after the answer.
+ *
  * Public API: window.SoustavyKviz.mount(container, { backHref: "#/organy" })
  */
 (function () {
@@ -62,7 +64,8 @@
     var answers = el("ul", { "class": "spoj-col sk-answers", "aria-label": t.answersLabel || "Soustavy" });
     var feedback = el("p", { "class": "spoj-feedback", "aria-live": "polite" });
     var next = el("button", { type: "button", "class": "quiz-next", hidden: "" });
-    var side = el("section", { "class": "atlas-card sk-card" }, [answers, feedback, next]);
+    var more = el("p", { "class": "card-link quiz-more" });   // "Nápověda" while asking, "Přečti si kartičku" after
+    var side = el("section", { "class": "atlas-card sk-card" }, [answers, feedback, more, next]);
     var layout = el("div", { "class": "atlas-layout" }, [el("div", { "class": "atlas-figure-col" }, [figBox]), side]);
     var summary = el("section", { "class": "atlas-card quiz-summary", hidden: "" });
     container.appendChild(el("div", { "class": "quiz-head" }, [progress, prompt]));
@@ -122,6 +125,8 @@
         answers.appendChild(el("li", null, [b]));
       });
       feedback.textContent = ""; feedback.className = "spoj-feedback";
+      more.textContent = "";
+      if (window.InfoCard) more.appendChild(window.InfoCard.hintButton("organy", it.id));
       next.hidden = true;
     }
 
@@ -151,6 +156,8 @@
         b.classList.add("is-wrong", "is-chosen-wrong");
         say((t.wrong || "Tohle není ono.") + " " + fmt(t.rightIs || "Správná odpověď: {system}.", { system: right.cs }), "wrong");
       }
+      more.textContent = "";
+      if (window.InfoCard) more.appendChild(window.InfoCard.moreButton("organy", it.id));
       next.textContent = q.i + 1 < q.list.length ? (t.next || "Další otázka") : (t.finish || "Výsledek");
       next.hidden = false;
       next.focus({ preventScroll: true });

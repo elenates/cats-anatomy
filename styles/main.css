@@ -523,3 +523,34 @@ a.menu-card:active {
 .rg-gal-back { margin: 0 0 12px; }
 .rg-gal-h { margin: 4px 0 6px; font-size: 1.5rem; }
 .rg-gal-text { margin: 0 0 12px; max-width: 60rem; }
+
+/* ===================== Hints and cards in the games (scripts/infocard.js) ===================== */
+.hint-row { margin: 8px 0 0; text-align: center; }
+.hint-btn, .info-ok {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--tap); padding: 0 22px; border-radius: 999px; border: 2px solid var(--accent);
+  background: var(--surface); color: var(--accent); font: inherit; font-weight: 700; cursor: pointer;
+}
+.info-ok { background: var(--accent); color: #fff; }
+.hint-btn:hover { background: var(--accent-soft); }
+.hint-btn:focus-visible, .info-ok:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.quiz-more { margin: 12px 0; }
+.has-hint { display: flex; align-items: stretch; gap: 6px; }
+.has-hint > .spoj-btn { flex: 1; }
+.hint-icon {
+  flex: none; min-width: var(--tap); min-height: var(--tap);
+  border: 2px solid var(--border); border-radius: 12px; background: var(--surface);
+  font-size: 1.15rem; cursor: pointer;
+}
+.hint-icon:hover { border-color: var(--accent); background: var(--accent-soft); }
+.hint-icon:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.info-dialog {
+  border: 0; padding: 0; background: transparent;
+  width: min(560px, calc(100vw - 24px)); max-height: calc(100vh - 32px);
+}
+.info-dialog::backdrop { background: rgba(43, 36, 32, .45); }
+.info-dialog .info-card { box-shadow: 0 12px 40px rgba(0, 0, 0, .25); }
+.info-badge { margin: 0 0 8px; }
+.info-hidden { margin: 16px 0 0; text-align: left; }
+.more-btn { font: inherit; font-weight: 700; cursor: pointer; }
+.more-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
