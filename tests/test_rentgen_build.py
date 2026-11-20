@@ -1,6 +1,6 @@
-"""Kočičí rentgen stage 3 (#43): the generated files are complete. data/rentgen-areas.js has the three layers, every
-clickable structure of Fig. 1, the organ drawing and Fig. 68 has a warped area, every area belongs to a structure
-of its section, lies inside the photo and inside the cat; the four images exist at twice the photo size."""
+"""Kočičí rentgen stage 3 (#43): the generated files are complete. data/rentgen-areas.js has the two layers, every
+clickable structure of the organ drawing and Fig. 68 has a warped area, every area belongs to a structure
+of its section, lies inside the photo and inside the cat; the three images exist at twice the photo size."""
 import os, sys, json, subprocess
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
@@ -14,12 +14,12 @@ js = ("global.window={};for(const f of ['kostra','organy','svaly','hotspots-kost
       "console.log(JSON.stringify(window.ATLAS_DATA))")
 D = json.loads(subprocess.check_output(["node", "-e", js], cwd=ROOT))
 R = D["rentgenAreas"]; H = D["hotspots"]
-r.ok([l["id"] for l in R["layers"]] == ["kosti", "organy", "svaly"], "three layers")
+r.ok([l["id"] for l in R["layers"]] == ["organy", "svaly"], "two layers (Kosti uses the 1845 atlas, data/rentgen-kosti.js)")
 for f in [R["image"], R["base"]] + [l["image"] for l in R["layers"]]:
     im = Image.open(os.path.join(ROOT, f))
     want = (R["width"], R["height"]) if f == R["image"] else (R["width"] * R["scale"], R["height"] * R["scale"])
     r.ok(im.size == want, f"{f}: size {im.size}, want {want}")
-want = {"kosti": ("skeleton", ["kosti", "klouby"], "kostra"), "organy": ("organs-side", ["organy"], "organy"),
+want = {"organy": ("organs-side", ["organy"], "organy"),
         "svaly": ("muscles-superficial", ["svaly"], "svaly")}
 cat = np.array(Image.open(os.path.join(ROOT, R["image"])).convert("RGB")).astype(int)
 for m, (fig, layers, content) in want.items():

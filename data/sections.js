@@ -16,6 +16,7 @@ window.ATLAS_DATA.sections = [
   { id: "soustavy",    cs: "Tělesné soustavy",    icon: "🔄", status: "active" },
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "active" },
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "active" },
+  { id: "rentgen",     cs: "Kočičí rentgen",      icon: "🩻", status: "active" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "active" }
 ];
 

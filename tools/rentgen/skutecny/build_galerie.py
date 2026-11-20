@@ -34,7 +34,7 @@ G = {
   "mocove-kameny": [("kameny", "Močové kameny", [P((496, 260), (580, 250), (600, 205), (660, 200), (664, 262), (610, 306), (496, 306))])],
   "kolicek-v-koleni": [("kolicek", "Kovový kolíček", [L(22, (116, 262), (119, 254), (216, 252))])],
   "munchkin": [("kratke-nohy", "Munchkin: krátké nohy", [box(81, 0, 688, 334), box(81, 385, 688, 719), box(81, 780, 688, 1133)]),
-               ("bezne-nohy", "Kočka s běžnými nohami", [box(766, 0, 1418, 334), box(766, 385, 1418, 719), box(766, 780, 1418, 1133)])],
+               ("bezne-nohy", "Kočka s běžně dlouhými nohami", [box(766, 0, 1418, 334), box(766, 385, 1418, 719), box(766, 780, 1418, 1133)])],
 }
 
 def rings(g):

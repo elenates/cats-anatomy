@@ -1,11 +1,13 @@
 """Kočičí rentgen (#43), stage 3c: writes data/rentgen-kosti.js, everything the Kosti layer needs to click on.
 
-- kresba: the 1845 cat (Pl. I) with the skeleton (Pl. XI) moved onto it for the magnifying glass
-  (tools/rentgen/1845/build_pl11.py, then fit_pl1.py);
+- kresba: the 1845 cat (Pl. I) with the skeleton (Pl. XI, X-ray look) moved onto it for the magnifying glass,
+  and "cela": Pl. XI as it is, in the X-ray look, for the button that X-rays the whole cat
+  (tools/rentgen/1845/build_pl11.py, xray_1845.py, fit_pl1.py);
 - skutecny: the real X-rays A (front of the body) and B (back of the body) (tools/rentgen/skutecny/build_ab.py);
 - galerie: the special thing on each X-ray of Zajímavé rentgeny (tools/rentgen/skutecny/build_galerie.py).
 Bone areas use the ids of data/kostra.js (content "kostra"). Positions are approximate.
-Run: python3 tools/rentgen/1845/build_pl11.py && python3 tools/rentgen/1845/fit_pl1.py &&
+Run: python3 tools/rentgen/1845/build_pl11.py && python3 tools/rentgen/1845/xray_1845.py &&
+     python3 tools/rentgen/1845/fit_pl1.py &&
      python3 tools/rentgen/skutecny/build_ab.py && python3 tools/rentgen/skutecny/build_galerie.py &&
      python3 tools/rentgen/build_kosti.py"""
 import json, os
@@ -16,10 +18,12 @@ def bones(d):
     return {k: {"content": "kostra", "polys": v} for k, v in d["areas"].items()}
 
 def main():
-    pl = J("1845", "pl11-on-pl1.json"); ab = J("skutecny", "ab.json"); gal = J("skutecny", "galerie.json")
+    pl = J("1845", "pl11-on-pl1.json"); whole = J("1845", "pl11.json"); ab = J("skutecny", "ab.json"); gal = J("skutecny", "galerie.json")
     data = {
         "kresba": {"image": "images/rentgen/1845/kocka.webp", "skeleton": "images/rentgen/1845/kostra-na-kocce.webp",
-                   "width": pl["width"], "height": pl["height"], "areas": bones(pl), "nested": pl["nested"]},
+                   "width": pl["width"], "height": pl["height"], "areas": bones(pl), "nested": pl["nested"],
+                   "cela": {"image": "images/rentgen/1845/kostra-rentgen.webp", "width": whole["width"], "height": whole["height"],
+                            "areas": bones(whole), "nested": whole["nested"]}},
         "skutecny": [{"id": n, "image": f"images/rentgen/skutecny/{n}.webp", "width": ab[n]["width"], "height": ab[n]["height"],
                       "areas": bones(ab[n]), "nested": ab[n]["nested"]} for n in ("predni-cast", "zadni-cast")],
         "galerie": [dict(id=n, **v) for n, v in gal.items()],
