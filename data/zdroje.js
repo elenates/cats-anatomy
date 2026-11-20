@@ -49,7 +49,6 @@ window.ATLAS_DATA.zdroje = {
         { no: "167", cs: "Oko v řezu", file: "images/smysly/eye.webp" },
         { no: "170", cs: "Bubínek a sluchové kůstky", file: "images/smysly/eardrum.webp" },
         { no: "173", cs: "Vnitřní ucho", file: "images/smysly/inner-ear.webp" },
-        { cs: "Kostra upravená podle fotografie kočky (Kočičí rentgen, podle obrázku 1)", file: "images/rentgen/layer-kosti.webp" },
         { cs: "Svaly upravené podle fotografie kočky (Kočičí rentgen, podle obrázku 68)", file: "images/rentgen/layer-svaly.webp" }
       ]
     },
@@ -71,7 +70,7 @@ window.ATLAS_DATA.zdroje = {
       heading: [{ text: "Kočka a její kostra z knihy " }, { text: "Anatomie descriptive et comparative du chat", em: true }, { text: " (1845)" }],
       parts: [{ text: "Autor: Hercule Straus-Durkheim. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Anatomie_descriptive_et_comparative_du_chat_(1845)_Pl-XI.jpg" }, { text: ". Na tabuli I je kočka divoká." }],
       licence: [{ text: "Licence: volné dílo." }],
-      changes: [{ text: "Úpravy: kostru z tabule XI jsme obarvili jako rentgenový snímek a pro lupu ji trochu posunuli, aby odpovídala poloze kočky z tabule I." }],
+      changes: [{ text: "Úpravy: kostru z tabule XI jsme upravili tak, aby vypadala jako rentgenový snímek. Pro použití pod lupou jsme ji také trochu posunuli, aby odpovídala poloze kočky z tabule I." }],
       figures: [{ cs: "Kočka divoká (tabule I)", file: "images/rentgen/1845/kocka.webp" }, { cs: "Kostra kočky (tabule XI)", file: "images/rentgen/1845/kostra.webp" },
         { cs: "Kostra z tabule XI jako rentgenový snímek (Kočičí rentgen)", file: "images/rentgen/1845/kostra-rentgen.webp" },
         { cs: "Kostra z tabule XI posunutá podle kočky z tabule I (Kočičí rentgen)", file: "images/rentgen/1845/kostra-na-kocce.webp" }]

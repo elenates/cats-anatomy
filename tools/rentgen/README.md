@@ -17,10 +17,9 @@
   - The far upper arm of the skeleton has no segment of its own. It follows the body fit.
 - `build.py` (stage 3): builds what the screen uses. Run it with `python3 tools/rentgen/build.py`. It creates:
   - `images/rentgen/xray-base.webp`: the cat as an X-ray film;
-  - `layer-kosti.webp`: the glowing bones;
   - `layer-organy.webp`: the organs in colour;
   - `layer-svaly.webp`: the muscles in pink;
-  - `data/rentgen-areas.js`: every clickable area of the three figures, warped onto the photo. Each area is filled into a mask, the mask is warped like the drawing, and its outline in the photo becomes the new area. This way an area that crosses a joint is not torn.
+  - `data/rentgen-areas.js`: every clickable area of the organ drawing and Fig. 68, warped onto the photo. Each area is filled into a mask, the mask is warped like the drawing, and its outline in the photo becomes the new area. This way an area that crosses a joint is not torn.
 
   The layer images are twice the photo size, so lines stay sharp on a tablet. `check-hotspots.png` shows all the warped areas over the photo.
 
@@ -39,4 +38,4 @@ Run in this order: `build_pl11.py`, `xray_1845.py`, `fit_pl1.py`, `build_ab.py`,
 
 In every builder, areas are cut against each other in order (the earlier one wins), except a structure and its parts (`nested`), which overlap on purpose so that the smaller one wins a tap. The spine (`pater`) is the union of its parts.
 
-The screen itself is `scripts/rentgen.js` with its texts in `data/rentgen.js`. Since stage 3c, `images/rentgen/layer-kosti.webp` and the `kosti` areas in `data/rentgen-areas.js` are no longer shown.
+The screen itself is `scripts/rentgen.js` with its texts in `data/rentgen.js`. The warped Fig. 1 bones (`layer-kosti.webp` and the `kosti` areas) were removed in stage 4; `warp.py` still fits Fig. 1 for checking.
