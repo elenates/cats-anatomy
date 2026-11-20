@@ -68,6 +68,90 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Kočka z boku", file: "images/rentgen/cat-photo.webp" }, { cs: "Kočka jako rentgenový snímek", file: "images/rentgen/xray-base.webp" }]
     },
     {
+      heading: "Kočka a její kostra z knihy Anatomie descriptive et comparative du chat (1845)",
+      parts: [{ text: "Autor: Hercule Straus-Durkheim. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Anatomie_descriptive_et_comparative_du_chat_(1845)_Pl-XI.jpg" }, { text: ". Na obrázcích je kočka divoká." }],
+      licence: [{ text: "Licence: volné dílo." }],
+      changes: [{ text: "Úpravy: žádné." }],
+      figures: [{ cs: "Kočka divoká (tabule I)", file: "images/rentgen/1845/kocka.webp" }, { cs: "Kostra kočky divoké (tabule XI)", file: "images/rentgen/1845/kostra.webp" }]
+    },
+    {
+      heading: "Rentgen: přední část těla (Kočičí rentgen)",
+      parts: [{ text: "Autor: AurelioAHeckert. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Radiografia-lateral-gato.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: volné dílo." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
+      figures: [{ cs: "Rentgen: přední část těla", file: "images/rentgen/skutecny/predni-cast.webp" }]
+    },
+    {
+      heading: "Rentgen: zadní část těla (Kočičí rentgen)",
+      parts: [{ text: "Autor: Kalumet. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Roentgen_Katze_CNI_LL_nativ.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
+      figures: [{ cs: "Rentgen: zadní část těla", file: "images/rentgen/skutecny/zadni-cast.webp" }]
+    },
+    {
+      heading: "Rentgen: březí kočka (Kočičí rentgen)",
+      parts: [{ text: "Autor: Santamarcanda. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Radiography_of_a_pregnant_cat.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
+      figures: [{ cs: "Rentgen: březí kočka", file: "images/rentgen/skutecny/brezi-kocka.webp" }]
+    },
+    {
+      heading: "Rentgen: mikročip (Kočičí rentgen)",
+      parts: [{ text: "Autor: Joelmills. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Feline_identifying_microchip.JPG" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
+      figures: [{ cs: "Rentgen: mikročip", file: "images/rentgen/skutecny/mikrocip.webp" }]
+    },
+    {
+      heading: "Rentgen: spolknutá jehla (Kočičí rentgen)",
+      parts: [{ text: "Autor: Joel Mills. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:X-ray_Needle_swallowed_by_cat.JPG" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: obrázek zmenšen." }],
+      figures: [{ cs: "Rentgen: spolknutá jehla", file: "images/rentgen/skutecny/jehla.webp" }]
+    },
+    {
+      heading: "Rentgen: prsty navíc (Kočičí rentgen)",
+      parts: [{ text: "Autor: Sharon Otten-Boult. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Pr%C3%A4axiale_Polydaktylie_Maine_Coon_Katze-2.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "Rentgen: prsty navíc", file: "images/rentgen/skutecny/prsty-navic.webp" }]
+    },
+    {
+      heading: "Rentgen: kontrastní látka v žaludku (Kočičí rentgen)",
+      parts: [{ text: "Autor: ArtBrom. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Gizmo_X-Ray_3.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "Rentgen: kontrastní látka v žaludku", file: "images/rentgen/skutecny/kontrastni-latka.webp" }]
+    },
+    {
+      heading: "Rentgen: zlomená pánev (Kočičí rentgen)",
+      parts: [{ text: "Autor: Poowang. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Pelvic_fracture_in_cat.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "Rentgen: zlomená pánev", file: "images/rentgen/skutecny/zlomena-panev.webp" }]
+    },
+    {
+      heading: "Rentgen: močové kameny (Kočičí rentgen)",
+      parts: [{ text: "Autor: Xlnt84. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Diagnoz.JPG" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "Rentgen: močové kameny", file: "images/rentgen/skutecny/mocove-kameny.webp" }]
+    },
+    {
+      heading: "Rentgen: kolíček v koleni (Kočičí rentgen)",
+      parts: [{ text: "Autor: Jonathanischoice. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Feline_Grade_3_LP_RH_X-Ray.jpg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "Rentgen: kolíček v koleni", file: "images/rentgen/skutecny/kolicek-v-koleni.webp" }]
+    },
+    {
+      heading: "CT snímky: kočka plemene munchkin (Kočičí rentgen)",
+      parts: [{ text: "Autor: Struck, Braun, Detering a další (BMC Genetics, 2020). Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Munchkin_cat_x-ray.webp" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: žádné, jen převedeno do jiného formátu." }],
+      figures: [{ cs: "CT snímky: kočka plemene munchkin", file: "images/rentgen/skutecny/munchkin.webp" }]
+    },
+    {
       heading: "Kresba vnitřních orgánů (Vnitřní orgány, Tělesné soustavy)",
       parts: [{ text: "Autoři: Persian Poet Gal, Surachit, Whidou, RuM a další, " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Scheme_cat_anatomy.svg" }, { text: "." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
