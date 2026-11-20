@@ -481,3 +481,45 @@ a.menu-card:active {
 .about-figs { columns: 2 260px; margin: 8px 0 0; padding-left: 20px; }
 .about-figs li { break-inside: avoid; margin-bottom: 2px; }
 @media print { .app-footer { display: none; } }
+
+/* ===================== Kočičí rentgen (#43, stage 4) ===================== */
+.rentgen .fig-nav + .fig-nav { margin-top: -6px; }
+.rg-stage { position: relative; width: 100%; overflow: hidden; border-radius: 8px; user-select: none; -webkit-user-select: none; }
+.rg-base, .rg-over img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.rg-over { position: absolute; inset: 0; pointer-events: none; }
+.rg-svg { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: manipulation; }
+.rg-svg-top { pointer-events: none; }
+.rg-stage:has(.rg-svg-top) { cursor: crosshair; }
+.rg-figure.rg-dark, .rentgen.is-whole .rg-figure, .rentgen .is-whole .rg-figure { background: #060c1a; }
+.rg-dark .atlas-credit, .is-whole .atlas-credit { color: #c9d4e8; }
+.rg-dark .atlas-credit a, .is-whole .atlas-credit a { color: #9fc3ff; }
+/* the magnifying glass: a round window onto the X-ray picture */
+.rg-lens {
+  position: absolute; border-radius: 50%;
+  border: 4px solid #fff; box-shadow: 0 0 0 3px #2b2420, 0 6px 18px rgba(0, 0, 0, .35);
+  background-color: #060c1a; background-repeat: no-repeat;
+  cursor: grab; touch-action: none;
+}
+.rg-lens:active { cursor: grabbing; }
+.rg-lens:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+.rg-lens[hidden] { display: none; }
+.rg-hl path { fill: rgba(255, 196, 0, .16); stroke: #ffb300; stroke-width: 2px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.rg-found { margin-bottom: 4px; }
+.organ-chip[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.rg-title { margin-top: 16px; }
+.rg-approx, .rg-wildcat { margin-top: 10px; }
+/* gallery */
+.rg-gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.rg-gal-card {
+  display: flex; flex-direction: column; height: 100%;
+  border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  background: var(--surface); color: var(--text); text-decoration: none; font-weight: 700;
+}
+.rg-gal-card:hover { border-color: var(--accent); }
+.rg-gal-card:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.rg-gal-img { display: block; position: relative; aspect-ratio: 4 / 3; background: #060c1a; overflow: hidden; }
+.rg-gal-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.rg-gal-title { padding: 10px 14px; min-height: var(--tap); display: flex; align-items: center; }
+.rg-gal-back { margin: 0 0 12px; }
+.rg-gal-h { margin: 4px 0 6px; font-size: 1.5rem; }
+.rg-gal-text { margin: 0 0 12px; max-width: 60rem; }

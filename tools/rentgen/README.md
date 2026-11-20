@@ -29,11 +29,14 @@
 Lenka found the warped Fig. 1 bones inaccurate, so the Kosti layer now uses real pictures instead (the Orgány and Svaly layers stay on the photo):
 
 - `1845/build_pl11.py`: the clickable bones on Pl. XI (`images/rentgen/1845/kostra.webp`). Each bone is a rough hand-drawn region; its area is the light bone pixels inside the region (long bones, joints and the tail are bands and circles instead). Writes `1845/pl11.json` and `1845/check-pl11.png`.
-- `1845/fit_pl1.py`: moves Pl. XI a little (thin-plate spline through 14 shared points) so that it sits on the Pl. I cat, for the magnifying glass. Writes `images/rentgen/1845/kostra-na-kocce.webp`, `1845/pl11-on-pl1.json` and `1845/check-fit.png`.
+- `1845/xray_1845.py` (stage 4): Pl. XI in the X-ray look of the screen (dark blue cat, glowing white bones). Writes `images/rentgen/1845/kostra-rentgen.webp`, shown by the button that X-rays the whole cat.
+- `1845/fit_pl1.py`: moves the X-ray-look Pl. XI a little (thin-plate spline through 14 shared points) so that it sits on the Pl. I cat, for the magnifying glass. Writes `images/rentgen/1845/kostra-na-kocce.webp`, `1845/pl11-on-pl1.json` and `1845/check-fit.png` (the plain plate over the cat).
 - `skutecny/build_ab.py`: bone areas on the real X-rays A (`predni-cast`) and B (`zadni-cast`). Bone and soft tissue overlap on an X-ray, so these are hand-drawn bands, circles and polygons. Writes `skutecny/ab.json`, `check-a.png`, `check-b.png`.
 - `skutecny/build_galerie.py`: the special thing on each of the 9 X-rays of *Zajímavé rentgeny*. Writes `skutecny/galerie.json` and `check-galerie.png`.
 - `build_kosti.py`: puts it all into `data/rentgen-kosti.js`.
 
-Run in this order: `build_pl11.py`, `fit_pl1.py`, `build_ab.py`, `build_galerie.py`, `build_kosti.py`.
+Run in this order: `build_pl11.py`, `xray_1845.py`, `fit_pl1.py`, `build_ab.py`, `build_galerie.py`, `build_kosti.py`.
 
 In every builder, areas are cut against each other in order (the earlier one wins), except a structure and its parts (`nested`), which overlap on purpose so that the smaller one wins a tap. The spine (`pater`) is the union of its parts.
+
+The screen itself is `scripts/rentgen.js` with its texts in `data/rentgen.js`. Since stage 3c, `images/rentgen/layer-kosti.webp` and the `kosti` areas in `data/rentgen-areas.js` are no longer shown.

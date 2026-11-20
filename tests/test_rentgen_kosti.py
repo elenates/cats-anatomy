@@ -1,5 +1,5 @@
 """Kočičí rentgen stage 3c (#43): data/rentgen-kosti.js is complete.
-- kresba: the 1845 cat and the moved skeleton have the same size; every bone and joint of Fig. 1 has an area,
+- kresba: the 1845 cat and the moved skeleton have the same size; the whole-cat view (cela) has the same structures; every bone and joint of Fig. 1 has an area,
   every area has a card in data/kostra.js, lies inside the picture and on the skeleton (not on the background);
 - skutecny: X-rays A and B, each with bone areas that have cards and lie inside the picture;
 - galerie: all 9 special X-rays (every image in images/rentgen/skutecny/ but A and B), each with a labelled area.
@@ -40,6 +40,9 @@ a = np.array(sk.convert("L")).astype(int); paper = int(np.median(a[:40, :].ravel
 for sid, v in kr["areas"].items():  # the area's middle lies on the drawing, not on the empty paper around it
     pt = geo(v["polys"]).representative_point(); x, y = int(pt.x), int(pt.y)
     r.ok(abs(a[max(0, y - 2):y + 3, max(0, x - 2):x + 3] - paper).max() > 25, f"kresba/{sid}: on the skeleton")
+
+check_bones("kresba/cela", kr["cela"])
+r.ok(set(kr["cela"]["areas"]) == set(kr["areas"]), "kresba/cela: the same structures as the magnifying glass")
 
 r.ok([f["id"] for f in K["skutecny"]] == ["predni-cast", "zadni-cast"], "skutecny: A and B")
 for f in K["skutecny"]:

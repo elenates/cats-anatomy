@@ -3,10 +3,11 @@
 Both plates show the cat walking to the left in nearly the same pose. A thin-plate spline through a few points
 the plates share (nose, eye, ear, the four paws, back, tail) moves the skeleton plate a little so that it sits
 under the cat. Only small moves are needed (the largest is about 50 px on a 1200 px plate).
-Writes images/rentgen/1845/kostra-na-kocce.webp (Pl. XI moved onto Pl. I, same size as Pl. I),
+Writes images/rentgen/1845/kostra-na-kocce.webp (Pl. XI in the X-ray look of xray_1845.py, moved onto Pl. I,
+same size as Pl. I; the magnifying glass shows it),
 tools/rentgen/1845/pl11-on-pl1.json (the clickable areas of pl11.json moved the same way) and the check picture
 tools/rentgen/1845/check-fit.png (the moved skeleton over the cat, half transparent, points as rings).
-Run after build_pl11.py."""
+Run after build_pl11.py and xray_1845.py."""
 import json, os
 import numpy as np
 from PIL import Image, ImageDraw
@@ -14,6 +15,7 @@ from scipy.interpolate import RBFInterpolator
 from scipy.ndimage import map_coordinates
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 CAT = os.path.join(ROOT, "images/rentgen/1845/kocka.webp"); SKEL = os.path.join(ROOT, "images/rentgen/1845/kostra.webp")
+XRAY = os.path.join(ROOT, "images/rentgen/1845/kostra-rentgen.webp")
 
 # point: (Pl. I cat, Pl. XI skeleton), plate pixels
 POINTS = {
@@ -44,11 +46,13 @@ def fit():
 def main():
     inv, fwd = fit()
     cat = Image.open(CAT).convert("RGB"); W, H = cat.size
-    sk = np.array(Image.open(SKEL).convert("RGB")).astype(float)
     yy, xx = np.mgrid[0:H, 0:W]; q = inv(np.c_[xx.ravel(), yy.ravel()].astype(float))
-    out = np.stack([map_coordinates(sk[..., i], [q[:, 1], q[:, 0]], order=1, mode="nearest").reshape(H, W) for i in range(3)], -1)
-    moved = Image.fromarray(out.clip(0, 255).astype(np.uint8))
-    moved.save(os.path.join(ROOT, "images/rentgen/1845/kostra-na-kocce.webp"), quality=86, method=6)
+    def warp(path):
+        sk = np.array(Image.open(path).convert("RGB")).astype(float)
+        out = np.stack([map_coordinates(sk[..., i], [q[:, 1], q[:, 0]], order=1, mode="nearest").reshape(H, W) for i in range(3)], -1)
+        return Image.fromarray(out.clip(0, 255).astype(np.uint8))
+    warp(XRAY).save(os.path.join(ROOT, "images/rentgen/1845/kostra-na-kocce.webp"), quality=86, method=6)
+    moved = warp(SKEL)  # the plain plate, only for the check picture
     a = json.load(open(os.path.join(HERE, "pl11.json")))
     def move(ring):
         r = np.array(ring + [ring[0]], float); dense = []

@@ -17,6 +17,10 @@
  *   #/smysly/spoj  -> Spoj, co patří k sobě with the senses (ATLAS_DATA.spojSmysly)
  *   #/vnejsi/kviz  -> quiz Najdi část těla (cat photo)
  *   #/vnejsi/spoj  -> Spoj, co patří k sobě with body parts (ATLAS_DATA.spojVnejsi)
+ *   #/rentgen[/kosti] -> Kočičí rentgen, Kosti on the 1845 cat with the magnifying glass (scripts/rentgen.js)
+ *   #/rentgen/organy, #/rentgen/svaly -> the same glass over the photo, organs / muscles
+ *   #/rentgen/skutecny[/<n>] -> real X-ray n (1 front, 2 back of the body)
+ *   #/rentgen/zajimave[/<id>] -> Zajímavé rentgeny: the gallery / one X-ray
  *   #/o-aplikaci   -> O aplikaci a zdrojích (ATLAS_DATA.zdroje); linked from the footer of every screen
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
@@ -104,6 +108,12 @@
   function renderSection(section, sub, sub2) {
     var back = el("a", { "class": "back-link", href: "#/", text: "← " + ui.back });
     var title = el("h1", { "class": "screen-title", text: section.cs });
+    if (section.id === "rentgen" && window.Rentgen && data.rentgenKosti && data.rentgenAreas) {
+      var rview = { organy: "organy", svaly: "svaly", skutecny: "skutecny", zajimave: "galerie" }[sub] || "kresba";
+      var rhost = el("div", { "class": "atlas" });
+      rhost._mount = function () { window.Rentgen.mount(rhost, { view: rview, n: parseInt(sub2, 10) || 1, id: sub2 }); };
+      return [back, title, rhost];
+    }
     if (section.id === "kostra" && sub === "kviz" && window.Quiz) {
       var qback = el("a", { "class": "back-link", href: "#/kostra", text: "← " + (ui.quizBack || "Zpět na kostru") });
       var qhost = el("div", { "class": "atlas quiz" });
