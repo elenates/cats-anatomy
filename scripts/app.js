@@ -502,7 +502,7 @@
   /* O aplikaci a zdrojích (ATLAS_DATA.zdroje): text parts are [{ text, href? }]. */
   function parts(list, cls) {
     return el("p", { "class": cls || "about-p" }, list.map(function (x) {
-      return x.href ? el("a", { href: x.href, target: "_blank", rel: "noopener", text: x.text }) : document.createTextNode(x.text);
+      return x.href ? el("a", { href: x.href, target: "_blank", rel: "noopener", text: x.text }) : x.em ? el("em", { text: x.text }) : document.createTextNode(x.text);
     }));
   }
   function renderAbout() {
@@ -511,7 +511,7 @@
       el("p", { "class": "about-p", text: z.intro })];
     var imgs = el("section", { "class": "about-section" }, [el("h2", { text: z.imagesHeading })]);
     z.images.forEach(function (g) {
-      var card = el("article", { "class": "about-card" }, [el("h3", { text: g.heading })]);
+      var card = el("article", { "class": "about-card" }, [Array.isArray(g.heading) ? (function () { var h = parts(g.heading, ""); var h3 = el("h3"); while (h.firstChild) h3.appendChild(h.firstChild); return h3; })() : el("h3", { text: g.heading })]);
       ["parts", "source", "licence", "changes"].forEach(function (k) { if (g[k]) card.appendChild(parts(g[k])); });
       if (g.figures.length > 1 || g.figures[0].no) {
         card.appendChild(el("ul", { "class": "about-figs" }, g.figures.map(function (f) {

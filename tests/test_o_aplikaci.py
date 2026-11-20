@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
 r = Run("o aplikaci")
-files = sorted(os.path.relpath(f, ROOT) for f in glob.glob(os.path.join(ROOT, "images", "*", "*.webp")))
+files = sorted(os.path.relpath(f, ROOT) for f in glob.glob(os.path.join(ROOT, "images", "**", "*.webp"), recursive=True))
 rows = set(re.findall(r"^\| `(images/[^`]+)`", open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read(), re.M))
 with sync_playwright() as p:
     b = browser(p)
@@ -23,6 +23,7 @@ with sync_playwright() as p:
         r.ok(sorted(listed) == files, f"{vn}: every image listed once; missing {set(files)-set(listed)}, extra {set(listed)-set(files)}")
         r.ok(set(files) <= rows, f"{vn}: licence rows missing for {set(files)-rows}")
         r.ok(pg.locator(".about-card").count() == len(Z["images"]), f"{vn}: one card per source")
+        r.ok(pg.locator(".about-card h3 em").first.inner_text() == "Anatomie descriptive et comparative du chat", f"{vn}: book title in italics")
         hrefs = pg.eval_on_selector_all(".about-section a", "els=>els.map(a=>a.getAttribute('href'))")
         r.ok(hrefs and all(h.startswith("https://") for h in hrefs), f"{vn}: links {hrefs}")
         txt = pg.locator("#app").inner_text()
