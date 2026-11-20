@@ -13,6 +13,9 @@
  * opts.content (default "kostra") and opts.config (default ATLAS_DATA.spoj) give the same game
  * for another section (Svaly: content "svaly", config ATLAS_DATA.spojSvaly).
  *
+ * Cards (scripts/infocard.js): a 💡 next to each name opens its whole card as a hint (that name then no longer
+ * counts as "first try"); after a pair (right or wrong) "Přečti si kartičku" opens the name's card.
+ *
  * Public API: window.Spoj.mount(container, { content, config })
  */
 (function () {
@@ -66,7 +69,7 @@
     var items = (D[content] && D[content].items) || [];
     var pool = items.filter(function (it) { return it.level === "zaklad" && it.quiz !== false && it.coDela; });
     var rounds = 0, roundList = [], r = 0, failed = {}, funnyLeft = [];
-    var sel = { name: null, answer: null }, matched = {}, pairNo = 0;
+    var sel = { name: null, answer: null }, matched = {}, pairNo = 0, hinted = {};
 
     container.textContent = "";
     var progress = el("p", { "class": "quiz-progress" });
@@ -78,8 +81,9 @@
       el("div", null, [el("h2", { "class": "spoj-h", text: t.answersLabel || "Co dělá?" }), answers])
     ]);
     var feedback = el("p", { "class": "spoj-feedback", "aria-live": "polite" });
+    var more = el("p", { "class": "card-link quiz-more" });   // "Přečti si kartičku" after a pair
     var next = el("button", { type: "button", "class": "quiz-next", hidden: "" });
-    var game = el("div", { "class": "spoj-game" }, [progress, howTo, board, feedback, next]);
+    var game = el("div", { "class": "spoj-game" }, [progress, howTo, board, feedback, more, next]);
     var summary = el("section", { "class": "quiz-summary", hidden: "" });
     container.appendChild(game);
     container.appendChild(summary);
@@ -90,12 +94,14 @@
     function start() {
       roundList = makeRounds(pool, { rounds: cfg.rounds || 3, pairs: cfg.pairs || 4, conflicts: cfg.conflicts });
       funnyLeft = shuffle((cfg.funny || []).slice());
-      r = 0; failed = {};
+      r = 0; failed = {}; hinted = {};
       game.hidden = false; summary.hidden = true;
       startRound();
     }
 
-    function say(text, kind) {
+    function say(text, kind, cardId, cardOpts) {
+      more.textContent = "";
+      if (cardId && window.InfoCard) more.appendChild(window.InfoCard.moreButton(content, cardId, cardOpts));
       feedback.textContent = text;
       feedback.className = "spoj-feedback" + (kind ? " is-" + kind : "");
     }
@@ -108,7 +114,11 @@
       round.forEach(function (it) {
         var b = el("button", { type: "button", "class": "spoj-btn spoj-name", "data-id": it.id, "aria-pressed": "false", text: it.cs });
         b.addEventListener("click", function () { tapName(it, b); });
-        names.appendChild(el("li", null, [b]));
+        // Hint: the whole card; a structure whose hint was opened no longer counts as "first try".
+        var hint = window.InfoCard ? window.InfoCard.hintIcon(content, it.id, {
+          onOpen: function (id) { if (!matched[id]) { failed[id] = true; hinted[id] = true; } },
+          done: function (id) { return !!matched[id]; } }) : null;
+        names.appendChild(el("li", { "class": hint ? "has-hint" : null }, [b, hint]));
       });
       var fun = [];
       for (var k = 0; k < (cfg.funnyPerRound || 2); k++) { if (!funnyLeft.length) funnyLeft = shuffle((cfg.funny || []).slice()); fun.push(funnyLeft.pop()); }
@@ -158,7 +168,7 @@
           b.disabled = true; b.classList.remove("is-wrong"); b.classList.add("is-right");
           b.insertBefore(el("span", { "class": "spoj-num", "aria-hidden": "true", text: String(pairNo) }), b.firstChild);
         });
-        say(fmt(t.right || "{name} – správně!", { name: n.it.cs }), "right");
+        say(fmt(t.right || "{name} – správně!", { name: n.it.cs }) + (hinted[n.it.id] ? " " + (ui.hintNoScore || "S nápovědou se odpověď do výsledku nepočítá.") : ""), "right", n.it.id);
         var done = roundList[r].every(function (it) { return matched[it.id]; });
         if (done) {
           // Funny answers that were not tapped stay as they are; the round is over.
@@ -172,7 +182,7 @@
           b.classList.remove("is-wrong"); void b.offsetWidth; b.classList.add("is-wrong");
           setTimeout(function () { b.classList.remove("is-wrong"); }, 900);   // red only for a moment
         });
-        say(t.wrong || "Tohle k sobě nepatří.", "wrong");
+        say(t.wrong || "Tohle k sobě nepatří.", "wrong", n.it.id);
       }
     }
 

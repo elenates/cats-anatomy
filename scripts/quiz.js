@@ -18,6 +18,9 @@
  * each question shows the figure that has the asked structure (Najdi sval: Figs. 68 and 90).
  * opts.maxHeightVh: { figureId: vh } limits tall figures as on the Svaly screen.
  *
+ * Cards (scripts/infocard.js): "Nápověda" on the question screen (a right answer after it does not count),
+ * "Přečti si kartičku" after the answer.
+ *
  * Public API: window.Quiz.mount(container, { figure: "skeleton", layer: "kosti", rounds: 10, texts: {...} })
  */
 (function () {
@@ -148,7 +151,7 @@
     }
 
     function ask() {
-      q.answered = false; q.tapped = null;
+      q.answered = false; q.tapped = null; q.hinted = false;
       clearMarks();
       svg.classList.remove("is-answered");
       var target = byId[q.list[q.i]];
@@ -158,6 +161,7 @@
       prompt.textContent = (ui.quizFind || "Najdi:") + " " + target.cs;
       feedback.textContent = "";
       feedback.appendChild(el("p", { "class": "card-empty", text: ui.quizHint || "Klepni na obrázek." }));
+      if (window.InfoCard) feedback.appendChild(el("p", { "class": "hint-row" }, [window.InfoCard.hintButton(content, target.id, { onOpen: function () { q.hinted = true; } })]));
     }
 
     function isCorrect(targetId, tappedId) {
@@ -176,9 +180,11 @@
       svg.classList.add("is-answered");
       var ok = isCorrect(targetId, tappedId);
       if (ok) {
-        q.score++;
+        // After a hint the answer is right, but it does not count (Lenka, 2026-11-20).
+        if (q.hinted) q.missed.push(targetId); else q.score++;
         mark(tappedId, "is-right");
         feedback.appendChild(el("p", { "class": "quiz-verdict is-right", text: pick(ui.quizPraise || ["Správně!"]) }));
+        if (q.hinted) feedback.appendChild(el("p", { "class": "card-p hint-note", text: (ui.hintNoScore || "S nápovědou se odpověď do výsledku nepočítá.") }));
         if (tappedId !== targetId) {
           // e.g. tapped the neck for "Páteř": say what it was.
           feedback.appendChild(el("p", { "class": "card-p", text: fmt(ui.quizAlsoRight || "{tapped} patří k části {target}.", { tapped: byId[tappedId].cs, target: target.cs }) }));
@@ -192,6 +198,12 @@
         feedback.appendChild(el("p", { "class": "quiz-verdict is-wrong", text: fmt(ui.quizWrong || "Tvoje odpověď: {tapped}.", { tapped: byId[tappedId].cs }) }));
         feedback.appendChild(el("p", { "class": "card-p", text: ui.quizShowRight || "Správné místo je zvýrazněné zeleně." }));
         feedback.appendChild(el("p", { "class": "card-p quiz-explain" }, [el("strong", { text: target.cs + ": " }), document.createTextNode(firstSentence(target.kdeJe))]));
+      }
+      // The cards of the asked structure and, after a mistake, of the tapped one (pop-up, the round goes on).
+      if (window.InfoCard) {
+        var more = [window.InfoCard.moreButton(content, targetId)];
+        if (tappedId !== targetId) more.push(window.InfoCard.moreButton(content, tappedId));
+        feedback.appendChild(el("p", { "class": "card-link quiz-more" }, more));
       }
       var last = q.i === q.list.length - 1;
       var next = el("button", { type: "button", "class": "quiz-next", text: last ? (ui.quizResult || "Výsledek") : (ui.quizNext || "Další otázka") });
