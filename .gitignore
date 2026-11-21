@@ -7,3 +7,4 @@ tools/hotspots/svaly/hs*.json
 tools/hotspots/svaly/ov*.png
 tools/hotspots/organs-side/nolabels.svg
 tools/content/*.xlsx
+tools/hotspots/clovek/hs_*.json
