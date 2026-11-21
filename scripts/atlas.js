@@ -14,6 +14,10 @@
  *               anyLevel  with only: show those ids at both levels (Jak kočka skáče)
  *               system.chipsHeading / system.links  heading over the buttons, extra links (Jak kočka skáče)
  *               system.alsoIds / system.alsoHeading  ids from earlier steps: lighter outline, own list
+ *               card: false  no info card (a screen that shows its own card, Kočka a člověk)
+ *               toolbar: false  no toolbar (the partner atlas of a pair has it)
+ *               onSelect(id)  called after every tap (id or null); onToggle(state) after a toolbar change
+ *   container._atlas: select(id, fromKeyboard, silent), refresh(layer) (re-read the switches), state, selected
  *
  * Interaction:
  *   - tap / click a hotspot, or Tab to it and press Enter / Space -> info card
@@ -126,12 +130,12 @@
     var layerGroup = el("div", { "class": "seg", role: "group", "aria-label": ui.layerLabel || "Zobrazit" });
     layerIds.forEach(function (ln) {
       var b = el("button", { type: "button", "class": "seg-btn", "data-layer": ln, text: layerNames[ln] || ln });
-      b.addEventListener("click", function () { state.layer = ln; selected = null; saveToggles(state); renderAll(); });
+      b.addEventListener("click", function () { state.layer = ln; selected = null; saveToggles(state); renderAll(); if (opts && opts.onToggle) opts.onToggle(state); if (opts && opts.onSelect) opts.onSelect(null); });
       layerGroup.appendChild(b);
     });
     function toggle(key, label) {
       var b = el("button", { type: "button", "class": "toggle", "data-toggle": key, text: label });
-      b.addEventListener("click", function () { state[key] = !state[key]; saveToggles(state); renderAll(); });
+      b.addEventListener("click", function () { state[key] = !state[key]; saveToggles(state); renderAll(); if (opts && opts.onToggle) opts.onToggle(state); });
       return b;
     }
     var toolbar = el("div", { "class": "atlas-toolbar" }, [
@@ -169,9 +173,10 @@
 
     var layout = el("div", { "class": "atlas-layout" }, [
       el("div", { "class": "atlas-figure-col" }, [figBox, credit]),
-      card
+      opts && opts.card === false ? null : card
     ]);
-    container.appendChild(toolbar);
+    if (opts && opts.card === false) layout.classList.add("no-card");
+    if (!(opts && opts.toolbar === false)) container.appendChild(toolbar);
     container.appendChild(layout);
 
     // ----- rendering -----
@@ -506,11 +511,13 @@
 
     function focusHotspot(id) { if (id && polyNodes[id]) polyNodes[id].focus(); }
 
-    function select(id, fromKeyboard) {
+    function select(id, fromKeyboard, silent) {
       selected = id;
       renderFigure();
       renderCard();
       if (fromKeyboard) focusHotspot(id);
+      if (opts && opts.onSelect && !silent) opts.onSelect(id);
+      if (opts && opts.card === false) return;
       // On stacked layouts, bring the card into view after a tap.
       if (id && window.matchMedia("(max-width: 899px), (orientation: portrait)").matches) {
         card.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -545,7 +552,14 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (state.popisky) renderFigure(); });
 
     // Expose a tiny hook for automated tests.
-    container._atlas = { select: select, state: state, get selected() { return selected; } };
+    function refresh(layer) {
+      var t = loadToggles();
+      Object.keys(t).forEach(function (k) { if (k !== "layer") state[k] = t[k]; });
+      if (layer && fig.layers[layer]) state.layer = layer;
+      if (selected && !(fig.layers[state.layer] || {})[selected]) selected = null;
+      renderAll();
+    }
+    container._atlas = { select: select, refresh: refresh, visible: visibleIds, state: state, get selected() { return selected; } };
   }
 
   /*

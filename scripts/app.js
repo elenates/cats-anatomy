@@ -21,6 +21,7 @@
  *   #/rentgen/organy, #/rentgen/svaly -> the same glass over the photo, organs / muscles
  *   #/rentgen/skutecny[/<n>] -> real X-ray n (1 front, 2 back of the body)
  *   #/rentgen/zajimave[/<id>] -> Zajímavé rentgeny: the gallery / one X-ray
+ *   #/clovek[/kostra|organy|rozmnozovaci|zajimavosti[/<view or card id>]] -> Kočka a člověk (scripts/clovek.js)
  *   #/o-aplikaci   -> O aplikaci a zdrojích (ATLAS_DATA.zdroje); linked from the footer of every screen
  *   #/procvicovani -> Procvičování: all games of the atlas (ATLAS_DATA.procvicovani)
  *   #/procvicovani/popisky[/<figure>] -> Doplň popisky: choose a picture / play on it (ATLAS_DATA.popisky)
@@ -233,6 +234,7 @@
         el("h1", { "class": "screen-title", text: ui.quizTitleSmysly || "Kvíz: Najdi část oka, ucha nebo jazyka" }), yqhost];
     }
     if (section.id === "smysly" && window.Atlas && data.smysly) return sub === "zajimavosti" ? renderFakta(section, sub2) : renderSmysly(section, parseInt(sub, 10) || 1);
+    if (section.id === "clovek" && window.Clovek && window.Atlas && data.clovek) return window.Clovek.render(sub, sub2);
     if (section.id === "procvicovani" && sub === "popisky" && data.popisky) return renderPopisky(sub2);
     if (section.id === "procvicovani" && sub === "zaverecny" && data.zaverecny && window.Zaverecny) {
       var zt = data.zaverecny.ui || {};

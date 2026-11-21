@@ -20,6 +20,19 @@ SIDES = {  # where each label goes when Popisky is on (atlas.js); the rest go to
   "clovek-zboku": {"dolni-celist": "left", "zebra": "left", "panev": "left", "kost-stehenni": "left", "kost-krizova": "bottom",
                    "kostrc": "bottom", "bederni-obratle": "bottom"},
 }
+ST = "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(%s).jpg"
+def stubbs(n): return [{"text": "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: "}, {"text": "Wikimedia Commons", "href": ST % n},
+                       {"text": ", volné dílo. Úpravy: převedeno do černobílé podoby, papír vybělen a obrázky oříznuty."}]
+SA3, SA4 = "https://creativecommons.org/licenses/by-sa/3.0/", "https://creativecommons.org/licenses/by-sa/4.0/"
+CREDIT = {  # shown under the picture (CC BY-SA asks for author, source and licence, each linked)
+  "clovek-na-ctyrech": stubbs(2351546), "clovek-zepredu": stubbs(2350908), "clovek-zboku": stubbs(2362160), "clovek-zezadu": stubbs(2349541),
+  "clovek-organy": [{"text": "Autor: Madhero88 a další. Zdroj: "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:SVG_Human_With_All_Organs.svg"},
+                    {"text": ", licence "}, {"text": "CC BY-SA 3.0", "href": SA3}, {"text": ". Úpravy: obrázek oříznut a zmenšen."}],
+  "clovek-muz": [{"text": "Autor: T. Kebert. Zdroj: "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:Male_reproductive_lateral_without_labels.svg"},
+                 {"text": ", licence "}, {"text": "CC BY-SA 4.0", "href": SA4}, {"text": ". Úpravy: použita pouze levá část kresby, obrázek oříznut."}],
+  "clovek-zena": [{"text": "Autor: RWhitwam. Zdroj: "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:Female_reproductive_system_lateral_unlabeled.svg"},
+                  {"text": ", licence "}, {"text": "CC BY-SA 4.0", "href": SA4}, {"text": ". Úpravy: odstraněna písmena popisků, obrázek oříznut."}],
+}
 def num(v): return str(int(v)) if float(v).is_integer() else str(v)
 def polys(ps): return "[" + ",".join("[" + ",".join("[%s,%s]" % (num(x), num(y)) for x, y in p) + "]" for p in ps) + "]"
 from PIL import Image
@@ -42,7 +55,8 @@ for fid, short, img, cap in FIGS:
     for layer, items in hs.items():
         rows = ",\n".join('      "%s": %s' % (k, polys(v)) for k, v in items.items() if v)
         layers.append('    %s: {\n%s\n    }' % (layer, rows))
-    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  labelSides: %s,\n  nested: %s,\n  alsoCounts: {}\n};\n'
-               % (fid, img, w, h, json.dumps(cap, ensure_ascii=False), ",\n".join(layers), json.dumps(SIDES.get(fid, {}), separators=(",", ":")), json.dumps(nested, separators=(",", ":"))))
+    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  credit: %s,\n  creditParts: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  labelSides: %s,\n  nested: %s,\n  alsoCounts: {}\n};\n'
+               % (fid, img, w, h, json.dumps(cap, ensure_ascii=False), json.dumps("".join(c["text"] for c in CREDIT[fid]), ensure_ascii=False),
+                  json.dumps(CREDIT[fid], ensure_ascii=False), ",\n".join(layers), json.dumps(SIDES.get(fid, {}), separators=(",", ":")), json.dumps(nested, separators=(",", ":"))))
 open(os.path.join(ROOT, "data", "hotspots-clovek.js"), "w", encoding="utf-8").write("\n".join(out))
 print("written", [f[0] for f in FIGS])

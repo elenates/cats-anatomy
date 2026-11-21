@@ -17,6 +17,7 @@ window.ATLAS_DATA.sections = [
   { id: "svaly",       cs: "Svaly",               icon: "💪", status: "active" },
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "active" },
   { id: "rentgen",     cs: "Kočičí rentgen",      icon: "🩻", status: "active" },
+  { id: "clovek",      cs: "Kočka a člověk",      icon: "🧍", status: "active" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "active" }
 ];
 
@@ -146,7 +147,37 @@ window.ATLAS_DATA.ui = {
   quizTryAgain: "Zkus to ještě jednou, půjde to líp!",
   quizReview: "Na tyhle se ještě podívej:",
   quizAgain: "Hrát znovu",
-  quizNoData: "Kvíz zatím nemá otázky."
+  quizNoData: "Kvíz zatím nemá otázky.",
+
+  // Kočka a člověk (#72 stage 4) – proofread by Lenka
+  clovekIntro: "Klepni na část těla na obrázku kočky nebo člověka. Stejná část se rozsvítí na obou obrázcích.",
+  clovekTabsLabel: "Kočka a člověk: obrázky",
+  clovekTabKostra: "Kostra",
+  clovekTabOrgany: "Vnitřní orgány",
+  clovekTabRozmn: "Rozmnožovací orgány",
+  clovekTabFakta: "Zajímavosti",
+  clovekViewsLabel: "Pohled na kostru člověka",
+  clovekNaCtyrech: "Na všech čtyřech",
+  clovekZepredu: "Zepředu",
+  clovekZboku: "Z boku",
+  clovekZezadu: "Zezadu",
+  clovekMuz: "Kocour a muž",
+  clovekZena: "Kočka a žena",
+  clovekCat: "Kočka",
+  clovekHuman: "Člověk",
+  clovekCatSideOnly: "Kočičí kostru máme nakreslenou jen z boku.",
+  clovekStejne: "Stejné",
+  clovekJine: "Jiné",
+  clovekKdeJe: "Kde ji najdeš u člověka?",
+  clovekSrovnani: "Kočka a člověk",
+  clovekCatCard: "Kočičí kartička: {name} →",
+  clovekEmpty: "Klepni na část těla na jednom z obrázků.",
+  clovekCatOnly: "Tuhle část na obrázku člověka nemáme označenou.",
+  clovekNotOnCat: "Na obrázku kočky nemáme tuhle část označenou.",
+  clovekFaktaIntro: "Co má jen kočka, co jen člověk a co mají oba?",
+  clovekTygrKostra: "Kostra tygra",
+  clovekTygrStoji: "Tygr stojící jako člověk",
+  clovekTygrCredit: "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: Wikimedia Commons, volné dílo."
 };
 
 /*
