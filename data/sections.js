@@ -149,15 +149,15 @@ window.ATLAS_DATA.ui = {
   quizAgain: "Hrát znovu",
   quizNoData: "Kvíz zatím nemá otázky.",
 
-  // Kočka a člověk (#72 stage 4) – to be proofread
-  clovekIntro: "Klepni na část těla u kočky, nebo u člověka. Stejná část se rozsvítí na obou obrázcích.",
+  // Kočka a člověk (#72 stage 4) – proofread by Lenka
+  clovekIntro: "Klepni na část těla na obrázku kočky nebo člověka. Stejná část se rozsvítí na obou obrázcích.",
   clovekTabsLabel: "Kočka a člověk: obrázky",
   clovekTabKostra: "Kostra",
   clovekTabOrgany: "Vnitřní orgány",
   clovekTabRozmn: "Rozmnožovací orgány",
   clovekTabFakta: "Zajímavosti",
   clovekViewsLabel: "Pohled na kostru člověka",
-  clovekNaCtyrech: "Na čtyřech",
+  clovekNaCtyrech: "Na všech čtyřech",
   clovekZepredu: "Zepředu",
   clovekZboku: "Z boku",
   clovekZezadu: "Zezadu",
@@ -168,16 +168,16 @@ window.ATLAS_DATA.ui = {
   clovekCatSideOnly: "Kočičí kostru máme nakreslenou jen z boku.",
   clovekStejne: "Stejné",
   clovekJine: "Jiné",
-  clovekKdeJe: "Kde je u člověka?",
+  clovekKdeJe: "Kde ji najdeš u člověka?",
   clovekSrovnani: "Kočka a člověk",
   clovekCatCard: "Kočičí kartička: {name} →",
   clovekEmpty: "Klepni na část těla na jednom z obrázků.",
-  clovekCatOnly: "Tuhle část na obrázku člověka označenou nemáme.",
-  clovekNotOnCat: "Na obrázku kočky tahle část označená není.",
+  clovekCatOnly: "Tuhle část na obrázku člověka nemáme označenou.",
+  clovekNotOnCat: "Na obrázku kočky nemáme tuhle část označenou.",
   clovekFaktaIntro: "Co má jen kočka, co jen člověk a co mají oba?",
   clovekTygrKostra: "Kostra tygra",
   clovekTygrStoji: "Tygr stojící jako člověk",
-  clovekTygrCredit: "Kresby: George Stubbs (1795–1806), Yale Center for British Art, Wikimedia Commons, volné dílo."
+  clovekTygrCredit: "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: Wikimedia Commons, volné dílo."
 };
 
 /*

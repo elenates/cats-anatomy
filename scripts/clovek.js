@@ -32,7 +32,7 @@
 
   var TABS = [
     { id: "kostra", cs: ui.clovekTabKostra || "Kostra", views: [
-      { id: "na-ctyrech", cs: ui.clovekNaCtyrech || "Na čtyřech", cat: "skeleton", human: "clovek-na-ctyrech" },
+      { id: "na-ctyrech", cs: ui.clovekNaCtyrech || "Na všech čtyřech", cat: "skeleton", human: "clovek-na-ctyrech" },
       { id: "zepredu", cs: ui.clovekZepredu || "Zepředu", cat: "skeleton", human: "clovek-zepredu", tall: true, note: "clovekCatSideOnly" },
       { id: "zboku", cs: ui.clovekZboku || "Z boku", cat: "skeleton", human: "clovek-zboku" },
       { id: "zezadu", cs: ui.clovekZezadu || "Zezadu", cat: "skeleton", human: "clovek-zezadu", tall: true, note: "clovekCatSideOnly" }] },
@@ -147,7 +147,7 @@
         card.appendChild(el("div", { "class": "card-badges" }, [badge(h.vztah),
           h.level === "zvidave" ? el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }) : null]));
         if (current.humMissing) card.appendChild(el("p", { "class": "card-empty", text: ui.clovekCatOnly || "" }));
-        [["kdeJe", ui.clovekKdeJe || "Kde je u člověka?"], ["srovnani", ui.clovekSrovnani || "Kočka a člověk"]].forEach(function (f) {
+        [["kdeJe", ui.clovekKdeJe || "Kde ji najdeš u člověka?"], ["srovnani", ui.clovekSrovnani || "Kočka a člověk"]].forEach(function (f) {
           if (!h[f[0]]) return;
           card.appendChild(el("h3", { "class": "card-h", text: f[1] }));
           card.appendChild(el("p", { "class": "card-p", text: h[f[0]] }));

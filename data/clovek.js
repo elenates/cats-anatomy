@@ -742,7 +742,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "tygr-stoji",
       cs: "Tygr stojící jako člověk",
-      text: "Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na prvním obrázku je kostra tygra. Na druhém si představil, jak by vypadal tygr, kdyby stál na zadních nohou jako člověk.",
+      text: "Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na prvním obrázku je kostra tygra. Na druhém si představil, jak by tygr vypadal, kdyby stál na zadních nohách jako člověk.",
       vztah: "jine",
       image: ["tygr-kostra", "tygr-stoji"],
       refs: ["GBIF-FC"]
