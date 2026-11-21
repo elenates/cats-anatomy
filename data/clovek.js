@@ -27,7 +27,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "stejne",
       kdeJe: "V hlavě.",
-      srovnani: "Lebka chrání mozek u kočky i u člověka. Lidská lebka má velkou kulatou klenbu, protože člověk má velký mozek.",
+      srovnani: "Lebka chrání mozek u kočky i u člověka. Lidská lebka má velkou kulatou klenbu, protože člověk má v poměru k tělu velký mozek.",
       refs: ["OSX-SKULL", "OSX-NS", "ROVER-BRAIN", "WP-CATINT"]
     },
     {
@@ -53,7 +53,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "Vzadu v trupu, od hlavy až dolů k pánvi.",
-      srovnani: "Páteř je u obou složená z obratlů a chrání míchu. Člověk má v páteři asi 33 obratlů, kočka kolem 50 – většinu z nich v ocase.",
+      srovnani: "Páteř je u obou složená z obratlů a chrání míchu. Člověk má v páteři asi 33 obratlů, kočka kolem 50 – mnoho z nich v ocase.",
       refs: ["OSX-VERT"]
     },
     {
@@ -92,7 +92,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "V dolní části zad, mezi hrudníkem a pánví.",
-      srovnani: "Člověk má 5 bederních obratlů, kočka 7. Proto má kočka dlouhá a ohebná záda.",
+      srovnani: "Člověk má 5 bederních obratlů, kočka 7. Kočka má díky tomu delší a ohebnější bederní část páteře.",
       refs: ["OSX-VERT"]
     },
     {
@@ -144,7 +144,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "stejne",
       kdeJe: "Vpředu uprostřed hrudníku.",
-      srovnani: "U kočky i u člověka se k hrudní kosti připojují žebra zepředu.",
+      srovnani: "U kočky i u člověka se k hrudní kosti připojují jen přední žebra. Člověk k ní má přímo připojených 7 párů žeber, kočka 9 párů.",
       refs: ["OSX-THOR"]
     },
     {
@@ -157,7 +157,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "Vpředu u krku, mezi hrudní kostí a ramenem. Můžeš si ji nahmatat.",
-      srovnani: "Lidská klíční kost je velká a spojuje rameno s hrudní kostí. Kočka má jen malou klíční kost schovanou ve svalu, která není spojená s žádnou kostí.",
+      srovnani: "Lidská klíční kost spojuje lopatku s hrudní kostí. Kočka má jen malou klíční kost schovanou ve svalu, která není spojená s žádnou kostí.",
       refs: ["OSX-PECT"]
     },
     {
@@ -220,10 +220,10 @@ window.ATLAS_DATA.clovek = {
       figs: ["zepredu", "zezadu", "na-ctyrech"],
       kocka: "kosti-zapestni",
       content: "kostra",
-      vztah: "stejne",
+      vztah: "jine",
       kdeJe: "V zápěstí, mezi předloktím a dlaní.",
-      srovnani: "Zápěstí je u kočky i u člověka složené z malých kůstek. Ty jich máš v každém zápěstí 8.",
-      refs: ["OSX-UPLIMB"]
+      srovnani: "Zápěstí je u kočky i u člověka složené z malých kůstek. Ty jich máš v každém zápěstí 8, kočka obvykle 7.",
+      refs: ["OSX-UPLIMB", "JFMS-CARPUS"]
     },
     {
       id: "kosti-zaprstni",
@@ -261,7 +261,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "stejne",
       kdeJe: "Dole na trupu, mezi páteří a nohama.",
-      srovnani: "Pánev spojuje nohy s páteří u kočky i u člověka. Lidská pánev je široká, protože nese váhu celého těla, když stojíš.",
+      srovnani: "Pánev spojuje nohy s páteří u kočky i u člověka. Lidská pánev je široká a pomáhá podpírat tělo, když stojíš a chodíš.",
       refs: ["OSX-PELVIS"]
     },
     {
@@ -326,7 +326,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "V patě, vzadu na chodidle.",
-      srovnani: "Člověk stojí na patě. Kočka chodí po prstech a pata je u ní vysoko nad zemí – je to to „koleno ohnuté dozadu“ na zadní noze.",
+      srovnani: "Člověk stojí na patě. Kočka chodí po prstech a pata je u ní vysoko nad zemí. Kloub, který vypadá jako koleno ohnuté dozadu, je ve skutečnosti hlezno.",
       refs: ["OSX-LOWLIMB"]
     },
     {
@@ -482,7 +482,7 @@ window.ATLAS_DATA.clovek = {
       content: "organy",
       vztah: "stejne",
       kdeJe: "V břiše vpravo nahoře, pod bránicí.",
-      srovnani: "Játra jsou u kočky i u člověka největší orgán uvnitř těla.",
+      srovnani: "Játra jsou u kočky i u člověka největším vnitřním orgánem.",
       refs: ["OSX-LIVER"]
     },
     {
@@ -495,7 +495,7 @@ window.ATLAS_DATA.clovek = {
       content: "organy",
       vztah: "stejne",
       kdeJe: "Pod játry.",
-      srovnani: "Žlučník schovává žluč z jater u kočky i u člověka.",
+      srovnani: "Žlučník uchovává žluč, kterou vytvářejí játra, u kočky i u člověka.",
       refs: ["OSX-LIVER"]
     },
     {
@@ -573,7 +573,7 @@ window.ATLAS_DATA.clovek = {
       content: null,
       vztah: "stejne",
       kdeJe: "Vpředu dole na těle muže.",
-      srovnani: "Penis má muž i kocour. Vede jím moč z močového měchýře ven z těla a také spermie.",
+      srovnani: "Penis má muž i kocour. Odvádí jím moč z močového měchýře ven z těla a při rozmnožování jím procházejí také spermie.",
       refs: ["OSX-MALE", "PP-MALE"]
     },
     {
@@ -598,9 +598,9 @@ window.ATLAS_DATA.clovek = {
       kocka: "deloha",
       content: "organy",
       vztah: "jine",
-      kdeJe: "V pánvi, mezi močovým měchýřem a konečníkem.",
-      srovnani: "V děloze roste mládě u kočky i u člověka. Kočičí děloha má dva dlouhé rohy, ve kterých roste víc koťat najednou. Lidská děloha je jedna a obvykle v ní roste jedno miminko.",
-      refs: ["OSX-FEM", "UF-FELREP", "RUTGERS-KIT"]
+      kdeJe: "U člověka v pánvi, u kočky v břiše.",
+      srovnani: "V děloze roste mládě u kočky i u člověka. Kočičí děloha má dva dlouhé rohy, ve kterých může růst několik koťat najednou. Lidská děloha má jeden hlavní prostor, ve kterém obvykle roste jedno miminko.",
+      refs: ["OSX-FEM", "UF-FELREP", "BVNA-FEM", "RUTGERS-KIT"]
     },
     {
       id: "vajecnik",
@@ -611,9 +611,9 @@ window.ATLAS_DATA.clovek = {
       kocka: "vajecnik",
       content: "organy",
       vztah: "stejne",
-      kdeJe: "V pánvi, po obou stranách dělohy. Žena má dva vaječníky.",
+      kdeJe: "U ženy v pánvi, u kočky v břiše. Samice kočky i žena mají dva vaječníky.",
       srovnani: "Ve vaječnících dozrávají vajíčka u kočky i u ženy.",
-      refs: ["OSX-FEM"]
+      refs: ["OSX-FEM", "NDSU-FEM", "BVNA-FEM"]
     },
     {
       id: "vejcovod",
@@ -638,7 +638,7 @@ window.ATLAS_DATA.clovek = {
       content: null,
       vztah: "stejne",
       kdeJe: "Vede od dělohy ven z těla.",
-      srovnani: "Pochvou se rodí mládě ven z těla u ženy i u kočky.",
+      srovnani: "Pochvou prochází mládě při porodu ven z těla u ženy i u kočky.",
       refs: ["OSX-FEM", "MERCK-GONAD"]
     }
   ],
@@ -646,7 +646,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "po-prstech",
       cs: "Kočka chodí po prstech",
-      text: "Člověk šlape na celé chodidlo – na prsty i na patu. Kočka chodí jen po prstech a pata je u ní vysoko nad zemí.",
+      text: "Člověk při chůzi došlapuje na celé chodidlo, včetně paty. Kočka chodí jen po prstech a pata je u ní vysoko nad zemí.",
       vztah: "jine",
       image: null,
       refs: ["OSX-LOWLIMB", "UMN-RUN"]
@@ -670,7 +670,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "vousy",
       cs: "Hmatové vousy",
-      text: "Kočka má na čenichu dlouhé hmatové vousy. Jsou citlivé jako konečky prstů a pomáhají jí ve tmě. Člověk takové vousy nemá.",
+      text: "Kočka má na čenichu dlouhé hmatové vousy. Jsou velmi citlivé a pomáhají jí vnímat předměty a překážky v blízkém okolí, i když je špatně vidí. Člověk takové vousy nemá.",
       vztah: "jine",
       image: null,
       refs: ["VCA-WHISK"]
@@ -686,7 +686,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "svitici-oci",
       cs: "Svítící oči",
-      text: "Kočce ve tmě svítí oči, protože má v oku lesklou vrstvu, která odráží světlo jako zrcátko. Lidské oko tuhle vrstvu nemá.",
+      text: "Kočičí oči se ve tmě mohou lesknout, protože mají v oku vrstvu, která odráží dopadající světlo jako zrcátko. Lidské oko tuhle vrstvu nemá.",
       vztah: "jine",
       image: null,
       refs: ["FOOTE22"]
@@ -694,7 +694,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "cich",
       cs: "Zvláštní čichový orgán",
-      text: "Kočka má za předními zuby zvláštní čichový orgán. Když ho používá, otevře trochu tlamu a udělá legrační obličej. Člověku tenhle orgán nefunguje.",
+      text: "Kočka má za předními zuby zvláštní čichový orgán. Když ho používá, otevře trochu tlamu a udělá legrační obličej. U člověka tento orgán nefunguje tak jako u kočky.",
       vztah: "jine",
       image: null,
       refs: ["PETMD-VNO", "UMN-PHER", "WP-VNO"]
@@ -702,7 +702,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "usi",
       cs: "Pohyblivé uši",
-      text: "Kočka má v každém uchu asi 32 svalů a umí otočit každé ucho zvlášť za zvukem. Člověk má v uchu jen pár svalů a ušima skoro nehýbe.",
+      text: "Kočka má v každém uchu asi 32 svalů a umí otočit každé ucho zvlášť za zvukem. Člověk má kolem uší jen několik drobných svalů a ušima skoro nehýbe.",
       vztah: "jine",
       image: null,
       refs: ["CATSTER-EAR", "CATSTER-EAR2"]
@@ -710,7 +710,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "zuby",
       cs: "Zuby",
-      text: "Dospělá kočka má 30 zubů, ty budeš mít 32. Kotě má 26 mléčných zubů, dítě 20. Kočka svými ostrými zuby krájí potravu na kousky.",
+      text: "Dospělá kočka má 30 zubů, dospělý člověk obvykle 32. Kotě má 26 mléčných zubů, dítě 20. Kočka svými ostrými zuby krájí potravu na kousky.",
       vztah: "jine",
       image: null,
       refs: ["MERCK-TEETH", "SP-TOOTH"]
@@ -718,7 +718,7 @@ window.ATLAS_DATA.clovek = {
     {
       id: "sladka-chut",
       cs: "Sladká chuť",
-      text: "Ty poznáš, že je něco sladké. Kočka sladkou chuť necítí – chybí jí na jazyku čidlo, které sladkou chuť pozná.",
+      text: "Ty poznáš, že je něco sladké. Kočka sladkou chuť nedokáže vnímat – chybí jí funkční chuťový receptor pro sladkou chuť.",
       vztah: "jine",
       image: null,
       refs: ["LI2005"]
