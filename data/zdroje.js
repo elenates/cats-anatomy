@@ -181,6 +181,13 @@ window.ATLAS_DATA.zdroje = {
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naše upravené verze sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: z kresby muže jsme použili jen levou část a z kresby ženy odstranili písmena popisků. Obě kresby jsme ořízli." }],
       figures: [{ cs: "Rozmnožovací orgány muže", file: "images/clovek/rozmnozovaci-muz.webp" }, { cs: "Rozmnožovací orgány ženy", file: "images/clovek/rozmnozovaci-zena.webp" }]
+    },
+    {
+      heading: "Ikony nástrojů (Na veterině)",
+      parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
+      licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
+      changes: [{ text: "Úpravy: žádné, jde o původní kresby." }],
+      figures: [{ cs: "Barvivo do oka a modré světlo", file: "images/veterina/nastroje/barvivo-oko.svg" }, { cs: "Speciální krmení", file: "images/veterina/nastroje/dieta.svg" }, { cs: "Hřeben", file: "images/veterina/nastroje/hrebinek.svg" }, { cs: "Inhalátor s maskou", file: "images/veterina/nastroje/inhalator.svg" }, { cs: "Injekce", file: "images/veterina/nastroje/injekce.svg" }, { cs: "Kapky", file: "images/veterina/nastroje/kapky.svg" }, { cs: "Krevní test", file: "images/veterina/nastroje/krevni-test.svg" }, { cs: "Léky", file: "images/veterina/nastroje/leky.svg" }, { cs: "Prohlédnout oči, uši, tlamičku a srst", file: "images/veterina/nastroje/lupa.svg" }, { cs: "Mikroskop", file: "images/veterina/nastroje/mikroskop.svg" }, { cs: "Nůžky na drápky", file: "images/veterina/nastroje/nuzky-drapy.svg" }, { cs: "Obvaz", file: "images/veterina/nastroje/obvaz.svg" }, { cs: "Očkovací průkaz", file: "images/veterina/nastroje/ockovaci-prukaz.svg" }, { cs: "Operace", file: "images/veterina/nastroje/operace.svg" }, { cs: "Otoskop se světýlkem", file: "images/veterina/nastroje/otoskop.svg" }, { cs: "Pinzeta", file: "images/veterina/nastroje/pinzeta.svg" }, { cs: "Prohmatat bříško", file: "images/veterina/nastroje/prohmatat.svg" }, { cs: "Rentgen", file: "images/veterina/nastroje/rentgen.svg" }, { cs: "Stetoskop", file: "images/veterina/nastroje/stetoskop.svg" }, { cs: "Teploměr", file: "images/veterina/nastroje/teplomer.svg" }, { cs: "Vyšetření moči", file: "images/veterina/nastroje/test-moci.svg" }, { cs: "Váha", file: "images/veterina/nastroje/vaha.svg" }]
     }
   ],
 
