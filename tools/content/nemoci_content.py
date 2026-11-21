@@ -28,7 +28,7 @@ NEMOCI = [
        jakTomuPredejit="Provázky, nitě, zubní nit a vánoční řetězy uklízet. Kočka si s nimi smí hrát jen s tebou.",
        pozor="Když kočce visí provázek z tlamičky nebo zadečku, netahej za něj! Mohl by poranit střevo. Jeď k veterináři.",
        telo=[("organy", "tenke-strevo"), ("organy", "zaludek")],
-       sources="VCA-LFB (string, yarn, tinsel; base of the tongue a common anchor; 1–3 days in hospital with IV fluids and pain medication; X-ray bunching, string itself often not visible); VIN-LFB (lift the tongue and check under it; handle the gut gently); DVM360-LFB (intestines palpated bunched and painful); MARVISTA-LFB (pulling rips the string through the gut); CATWRITERS-LFB (floss; signs: vomiting, hiding, lethargy, loss of appetite); CATWORLD-LFB (avoid tinsel)",
+       sources="VCA-LFB (string, yarn, tinsel; base of the tongue a common anchor; 1–3 days in hospital with IV fluids and pain medication; X-ray bunching, string itself often not visible); VIN-LFB (lift the tongue and check under it; handle the gut gently); DVM360-LFB (intestines palpated bunched and painful); MARVISTA-LFB (pulling rips the string through the gut); CATWRITERS-LFB (floss; signs: vomiting, hiding, lethargy, loss of appetite); CATWORLD-LFB (avoid tinsel); CB-LFB (belly pain on palpation; about half fixed under the tongue; damaged bowel may need resection)",
        flags="Lenka (vet view, 2026-11-21): „harmonika“ (plication) instead of „šňůra korálků“, which also describes a normal cat intestine."),
   dict(id="zlomena-noha", cs="Zlomená noha", badge=P,
        coToJe="Kočku srazilo auto nebo spadla z výšky a zlomila si kost v noze. Nejčastěji se láme stehenní kost.",
@@ -474,4 +474,5 @@ SOURCES = [
   ("TAMU-DMPREV", "Texas A&M Vet Med: Preventing Diabetes in Cats", "Cats usually need insulin; some go into remission after a few months, relapse is common", "https://vetmed.tamu.edu/news/pet-talk/preventing-diabetes-in-cats", "search result"),
   ("CATSCOM-HEAT2", "Cats.com: Cat in Heat (Estrus Cycles)", "If not mated, the interestrus period lasts two to three weeks; first heat around 6 months, as early as 4", "https://cats.com/?p=13982", "search result"),
   ("VETWEST-SPAY2", "Vetwest: Cat breeding at this time of the year (cycle)", "Oestrus 7–10 days; if not mated, back in season 1 day to 2 weeks later", "https://www.vetwest.com.au/pet-library/cat-breeding-at-this-time-of-the-year/", "search result"),
+  ("CB-LFB", "Clinician's Brief: Feline Intestinal Foreign Bodies", "Pain on palpation; accordion-like pleating on X-ray; about 50 % fixed under the tongue; bowel necrosis may need resection", "https://www.cliniciansbrief.com/article/feline-intestinal-foreign-bodies", "search result"),
 ]
