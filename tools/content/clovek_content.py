@@ -101,7 +101,7 @@ ROWS = [
        flags=""),
   dict(id="kosti-zapestni", cs="Kosti zápěstní", la="Ossa carpi", level=V, figs=["zepredu", "zezadu", "na-ctyrech"], kocka="kosti-zapestni", content="kostra", vztah=J,
        kdeJe="V zápěstí, mezi předloktím a dlaní.",
-       srovnani="Zápěstí je u kočky i u člověka složené z malých kůstek. Ty jich máš v každém zápěstí 8, kočka obvykle 7.",
+       srovnani="Zápěstí je u kočky i u člověka složené z malých kůstek. V každém tvém zápěstí je 8 takových kůstek, u kočky obvykle 7.",
        sources="OSX-UPLIMB (the base of the hand contains eight carpal bones); JFMS-CARPUS (cat: radial, ulnar and accessory carpal bones and carpal bones I–IV, i.e. 7); kostra kosti-zapestni card",
        flags="Cat 7 counts the accessory carpal bone (Lenka: 7 is the usual number, depending on whether the accessory carpal is counted). The cat card gives no number."),
   dict(id="kosti-zaprstni", cs="Kosti záprstní", la="Ossa metacarpi", level=V, figs=["zepredu", "zezadu", "na-ctyrech"], kocka="kosti-zaprstni", content="kostra", vztah=S,

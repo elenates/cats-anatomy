@@ -222,7 +222,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "V zápěstí, mezi předloktím a dlaní.",
-      srovnani: "Zápěstí je u kočky i u člověka složené z malých kůstek. Ty jich máš v každém zápěstí 8, kočka obvykle 7.",
+      srovnani: "Zápěstí je u kočky i u člověka složené z malých kůstek. V každém tvém zápěstí je 8 takových kůstek, u kočky obvykle 7.",
       refs: ["OSX-UPLIMB", "JFMS-CARPUS"]
     },
     {
