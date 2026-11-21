@@ -178,7 +178,7 @@ window.ATLAS_DATA.ui = {
   clovekTygrKostra: "Kostra tygra",
   clovekTygrStoji: "Tygr stojící jako člověk",
   clovekTygrCredit: "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: Wikimedia Commons, volné dílo.",
-  // Kočka a člověk games (#72 stage 5) – to be proofread
+  // Kočka a člověk games (#72 stage 5) – proofread by Lenka
   quizOpenClovek: "Najdi kost u člověka",
   quizTitleClovek: "Kvíz: Najdi kost u člověka",
   quizBackClovek: "Zpět na kočku a člověka",

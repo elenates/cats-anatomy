@@ -1,6 +1,6 @@
 /*
  * Games of Kočka a člověk (#72 stage 5). Plain script (no ES modules) so the app works from file://.
- * Czech text: new, must be proofread.
+ * Czech text: proofread by Lenka (2026-11-21).
  *
  * kdoMa: "Má to kočka, člověk, nebo oba?" (scripts/kdo-ma.js). Each question has the right answer
  *   (kocka / clovek / oba), a short explanation and, where there is one, the Kočka a člověk card it comes from
@@ -15,7 +15,7 @@ window.ATLAS_DATA.kdoMa = {
   answers: { kocka: "Kočka", clovek: "Člověk", oba: "Oba" },
   items: [
     { id: "ocas", q: "Kdo má ocas?", a: "kocka", card: "kostrc", src: "fakta ocas",
-      text: "Kočka má ocas s 20 až 23 obratli. Člověk má na konci páteře jen malou kostrč." },
+      text: "Kočka má ocas s 20 až 23 obratli. Člověk má na konci páteře jen kostrč." },
     { id: "kostrc", q: "Kdo má na konci páteře malou kostrč?", a: "clovek", card: "kostrc", src: "kostrc",
       text: "Kostrč má člověk. Kočka má místo ní dlouhý ocas." },
     { id: "krk", q: "Kdo má v krku 7 obratlů?", a: "oba", card: "krcni-obratle", src: "krcni-obratle",
@@ -27,10 +27,10 @@ window.ATLAS_DATA.kdoMa = {
     { id: "bedra", q: "Kdo má 7 bederních obratlů?", a: "kocka", card: "bederni-obratle", src: "bederni-obratle",
       text: "Kočka má 7 bederních obratlů, člověk 5." },
     { id: "klicni", q: "Kdo má klíční kost, která spojuje lopatku s hrudní kostí?", a: "clovek", card: "klicni-kost", src: "klicni-kost",
-      text: "Takovou klíční kost má člověk. Kočka má jen malou klíční kost schovanou ve svalu." },
+      text: "Takovou klíční kost má člověk. Kočka má jen malou klíční kost uloženou ve svalech." },
     { id: "ceska", q: "Kdo má na koleni čéšku?", a: "oba", card: "ceska", src: "ceska",
       text: "Čéšku na koleni má kočka i člověk." },
-    { id: "prsty5", q: "Kdo má na noze, nebo na zadní tlapce, 5 prstů?", a: "clovek", card: "prsty-nohy", src: "prsty-nohy",
+    { id: "prsty5", q: "Kdo má 5 prstů na noze nebo na zadní tlapce?", a: "clovek", card: "prsty-nohy", src: "prsty-nohy",
       text: "Člověk má na noze 5 prstů. Kočka má na zadní tlapce jen 4." },
     { id: "po-prstech", q: "Kdo chodí jen po prstech a patu má vysoko nad zemí?", a: "kocka", card: "kost-patni", src: "fakta po-prstech",
       text: "Po prstech chodí kočka. Člověk při chůzi došlapuje na celé chodidlo, včetně paty." },
@@ -49,13 +49,13 @@ window.ATLAS_DATA.kdoMa = {
     { id: "vicko", q: "Kdo má třetí víčko, které chrání a čistí oko?", a: "kocka", card: null, src: "fakta treti-vicko",
       text: "Třetí víčko má kočka. Člověku z něj zbyl jen malý růžový záhyb v koutku oka." },
     { id: "oci", q: "Komu se ve tmě lesknou oči?", a: "kocka", card: null, src: "fakta svitici-oci",
-      text: "Kočičí oči se ve tmě lesknou, protože mají vrstvu, která odráží světlo. Lidské oko ji nemá." },
+      text: "Kočičí oči se ve tmě lesknou, protože mají vrstvu, která odráží dopadající světlo. Lidské oko ji nemá." },
     { id: "sladke", q: "Kdo pozná sladkou chuť?", a: "clovek", card: null, src: "fakta sladka-chut",
       text: "Sladkou chuť pozná člověk. Kočce chybí funkční chuťový receptor pro sladkou chuť." },
     { id: "usi", q: "Kdo má v každém uchu asi 32 svalů?", a: "kocka", card: null, src: "fakta usi",
       text: "Kočka má v uchu asi 32 svalů a otáčí každým uchem zvlášť. Člověk ušima skoro nehýbe." },
     { id: "mlecne", q: "Kdo má jako mládě mléčné zuby?", a: "oba", card: null, src: "fakta zuby",
-      text: "Kotě má 26 mléčných zubů, dítě 20." },
+      text: "Kotě i dítě mají mléčné zuby: kotě 26, dítě 20." },
     { id: "savci", q: "Kdo je savec?", a: "oba", card: null, src: "fakta savci",
       text: "Kočka i člověk jsou savci: mláďata pijí mléko od maminky." }
   ],
@@ -124,12 +124,12 @@ window.ATLAS_DATA.spojClovek = {
     back: "Zpět na kočku a člověka",
     backHref: "#/clovek",
     great: "Víš, kde je co v lidském těle!",
-    howTo: "Klepni na část těla a pak na to, kde ji najdeš u člověka. Pozor, některé odpovědi jsou jen pro legraci!",
+    howTo: "Klepni na část těla a pak vyber, kde ji najdeš u člověka. Pozor, některé odpovědi jsou jen pro legraci!",
     round: "Kolo {n} z {total}",
     namesLabel: "Části těla",
     answersLabel: "Kde ji najdeš u člověka?",
     pickName: "Vyber nejdřív část těla vlevo.",
-    pickAnswer: "Teď vyber, kde je: {name}",
+    pickAnswer: "Teď vyber, kde najdeš: {name}",
     right: "{name} – správně!",
     wrong: "Tohle k sobě nepatří. Zkus to znovu.",
     funnyReplies: [
