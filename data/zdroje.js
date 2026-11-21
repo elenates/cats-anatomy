@@ -158,6 +158,29 @@ window.ATLAS_DATA.zdroje = {
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
       changes: [{ text: "Úpravy: odstraněny popisky, obrázek oříznut a zmenšen." }],
       figures: [{ cs: "Vnitřní orgány kočky", file: "images/organy/organs-side.webp" }, { cs: "Vnitřní orgány upravené podle fotografie kočky (Kočičí rentgen)", file: "images/rentgen/layer-organy.webp" }]
+    },
+    {
+      heading: [{ text: "Kostry člověka a tygra z díla " }, { text: "A Comparative Anatomical Exposition of the Structure of the Human Body with that of a Tiger and a Common Fowl", em: true }, { text: " (1795–1806)" }],
+      parts: [{ text: "Autor: George Stubbs. Kresby jsou ve sbírce Yale Center for British Art. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(2351546).jpg" }, { text: "." }],
+      licence: [{ text: "Licence: volné dílo." }],
+      changes: [{ text: "Úpravy: obrázky převedeny do černobílé podoby, papír vybělen, obrázky oříznuty a zmenšeny." }],
+      figures: [{ cs: "Kostra člověka na všech čtyřech", file: "images/clovek/kostra-na-ctyrech.webp" }, { cs: "Kostra člověka zepředu", file: "images/clovek/kostra-zepredu.webp" },
+        { cs: "Kostra člověka z boku", file: "images/clovek/kostra-zboku.webp" }, { cs: "Kostra člověka zezadu", file: "images/clovek/kostra-zezadu.webp" },
+        { cs: "Kostra tygra", file: "images/clovek/tygr-kostra.webp" }, { cs: "Tygr stojící jako člověk", file: "images/clovek/tygr-stoji.webp" }]
+    },
+    {
+      heading: "Kresba vnitřních orgánů člověka (Kočka a člověk)",
+      parts: [{ text: "Autor: Madhero88. Použité části pocházejí od LadyofHats, ZooFari, Piom, Patrick.lynch a Mikaela Häggströma. Zdroj: " }, { text: "Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:SVG_Human_With_All_Organs.svg" }, { text: "." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: obrázek oříznut a zmenšen." }],
+      figures: [{ cs: "Vnitřní orgány člověka", file: "images/clovek/organy.webp" }]
+    },
+    {
+      heading: "Kresby rozmnožovacích orgánů člověka (Kočka a člověk)",
+      parts: [{ text: "Autoři: " }, { text: "T. Kebert", href: "https://commons.wikimedia.org/wiki/File:Male_reproductive_lateral_without_labels.svg" }, { text: " (mužská kresba) a " }, { text: "RWhitwam", href: "https://commons.wikimedia.org/wiki/File:Female_reproductive_system_lateral_unlabeled.svg" }, { text: " (ženská kresba). Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naše upravené verze sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: z kresby muže jsme použili jen levou část a z kresby ženy odstranili písmena popisků. Obě kresby jsme ořízli." }],
+      figures: [{ cs: "Rozmnožovací orgány muže", file: "images/clovek/rozmnozovaci-muz.webp" }, { cs: "Rozmnožovací orgány ženy", file: "images/clovek/rozmnozovaci-zena.webp" }]
     }
   ],
 
