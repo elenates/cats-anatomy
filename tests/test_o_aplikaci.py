@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
 r = Run("o aplikaci")
-files = sorted(os.path.relpath(f, ROOT) for f in glob.glob(os.path.join(ROOT, "images", "**", "*.webp"), recursive=True))
+files = sorted(os.path.relpath(f, ROOT) for ext in ("webp", "svg") for f in glob.glob(os.path.join(ROOT, "images", "**", "*." + ext), recursive=True))
 rows = set(re.findall(r"^\| `(images/[^`]+)`", open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read(), re.M))
 with sync_playwright() as p:
     b = browser(p)
