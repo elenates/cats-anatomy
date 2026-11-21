@@ -27,8 +27,8 @@ No installation, no build step, no server.
 | 4 | Tělesné soustavy | done (v0.4) |
 | 5 | Svaly | done (v0.5) |
 | 6 | Smysly | done (v0.6) |
-| 7 | Kočičí rentgen | done (#43) |
-| 8 | Procvičování | planned |
+| 7 | Kočičí rentgen | done (v0.7) |
+| 8 | Procvičování | done (v0.7) |
 
 ## Repository structure
 
