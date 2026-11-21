@@ -74,9 +74,27 @@ with sync_playwright() as p:
     r.ok(pg.evaluate("[...document.images].every(i => i.complete && i.naturalWidth > 0)"), "pictures load")
     pg.screenshot(path=shot("clovek-fakta.png"), full_page=True)
 
+    # Co je jiné?
+    pg.goto(url("/clovek/rozdily")); pg.wait_for_timeout(300)
+    jine = [i for i in C["items"] if i["vztah"] == "jine"]
+    fj = [f for f in C["fakta"] if f["vztah"] == "jine" and f.get("rozdil") is not False]
+    r.ok(pg.locator(".rozdily .fakt").count() == len(jine) + len(fj), f"Co je jiné?: {len(jine)} parts + {len(fj)} fact cards")
+    r.ok(pg.locator("#rozdil-tygr-stoji").count() == 0, "the standing tiger is not a difference")
+    for i in jine:
+        r.ok(i["srovnani"] in pg.locator("#rozdil-" + i["id"]).inner_text(), f"Co je jiné? {i['id']}: comparison")
+    for i in jine:
+        pg.goto(url("/clovek/rozdily")); pg.wait_for_timeout(200)
+        pg.click(f"[data-show='{i['id']}']"); pg.wait_for_timeout(350)
+        r.ok(pg.evaluate("document.querySelector('.clovek-human')._atlas.selected") == i["id"] and i["cs"] in pg.locator(".clovek-card").inner_text(),
+             f"Ukaž na obrázku {i['id']}: selected on {pg.evaluate('location.hash')}")
+    pg.goto(url("/clovek/rozdily")); pg.wait_for_timeout(200)
+    pg.click("#rozdil-ocas a"); pg.wait_for_timeout(300)
+    r.ok(pg.locator("#fakt-ocas.is-focus").count() == 1, "fact card link opens Zajímavosti")
+    pg.evaluate("localStorage.clear()")
+
     # phone
     ph = r.watch(b.new_page(viewport=VIEWPORTS["phone"]))
-    for v in ["kostra/zepredu", "organy", "zajimavosti"]:
+    for v in ["kostra/zepredu", "organy", "zajimavosti", "rozdily"]:
         ph.goto(url("/clovek/" + v)); ph.wait_for_timeout(400)
         r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, f"phone {v}: no sideways scroll")
     ph.goto(url("/clovek/kostra/na-ctyrech")); ph.wait_for_timeout(400)

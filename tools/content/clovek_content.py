@@ -324,7 +324,7 @@ FAKTA = [
        text="Kočka i člověk jsou savci. Mají srst nebo vlasy, dýchají plícemi a mláďata pijí mléko od maminky.",
        sources="GBIF-FC, CSW-SAV (zarazeni card: Mammalia, mláďata pijí mateřské mléko, savci mají srst); organy plice card",
        flags="Follows the Zařazení card (Mammalia: mláďata pijí mateřské mléko; savci mají srst)."),
-  dict(id="tygr-stoji", cs="Tygr stojící jako člověk", vztah=J, image=["tygr-kostra", "tygr-stoji"],
+  dict(id="tygr-stoji", cs="Tygr stojící jako člověk", vztah=J, image=["tygr-kostra", "tygr-stoji"], rozdil=False,
        text="Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na prvním obrázku je kostra tygra. Na druhém si představil, jak by tygr vypadal, kdyby stál na zadních nohách jako člověk.",
        sources="Commons file page of the drawing (title: Tiger Body, Standing in Human Posture; 1795–1806); GBIF-FC (Felidae)",
        flags=""),

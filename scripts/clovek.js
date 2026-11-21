@@ -7,6 +7,8 @@
  *   #/clovek/organy             the cat organ drawing next to the human one
  *   #/clovek/rozmnozovaci[/muz|zena]  the cat drawings (1901 Figs. 111 / 112) next to the human ones
  *   #/clovek/zajimavosti[/<id>] the fact cards (ATLAS_DATA.clovek.fakta), card id highlighted
+ *   #/clovek/rozdily            all differences in one list: the Jiné parts (grouped by tab) and the Jiné fact cards;
+ *                                "Ukaž na obrázku" opens the part's picture with the part selected
  *   #/clovek/kdo-ma, #/clovek/najdi, #/clovek/spoj  the games (scripts/kdo-ma.js, quiz.js, spoj.js; data/clovek-hry.js)
  *
  * Two atlases (scripts/atlas.js) without their own cards: a tap on either picture selects the part in both
@@ -42,8 +44,10 @@
     { id: "rozmnozovaci", cs: ui.clovekTabRozmn || "Rozmnožovací orgány", views: [
       { id: "muz", cs: ui.clovekMuz || "Kocour a muž", cat: "repro-male", human: "clovek-muz" },
       { id: "zena", cs: ui.clovekZena || "Kočka a žena", cat: "repro-female", human: "clovek-zena" }] },
-    { id: "zajimavosti", cs: ui.clovekTabFakta || "Zajímavosti" }
+    { id: "zajimavosti", cs: ui.clovekTabFakta || "Zajímavosti" },
+    { id: "rozdily", cs: ui.clovekTabRozdily || "Co je jiné?" }
   ];
+  var pending = null;   // { id, layer }: a part to select after "Ukaž na obrázku" opens its picture
 
   function items() { return (D.clovek && D.clovek.items) || []; }
   function human(id) { return items().filter(function (x) { return x.id === id; })[0] || null; }
@@ -114,6 +118,7 @@
         games()]),
       tabNav(tab.id)];
     if (tab.id === "zajimavosti") return nodes.concat(renderFakta(sub2));
+    if (tab.id === "rozdily") return nodes.concat(renderRozdily());
     var view = tab.views.filter(function (v) { return v.id === sub2; })[0] || tab.views[0];
     var vn = viewNav(tab, view.id); if (vn) nodes.push(vn);
     nodes.push(el("p", { "class": "fig-note", text: ui.clovekIntro || "" }));
@@ -203,6 +208,13 @@
         onToggle: function (st) { catApi().refresh(st.layer); if (current && current.human) fromHuman(current.human.id); else drawCard(); } });
       window.Atlas.mount(catHost, { figure: view.cat, card: false, toolbar: false, onSelect: fromCat });
       catApi().refresh(humApi().state.layer);
+      if (pending) {   // from Co je jiné?
+        var pd = pending; pending = null;
+        if (pd.layer !== humApi().state.layer) humApi().refresh(pd.layer);
+        catApi().refresh(humApi().state.layer);
+        humApi().select(pd.id);
+        setTimeout(function () { card.scrollIntoView({ block: "nearest" }); }, 0);
+      }
       // One toolbar for both pictures, above them.
       var tb = humHost.querySelector(".atlas-toolbar"); if (tb) bar.appendChild(tb);
       drawCard();
@@ -230,6 +242,53 @@
     };
     return [el("p", { "class": "fig-note", text: ui.clovekFaktaIntro || "" }), list];
   }
+  /* Co je jiné? (all differences in one list) */
+  var VIEW_ORDER = ["na-ctyrech", "zboku", "zepredu", "zezadu", "organy", "muz", "zena"];
+  function placeOf(it) {
+    var fig = VIEW_ORDER.filter(function (v) { return it.figs.indexOf(v) >= 0; })[0];
+    var tab = TABS.filter(function (t) { return (t.views || []).some(function (v) { return v.id === fig; }); })[0];
+    if (!tab) return null;
+    var hf = (D.hotspots || {})["clovek-" + fig] || {};
+    var layer = Object.keys(hf.layers || {}).filter(function (l) { return hf.layers[l][it.id]; })[0];
+    return { tab: tab, view: fig, layer: layer };
+  }
+  function renderRozdily() {
+    var nodes = [el("p", { "class": "fig-note", text: ui.clovekRozdilyIntro || "" })];
+    var jine = items().filter(function (it) { return it.vztah === "jine"; });
+    TABS.forEach(function (t) {
+      if (!t.views) return;
+      var group = jine.filter(function (it) { var pl = placeOf(it); return pl && pl.tab === t; });
+      if (!group.length) return;
+      var list = el("div", { "class": "fakta rozdily" });
+      group.forEach(function (it) {
+        var pl = placeOf(it);
+        var a = el("a", { "class": "part-link", href: "#/clovek/" + t.id + "/" + pl.view, "data-show": it.id, text: ui.clovekShowOnPicture || "Ukaž na obrázku →" });
+        a.addEventListener("click", function () {
+          pending = { id: it.id, layer: pl.layer };
+          if (it.level === "zvidave") {   // Pro zvídavé parts are hidden unless the switch is on
+            try { var tg = JSON.parse(localStorage.getItem("atlas.toggles") || "{}"); tg.zvidave = true; localStorage.setItem("atlas.toggles", JSON.stringify(tg)); } catch (e) { /* private mode */ }
+          }
+        });
+        list.appendChild(el("article", { "class": "fakt", id: "rozdil-" + it.id }, [
+          el("h3", { "class": "card-title", text: it.cs }),
+          el("div", { "class": "card-badges" }, [badgeFor(it), it.level === "zvidave" ? el("p", { "class": "card-badge", text: ui.toggleZvidave || "Pro zvídavé" }) : null]),
+          el("p", { "class": "card-p", text: it.srovnani }), el("p", { "class": "card-link" }, [a])]));
+      });
+      nodes.push(el("h2", { "class": "clovek-group", text: t.cs }), list);
+    });
+    var fakta = ((D.clovek && D.clovek.fakta) || []).filter(function (f) { return f.vztah === "jine" && f.rozdil !== false; });
+    if (fakta.length) {
+      var fl = el("div", { "class": "fakta rozdily" });
+      fakta.forEach(function (f) {
+        fl.appendChild(el("article", { "class": "fakt", id: "rozdil-" + f.id }, [
+          el("h3", { "class": "card-title", text: f.cs }), badgeFor(f), el("p", { "class": "card-p", text: f.text }),
+          el("p", { "class": "card-link" }, [el("a", { "class": "part-link", href: "#/clovek/zajimavosti/" + f.id, text: ui.clovekReadFact || "Zajímavost s obrázkem →" })])]));
+      });
+      nodes.push(el("h2", { "class": "clovek-group", text: ui.clovekTabFakta || "Zajímavosti" }), fl);
+    }
+    return nodes;
+  }
+
   function badgeFor(f) {
     return el("p", { "class": "card-badge vztah vztah-" + f.vztah, text: f.vztah === "stejne" ? (ui.clovekStejne || "Stejné") : (ui.clovekJine || "Jiné") });
   }
