@@ -183,6 +183,13 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Rozmnožovací orgány muže", file: "images/clovek/rozmnozovaci-muz.webp" }, { cs: "Rozmnožovací orgány ženy", file: "images/clovek/rozmnozovaci-zena.webp" }]
     },
     {
+      heading: "Rentgen zubů (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Corak80", href: "https://commons.wikimedia.org/wiki/File:Feline_tooth_resorption_-_dental_radiograph_of_the_left_mandibular_third_premolar_(307).png" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: převedeno do formátu WebP." }],
+      figures: [{ cs: "Rentgen zubů kočky", file: "images/veterina/zub-resorpce.webp" }]
+    },
+    {
       heading: "Ikony nástrojů (Na veterině)",
       parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
