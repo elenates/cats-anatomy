@@ -156,6 +156,10 @@ window.ATLAS_DATA.ui = {
   clovekTabOrgany: "Vnitřní orgány",
   clovekTabRozmn: "Rozmnožovací orgány",
   clovekTabFakta: "Zajímavosti",
+  clovekTabRozdily: "Co je jiné?",   // Co je jiné? (#72) – to be proofread
+  clovekRozdilyIntro: "Tady najdeš pohromadě všechno, čím se tělo kočky a člověka liší.",
+  clovekShowOnPicture: "Ukaž na obrázku →",
+  clovekReadFact: "Přečti si zajímavost →",
   clovekViewsLabel: "Pohled na kostru člověka",
   clovekNaCtyrech: "Na všech čtyřech",
   clovekZepredu: "Zepředu",

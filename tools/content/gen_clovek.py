@@ -29,7 +29,8 @@ L = ["/*",
 " *   kocka (id of the cat card or null), content (kostra / organy: where the cat card is, or null),",
 " *   vztah (stejne / jine), kdeJe (where it is in the human body), srovnani (the comparison), refs",
 " * fakta: fun cards for differences without a picture part: id, cs, text, vztah,",
-" *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs",
+" *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs;",
+" *   rozdil: false keeps a Jiné card out of the Co je jiné? list (the standing tiger is a fun card, not a difference)",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};", "",
 "window.ATLAS_DATA.clovek = {", "  items: ["]
@@ -45,7 +46,7 @@ L += ["  ],", "  fakta: ["]
 for i, f in enumerate(FAKTA):
     L.append("    {")
     for k, v in [("id", f["id"]), ("cs", f["cs"]), ("text", f["text"]), ("vztah", f["vztah"]),
-                 ("image", f["image"]), ("refs", refs(f["sources"]))]:
+                 ("image", f["image"]), ("refs", refs(f["sources"]))] + ([("rozdil", False)] if f.get("rozdil") is False else []):
         L.append(f"      {k}: {js(v)},")
     L[-1] = L[-1].rstrip(",")
     L.append("    }" + ("," if i < len(FAKTA) - 1 else ""))

@@ -11,7 +11,8 @@
  *   kocka (id of the cat card or null), content (kostra / organy: where the cat card is, or null),
  *   vztah (stejne / jine), kdeJe (where it is in the human body), srovnani (the comparison), refs
  * fakta: fun cards for differences without a picture part: id, cs, text, vztah,
- *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs
+ *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs;
+ *   rozdil: false keeps a Jiné card out of the Co je jiné? list (the standing tiger is a fun card, not a difference)
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -745,7 +746,8 @@ window.ATLAS_DATA.clovek = {
       text: "Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na prvním obrázku je kostra tygra. Na druhém si představil, jak by tygr vypadal, kdyby stál na zadních nohách jako člověk.",
       vztah: "jine",
       image: ["tygr-kostra", "tygr-stoji"],
-      refs: ["GBIF-FC"]
+      refs: ["GBIF-FC"],
+      rozdil: false
     }
   ]
 };
