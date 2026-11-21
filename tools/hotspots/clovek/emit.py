@@ -14,6 +14,12 @@ FIGS = [  # id, file, figure caption
   ("clovek-muz", "muz", "rozmnozovaci-muz", "Male reproductive lateral (T. Kebert, CC BY-SA 4.0)"),
   ("clovek-zena", "zena", "rozmnozovaci-zena", "Female reproductive system lateral (RWhitwam, CC BY-SA 4.0)"),
 ]
+SIDES = {  # where each label goes when Popisky is on (atlas.js); the rest go to the nearest edge
+  "clovek-organy": {"jatra": "left", "tenke-strevo": "left"},
+  "clovek-zena": {"vajecnik": "top", "vejcovod": "left"},
+  "clovek-zboku": {"dolni-celist": "left", "zebra": "left", "panev": "left", "kost-stehenni": "left", "kost-krizova": "bottom",
+                   "kostrc": "bottom", "bederni-obratle": "bottom"},
+}
 def num(v): return str(int(v)) if float(v).is_integer() else str(v)
 def polys(ps): return "[" + ",".join("[" + ",".join("[%s,%s]" % (num(x), num(y)) for x, y in p) + "]" for p in ps) + "]"
 from PIL import Image
@@ -36,7 +42,7 @@ for fid, short, img, cap in FIGS:
     for layer, items in hs.items():
         rows = ",\n".join('      "%s": %s' % (k, polys(v)) for k, v in items.items() if v)
         layers.append('    %s: {\n%s\n    }' % (layer, rows))
-    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  nested: %s,\n  alsoCounts: {}\n};\n'
-               % (fid, img, w, h, json.dumps(cap, ensure_ascii=False), ",\n".join(layers), json.dumps(nested, separators=(",", ":"))))
+    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  labelSides: %s,\n  nested: %s,\n  alsoCounts: {}\n};\n'
+               % (fid, img, w, h, json.dumps(cap, ensure_ascii=False), ",\n".join(layers), json.dumps(SIDES.get(fid, {}), separators=(",", ":")), json.dumps(nested, separators=(",", ":"))))
 open(os.path.join(ROOT, "data", "hotspots-clovek.js"), "w", encoding="utf-8").write("\n".join(out))
 print("written", [f[0] for f in FIGS])
