@@ -166,7 +166,7 @@ window.ATLAS_DATA.zdroje = {
       changes: [{ text: "Úpravy: obrázky převedeny do černobílé podoby, papír vybělen, obrázky oříznuty a zmenšeny." }],
       figures: [{ cs: "Kostra člověka na všech čtyřech", file: "images/clovek/kostra-na-ctyrech.webp" }, { cs: "Kostra člověka zepředu", file: "images/clovek/kostra-zepredu.webp" },
         { cs: "Kostra člověka z boku", file: "images/clovek/kostra-zboku.webp" }, { cs: "Kostra člověka zezadu", file: "images/clovek/kostra-zezadu.webp" },
-        { cs: "Kostra tygra", file: "images/clovek/tygr-kostra.webp" }]
+        { cs: "Kostra tygra", file: "images/clovek/tygr-kostra.webp" }, { cs: "Tygr stojící jako člověk", file: "images/clovek/tygr-stoji.webp" }]
     },
     {
       heading: "Kresba vnitřních orgánů člověka (Kočka a člověk)",
