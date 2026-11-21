@@ -29,7 +29,7 @@ L = ["/*",
 " *   kocka (id of the cat card or null), content (kostra / organy: where the cat card is, or null),",
 " *   vztah (stejne / jine), kdeJe (where it is in the human body), srovnani (the comparison), refs",
 " * fakta: fun cards for differences without a picture part: id, cs, text, vztah,",
-" *   image (images/clovek/<image>.webp or null), refs",
+" *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};", "",
 "window.ATLAS_DATA.clovek = {", "  items: ["]

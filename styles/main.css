@@ -554,3 +554,20 @@ a.menu-card:active {
 .hint-note { color: var(--muted); }
 .more-btn { font: inherit; font-weight: 700; cursor: pointer; }
 .more-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Kočka a člověk (#72): cat and human side by side, one shared card below. */
+.atlas-layout.no-card { grid-template-columns: minmax(0, 1fr); }
+.sub-tabs { margin-top: -4px; }
+.clovek-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.clovek-pair.is-tall { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+@media (max-width: 899px), (orientation: portrait) {
+  .clovek-pair, .clovek-pair.is-tall { grid-template-columns: minmax(0, 1fr); }
+}
+.clovek-col { min-width: 0; }
+.clovek-h { font-size: 1.15rem; margin: 0 0 6px; }
+.clovek-note { margin: 0 0 6px; color: var(--muted); font-size: 0.95rem; }
+.clovek-col .atlas-toolbar { min-height: 0; }
+.clovek-card { margin-top: 16px; }
+.card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.vztah-stejne { background: #dff3e4; color: #1d5e2f; }
+.vztah-jine { background: #fde8d7; color: #8a3b0a; }

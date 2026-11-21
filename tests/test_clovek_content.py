@@ -52,7 +52,9 @@ for f in d["c"]["fakta"]:
     if f.get("vztah") not in ("stejne", "jine"): fails.append(f"fakta {i}: bad vztah")
     for r in f.get("refs", []):
         if r not in known: fails.append(f"fakta {i}: ref {r} not in references.md")
-    if f.get("image") and not os.path.exists(os.path.join(ROOT, "images", "clovek", f["image"] + ".webp")): fails.append(f"fakta {i}: no image file")
+    imgs = f.get("image") or []
+    for im in ([imgs] if isinstance(imgs, str) else imgs):
+        if not os.path.exists(os.path.join(ROOT, "images", "clovek", im + ".webp")): fails.append(f"fakta {i}: no image file {im}")
 
 print("PASS clovek content" if not fails else "FAIL clovek content")
 for f in fails: print("  failed:", f)

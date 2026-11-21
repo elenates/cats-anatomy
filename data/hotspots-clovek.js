@@ -12,6 +12,8 @@ window.ATLAS_DATA.hotspots["clovek-na-ctyrech"] = {
   width: 1800,
   height: 1307,
   figure: "George Stubbs, 1795–1806 (lidská kostra na čtyřech)",
+  credit: "Kresba: George Stubbs (1795–1806), Yale Center for British Art, Wikimedia Commons, volné dílo. Upraveno: černobílé, papír vybělen, oříznuto.",
+  creditParts: [{"text": "Kresba: George Stubbs (1795–1806), Yale Center for British Art, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(2351546).jpg"}, {"text": ", volné dílo. Upraveno: černobílé, papír vybělen, oříznuto."}],
   content: "clovek",
   layers: {
     kosti: {
@@ -58,6 +60,8 @@ window.ATLAS_DATA.hotspots["clovek-zepredu"] = {
   width: 553,
   height: 1600,
   figure: "George Stubbs, 1795–1806 (lidská kostra zepředu)",
+  credit: "Kresba: George Stubbs (1795–1806), Yale Center for British Art, Wikimedia Commons, volné dílo. Upraveno: černobílé, papír vybělen, oříznuto.",
+  creditParts: [{"text": "Kresba: George Stubbs (1795–1806), Yale Center for British Art, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(2350908).jpg"}, {"text": ", volné dílo. Upraveno: černobílé, papír vybělen, oříznuto."}],
   content: "clovek",
   layers: {
     kosti: {
@@ -100,6 +104,8 @@ window.ATLAS_DATA.hotspots["clovek-zboku"] = {
   width: 1313,
   height: 1600,
   figure: "George Stubbs, 1795–1806 (lidská kostra zboku)",
+  credit: "Kresba: George Stubbs (1795–1806), Yale Center for British Art, Wikimedia Commons, volné dílo. Upraveno: černobílé, papír vybělen, oříznuto.",
+  creditParts: [{"text": "Kresba: George Stubbs (1795–1806), Yale Center for British Art, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(2362160).jpg"}, {"text": ", volné dílo. Upraveno: černobílé, papír vybělen, oříznuto."}],
   content: "clovek",
   layers: {
     kosti: {
@@ -148,6 +154,8 @@ window.ATLAS_DATA.hotspots["clovek-zezadu"] = {
   width: 585,
   height: 1600,
   figure: "George Stubbs, 1795–1806 (lidská kostra zezadu)",
+  credit: "Kresba: George Stubbs (1795–1806), Yale Center for British Art, Wikimedia Commons, volné dílo. Upraveno: černobílé, papír vybělen, oříznuto.",
+  creditParts: [{"text": "Kresba: George Stubbs (1795–1806), Yale Center for British Art, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:George_Stubbs_-_A_Comparative_Anatomical_Exposition_of_the_Structure_of_the_Human_Body_with_that_of_a_Tiger_and_a_Co..._-_Google_Art_Project_(2349541).jpg"}, {"text": ", volné dílo. Upraveno: černobílé, papír vybělen, oříznuto."}],
   content: "clovek",
   layers: {
     kosti: {
@@ -192,6 +200,8 @@ window.ATLAS_DATA.hotspots["clovek-organy"] = {
   width: 622,
   height: 1640,
   figure: "SVG Human With All Organs (Madhero88 a další, CC BY-SA 3.0)",
+  credit: "Kresba: Madhero88 a další, Wikimedia Commons, licence CC BY-SA 3.0. Upraveno: oříznuto, zmenšeno.",
+  creditParts: [{"text": "Kresba: Madhero88 a další, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:SVG_Human_With_All_Organs.svg"}, {"text": ", licence "}, {"text": "CC BY-SA 3.0", "href": "https://creativecommons.org/licenses/by-sa/3.0/"}, {"text": ". Upraveno: oříznuto, zmenšeno."}],
   content: "clovek",
   layers: {
     organy: {
@@ -216,6 +226,8 @@ window.ATLAS_DATA.hotspots["clovek-muz"] = {
   width: 683,
   height: 1070,
   figure: "Male reproductive lateral (T. Kebert, CC BY-SA 4.0)",
+  credit: "Kresba: T. Kebert, Wikimedia Commons, licence CC BY-SA 4.0. Upraveno: jen levá část, oříznuto.",
+  creditParts: [{"text": "Kresba: T. Kebert, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:Male_reproductive_lateral_without_labels.svg"}, {"text": ", licence "}, {"text": "CC BY-SA 4.0", "href": "https://creativecommons.org/licenses/by-sa/4.0/"}, {"text": ". Upraveno: jen levá část, oříznuto."}],
   content: "clovek",
   layers: {
     organy: {
@@ -235,6 +247,8 @@ window.ATLAS_DATA.hotspots["clovek-zena"] = {
   width: 1009,
   height: 946,
   figure: "Female reproductive system lateral (RWhitwam, CC BY-SA 4.0)",
+  credit: "Kresba: RWhitwam, Wikimedia Commons, licence CC BY-SA 4.0. Upraveno: bez písmen popisků, oříznuto.",
+  creditParts: [{"text": "Kresba: RWhitwam, "}, {"text": "Wikimedia Commons", "href": "https://commons.wikimedia.org/wiki/File:Female_reproductive_system_lateral_unlabeled.svg"}, {"text": ", licence "}, {"text": "CC BY-SA 4.0", "href": "https://creativecommons.org/licenses/by-sa/4.0/"}, {"text": ". Upraveno: bez písmen popisků, oříznuto."}],
   content: "clovek",
   layers: {
     organy: {

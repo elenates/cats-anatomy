@@ -11,7 +11,7 @@
  *   kocka (id of the cat card or null), content (kostra / organy: where the cat card is, or null),
  *   vztah (stejne / jine), kdeJe (where it is in the human body), srovnani (the comparison), refs
  * fakta: fun cards for differences without a picture part: id, cs, text, vztah,
- *   image (images/clovek/<image>.webp or null), refs
+ *   image (images/clovek/<image>.webp: a name, a list of names, or null), refs
  */
 window.ATLAS_DATA = window.ATLAS_DATA || {};
 
@@ -742,9 +742,9 @@ window.ATLAS_DATA.clovek = {
     {
       id: "tygr-stoji",
       cs: "Tygr stojící jako člověk",
-      text: "Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na tomhle obrázku si představil, jak by vypadal tygr, kdyby stál na zadních nohou jako člověk.",
+      text: "Tygr je velká kočkovitá šelma, příbuzný naší kočky. Malíř George Stubbs ho před více než 200 lety kreslil, aby porovnal tělo tygra a člověka. Na prvním obrázku je kostra tygra. Na druhém si představil, jak by vypadal tygr, kdyby stál na zadních nohou jako člověk.",
       vztah: "jine",
-      image: "tygr-stoji",
+      image: ["tygr-kostra", "tygr-stoji"],
       refs: ["GBIF-FC"]
     }
   ]
