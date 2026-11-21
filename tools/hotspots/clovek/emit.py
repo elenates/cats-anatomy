@@ -46,17 +46,19 @@ out = ["/*",
 for fid, short, img, cap in FIGS:
     hs = json.load(open(os.path.join(HERE, f"hs_{short}.json")))
     w, h = Image.open(os.path.join(ROOT, "images", "clovek", img + ".webp")).size
-    nested = {}
+    nested, also = {}, {}
     if "kosti" in hs:
         parts = [k for k in SPINE if hs["kosti"].get(k)]
         hs["kosti"]["pater"] = [p for k in parts for p in hs["kosti"][k]]   # the same outlines as its sections
         nested["pater"] = parts
+        also["pater"] = parts                                   # in Najdi, a tap on a section also counts as Páteř
+        if hs["kosti"].get("dolni-celist"): also["lebka"] = ["dolni-celist"]
     layers = []
     for layer, items in hs.items():
         rows = ",\n".join('      "%s": %s' % (k, polys(v)) for k, v in items.items() if v)
         layers.append('    %s: {\n%s\n    }' % (layer, rows))
-    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  credit: %s,\n  creditParts: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  labelSides: %s,\n  nested: %s,\n  alsoCounts: {}\n};\n'
+    out.append('window.ATLAS_DATA.hotspots["%s"] = {\n  image: "images/clovek/%s.webp",\n  width: %d,\n  height: %d,\n  figure: %s,\n  credit: %s,\n  creditParts: %s,\n  content: "clovek",\n  layers: {\n%s\n  },\n  labelSides: %s,\n  nested: %s,\n  alsoCounts: %s\n};\n'
                % (fid, img, w, h, json.dumps(cap, ensure_ascii=False), json.dumps("".join(c["text"] for c in CREDIT[fid]), ensure_ascii=False),
-                  json.dumps(CREDIT[fid], ensure_ascii=False), ",\n".join(layers), json.dumps(SIDES.get(fid, {}), separators=(",", ":")), json.dumps(nested, separators=(",", ":"))))
+                  json.dumps(CREDIT[fid], ensure_ascii=False), ",\n".join(layers), json.dumps(SIDES.get(fid, {}), separators=(",", ":")), json.dumps(nested, separators=(",", ":")), json.dumps(also, separators=(",", ":"))))
 open(os.path.join(ROOT, "data", "hotspots-clovek.js"), "w", encoding="utf-8").write("\n".join(out))
 print("written", [f[0] for f in FIGS])

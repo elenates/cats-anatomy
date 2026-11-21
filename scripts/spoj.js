@@ -11,7 +11,8 @@
  * Content: data/kostra.js (names, texts) and data/spoj.js (rules, funny answers).
  *
  * opts.content (default "kostra") and opts.config (default ATLAS_DATA.spoj) give the same game
- * for another section (Svaly: content "svaly", config ATLAS_DATA.spojSvaly).
+ * for another section (Svaly: content "svaly", config ATLAS_DATA.spojSvaly). Kočka a člověk: content "clovek",
+ * config ATLAS_DATA.spojClovek, which pairs a part with "Kde ji najdeš u člověka?" (answerField "kdeJe", only: the ids).
  *
  * Cards (scripts/infocard.js): a 💡 next to each name opens its whole card as a hint (that name then no longer
  * counts as "first try"); after a pair (right or wrong) "Přečti si kartičku" opens the name's card.
@@ -67,7 +68,9 @@
     var t = cfg.ui || {};
     var content = opts.content || "kostra";
     var items = (D[content] && D[content].items) || [];
-    var pool = items.filter(function (it) { return it.level === "zaklad" && it.quiz !== false && it.coDela; });
+    // cfg.answerField: the text on the right (default "coDela"; Kočka a člověk: "kdeJe"); cfg.only: just these ids.
+    var field = cfg.answerField || "coDela";
+    var pool = items.filter(function (it) { return it.level === "zaklad" && it.quiz !== false && it[field] && (!cfg.only || cfg.only.indexOf(it.id) >= 0); });
     var rounds = 0, roundList = [], r = 0, failed = {}, funnyLeft = [];
     var sel = { name: null, answer: null }, matched = {}, pairNo = 0, hinted = {};
 
@@ -122,7 +125,7 @@
       });
       var fun = [];
       for (var k = 0; k < (cfg.funnyPerRound || 2); k++) { if (!funnyLeft.length) funnyLeft = shuffle((cfg.funny || []).slice()); fun.push(funnyLeft.pop()); }
-      var list = round.map(function (it) { return { id: it.id, text: it.coDela }; })
+      var list = round.map(function (it) { return { id: it.id, text: it[field] }; })
         .concat(fun.map(function (f) { return { id: null, text: f }; }));
       shuffle(list).forEach(function (a) {
         var b = el("button", { type: "button", "class": "spoj-btn spoj-answer", "aria-pressed": "false", text: a.text });
@@ -198,7 +201,7 @@
       if (missed.length) {
         summary.appendChild(el("p", { text: ui.quizReview || "Na tyhle se ještě podívej:" }));
         var ul = el("ul", { "class": "quiz-missed" });
-        missed.forEach(function (it) { ul.appendChild(el("li", null, [el("strong", { text: it.cs }), document.createTextNode(" – " + it.coDela)])); });
+        missed.forEach(function (it) { ul.appendChild(el("li", null, [el("strong", { text: it.cs }), document.createTextNode(" – " + it[field])])); });
         summary.appendChild(ul);
       }
       var again = el("button", { type: "button", "class": "quiz-next", text: t.again || "Hrát znovu" });

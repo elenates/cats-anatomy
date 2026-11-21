@@ -52,7 +52,7 @@ window.ATLAS_DATA.hotspots["clovek-na-ctyrech"] = {
   },
   labelSides: {},
   nested: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova"]},
-  alsoCounts: {}
+  alsoCounts: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova"],"lebka":["dolni-celist"]}
 };
 
 window.ATLAS_DATA.hotspots["clovek-zepredu"] = {
@@ -96,7 +96,7 @@ window.ATLAS_DATA.hotspots["clovek-zepredu"] = {
   },
   labelSides: {},
   nested: {"pater":["krcni-obratle","bederni-obratle"]},
-  alsoCounts: {}
+  alsoCounts: {"pater":["krcni-obratle","bederni-obratle"],"lebka":["dolni-celist"]}
 };
 
 window.ATLAS_DATA.hotspots["clovek-zboku"] = {
@@ -146,7 +146,7 @@ window.ATLAS_DATA.hotspots["clovek-zboku"] = {
   },
   labelSides: {"dolni-celist":"left","zebra":"left","panev":"left","kost-stehenni":"left","kost-krizova":"bottom","kostrc":"bottom","bederni-obratle":"bottom"},
   nested: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova","kostrc"]},
-  alsoCounts: {}
+  alsoCounts: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova","kostrc"],"lebka":["dolni-celist"]}
 };
 
 window.ATLAS_DATA.hotspots["clovek-zezadu"] = {
@@ -192,7 +192,7 @@ window.ATLAS_DATA.hotspots["clovek-zezadu"] = {
   },
   labelSides: {},
   nested: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova","kostrc"]},
-  alsoCounts: {}
+  alsoCounts: {"pater":["krcni-obratle","hrudni-obratle","bederni-obratle","kost-krizova","kostrc"]}
 };
 
 window.ATLAS_DATA.hotspots["clovek-organy"] = {
