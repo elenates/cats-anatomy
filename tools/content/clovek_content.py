@@ -77,7 +77,7 @@ ROWS = [
   # ---------- Kostra: horní / přední končetina ----------
   dict(id="klicni-kost", cs="Klíční kost", la="Clavicula", level=Z, figs=["zepredu", "zboku"], kocka="klicni-kost", content="kostra", vztah=J,
        kdeJe="Vpředu u krku, mezi hrudní kostí a ramenem. Můžeš si ji nahmatat.",
-       srovnani="Lidská klíční kost spojuje lopatku s hrudní kostí. Kočka má jen malou klíční kost schovanou ve svalu, která není spojená s žádnou kostí.",
+       srovnani="Lidská klíční kost spojuje lopatku s hrudní kostí. Kočka má jen malou klíční kost uloženou ve svalech, která není spojená s žádnou kostí.",
        sources="OSX-PECT (the clavicle is attached medially to the sternum and laterally to the scapula; you can palpate its entire length); kostra klicni-kost card (cat: small, not joined to any bone)",
        flags=""),
   dict(id="lopatka", cs="Lopatka", la="Scapula", level=Z, figs=["zezadu", "na-ctyrech", "zboku"], kocka="lopatka", content="kostra", vztah=S,
