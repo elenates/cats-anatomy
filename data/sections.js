@@ -177,7 +177,13 @@ window.ATLAS_DATA.ui = {
   clovekFaktaIntro: "Co má jen kočka, co jen člověk a co mají oba?",
   clovekTygrKostra: "Kostra tygra",
   clovekTygrStoji: "Tygr stojící jako člověk",
-  clovekTygrCredit: "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: Wikimedia Commons, volné dílo."
+  clovekTygrCredit: "Autor kreseb: George Stubbs (1795–1806). Sbírka: Yale Center for British Art. Zdroj: Wikimedia Commons, volné dílo.",
+  // Kočka a člověk games (#72 stage 5) – proofread by Lenka
+  quizOpenClovek: "Najdi kost u člověka",
+  quizTitleClovek: "Kvíz: Najdi kost u člověka",
+  quizBackClovek: "Zpět na kočku a člověka",
+  quizGreatClovek: "Jsi expert na lidskou kostru!",
+  quizFigureLabelClovek: "Obrázek kostry člověka"
 };
 
 /*
@@ -216,7 +222,7 @@ window.ATLAS_DATA.kostraViews = {
 
 /*
  * Procvičování: the games of each section, in menu order. href = the game's route; title = where its
- * name comes from (a ui key, or "spoj" / "spojVnejsi" / "spojSvaly" / "spojSmysly" / "soustavyKviz" for the title of
+ * name comes from (a ui key, or "spoj" / "spojVnejsi" / "spojSvaly" / "spojSmysly" / "soustavyKviz" / "kdoMa" / "spojClovek" for the title of
  * that game's own texts). Opened from here, a game's back links return to Procvičování.
  */
 window.ATLAS_DATA.procvicovani = [
@@ -224,5 +230,6 @@ window.ATLAS_DATA.procvicovani = [
   { section: "vnejsi", games: [{ href: "#/vnejsi/kviz", title: "quizTitleVnejsi" }, { href: "#/vnejsi/spoj", title: "spojVnejsi" }] },
   { section: "organy", games: [{ href: "#/organy/kviz", title: "quizTitleOrgany" }, { href: "#/organy/soustavy-kviz", title: "soustavyKviz" }] },
   { section: "svaly", games: [{ href: "#/svaly/kviz", title: "quizTitleSvaly" }, { href: "#/svaly/spoj", title: "spojSvaly" }] },
-  { section: "smysly", games: [{ href: "#/smysly/kviz", title: "quizTitleSmysly" }, { href: "#/smysly/spoj", title: "spojSmysly" }] }
+  { section: "smysly", games: [{ href: "#/smysly/kviz", title: "quizTitleSmysly" }, { href: "#/smysly/spoj", title: "spojSmysly" }] },
+  { section: "clovek", games: [{ href: "#/clovek/kdo-ma", title: "kdoMa" }, { href: "#/clovek/najdi", title: "quizTitleClovek" }, { href: "#/clovek/spoj", title: "spojClovek" }] }
 ];

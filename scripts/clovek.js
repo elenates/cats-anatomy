@@ -7,6 +7,7 @@
  *   #/clovek/organy             the cat organ drawing next to the human one
  *   #/clovek/rozmnozovaci[/muz|zena]  the cat drawings (1901 Figs. 111 / 112) next to the human ones
  *   #/clovek/zajimavosti[/<id>] the fact cards (ATLAS_DATA.clovek.fakta), card id highlighted
+ *   #/clovek/kdo-ma, #/clovek/najdi, #/clovek/spoj  the games (scripts/kdo-ma.js, quiz.js, spoj.js; data/clovek-hry.js)
  *
  * Two atlases (scripts/atlas.js) without their own cards: a tap on either picture selects the part in both
  * (human items share the cat id, or name it in "kocka"), and one card below shows the human item with its
@@ -70,10 +71,47 @@
     return el("nav", { "class": "fig-nav", "aria-label": tab.id === "kostra" ? (ui.clovekViewsLabel || "Pohled") : tab.cs }, [list]);
   }
 
+  /* The games (stage 5): Má to kočka, člověk, nebo oba? · Najdi kost u člověka · Spoj, co patří k sobě */
+  function backTo(text) { return el("a", { "class": "back-link", href: "#/clovek", text: "← " + text }); }
+  function renderGame(sub) {
+    var host;
+    if (sub === "kdo-ma" && window.KdoMa && D.kdoMa) {
+      var kt = D.kdoMa.ui || {};
+      host = el("div", { "class": "atlas quiz kdo-ma" });
+      host._mount = function () { window.KdoMa.mount(host); };
+      return [backTo(kt.back || "Zpět"), el("h1", { "class": "screen-title", text: kt.title || "" }), host];
+    }
+    if (sub === "najdi" && window.Quiz) {
+      host = el("div", { "class": "atlas quiz" });
+      host._mount = function () {
+        window.Quiz.mount(host, { figures: ["clovek-zepredu", "clovek-zboku"], layer: "kosti", rounds: 10,
+          maxHeightVh: { "clovek-zepredu": 70, "clovek-zboku": 70 },
+          texts: { figureLabel: ui.quizFigureLabelClovek, great: ui.quizGreatClovek, back: ui.quizBackClovek, backHref: "#/clovek" } });
+      };
+      return [backTo(ui.quizBackClovek || "Zpět"), el("h1", { "class": "screen-title", text: ui.quizTitleClovek || "" }), host];
+    }
+    if (sub === "spoj" && window.Spoj && D.spojClovek) {
+      var st = D.spojClovek.ui || {};
+      host = el("div", { "class": "spoj" });
+      host._mount = function () { window.Spoj.mount(host, { content: "clovek", config: D.spojClovek }); };
+      return [backTo(st.back || "Zpět"), el("h1", { "class": "screen-title", text: st.title || "" }), host];
+    }
+    return null;
+  }
+  function games() {
+    return el("div", { "class": "quiz-actions screen-games clovek-games" }, [
+      D.kdoMa ? el("a", { "class": "quiz-open", href: "#/clovek/kdo-ma", text: D.kdoMa.ui.open }) : null,
+      el("a", { "class": "quiz-open quiz-secondary", href: "#/clovek/najdi", text: ui.quizOpenClovek || "Najdi kost u člověka" }),
+      D.spojClovek ? el("a", { "class": "quiz-open quiz-secondary", href: "#/clovek/spoj", text: D.spojClovek.ui.open }) : null]);
+  }
+
   function render(sub, sub2) {
+    var game = renderGame(sub); if (game) return game;
     var tab = TABS.filter(function (t) { return t.id === sub; })[0] || TABS[0];
     var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + (ui.back || "Zpět na menu") }),
-      el("h1", { "class": "screen-title", text: (D.sections || []).filter(function (s) { return s.id === "clovek"; }).map(function (s) { return s.cs; })[0] || "Kočka a člověk" }),
+      el("div", { "class": "screen-head" }, [
+        el("h1", { "class": "screen-title", text: (D.sections || []).filter(function (s) { return s.id === "clovek"; }).map(function (s) { return s.cs; })[0] || "Kočka a člověk" }),
+        games()]),
       tabNav(tab.id)];
     if (tab.id === "zajimavosti") return nodes.concat(renderFakta(sub2));
     var view = tab.views.filter(function (v) { return v.id === sub2; })[0] || tab.views[0];

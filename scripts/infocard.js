@@ -8,7 +8,7 @@
  * Latinsky follows the atlas switch (same stored setting). Escape or "Zavřít" closes it; focus returns.
  *
  * Public API (window.InfoCard):
- *   open(content, id, { hint })   content = "kostra" | "vnejsi" | "organy" | "svaly" | "smysly"
+ *   open(content, id, { hint })   content = "kostra" | "vnejsi" | "organy" | "svaly" | "smysly" | "clovek"
  *   hintButton(content, id, { onOpen })  button "💡 Nápověda"
  *   hintIcon(content, id, { onOpen, done })  small 💡 button for a list item (labelled "Nápověda: <name>");
  *                                        done(id) true = already answered: the card without the hint badge
@@ -66,7 +66,10 @@
       el("h2", { "class": "card-title", id: "info-title", text: it.cs }), x])]);
     if (opts.hint) box.insertBefore(el("p", { "class": "card-badge info-badge", text: ui.hintBadge || "Nápověda" }), box.firstChild);
     if (latinOn() && it.la) box.appendChild(el("p", { "class": "card-latin", lang: "la", text: it.la }));
-    [["kdeJe", ui.kdeJe || "Kde je?"], ["coDela", ui.coDela || "Co dělá?"], ["zajimavost", ui.zajimavost || "Zajímavost"]].forEach(function (f) {
+    // Kočka a člověk items have "srovnani" instead of "coDela" / "zajimavost", and their own "Kde je" heading.
+    var human = content === "clovek";
+    [["kdeJe", human ? (ui.clovekKdeJe || "Kde ji najdeš u člověka?") : (ui.kdeJe || "Kde je?")], ["coDela", ui.coDela || "Co dělá?"],
+     ["zajimavost", ui.zajimavost || "Zajímavost"], ["srovnani", ui.clovekSrovnani || "Kočka a člověk"]].forEach(function (f) {
       if (!it[f[0]]) return;
       box.appendChild(el("h3", { "class": "card-h", text: f[1] }));
       box.appendChild(el("p", { "class": "card-p", text: it[f[0]] }));

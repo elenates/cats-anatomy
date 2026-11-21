@@ -250,7 +250,8 @@
 
   /* Procvičování: every game, grouped by section (ATLAS_DATA.procvicovani). */
   function gameTitle(key) {
-    var cfg = { spoj: data.spoj, spojVnejsi: data.spojVnejsi, spojSvaly: data.spojSvaly, spojSmysly: data.spojSmysly, soustavyKviz: data.soustavyKviz }[key];
+    var cfg = { spoj: data.spoj, spojVnejsi: data.spojVnejsi, spojSvaly: data.spojSvaly, spojSmysly: data.spojSmysly, soustavyKviz: data.soustavyKviz,
+      kdoMa: data.kdoMa, spojClovek: data.spojClovek }[key];
     return cfg ? (cfg.ui && cfg.ui.title) || key : ui[key] || key;
   }
   function renderProcvicovani(section) {

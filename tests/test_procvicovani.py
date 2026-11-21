@@ -14,9 +14,9 @@ with sync_playwright() as p:
         r.ok(pg.locator("a.menu-card[href='#/procvicovani']").count() == 1, f"{vn}: Procvičování active in the menu")
         pg.goto(url("/procvicovani")); pg.wait_for_timeout(200)
         groups = pg.evaluate("ATLAS_DATA.procvicovani")
-        r.ok(pg.locator(".hub-group[data-section]").count() == len(groups) == 5, f"{vn}: five groups")
+        r.ok(pg.locator(".hub-group[data-section]").count() == len(groups) == 6, f"{vn}: six groups")
         links = [(a.get_attribute("href"), a.inner_text()) for a in pg.locator(".hub-group[data-section] a").all()]
-        r.ok(len(links) == 10 and all(h.endswith("?od=procvicovani") for h, _ in links), f"{vn}: 10 games {links}")
+        r.ok(len(links) == 13 and all(h.endswith("?od=procvicovani") for h, _ in links), f"{vn}: 13 games {links}")
         if vn == "tablet": pg.screenshot(path=shot("m7-stage1-hub.png"), full_page=True)
         for h, t in links:
             pg.goto(url("/procvicovani")); pg.wait_for_timeout(100)

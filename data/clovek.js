@@ -157,7 +157,7 @@ window.ATLAS_DATA.clovek = {
       content: "kostra",
       vztah: "jine",
       kdeJe: "Vpředu u krku, mezi hrudní kostí a ramenem. Můžeš si ji nahmatat.",
-      srovnani: "Lidská klíční kost spojuje lopatku s hrudní kostí. Kočka má jen malou klíční kost schovanou ve svalu, která není spojená s žádnou kostí.",
+      srovnani: "Lidská klíční kost spojuje lopatku s hrudní kostí. Kočka má jen malou klíční kost uloženou ve svalech, která není spojená s žádnou kostí.",
       refs: ["OSX-PECT"]
     },
     {
