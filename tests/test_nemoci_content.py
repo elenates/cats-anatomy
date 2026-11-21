@@ -1,6 +1,6 @@
 """Kočičí nemoci content checks (#73 stage 3), without a browser:
 - ids unique, every Czech field filled, badge known,
-- every body link (telo) is an item of the cat content it names (kostra / organy / vnejsi),
+- every body link (telo) is an item of the cat content it names (kostra / organy / vnejsi / smysly),
 - every source id named on a card has a row in SOURCES, and every SOURCES row is used,
 - a linked X-ray (rentgen) is in Zajímavé rentgeny, a card picture (obrazek) exists in images/veterina/,
 - no medicine name or dose (Lenka's rule): no digits with mg/ml/tablet units."""
@@ -10,8 +10,8 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "content"))
 import nemoci_content as N
 fails = []
 
-js = "global.window={};" + "".join(f"require({json.dumps(os.path.join(ROOT, 'data', n + '.js'))});" for n in ("kostra", "organy", "vnejsi", "rentgen")) + \
-     "const D=window.ATLAS_DATA;console.log(JSON.stringify({rentgen:Object.keys(D.rentgen.galerie||{}),kostra:D.kostra.items.map(x=>x.id),organy:D.organy.items.map(x=>x.id),vnejsi:D.vnejsi.items.map(x=>x.id)}))"
+js = "global.window={};" + "".join(f"require({json.dumps(os.path.join(ROOT, 'data', n + '.js'))});" for n in ("kostra", "organy", "vnejsi", "smysly", "rentgen")) + \
+     "const D=window.ATLAS_DATA;console.log(JSON.stringify({rentgen:Object.keys(D.rentgen.galerie||{}),kostra:D.kostra.items.map(x=>x.id),organy:D.organy.items.map(x=>x.id),vnejsi:D.vnejsi.items.map(x=>x.id),smysly:D.smysly.items.map(x=>x.id)}))"
 ids = json.loads(subprocess.run(["node", "-e", js], capture_output=True, text=True, check=True).stdout)
 
 FIELDS = ("cs", "coToJe", "jakToPoznas", "jakToVetZjisti", "coPomuze", "jakTomuPredejit")
