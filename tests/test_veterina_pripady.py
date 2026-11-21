@@ -2,7 +2,7 @@
 - every case belongs to a Kočičí nemoci card, ids unique, one case per card at most,
 - the three diagnosis options are cards, include the right one and are different,
 - every finding is for an examination the child can choose, and every examination has an icon,
-- texts are filled, there are two wrong treatments, and no dose slipped in."""
+- texts are filled, there are two wrong treatments, each wrong answer says why, and no dose slipped in."""
 import os, sys, re
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(ROOT, "tools", "content"))
@@ -30,7 +30,10 @@ for p in V.PRIPADY:
     for f in ("kocka", "pribeh", "lecba"):
         if not p.get(f, "").strip(): fails.append(f"{p['id']}: empty {f}")
     if len(p["spatne"]) != 2: fails.append(f"{p['id']}: needs two wrong treatments")
-    text = " ".join([p["pribeh"], p["lecba"], *p["spatne"], *p["nalezy"].values()])
+    for w in p["spatne"]:
+        if not w.get("text", "").strip() or not w.get("proc", "").strip(): fails.append(f"{p['id']}: wrong treatment without text or why")
+    if set(p.get("proc", {})) != set(m) - {p["nemoc"]}: fails.append(f"{p['id']}: every wrong diagnosis needs a why")
+    text = " ".join([p["pribeh"], p["lecba"], *[w["text"] + " " + w["proc"] for w in p["spatne"]], *p.get("proc", {}).values(), *p["nalezy"].values()])
     if re.search(r"\d\s*(mg|ml|tablet|kapk)", text, re.I): fails.append(f"{p['id']}: looks like a dose")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")
 if fails:
