@@ -358,6 +358,55 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Pacient Bobeš", file: "images/veterina/pacienti/bobes.webp" }]
     },
     {
+      heading: "Pacient Sněhurka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Jakub Hałun", href: "https://commons.wikimedia.org/wiki/File:20170604_kot_na_wystawie_w_Krakowie_7971.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Sněhurka", file: "images/veterina/pacienti/snehurka.webp" }]
+    },
+    {
+      heading: "Pacient Mates (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Wasiul Bahar", href: "https://commons.wikimedia.org/wiki/File:Cat_in_Notre_Dame_college_Dhaka.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Mates", file: "images/veterina/pacienti/mates.webp" }]
+    },
+    {
+      heading: "Pacient Perla (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Victor Vizu", href: "https://commons.wikimedia.org/wiki/File:May_cat.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Perla", file: "images/veterina/pacienti/perla.webp" }]
+    },
+    {
+      heading: "Pacient Rarášek (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Jakub Hałun", href: "https://commons.wikimedia.org/wiki/File:Kot_na_ulicy_Obozowej_w_Krakowie,_20220214_1200_4283.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Rarášek", file: "images/veterina/pacienti/rarasek.webp" }]
+    },
+    {
+      heading: "Pacient Bertík (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Jakub Hałun", href: "https://commons.wikimedia.org/wiki/File:Kot_domowy_w_trawie,_Podole,_wojew%C3%B3dztwo_%C5%9Bwi%C4%99tokrzyskie,_20260419_0933_5218.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Bertík", file: "images/veterina/pacienti/bertik.webp" }]
+    },
+    {
+      heading: "Pacient Mína (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Tadeáš Bednarz", href: "https://commons.wikimedia.org/wiki/File:Siberian_black_tabby_blotched_cat_01.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Mína", file: "images/veterina/pacienti/mina.webp" }]
+    },
+    {
+      heading: "Pacient Kryštof (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Kızıl", href: "https://commons.wikimedia.org/wiki/File:Blue_and_white_tabby_cat%E2%80%93IMG_6442_02.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Kryštof", file: "images/veterina/pacienti/krystof.webp" }]
+    },
+    {
       heading: "Ikony nástrojů (Na veterině)",
       parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
