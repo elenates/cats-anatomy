@@ -1,13 +1,13 @@
 # Kočičí nemoci (#73 stage 3): one card per illness or visit, and later the game cases.
 # Czech texts for the child: proofread by Lenka, then checked by a vet. Facts are only those in the sources line.
-# Card fields: id, cs, badge (pohotovost / bezny / starsi / zdrava), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,
+# Card fields: id, cs, badge (pohotovost / bezny / zdrava; three badges only, Lenka), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,
 #   jakTomuPredejit, pozor (optional warning), telo (cards of the body it links to: (content, id)), sources, flags.
 # Rules (Lenka): only the kind of medicine (antibiotika, lék proti zánětu, „injekce inzulínu“), no names, no doses.
 
 # UI labels for the card fields (Lenka: „veterinář“, not „vet“).
 LABELS = dict(coToJe="Co to je?", jakToPoznas="Jak to poznáš?", jakToVetZjisti="Jak to veterinář zjistí?", coPomuze="Co pomůže?", jakTomuPredejit="Jak tomu předejít?", pozor="Pozor!")
 
-P, B, S, Z = "pohotovost", "bezny", "starsi", "zdrava"
+P, B, Z = "pohotovost", "bezny", "zdrava"
 
 NEMOCI = [
   dict(id="ucpana-mocova-trubice", cs="Ucpaná močová trubice", badge=P,
@@ -123,7 +123,7 @@ NEMOCI = [
        telo=[("vnejsi", "polstarky"), ("vnejsi", "tlapka")],
        sources="PETMD-BURNS (most common thermal burns: paw pads from jumping onto a stovetop; full extent may take up to three days); RECOVER-FA (2026 RECOVER First Aid Guidelines for dogs and cats cover burns); KINSHIP-BURN (cool running water for 20 minutes, within three hours); PDSA-BURN (cool water for at least 10–20 minutes, never ice); VCA-PADS (licking and limping; discoloured pads; antibiotics and pain medication)",
        flags="Lenka (vet view, 2026-11-21): at least 20 minutes of cool running water per the RECOVER first-aid guidelines, no blister condition; prevention line reworded (keep the cat away from the stove)."),
-  dict(id="nemocne-ledviny", cs="Nemocné ledviny", badge=S,
+  dict(id="nemocne-ledviny", cs="Nemocné ledviny", badge=B,
        coToJe="Ledviny čistí krev a dělají moč. U starších koček se jejich činnost může postupně zhoršovat. Mají to až 4 z 10 koček starších 10 let. Vyléčit se to nedá, ale kočka s tím může žít ještě dlouho.",
        jakToPoznas="Kočka víc pije a víc čůrá, hubne, má horší srst, méně jí a někdy zvrací. Na začátku ale často není poznat nic.",
        jakToVetZjisti="Krevní test a vyšetření moči. V krvi je víc odpadních látek a moč je řídká skoro jako voda.",
@@ -132,7 +132,7 @@ NEMOCI = [
        telo=[("organy", "ledvina")],
        sources="CORNELL-CKD (up to 40 % of cats over 10, 80 % over 15; age the only known risk factor, monitor seniors; often no signs early; more urine and drinking; therapeutic diet; monitoring of blood and urine); VCA-CKD (weight loss, poor coat, variable appetite, drinking and urinating more, vomiting; waste products in the blood; dilute urine the earliest sign; IV fluids); LR-CKD (cats can live with CKD for years; fluids under the skin); RC-CKD (irreversible)",
        flags="„až 4 z 10“ is Cornell's „up to 40 %“, an upper estimate (Lenka). Cornell names age as the only known risk factor, so the cause is often unknown (Lenka's wording)."),
-  dict(id="stitna-zlaza", cs="Zrychlená štítná žláza", badge=S,
+  dict(id="stitna-zlaza", cs="Zrychlená štítná žláza", badge=B,
        coToJe="Štítná žláza je malá žláza na krku. Když se zvětší, dělá moc hormonů a tělo jede jako na zrychlené obrátky. Mají to hlavně starší kočky, nejčastěji kolem 13 let.",
        jakToPoznas="Kočka hodně jí, a přesto hubne. Víc pije a čůrá, je neklidná a někdy zvrací.",
        jakToVetZjisti="Veterinář prohmatá krk, jestli není žláza zvětšená, a zjistí, že srdce bije rychle. Krevní test ukáže, že je v krvi moc hormonu štítné žlázy.",
@@ -277,7 +277,7 @@ NEMOCI = [
        telo=[("organy", "nosni-dutina"), ("vnejsi", "nos")],
        sources="PETETHEVET-GRASS (grass regurgitated into the nose; sudden repeated sneezing a common cause); BSAVA-GRASS (grass lodges while chewing or after vomiting; removed with forceps); PETPLACE-NASALFB (nasal discharge, sneezing, nose-pawing; manual removal); JOII-GRASS (discharge from one nostril; endoscopy with sedation or anaesthetic); INDEVETS-GRASS (blade visible in the nostril, removed with gentle constant traction); PDSA-GINGE (sedated, 10 cm blade pulled out); YAHOO-LEO (sedated, removed with forceps)",
        flags="Lenka (earlier session): visible blade with steady traction, or forceps under sedation. „stéblo sám netahej“ kept (Lenka, vet view); the blade can also lodge in the nasopharynx; deep blades removed with instruments under endoscopy."),
-  dict(id="cukrovka", cs="Cukrovka", badge=S,
+  dict(id="cukrovka", cs="Cukrovka", badge=B,
        coToJe="Tělo neumí správně využít cukr z krve, protože mu chybí hormon inzulín nebo na něj buňky dostatečně nereagují. Cukr zůstává v krvi a buňky hladoví. Častěji ji dostanou starší a kočky s nadváhou. Riziko je vyšší také u kocourů.",
        jakToPoznas="Kočka hodně pije a čůrá, hodně jí, a přesto hubne.",
        jakToVetZjisti="Krevní test a vyšetření moči ukážou, že je v krvi moc cukru a že cukr je i v moči.",

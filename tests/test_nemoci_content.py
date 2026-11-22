@@ -23,7 +23,7 @@ for c in N.NEMOCI:
     seen.add(c["id"])
     for f in FIELDS:
         if not c.get(f, "").strip(): fails.append(f"{c['id']}: empty {f}")
-    if c["badge"] not in ("pohotovost", "bezny", "starsi", "zdrava"): fails.append(f"{c['id']}: badge {c['badge']}")
+    if c["badge"] not in ("pohotovost", "bezny", "zdrava"): fails.append(f"{c['id']}: badge {c['badge']}")
     for content, part in c["telo"]:
         if part not in ids.get(content, []): fails.append(f"{c['id']}: telo {content}/{part} not found")
     if c.get("rentgen") and c["rentgen"] not in ids["rentgen"]: fails.append(f"{c['id']}: rentgen {c['rentgen']} not in the gallery")
