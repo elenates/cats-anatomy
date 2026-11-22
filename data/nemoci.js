@@ -7,7 +7,7 @@
  *
  * labels: the card headings (field -> Czech heading).
  * badges: badge id -> Czech name, in the order the list shows them.
- * items: id, cs, badge (pohotovost / bezny / starsi / zdrava), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,
+ * items: id, cs, badge (pohotovost / bezny / zdrava), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,
  *   jakTomuPredejit, pozor (or null), telo (links to the atlas: [{content, id}], content = organy / kostra / vnejsi / smysly),
  *   obrazek (images/veterina/<obrazek>.webp or null), rentgen (id in rentgen.galerie or null), refs
  */
@@ -15,7 +15,7 @@ window.ATLAS_DATA = window.ATLAS_DATA || {};
 
 window.ATLAS_DATA.nemoci = {
   labels: {"coToJe": "Co to je?", "jakToPoznas": "Jak to poznáš?", "jakToVetZjisti": "Jak to veterinář zjistí?", "coPomuze": "Co pomůže?", "jakTomuPredejit": "Jak tomu předejít?", "pozor": "Pozor!"},
-  badges: {"pohotovost": "Pohotovost!", "bezny": "Běžný problém", "starsi": "Starší kočky", "zdrava": "Zdravá kočka"},
+  badges: {"pohotovost": "Pohotovost!", "bezny": "Běžný problém", "zdrava": "Zdravá kočka"},
   items: [
     {
       id: "ucpana-mocova-trubice",
@@ -200,7 +200,7 @@ window.ATLAS_DATA.nemoci = {
     {
       id: "nemocne-ledviny",
       cs: "Nemocné ledviny",
-      badge: "starsi",
+      badge: "bezny",
       coToJe: "Ledviny čistí krev a dělají moč. U starších koček se jejich činnost může postupně zhoršovat. Mají to až 4 z 10 koček starších 10 let. Vyléčit se to nedá, ale kočka s tím může žít ještě dlouho.",
       jakToPoznas: "Kočka víc pije a víc čůrá, hubne, má horší srst, méně jí a někdy zvrací. Na začátku ale často není poznat nic.",
       jakToVetZjisti: "Krevní test a vyšetření moči. V krvi je víc odpadních látek a moč je řídká skoro jako voda.",
@@ -215,7 +215,7 @@ window.ATLAS_DATA.nemoci = {
     {
       id: "stitna-zlaza",
       cs: "Zrychlená štítná žláza",
-      badge: "starsi",
+      badge: "bezny",
       coToJe: "Štítná žláza je malá žláza na krku. Když se zvětší, dělá moc hormonů a tělo jede jako na zrychlené obrátky. Mají to hlavně starší kočky, nejčastěji kolem 13 let.",
       jakToPoznas: "Kočka hodně jí, a přesto hubne. Víc pije a čůrá, je neklidná a někdy zvrací.",
       jakToVetZjisti: "Veterinář prohmatá krk, jestli není žláza zvětšená, a zjistí, že srdce bije rychle. Krevní test ukáže, že je v krvi moc hormonu štítné žlázy.",
@@ -440,7 +440,7 @@ window.ATLAS_DATA.nemoci = {
     {
       id: "cukrovka",
       cs: "Cukrovka",
-      badge: "starsi",
+      badge: "bezny",
       coToJe: "Tělo neumí správně využít cukr z krve, protože mu chybí hormon inzulín nebo na něj buňky dostatečně nereagují. Cukr zůstává v krvi a buňky hladoví. Častěji ji dostanou starší a kočky s nadváhou. Riziko je vyšší také u kocourů.",
       jakToPoznas: "Kočka hodně pije a čůrá, hodně jí, a přesto hubne.",
       jakToVetZjisti: "Krevní test a vyšetření moči ukážou, že je v krvi moc cukru a že cukr je i v moči.",

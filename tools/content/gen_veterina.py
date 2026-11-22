@@ -37,14 +37,14 @@ L = ["/*",
 " *",
 " * labels: the card headings (field -> Czech heading).",
 " * badges: badge id -> Czech name, in the order the list shows them.",
-" * items: id, cs, badge (pohotovost / bezny / starsi / zdrava), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,",
+" * items: id, cs, badge (pohotovost / bezny / zdrava), coToJe, jakToPoznas, jakToVetZjisti, coPomuze,",
 " *   jakTomuPredejit, pozor (or null), telo (links to the atlas: [{content, id}], content = organy / kostra / vnejsi / smysly),",
 " *   obrazek (images/veterina/<obrazek>.webp or null), rentgen (id in rentgen.galerie or null), refs",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};", "",
 "window.ATLAS_DATA.nemoci = {",
 f"  labels: {js(N.LABELS)},",
-f"  badges: {js({'pohotovost': 'Pohotovost!', 'bezny': 'Běžný problém', 'starsi': 'Starší kočky', 'zdrava': 'Zdravá kočka'})},",
+f"  badges: {js({'pohotovost': 'Pohotovost!', 'bezny': 'Běžný problém', 'zdrava': 'Zdravá kočka'})},",
 "  items: ["]
 L += join([obj([("id", n["id"]), ("cs", n["cs"]), ("badge", n["badge"])] +
                [(f, n[f]) for f in ("coToJe", "jakToPoznas", "jakToVetZjisti", "coPomuze", "jakTomuPredejit")] +
