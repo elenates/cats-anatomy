@@ -1,5 +1,5 @@
 """Na veterině game cases (#73 stage 3), without a browser:
-- every case belongs to a Kočičí nemoci card, ids unique, one case per card at most,
+- every case belongs to a Kočičí nemoci card, ids unique, exactly one case per card,
 - the three diagnosis options are cards, include the right one and are different,
 - every finding is for an examination the child can choose, and every examination has an icon,
 - texts are filled, there are two wrong treatments, each wrong answer says why, and no dose slipped in."""
@@ -35,6 +35,7 @@ for p in V.PRIPADY:
     if set(p.get("proc", {})) != set(m) - {p["nemoc"]}: fails.append(f"{p['id']}: every wrong diagnosis needs a why")
     text = " ".join([p["pribeh"], p["lecba"], *[w["text"] + " " + w["proc"] for w in p["spatne"]], *p.get("proc", {}).values(), *p["nalezy"].values()])
     if re.search(r"\d\s*(mg|ml|tablet|kapk)", text, re.I): fails.append(f"{p['id']}: looks like a dose")
+for c in sorted(cards - used): fails.append(f"card {c} has no case")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")
 if fails:
     print("\n".join("FAIL " + f for f in fails)); sys.exit(1)
