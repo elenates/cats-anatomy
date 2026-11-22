@@ -193,217 +193,217 @@ window.ATLAS_DATA.zdroje = {
       heading: "Pacient Mourek (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Wutsje", href: "https://commons.wikimedia.org/wiki/File:20210420_Ollie_Viaductstraat_Groningen_NL.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Mourek", file: "images/veterina/pacienti/mourek.webp" }, { cs: "Pacient Mourek na stole", file: "images/veterina/vyrezy/mourek.webp" }]
     },
     {
       heading: "Pacient Micka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Jeanne Griffin", href: "https://commons.wikimedia.org/wiki/File:Female_Calico_cat_18-9-22.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Micka", file: "images/veterina/pacienti/micka.webp" }, { cs: "Pacient Micka na stole", file: "images/veterina/vyrezy/micka.webp" }]
     },
     {
       heading: "Pacient Tygr (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Johann Jaritz", href: "https://commons.wikimedia.org/wiki/File:Tabby-cat_brown_our_new_pet_30062015_5044.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0 AT", href: "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Tygr", file: "images/veterina/pacienti/tygr.webp" }, { cs: "Pacient Tygr na stole", file: "images/veterina/vyrezy/tygr.webp" }]
     },
     {
       heading: "Pacient Bella (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Nithisha Nantha Kumar", href: "https://commons.wikimedia.org/wiki/File:Curious_cat_walking_on_sand.png" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Bella", file: "images/veterina/pacienti/bella.webp" }, { cs: "Pacient Bella na stole", file: "images/veterina/vyrezy/bella.webp" }]
     },
     {
       heading: "Pacient Šmudla (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Dcoetzee", href: "https://commons.wikimedia.org/wiki/File:Tabby_kitten_sitting.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: volné dílo." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Šmudla", file: "images/veterina/pacienti/smudla.webp" }, { cs: "Pacient Šmudla na stole", file: "images/veterina/vyrezy/smudla.webp" }]
     },
     {
       heading: "Pacient Rambo (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Hisashi z Japonska", href: "https://commons.wikimedia.org/wiki/File:Dark_mackerel_tabby_cat_in_a_park-Hisashi-02.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Rambo", file: "images/veterina/pacienti/rambo.webp" }, { cs: "Pacient Rambo na stole", file: "images/veterina/vyrezy/rambo.webp" }]
     },
     {
       heading: "Pacient Pírko (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Kali_April_2016-5.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Pírko", file: "images/veterina/pacienti/pirko.webp" }, { cs: "Pacient Pírko na stole", file: "images/veterina/vyrezy/pirko.webp" }]
     },
     {
       heading: "Pacient Lízinka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Petro Stelte", href: "https://commons.wikimedia.org/wiki/File:Black-White-Cat-Sitia-Crete-Greece.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Lízinka", file: "images/veterina/pacienti/lizinka.webp" }, { cs: "Pacient Lízinka na stole", file: "images/veterina/vyrezy/lizinka.webp" }]
     },
     {
       heading: "Pacient Kulička (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Marie-Lan Nguyen", href: "https://commons.wikimedia.org/wiki/File:Golden_tabby_and_white_kitten_n01.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 2.5", href: "https://creativecommons.org/licenses/by/2.5/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Kulička", file: "images/veterina/pacienti/kulicka.webp" }, { cs: "Pacient Kulička na stole", file: "images/veterina/vyrezy/kulicka.webp" }]
     },
     {
       heading: "Pacient Ferda (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Cat_December_2005-1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Ferda", file: "images/veterina/pacienti/ferda.webp" }, { cs: "Pacient Ferda na stole", file: "images/veterina/vyrezy/ferda.webp" }]
     },
     {
       heading: "Pacient Čiperka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Felinlove", href: "https://commons.wikimedia.org/wiki/File:Oriental_Shorthair_kitten_chocolate_spotted_tabby.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Čiperka", file: "images/veterina/pacienti/ciperka.webp" }, { cs: "Pacient Čiperka na stole", file: "images/veterina/vyrezy/ciperka.webp" }]
     },
     {
       heading: "Pacient Rozárka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Grendelkhan", href: "https://commons.wikimedia.org/wiki/File:Stray_seal_point_tomcat_in_Pattaya.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Rozárka", file: "images/veterina/pacienti/rozarka.webp" }, { cs: "Pacient Rozárka na stole", file: "images/veterina/vyrezy/rozarka.webp" }]
     },
     {
       heading: "Pacient Stařenka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Nick.mon", href: "https://commons.wikimedia.org/wiki/File:European_Cat_9_years_old.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Stařenka", file: "images/veterina/pacienti/starenka.webp" }, { cs: "Pacient Stařenka na stole", file: "images/veterina/vyrezy/starenka.webp" }]
     },
     {
       heading: "Pacient Brumla (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Desaix83, podle fotografie Heikki Siltaly", href: "https://commons.wikimedia.org/wiki/File:British_Shorthair_Fond_Blanc.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 3.0", href: "https://creativecommons.org/licenses/by/3.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Brumla", file: "images/veterina/pacienti/brumla.webp" }, { cs: "Pacient Brumla na stole", file: "images/veterina/vyrezy/brumla.webp" }]
     },
     {
       heading: "Pacient Pepina (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Dietmar Rabich", href: "https://commons.wikimedia.org/wiki/File:Clovelly_(Devon,_UK),_Katze_--_2013_--_1337.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Pepina", file: "images/veterina/pacienti/pepina.webp" }, { cs: "Pacient Pepina na stole", file: "images/veterina/vyrezy/pepina.webp" }]
     },
     {
       heading: "Pacient Zrzek (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Arthur Kerensa", href: "https://commons.wikimedia.org/wiki/File:Ginger_cat_in_cornwall_(2015;_cropped_2025).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Zrzek", file: "images/veterina/pacienti/zrzek.webp" }, { cs: "Pacient Zrzek na stole", file: "images/veterina/vyrezy/zrzek.webp" }]
     },
     {
       heading: "Pacient Bára (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "W.carter", href: "https://commons.wikimedia.org/wiki/File:Young_tabby_cat_keeping_watch.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Bára", file: "images/veterina/pacienti/bara.webp" }, { cs: "Pacient Bára na stole", file: "images/veterina/vyrezy/bara.webp" }]
     },
     {
       heading: "Pacient Fifinka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Reba Spike", href: "https://commons.wikimedia.org/wiki/File:Park_Kitten_(50131330811).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 2.0", href: "https://creativecommons.org/licenses/by/2.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Fifinka", file: "images/veterina/pacienti/fifinka.webp" }, { cs: "Pacient Fifinka na stole", file: "images/veterina/vyrezy/fifinka.webp" }]
     },
     {
       heading: "Pacient Felix (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Kızıl", href: "https://commons.wikimedia.org/wiki/File:Blue_and_white_tabby_cat%E2%80%93IMG_6442_06.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Felix", file: "images/veterina/pacienti/felix.webp" }, { cs: "Pacient Felix na stole", file: "images/veterina/vyrezy/felix.webp" }]
     },
     {
       heading: "Pacient Liduška (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Kadı", href: "https://commons.wikimedia.org/wiki/File:Cat_in_Fatih,_Istanbul.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Liduška", file: "images/veterina/pacienti/liduska.webp" }, { cs: "Pacient Liduška na stole", file: "images/veterina/vyrezy/liduska.webp" }]
     },
     {
       heading: "Pacient Pusinka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "allen watkin z Londýna", href: "https://commons.wikimedia.org/wiki/File:Watkin_Fat_Cat_(506301604).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Pusinka", file: "images/veterina/pacienti/pusinka.webp" }, { cs: "Pacient Pusinka na stole", file: "images/veterina/vyrezy/pusinka.webp" }]
     },
     {
       heading: "Pacient Bonifác (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Jeanne Griffin", href: "https://commons.wikimedia.org/wiki/File:Ricky_orange_cat_in_Sicily_2025.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Bonifác", file: "images/veterina/pacienti/bonifac.webp" }, { cs: "Pacient Bonifác na stole", file: "images/veterina/vyrezy/bonifac.webp" }]
     },
     {
       heading: "Pacient Macek (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Petra Spiess", href: "https://commons.wikimedia.org/wiki/File:Obese_Bengal_cat.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 2.0", href: "https://creativecommons.org/licenses/by/2.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Macek", file: "images/veterina/pacienti/macek.webp" }, { cs: "Pacient Macek na stole", file: "images/veterina/vyrezy/macek.webp" }]
     },
     {
       heading: "Pacient Bobeš (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Friedrich Haag", href: "https://commons.wikimedia.org/wiki/File:Heimtier_003_2016_11_27.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Bobeš", file: "images/veterina/pacienti/bobes.webp" }, { cs: "Pacient Bobeš na stole", file: "images/veterina/vyrezy/bobes.webp" }]
     },
     {
       heading: "Pacient Sněhurka (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "KKPCW", href: "https://commons.wikimedia.org/wiki/File:Odd-eyed_White_cat_walking_-_1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Sněhurka", file: "images/veterina/pacienti/snehurka.webp" }, { cs: "Pacient Sněhurka na stole", file: "images/veterina/vyrezy/snehurka.webp" }]
     },
     {
       heading: "Pacient Mates (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Found Animals Foundation z Los Angeles", href: "https://commons.wikimedia.org/wiki/File:Sitting_Orange_Cat_(8557041673).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Mates", file: "images/veterina/pacienti/mates.webp" }, { cs: "Pacient Mates na stole", file: "images/veterina/vyrezy/mates.webp" }]
     },
     {
       heading: "Pacient Perla (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Victor Vizu", href: "https://commons.wikimedia.org/wiki/File:May_cat.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Perla", file: "images/veterina/pacienti/perla.webp" }, { cs: "Pacient Perla na stole", file: "images/veterina/vyrezy/perla.webp" }]
     },
     {
       heading: "Pacient Rarášek (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Jakub Hałun", href: "https://commons.wikimedia.org/wiki/File:Kot_na_ulicy_Obozowej_w_Krakowie,_20220214_1200_4283.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Rarášek", file: "images/veterina/pacienti/rarasek.webp" }, { cs: "Pacient Rarášek na stole", file: "images/veterina/vyrezy/rarasek.webp" }]
     },
     {
       heading: "Pacient Bertík (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Panini!", href: "https://commons.wikimedia.org/wiki/File:Fat_Brown_Tabby_Cat.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Bertík", file: "images/veterina/pacienti/bertik.webp" }, { cs: "Pacient Bertík na stole", file: "images/veterina/vyrezy/bertik.webp" }]
     },
     {
       heading: "Pacient Mína (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Cdhowe (anglická Wikipedie)", href: "https://commons.wikimedia.org/wiki/File:Blue_spotted_tabby_and_white_stray_Cat_2.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY 3.0", href: "https://creativecommons.org/licenses/by/3.0/" }, { text: "." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Mína", file: "images/veterina/pacienti/mina.webp" }, { cs: "Pacient Mína na stole", file: "images/veterina/vyrezy/mina.webp" }]
     },
     {
       heading: "Pacient Kryštof (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Kızıl", href: "https://commons.wikimedia.org/wiki/File:Blue_and_white_tabby_cat%E2%80%93IMG_6442_02.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; pro vyšetřovací stůl vyříznuto z pozadí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
       figures: [{ cs: "Pacient Kryštof", file: "images/veterina/pacienti/krystof.webp" }, { cs: "Pacient Kryštof na stole", file: "images/veterina/vyrezy/krystof.webp" }]
     },
     {
