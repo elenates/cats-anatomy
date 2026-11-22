@@ -136,10 +136,10 @@ NEMOCI = [
        coToJe="Štítná žláza je malá žláza na krku. Když se zvětší, dělá moc hormonů a tělo jede jako na zrychlené obrátky. Mají to hlavně starší kočky, nejčastěji kolem 13 let.",
        jakToPoznas="Kočka hodně jí, a přesto hubne. Víc pije a čůrá, je neklidná a někdy zvrací.",
        jakToVetZjisti="Veterinář prohmatá krk, jestli není žláza zvětšená, a zjistí, že srdce bije rychle. Krevní test ukáže, že je v krvi moc hormonu štítné žlázy.",
-       coPomuze="Léky každý den, speciální krmivo, operace nebo léčba radioaktivním jódem, který ničí nemocnou tkáň štítné žlázy. Veterinář vybere, co je pro kočku nejlepší.",
+       coPomuze="Léky každý den, speciální krmivo s omezeným jódem, operace nebo léčba radioaktivním jódem, který ničí nemocnou tkáň štítné žlázy. Veterinář vybere, co je pro kočku nejlepší.",
        jakTomuPredejit="Proč to kočky dostanou, se zatím neví. Starší kočky proto chodí na pravidelné prohlídky.",
        telo=[("vnejsi", "krk"), ("organy", "srdce")],
-       sources="CORNELL-HYPERT (common in middle-aged and older cats; enlarged thyroid in the neck; weight loss, more appetite, thirst and urination, vomiting, hyperactivity; neck palpated, heart rate checked; T4 in the blood; four treatments: medication, radioactive iodine, surgery, diet; cause not known); WSU-HYPERT (average age 13; fast heart rate; radioactive iodine destroys the abnormal thyroid cells); VP-HYPERT (weight loss despite an excellent appetite)",
+       sources="CORNELL-HYPERT (common in middle-aged and older cats; enlarged thyroid in the neck; weight loss, more appetite, thirst and urination, vomiting, hyperactivity; neck palpated, heart rate checked; T4 in the blood; four treatments: medication, radioactive iodine, surgery, diet; cause not known); WSU-HYPERT (average age 13; fast heart rate; radioactive iodine destroys the abnormal thyroid cells); VP-HYPERT (weight loss despite an excellent appetite); TUFTS-HYPERT (iodine-restricted diet, eaten exclusively)",
        flags="Lenka (2026-11-21): keep „léčba radioaktivním jódem“, an established treatment."),
   dict(id="mocove-kaminky", cs="Kamínky v močovém měchýři", badge=B,
        coToJe="Z minerálů v moči se v měchýři udělají tvrdé kamínky. Mohou dráždit stěnu měchýře, která pak může krvácet.",
@@ -475,4 +475,5 @@ SOURCES = [
   ("CATSCOM-HEAT2", "Cats.com: Cat in Heat (Estrus Cycles)", "If not mated, the interestrus period lasts two to three weeks; first heat around 6 months, as early as 4", "https://cats.com/?p=13982", "search result"),
   ("VETWEST-SPAY2", "Vetwest: Cat breeding at this time of the year (cycle)", "Oestrus 7–10 days; if not mated, back in season 1 day to 2 weeks later", "https://www.vetwest.com.au/pet-library/cat-breeding-at-this-time-of-the-year/", "search result"),
   ("CB-LFB", "Clinician's Brief: Feline Intestinal Foreign Bodies", "Pain on palpation; accordion-like pleating on X-ray; about 50 % fixed under the tongue; bowel necrosis may need resection", "https://www.cliniciansbrief.com/article/feline-intestinal-foreign-bodies", "search result"),
+  ("TUFTS-HYPERT", "Tufts Petfoodology: Managing Hyperthyroidism with Diet in Cats", "Treatments include an iodine-restricted diet; it must be eaten exclusively, no treats or supplements", "https://vetnutrition.tufts.edu/?p=9340", "search result"),
 ]
