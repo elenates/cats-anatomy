@@ -28,7 +28,7 @@ No installation, no build step, no server.
 | 6 | Smysly | done (v0.6) |
 | 7 | Kočičí rentgen | done (v0.7) |
 | 8 | Kočka a člověk | done (#72; release by the maintainer) |
-| 9 | Na veterině | in progress (#73): Kočičí nemoci done; the game Ordinace to come |
+| 9 | Na veterině | in progress (#73): Kočičí nemoci and the game Ordinace; vet check, child test and release to come |
 | 10 | Procvičování | done (v0.7; Kočka a člověk games added) |
 
 ## Repository structure
@@ -44,7 +44,7 @@ cats-anatomy/
 │   ├── spoj.js             # game "Spoj, co patří k sobě" (#/kostra/spoj and the other sections)
 │   ├── clovek.js           # Kočka a člověk: cat and human side by side (#/clovek)
 │   ├── kdo-ma.js           # game "Má to kočka, člověk, nebo oba?" (#/clovek/kdo-ma)
-│   ├── veterina.js         # Na veterině: section start and Kočičí nemoci list (#/veterina)
+│   ├── veterina.js         # Na veterině: section start, Kočičí nemoci list, the game Ordinace (#/veterina)
 │   ├── infocard.js         # card pop-up for the games and the Kočičí nemoci cards
 │   └── soustavy-kviz.js    # quiz "Do které soustavy patří?" (#/organy/soustavy-kviz, #/soustavy/kviz)
 ├── data/

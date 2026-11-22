@@ -590,3 +590,51 @@ a.menu-card:active {
 .nemoc-obrazek figcaption { margin-top: 4px; color: var(--muted); font-size: 0.9rem; }
 .card-back { cursor: pointer; font: inherit; font-weight: 700; margin: 0 0 8px; }
 .info-card button.part-link { cursor: pointer; font: inherit; font-weight: 700; }
+
+/* ===================== Na veterině: Ordinace (#73 stage 4c) ===================== */
+.vet-h { margin: 0; font-size: 1.4rem; }
+.vet-h:focus { outline: none; }
+.screen-head .vet-random { margin: 0; }
+.vet-cekarna { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.vet-pacient { position: relative; display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--text);
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.vet-pacient:hover { border-color: var(--accent); }
+.vet-pacient:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.vet-pacient img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #eee; }
+.vet-jmeno { padding: 8px 10px 0; font-weight: 700; font-size: 1.1rem; }
+.vet-kocka { padding: 0 10px 10px; color: var(--muted); font-size: 0.9rem; }
+.vet-pacient.is-cured { border-color: #1f7a3d; }
+.vet-tlapka { position: absolute; top: 6px; right: 6px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 1.4rem; }
+.vet-patient { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 16px 24px; align-items: start; margin: 0 0 8px; }
+.vet-patient img { width: 100%; border-radius: var(--radius); }
+.vet-kocka-line { margin: 0; color: var(--muted); font-weight: 600; }
+.vet-pribeh { margin: 8px 0 0; font-size: 1.2rem; }
+.vet-step { margin: 24px 0 0; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.vet-exams { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.vet-exam { width: 100%; height: 100%; min-height: var(--tap); padding: 10px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font: inherit; font-weight: 600; font-size: 0.95rem; text-align: center; color: var(--text); background: var(--bg);
+  border: 2px solid var(--border); border-radius: 12px; cursor: pointer; }
+.vet-exam img { width: 48px; height: 48px; }
+.vet-exam:hover { border-color: var(--accent); }
+.vet-exam:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.vet-exam.is-done { border-color: var(--accent); background: var(--accent-soft); }
+.vet-nalezy { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.vet-nalez { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; background: #eef6f0; border-left: 6px solid #1f7a3d; }
+.vet-nalez.is-nic { background: #f3eee7; border-left-color: var(--border); }
+.vet-nalez > img { width: 36px; height: 36px; flex: none; }
+.vet-nalez .card-p { margin-top: 2px; }
+.vet-nalez.is-flash { animation: vet-flash 0.8s; }
+@keyframes vet-flash { 50% { box-shadow: 0 0 0 4px var(--accent); } }
+@media (prefers-reduced-motion: reduce) { .vet-nalez.is-flash { animation: none; } }
+.vet-nalez-obr { display: block; margin-top: 8px; max-width: 100%; max-height: 260px; border-radius: 8px; background: #000; }
+.vet-step .quiz-next { margin-top: 16px; }
+.vet-options { margin-top: 12px; }
+.vet-options .spoj-btn.is-tried { border-color: #b3261e; background: #fbeaea; color: var(--muted); }
+.vet-fb { margin-top: 12px; }
+.vet-s-konec { border-color: #1f7a3d; }
+@media (max-width: 640px) {
+  .vet-patient { grid-template-columns: 1fr; }
+  .vet-cekarna { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vet-exams { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
