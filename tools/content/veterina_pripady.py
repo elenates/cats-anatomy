@@ -141,7 +141,7 @@ PRIPADY = [
        moznosti=["kozni-plisen", "blechy-tasemnice", "usni-roztoci"],
        proc={"blechy-tasemnice": "Blechy způsobují svědění a ve srsti mohou být černé tečky. Čiperka má ale kulatá lysá místa a některé její chlupy svítí pod UV lampou.",
              "usni-roztoci": "Roztoči způsobují potíže hlavně v uších. Čiperka má ale kulatá lysá místa na kůži a některé její chlupy svítí pod UV lampou."},
-       lecba="Léky proti plísni, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
+       lecba="Léky proti plísním, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
        spatne=[dict(text="Jen ostříhat chlupy kolem lysých míst.", proc="Ostříhání plíseň nevyléčí. Čiperka potřebuje léky a doma se musí uklízet."),
                dict(text="Lék proti roztočům.", proc="Čiperka nemá roztoče, má kožní plíseň.")],
        pozor="Kožní plíseň se může přenést i na lidi. Po pohlazení nemocné kočky si umyj ruce.",
@@ -404,4 +404,40 @@ STRACH_PRIPADY = {
     "bara": "Bára se krčí, má uši přitisknuté k hlavě, a když se k ní někdo přiblíží, zasyčí.",
     "mates": "Mates vrčí, má rozšířené zorničky a schoulil se s ocasem stočeným kolem těla.",
     "rozarka": "Rozárka syčí a uši má přitisknuté k hlavě.",
+}
+
+# Treat the cat (#104 stage F, the child's wish): after „Co pomůže?“ the child takes the items from the cabinet and
+# uses them on the cat. Items only from the case's own treatment text (lecba); the vet checks the mapping.
+# Icons in images/veterina/nastroje/<id>.svg. „hrebinek“ is also an examination tool.
+LECBA_CS = {
+    "leky": "Léky", "injekce": "Injekce", "kapky": "Kapky nebo mast", "obvaz": "Obvaz", "dieta": "Speciální krmení",
+    "inhalator": "Inhalátor s maskou", "nuzky-drapy": "Nůžky na drápky", "pinzeta": "Pinzeta", "ockovaci-prukaz": "Očkovací průkaz",
+    "operace": "Operace", "infuze": "Infuze", "voda": "Tekoucí voda", "strojek": "Strojek na srst", "cevka": "Cévka",
+    "endoskop": "Endoskop", "zuby": "Ošetření zubů", "hrebinek": "Hřeben",
+}
+# Kinds of medicine (Lenka 2026-11-21: the kind, never a medicine name or a dose). „Léky“ in the cabinet opens
+# a drawer with these; each case uses only the kinds its treatment text names. „Lék proti alergii“ is in the drawer
+# but no case needs it. Icons images/veterina/nastroje/lek-<id>.svg.
+LEKY = {
+    "antibiotika": "Antibiotika", "proti-bolesti": "Lék proti bolesti", "proti-alergii": "Lék proti alergii",
+    "proti-blecham": "Přípravek proti blechám", "proti-cervum": "Lék proti červům", "proti-roztocum": "Lék proti roztočům",
+    "proti-plisni": "Lék proti plísním", "stitna-zlaza": "Lék na štítnou žlázu", "proti-zanetu": "Lék proti zánětu",
+    "zmekceni-trusu": "Lék na změkčení trusu", "uklidneni": "Uklidňující lék",
+}
+# Vet (2026-11-22): „Lék na štítnou žlázu“ is fine for a child, though the medicine lowers the excess thyroid hormone.
+LECBA_CS.update({"lek-" + k: v for k, v in LEKY.items()})
+# case: (items that must all be used, items that are also right). With no required items, one of the others is enough.
+# Felix and Liduška need no treatment: the step is skipped.
+# Vet (2026-11-22): Pepina either special food or removal (depends on the kind of stone); Kryštof only castration;
+# Mourek also pain relief, fluids when his condition needs them; Rarášek tweezers, as the blade is visible in the nostril.
+OSETRENI = {
+    "mourek": (["cevka", "lek-proti-bolesti"], ["infuze"]), "micka": (["operace"], []), "tygr": (["operace"], []), "bella": (["infuze"], []),
+    "smudla": ([], ["kapky", "lek-antibiotika"]), "rambo": (["lek-antibiotika", "lek-proti-bolesti"], []), "pirko": (["lek-proti-roztocum"], []), "lizinka": (["lek-proti-blecham", "lek-proti-cervum"], []),
+    "kulicka": (["lek-proti-cervum"], []), "ferda": (["zuby"], []), "ciperka": (["lek-proti-plisni"], []), "rozarka": (["voda", "lek-proti-bolesti"], []),
+    "starenka": (["dieta"], []), "brumla": ([], ["lek-stitna-zlaza", "dieta", "operace"]), "pepina": ([], ["dieta", "operace"]),
+    "zrzek": (["endoskop"], ["operace"]), "bara": (["lek-proti-bolesti"], ["operace"]), "fifinka": (["injekce", "ockovaci-prukaz"], []),
+    "felix": ([], []), "liduska": ([], []), "pusinka": (["hrebinek"], ["dieta"]), "bonifac": (["kapky"], ["lek-antibiotika"]),
+    "macek": (["dieta"], []), "bobes": (["nuzky-drapy", "lek-proti-bolesti"], []), "snehurka": (["lek-proti-zanetu"], ["inhalator"]),
+    "mates": (["infuze", "lek-zmekceni-trusu", "dieta"], []), "perla": (["strojek"], ["lek-uklidneni"]), "rarasek": (["pinzeta"], []),
+    "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], []),
 }

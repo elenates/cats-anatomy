@@ -11,7 +11,10 @@
  *   nemoc (id of the right card in nemoci.items), pribeh, nalezy {examination id: finding},
  *   moznosti (three card ids), proc {wrong card id: why}, lecba (what helps),
  *   spatne [{text, proc}] (two wrong treatments with why), pozor (or null),
- *   strach (the signs of fear the child sees on the table, or null: the cat is calm)
+ *   strach (the signs of fear the child sees on the table, or null: the cat is calm),
+ *   osetreni (items that must all be used on the cat), osetreniNavic (items that are also right; with no osetreni one is enough)
+ * lecba: the treatment items in the cabinet: id (icon images/veterina/nastroje/<id>.svg), cs; „leky“ opens the drawer
+ * leky: the kinds of medicine in the drawer: id (lek-<kind>, icon nastroje/<id>.svg), cs
  * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,
  *   foto (images/veterina/<foto>.webp), refs
  */
@@ -77,6 +80,8 @@ window.ATLAS_DATA.veterina = {
     }
   ],
   nic: "Nic důležitého.",
+  leky: [{"id": "lek-antibiotika", "cs": "Antibiotika"}, {"id": "lek-proti-bolesti", "cs": "Lék proti bolesti"}, {"id": "lek-proti-alergii", "cs": "Lék proti alergii"}, {"id": "lek-proti-blecham", "cs": "Přípravek proti blechám"}, {"id": "lek-proti-cervum", "cs": "Lék proti červům"}, {"id": "lek-proti-roztocum", "cs": "Lék proti roztočům"}, {"id": "lek-proti-plisni", "cs": "Lék proti plísním"}, {"id": "lek-stitna-zlaza", "cs": "Lék na štítnou žlázu"}, {"id": "lek-proti-zanetu", "cs": "Lék proti zánětu"}, {"id": "lek-zmekceni-trusu", "cs": "Lék na změkčení trusu"}, {"id": "lek-uklidneni", "cs": "Uklidňující lék"}],
+  lecba: [{"id": "leky", "cs": "Léky"}, {"id": "injekce", "cs": "Injekce"}, {"id": "kapky", "cs": "Kapky nebo mast"}, {"id": "obvaz", "cs": "Obvaz"}, {"id": "dieta", "cs": "Speciální krmení"}, {"id": "inhalator", "cs": "Inhalátor s maskou"}, {"id": "nuzky-drapy", "cs": "Nůžky na drápky"}, {"id": "pinzeta", "cs": "Pinzeta"}, {"id": "ockovaci-prukaz", "cs": "Očkovací průkaz"}, {"id": "operace", "cs": "Operace"}, {"id": "infuze", "cs": "Infuze"}, {"id": "voda", "cs": "Tekoucí voda"}, {"id": "strojek", "cs": "Strojek na srst"}, {"id": "cevka", "cs": "Cévka"}, {"id": "endoskop", "cs": "Endoskop"}, {"id": "zuby", "cs": "Ošetření zubů"}],
   pripady: [
     {
       id: "mourek",
@@ -91,7 +96,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Kocour usne a veterinář mu tenkou hadičkou zprůchodní močovou trubici a vypláchne ji. Pak zůstane pár dní na klinice.",
       spatne: [{"text": "Dát mu krmivo proti chlupovým koulím.", "proc": "Mourek nemá chlupovou kouli. Má ucpanou močovou trubici."}, {"text": "Počkat do zítřka, třeba to přejde.", "proc": "Ucpaná močová trubice je pohotovost. Čekat se nesmí!"}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["cevka", "lek-proti-bolesti"],
+      osetreniNavic: ["infuze"]
     },
     {
       id: "micka",
@@ -106,7 +113,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Operace: zatímco kočka spí, veterinář provázek opatrně odstraní. Někdy je potřeba vyjmout i poškozenou část střeva.",
       spatne: [{"text": "Zatáhnout za provázek, ať je venku.", "proc": "Za provázek se nikdy netahá! Může být zachycený dál ve střevě a poranit ho."}, {"text": "Dát jí krmivo proti chlupovým koulím.", "proc": "Micka nemá chlupovou kouli. Provázek musí veterinář odstranit, někdy při operaci."}],
       pozor: "Za provázek pod jazykem se nikdy nesmí tahat.",
-      strach: null
+      strach: null,
+      osetreni: ["operace"],
+      osetreniNavic: []
     },
     {
       id: "tygr",
@@ -121,7 +130,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Operace: veterinář spojí kost kovovými čepy nebo kovovou destičkou se šrouby. Potom hodně klidu a kontrolní rentgen.",
       spatne: [{"text": "Zastřihnout mu drápy.", "proc": "Drápy tu nepomůžou. Zlomenou kost je potřeba správně zafixovat, aby se zahojila."}, {"text": "Nechat ho běhat, ať se noha rozchodí.", "proc": "Zlomená noha potřebuje klid, aby se kost zahojila."}],
       pozor: null,
-      strach: "Tygr má uši sklopené dozadu, rozšířené zorničky a syčí."
+      strach: "Tygr má uši sklopené dozadu, rozšířené zorničky a syčí.",
+      osetreni: ["operace"],
+      osetreniNavic: []
     },
     {
       id: "bella",
@@ -136,7 +147,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář se pokusí odstranit jed z těla. Pokud Bella lilii snědla před chvílí, může vyvolat zvracení. Potom dostane infuzi a veterinář bude kontrolovat její ledviny.",
       spatne: [{"text": "Počkat, jestli to přejde samo.", "proc": "U lilií se nesmí čekat! Čím dřív pomoc, tím líp."}, {"text": "Vyčistit jí zuby.", "proc": "Zuby tu nepomůžou. Bella se otrávila lilií. Potřebuje rychlou pomoc, aby se omezilo vstřebávání jedu a ochránily ledviny."}],
       pozor: "Na nic nečekej a hned jeď k veterináři, i když kočka zatím vypadá zdravě!",
-      strach: null
+      strach: null,
+      osetreni: ["infuze"],
+      osetreniNavic: []
     },
     {
       id: "smudla",
@@ -151,7 +164,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Klid, dostatek pití a jídla a pravidelné čištění očí a nosu. Někdy léky do očí, a když se přidá bakteriální infekce, antibiotika.",
       spatne: [{"text": "Vytáhnout jí stéblo z nosu.", "proc": "Šmudla nemá v nose stéblo. Má kočičí rýmu."}, {"text": "Inhalátor s maskou.", "proc": "Inhalátor s maskou pomáhá kočkám s astmatem. Šmudla má rýmu."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: [],
+      osetreniNavic: ["kapky", "lek-antibiotika"]
     },
     {
       id: "rambo",
@@ -166,7 +181,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář absces otevře, vypustí hnis a ránu vypláchne. Často pak kocour dostane antibiotika a léky proti bolesti.",
       spatne: [{"text": "Koupel proti plísni.", "proc": "Rambo nemá plíseň. Hnis se musí z boule vypustit."}, {"text": "Nic, boule zmizí sama.", "proc": "Absces potřebuje veterinární ošetření. Veterinář musí zajistit, aby hnis mohl odtéct a rána se vyčistila."}],
       pozor: null,
-      strach: "Rambo vrčí, švihá ocasem a uši má sklopené do stran."
+      strach: "Rambo vrčí, švihá ocasem a uši má sklopené do stran.",
+      osetreni: ["lek-antibiotika", "lek-proti-bolesti"],
+      osetreniNavic: []
     },
     {
       id: "pirko",
@@ -181,7 +198,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Lék proti roztočům pro všechny kočky a psy v domácnosti, i pro ty, kteří se zatím neškrábou. Každé zvíře dostane lék určený pro jeho druh.",
       spatne: [{"text": "Léčit jen Pírka, ostatní kočky ne.", "proc": "Ušní roztoči se snadno přenesou na další zvířata. Proto se obvykle léčí všechna zvířata, která s Pírkem žijí."}, {"text": "Kapky do očí.", "proc": "Roztoči žijí v uších, ne v očích."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["lek-proti-roztocum"],
+      osetreniNavic: []
     },
     {
       id: "lizinka",
@@ -196,7 +215,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Přípravek proti blechám pro všechna zvířata v domácnosti, pro každé ten, který je určený pro jeho druh. Některé přípravky pro psy jsou pro kočky jedovaté! K tomu důkladný úklid bytu a pelíšků a lék proti tasemnici.",
       spatne: [{"text": "Ošetřit jen Lízinku, psa ne.", "proc": "Blechy žijí i na dalších zvířatech a v bytě. Ošetřují se všechna zvířata, každé přípravkem určeným pro jeho druh."}, {"text": "Ostříhat jí srst strojkem.", "proc": "Ostříhání srsti blechy neodstraní. Pomůže přípravek proti blechám."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["lek-proti-blecham", "lek-proti-cervum"],
+      osetreniNavic: []
     },
     {
       id: "kulicka",
@@ -211,7 +232,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Lék proti červům. Kulička ho dostane několikrát po sobě s odstupem pár týdnů.",
       spatne: [{"text": "Dát lék proti červům jen jednou a hotovo.", "proc": "Jedna dávka nemusí zasáhnout všechna vývojová stadia škrkavek. Proto se odčervení po několika týdnech opakuje."}, {"text": "Krmivo na hubnutí.", "proc": "Kulička není tlustá. Potřebuje lék proti červům."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["lek-proti-cervum"],
+      osetreniNavic: []
     },
     {
       id: "ferda",
@@ -226,7 +249,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář v narkóze odstraní zubní kámen i povlak, také pod dásněmi. Některé nemocné zuby musí vytrhnout.",
       spatne: [{"text": "Dávat mu jen měkké jídlo a počkat.", "proc": "Měkké jídlo bolest neodstraní. Nemocné zuby potřebují ošetření u veterináře."}, {"text": "Kapky do uší.", "proc": "Ferdu nebolí uši, ale zuby."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["zuby"],
+      osetreniNavic: []
     },
     {
       id: "ciperka",
@@ -238,10 +263,12 @@ window.ATLAS_DATA.veterina = {
       nalezy: {"lupa": "Kůže na lysých místech je šupinatá a chlupy kolem jsou zlámané.", "uv-lampa": "Pod speciální UV lampou některé napadené chlupy svítí žlutozeleně."},
       moznosti: ["kozni-plisen", "blechy-tasemnice", "usni-roztoci"],
       proc: {"blechy-tasemnice": "Blechy způsobují svědění a ve srsti mohou být černé tečky. Čiperka má ale kulatá lysá místa a některé její chlupy svítí pod UV lampou.", "usni-roztoci": "Roztoči způsobují potíže hlavně v uších. Čiperka má ale kulatá lysá místa na kůži a některé její chlupy svítí pod UV lampou."},
-      lecba: "Léky proti plísni, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
+      lecba: "Léky proti plísním, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
       spatne: [{"text": "Jen ostříhat chlupy kolem lysých míst.", "proc": "Ostříhání plíseň nevyléčí. Čiperka potřebuje léky a doma se musí uklízet."}, {"text": "Lék proti roztočům.", "proc": "Čiperka nemá roztoče, má kožní plíseň."}],
       pozor: "Kožní plíseň se může přenést i na lidi. Po pohlazení nemocné kočky si umyj ruce.",
-      strach: null
+      strach: null,
+      osetreni: ["lek-proti-plisni"],
+      osetreniNavic: []
     },
     {
       id: "rozarka",
@@ -256,7 +283,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Hned chlaď tlapku alespoň 20 minut pod chladnou, ne ledovou tekoucí vodou. Při chlazení musí dospělý dávat pozor, aby ho Rozárka z bolesti nekousla nebo nepoškrábala. Když se brání nebo hrozí, že někoho kousne, odvezte ji rovnou k veterináři. Jinak po chlazení jeďte k veterináři. Veterinář popáleninu ošetří a dá Rozárce léky proti bolesti.",
       spatne: [{"text": "Přiložit na tlapku led.", "proc": "Na popáleninu se nikdy nedává led! Chladí se chladnou, ne ledovou vodou."}, {"text": "Zastřihnout drápy.", "proc": "Drápy tu nepomůžou. Popálené polštářky potřebují ošetřit."}],
       pozor: "Na popáleninu nikdy nedávej led!",
-      strach: "Rozárka syčí a uši má přitisknuté k hlavě."
+      strach: "Rozárka syčí a uši má přitisknuté k hlavě.",
+      osetreni: ["voda", "lek-proti-bolesti"],
+      osetreniNavic: []
     },
     {
       id: "starenka",
@@ -271,7 +300,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Speciální krmivo pro ledviny, dostatek vody a pravidelné kontroly u veterináře.",
       spatne: [{"text": "Dávat jí méně pít, ať tolik nečůrá.", "proc": "Kočka s nemocnými ledvinami potřebuje dost tekutin. Pije víc, protože ledviny už neumějí moč zahustit."}, {"text": "Krmivo proti chlupovým koulím.", "proc": "Stařenka nemá chlupové koule. Pomáhá jí krmivo pro ledviny, tekutiny a kontroly."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["dieta"],
+      osetreniNavic: []
     },
     {
       id: "brumla",
@@ -286,7 +317,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Léky každý den, speciální krmivo s omezeným jódem, operace nebo léčba radioaktivním jódem. Veterinář vybere, co je pro Brumlu nejlepší. Speciální krmivo musí Brumla jíst samotné, bez jiného krmiva a pamlsků.",
       spatne: [{"text": "Dávat jí víc jídla, ať přibere.", "proc": "Brumla jí hodně, a stejně hubne. Pomůže až léčba štítné žlázy."}, {"text": "Inhalátor s maskou.", "proc": "Inhalátor pomáhá kočkám s astmatem. Brumla má zrychlenou štítnou žlázu."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: [],
+      osetreniNavic: ["lek-stitna-zlaza", "dieta", "operace"]
     },
     {
       id: "pepina",
@@ -301,7 +334,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Podle druhu kamínků: některé se rozpustí pomocí speciálního krmiva, jiné musí veterinář odstranit jiným způsobem.",
       spatne: [{"text": "Dávat jí méně pít, ať tolik nečůrá.", "proc": "Naopak, dostatek vody pomáhá ředit moč a může omezit vznik dalších kamínků."}, {"text": "Krmivo proti chlupovým koulím.", "proc": "Chlupové koule tu nejsou. Pepina potřebuje léčbu kamínků v měchýři."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: [],
+      osetreniNavic: ["dieta", "operace"]
     },
     {
       id: "zrzek",
@@ -316,7 +351,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Zatímco Zrzek spí, veterinář se pokusí jehlu vytáhnout endoskopem. Když to nejde, bude možná potřeba operace.",
       spatne: [{"text": "Počkat, jestli jehla vyjde sama.", "proc": "Jehla může propíchnout jícen, žaludek nebo střevo. Hned k veterináři!"}, {"text": "Krmivo proti chlupovým koulím.", "proc": "Krmivo jehlu neodstraní. Jehlu musí vytáhnout veterinář."}],
       pozor: "Když kočka možná spolkla jehlu, jeď hned k veterináři. Když jí visí nit, netahej za ni!",
-      strach: null
+      strach: null,
+      osetreni: ["endoskop"],
+      osetreniNavic: ["operace"]
     },
     {
       id: "bara",
@@ -331,7 +368,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Lék proti bolesti. Podle typu zlomeniny pak několik týdnů klidu ve velké kleci, nebo operace, při které veterinář kosti zpevní kovovými šrouby či destičkami. Veterinář také kontroluje, jestli Bára může čůrat.",
       spatne: [{"text": "Pustit ji ven, ať se rozchodí.", "proc": "Zlomená pánev potřebuje klid a ošetření u veterináře."}, {"text": "Krmivo na hubnutí.", "proc": "Bára není tlustá. Má zlomenou pánev."}],
       pozor: null,
-      strach: "Bára se krčí, má uši přitisknuté k hlavě, a když se k ní někdo přiblíží, zasyčí."
+      strach: "Bára se krčí, má uši přitisknuté k hlavě, a když se k ní někdo přiblíží, zasyčí.",
+      osetreni: ["lek-proti-bolesti"],
+      osetreniNavic: ["operace"]
     },
     {
       id: "fifinka",
@@ -346,7 +385,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Injekce s očkovací látkou. Očkování se opakuje každé 3 až 4 týdny, dokud Fifince není aspoň 16 týdnů. Všechno se zapíše do očkovacího průkazu.",
       spatne: [{"text": "Neočkovat, Fifinka je přece zdravá.", "proc": "Očkuje se právě zdravé kotě, aby se nebezpečným nemocem ubránilo dřív, než je potká."}, {"text": "Jedna injekce a už nikdy víc.", "proc": "Kotě dostane několik dávek a další pak podle očkovacího plánu."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["injekce", "ockovaci-prukaz"],
+      osetreniNavic: []
     },
     {
       id: "felix",
@@ -361,7 +402,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Při prohlídce se neukázalo nic znepokojivého. Veterinář poradí s krmením, odčervením a očkováním a Felix přijde zase za rok.",
       spatne: [{"text": "Na prohlídky už nechodit, Felix je zdravý.", "proc": "Kočky umějí bolest dobře schovat. Pravidelná prohlídka najde nemoc dřív."}, {"text": "Krmivo na hubnutí.", "proc": "Felix váží, kolik má. Hubnout nepotřebuje."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: [],
+      osetreniNavic: []
     },
     {
       id: "liduska",
@@ -376,7 +419,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Klid, dobré jídlo, čerstvá voda a teplý, tichý pelíšek na porod. Měj připravené telefonní číslo na veterináře.",
       spatne: [{"text": "Krmivo na hubnutí.", "proc": "Liduška netloustne, čeká koťátka. Potřebuje dobré jídlo."}, {"text": "Hodně ji honit, ať se hýbe.", "proc": "Březí kočka potřebuje klid."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: [],
+      osetreniNavic: []
     },
     {
       id: "pusinka",
@@ -391,7 +436,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Častější česání a případně krmivo proti chlupovým koulím. Protože se to Pusince stává častěji, měl by ji prohlédnout veterinář. Další přípravky jen na jeho radu.",
       spatne: [{"text": "Inhalátor s maskou.", "proc": "Inhalátor pomáhá kočkám s astmatem. Pusinka má chlupové koule."}, {"text": "Nečesat ji, ať ji to netahá.", "proc": "Česáním se odstraní volné chlupy, které by jinak spolkla."}],
       pozor: "Když kočka dáví, ale nic nevyzvrací, nejí, je unavená nebo nemůže na záchod, může mít vážný problém. Pak hned k veterináři!",
-      strach: null
+      strach: null,
+      osetreni: ["hrebinek"],
+      osetreniNavic: ["dieta"]
     },
     {
       id: "bonifac",
@@ -406,7 +453,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Kapky nebo mast do oka od veterináře, často s antibiotiky. Límec zabrání Bonifácovi, aby si oko škrábal. Potom veterinář oko znovu zkontroluje barvivem.",
       spatne: [{"text": "Počkat, až to přejde samo.", "proc": "Poškrábané oko bolí a může se zhoršit. Potřebuje ošetřit."}, {"text": "Kapky do uší.", "proc": "Bonifáce bolí oko, ne uši."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["kapky"],
+      osetreniNavic: ["lek-antibiotika"]
     },
     {
       id: "macek",
@@ -421,7 +470,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Pomalé hubnutí s plánem od veterináře: odměřené jídlo, žádné jídlo navíc, víc hraní a pravidelné vážení.",
       spatne: [{"text": "Přestat ho krmit, ať zhubne rychle.", "proc": "Kočka při hubnutí nesmí hladovět. Hrozí jí vážné onemocnění jater."}, {"text": "Dávat mu víc pamlsků za odměnu.", "proc": "Pamlsky jsou jídlo navíc. Macek by ještě přibral."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["dieta"],
+      osetreniNavic: []
     },
     {
       id: "bobes",
@@ -436,7 +487,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář odstraní zarostlou část drápu a ranku vyčistí. Bobeš dostane lék proti bolesti.",
       spatne: [{"text": "Nechat drápy růst, obrousí se samy.", "proc": "Starší kočky, které žijí doma, si drápy často samy neobrousí. Drápy se musí kontrolovat a zastřihnout."}, {"text": "Chladit tlapku pod vodou.", "proc": "Chlazení pomáhá u popáleniny. Bobešovi zarostl dráp."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["nuzky-drapy", "lek-proti-bolesti"],
+      osetreniNavic: []
     },
     {
       id: "snehurka",
@@ -451,7 +504,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Lék, který tlumí zánět v průduškách, někdy také inhalátor s maskou. Doma se nekouří a Sněhurka nemá být v kouři a prachu.",
       spatne: [{"text": "Krmivo proti chlupovým koulím.", "proc": "Sněhurka nemá chlupové koule. Má astma."}, {"text": "Nechat ji v zakouřené místnosti.", "proc": "Kouř a prach mohou astma zhoršit. Doma se nekouří."}],
       pozor: "Když kočka dýchá s otevřenou tlamičkou, je to pohotovost!",
-      strach: null
+      strach: null,
+      osetreni: ["lek-proti-zanetu"],
+      osetreniNavic: ["inhalator"]
     },
     {
       id: "mates",
@@ -466,7 +521,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Tekutiny, lék, který trus změkčí, a vhodně upravené krmivo. Při silné zácpě veterinář podá klystýr, případně trus opatrně odstraní v narkóze.",
       spatne: [{"text": "Počkat, až to samo přejde.", "proc": "Kocour, který na záchodě tlačí, musí k veterináři. Mohl by mít i ucpanou močovou trubici."}, {"text": "Dávat mu méně pít.", "proc": "Naopak, dostatek vody pomáhá, aby trus nebyl tvrdý."}],
       pozor: "Když kocour chodí na záchod, tlačí a nemůže se vyčůrat, může mít ucpanou močovou trubici. Je to pohotovost – hned k veterináři!",
-      strach: "Mates vrčí, má rozšířené zorničky a schoulil se s ocasem stočeným kolem těla."
+      strach: "Mates vrčí, má rozšířené zorničky a schoulil se s ocasem stočeným kolem těla.",
+      osetreni: ["infuze", "lek-zmekceni-trusu", "dieta"],
+      osetreniNavic: []
     },
     {
       id: "perla",
@@ -481,7 +538,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář nebo zkušený střihač odstraní chuchvalce opatrně strojkem. Někdy je potřeba, aby Perlu veterinář předem uklidnil lékem nebo uspal. Doma ji pak češ každý den.",
       spatne: [{"text": "Vystříhat chuchvalce nůžkami.", "proc": "Chuchvalce nikdy nestříhej nůžkami! Kočka má tenkou kůži a snadno se pořeže."}, {"text": "Koupel proti plísni.", "proc": "Perla nemá plíseň. Chuchvalce se musí odstranit strojkem."}],
       pozor: "Chuchvalce nikdy nestříhej nůžkami! Kočka má tenkou kůži a snadno se pořeže.",
-      strach: null
+      strach: null,
+      osetreni: ["strojek"],
+      osetreniNavic: ["lek-uklidneni"]
     },
     {
       id: "rarasek",
@@ -496,7 +555,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Veterinář stéblo opatrně vyjme.",
       spatne: [{"text": "Rychle stéblo vytrhnout doma.", "proc": "Stéblo sám netahej, nech to veterináři."}, {"text": "Inhalátor s maskou.", "proc": "Inhalátor pomáhá kočkám s astmatem. Rarášek má v nose stéblo."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["pinzeta"],
+      osetreniNavic: []
     },
     {
       id: "bertik",
@@ -511,7 +572,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Nejčastěji injekce inzulínu, obvykle dvakrát denně, a vhodně upravené krmivo. K tomu pravidelné kontroly u veterináře.",
       spatne: [{"text": "Dávat mu méně pít, ať tolik nečůrá.", "proc": "Bertík pije hodně kvůli cukrovce. Pomůže léčba, ne méně vody."}, {"text": "Dávat mu víc pamlsků, ať nehubne.", "proc": "Pamlsky cukrovku nevyléčí. Bertík potřebuje inzulín a vhodné krmivo."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["injekce", "dieta"],
+      osetreniNavic: []
     },
     {
       id: "mina",
@@ -526,7 +589,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Kastrace. Veterinář odstraní vaječníky, někdy také dělohu. Pak už Mína do říje nechodí a nemůže mít koťata.",
       spatne: [{"text": "Lék proti bolesti a čekat.", "proc": "Říje není nemoc ani bolest, kterou by lék proti bolesti vyřešil."}, {"text": "Pustit ji ven, ať se uklidní.", "proc": "Venku by mohla potkat kocoura a mít koťata."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["operace"],
+      osetreniNavic: []
     },
     {
       id: "krystof",
@@ -541,7 +606,9 @@ window.ATLAS_DATA.veterina = {
       lecba: "Kastrace. Kryštof při ní spí, rány se obvykle nemusí šít a domů jde většinou ještě ten den. Aby nepřibral, potřebuje odměřené jídlo a hodně hraní.",
       spatne: [{"text": "Vynadat mu, ať přestane.", "proc": "Kryštof neznačkuje ze zlobení. Pohlavní hormony mohou značkování podporovat a kastrace často pomůže."}, {"text": "Lék proti bolesti.", "proc": "Kryštofa nic nebolí. Je zdravý a dospívá."}],
       pozor: null,
-      strach: null
+      strach: null,
+      osetreni: ["operace"],
+      osetreniNavic: []
     }
   ],
   strach: {

@@ -184,9 +184,10 @@
     room.appendChild(flash);
     var tools = [];   // examination buttons: disabled until the cat is on the table (and calm)
     var SHELF = { stetoskop: [0, 0], teplomer: [0, 1], vaha: [0, 2], prohmatat: [0, 3], lupa: [0, 4], otoskop: [0, 5], "krevni-test": [0, 6],
-      "test-moci": [0, 7], "barvivo-oko": [1, 0], mikroskop: [1, 1], hrebinek: [1, 2], "uv-lampa": [1, 3] };
-    var LECBA = ["leky", "injekce", "kapky", "obvaz", "dieta", "inhalator", "nuzky-drapy", "pinzeta", "ockovaci-prukaz", "operace"];
-    function slot(row, col) { return { left: (19.9 + col * 4.0) + "%", top: (13.3 + row * 16.2) + "%" }; }
+      "test-moci": [0, 7], "barvivo-oko": [0, 8], mikroskop: [0, 9], hrebinek: [1, 0], "uv-lampa": [1, 1] };
+    // Ten places a shelf; the treatment things fill the rest of the middle shelf and the bottom one.
+    function slot(row, col) { return { left: (19.4 + col * 3.27) + "%", top: (19.8 + row * 16.2) + "%" }; }
+    var mode = "exam", treat = null;   // treat: {need, ok, used, done} while the child treats the cat (#104 stage F)
     function place(n, pos) { Object.keys(pos).forEach(function (k) { n.style[k] = pos[k]; }); }
     var onTable = false, calm = !p.strach;
     function setTools() { tools.forEach(function (b) { b.disabled = !(onTable && calm); }); }
@@ -216,19 +217,52 @@
       var b = el("button", { type: "button", "class": "vet-exam " + where, "data-exam": v.id, "aria-label": v.cs, title: v.cs, disabled: "" },
         v.id === "rentgen" ? [] : [el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" })]);
       if (SHELF[v.id]) place(b, slot(SHELF[v.id][0], SHELF[v.id][1]));
-      b.addEventListener("click", function () { examine(v, b); });
+      b.addEventListener("click", function () { if (mode === "treat") useItem(v.id, b); else examine(v, b); });
       tools.push(b); room.appendChild(b);
     });
-    // The treatment things on the lower shelves are for later: a tap only says so.
-    LECBA.forEach(function (id, i) {
-      var pos = i < 2 ? slot(1, 6 + i) : slot(2, i - 2);
-      var b = el("button", { type: "button", "class": "vet-lecba", "data-lecba": id, "aria-label": ui.vetLecbaPolice || "", title: ui.vetLecbaPolice || "" },
-        [el("img", { src: "images/veterina/nastroje/" + id + ".svg", alt: "" })]);
-      place(b, pos);
-      b.addEventListener("click", function () { hint.textContent = ui.vetLecbaPolice || ""; });
+    // The treatment things on the lower shelves: before the diagnosis a tap only says they are for later;
+    // in „Ošetři kočku“ the child uses the right ones on the cat.
+    (V().lecba || []).forEach(function (t, i) {
+      var b = el("button", { type: "button", "class": "vet-lecba", "data-lecba": t.id, "aria-label": t.cs, title: t.cs },
+        [el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" })]);
+      place(b, i < 8 ? slot(1, 2 + i) : slot(2, i - 8));
+      b.addEventListener("click", function () {
+        if (mode !== "treat") { hint.textContent = ui.vetLecbaPolice || ""; return; }
+        if (t.id === "leky") { toggleDrawer(); return; }   // „Léky“ opens the drawer with the kinds of medicine
+        useItem(t.id, b);
+      });
       room.appendChild(b);
     });
-
+    // The medicine drawer: the kinds of medicine, never a medicine name.
+    var drawer = el("div", { "class": "vet-leky", role: "group", "aria-label": ui.vetLekyH || "Léky", hidden: "" }, [
+      el("div", { "class": "vet-leky-head" }, [el("strong", { text: ui.vetLekyH || "Léky" })])]);
+    var close = el("button", { type: "button", "class": "vet-leky-zavrit", "aria-label": ui.vetZavrit || "Zavřít", text: "✕" });
+    close.addEventListener("click", function () { toggleDrawer(false); });
+    drawer.firstChild.appendChild(close);
+    var lekList = el("ul", { "class": "vet-leky-list" });
+    (V().leky || []).forEach(function (t) {
+      var b = el("button", { type: "button", "class": "vet-lek", "data-lek": t.id }, [
+        el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" }), el("span", { text: t.cs })]);
+      b.addEventListener("click", function () { useItem(t.id, b); });
+      lekList.appendChild(el("li", null, [b]));
+    });
+    drawer.appendChild(lekList);
+    room.appendChild(drawer);
+    function toggleDrawer(open) {
+      var show = open === undefined ? drawer.hidden : open;
+      drawer.hidden = !show;
+      if (show) { var f = drawer.querySelector(".vet-lek"); if (f) f.focus(); }
+    }
+    function useItem(id, b) {
+      if (!treat || treat.done) return;
+      if (treat.ok.indexOf(id) < 0) { treat.say(ui.vetNepomuze || "Tohle teď kočce nepomůže.", false); return; }
+      if (treat.used.indexOf(id) >= 0) return;
+      treat.used.push(id); b.classList.add("is-applied"); b.classList.remove("is-used"); void b.offsetWidth; b.classList.add("is-used");
+      room.classList.remove("is-treated"); void room.offsetWidth; room.classList.add("is-treated");
+      var left = treat.need.filter(function (x) { return treat.used.indexOf(x) < 0; });
+      if (left.length) { treat.say(ui.vetChybi || "Správně! Ještě něco chybí.", true); return; }
+      treat.done = true; treat.say(ui.vetOsetrenaHotovo || "Hotovo, kočka je ošetřená.", true); treat.finish();
+    }
     // The frightened patient (#104 stage C): the signs, the photo and the safe first step.
     var S = V().strach;
     function scared() {
@@ -276,7 +310,8 @@
       if (!moved || over) putOnTable();
     });
     cat.addEventListener("click", function (e) { if (e.detail === 0) putOnTable(); });   // keyboard
-    s1.sec.appendChild(el("div", { "class": "vet-room-wrap" }, [room]));
+    var wrap = el("div", { "class": "vet-room-wrap" }, [room]);
+    s1.sec.appendChild(wrap);
     s1.sec.appendChild(el("h3", { "class": "card-h", text: ui.vetVysledky || "Výsledky vyšetření" }));
     s1.sec.appendChild(results);
     s1.sec.appendChild(next);
@@ -290,6 +325,7 @@
         var s3 = step(host, ui.vetCoPomuze || "Co pomůže?", "vet-s-pomuze");
         var opts = [{ key: "lecba", text: p.lecba, right: true, why: "" }].concat(p.spatne.map(function (w, i) { return { key: "spatne-" + i, text: w.text, right: false, why: w.proc }; }));
         choice(s3.sec, opts, function () {
+          function finish() {
           // End
           cured[p.id] = true;
           var s4 = step(host, ui.vetHotovo || "Výborně! Víš, co kočce je i co jí pomůže.", "vet-s-konec");
@@ -303,6 +339,20 @@
           s4.sec.appendChild(el("div", { "class": "quiz-actions" }, [dalsi,
             el("a", { "class": "quiz-open quiz-secondary", href: "#/veterina/ordinace", text: ui.vetDoCekarny || "Zpět do čekárny" })]));
           s4.focus();
+          }
+          var need = p.osetreni || [], also = p.osetreniNavic || [];
+          if (!need.length && !also.length) { finish(); return; }   // a healthy cat needs no treatment
+          // Treat the cat (#104 stage F): the room moves down here; use every needed thing on the cat.
+          var s5 = step(host, ui.vetOsetri || "Ošetři kočku", "vet-s-osetri");
+          var say = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: ui.vetOsetriIntro || "" });
+          s5.sec.appendChild(say);
+          s5.sec.appendChild(wrap);
+          mode = "treat";
+          treat = { need: need.length ? need : [], ok: need.concat(also), used: [], done: false,
+            say: function (t, ok) { say.textContent = t; say.classList.toggle("is-wrong", !ok); },
+            finish: finish };
+          if (!need.length) treat.need = [];   // any one right thing is enough
+          s5.focus();
         });
         s3.focus();
       });

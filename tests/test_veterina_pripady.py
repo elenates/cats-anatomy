@@ -64,6 +64,13 @@ for k, t in V.STRACH_PRIPADY.items():
     if k not in ids: fails.append(f"strach: unknown case {k}")
     if not t.strip(): fails.append(f"strach: empty signs for {k}")
 if not os.path.exists(os.path.join(ROOT, "images", "veterina", "vystrasena-kocka.webp")): fails.append("strach: photo missing")
+# Treat the cat (#104 stage F): every case listed, known items with an icon, healthy cases only without items.
+for p in V.PRIPADY:
+    if p["id"] not in V.OSETRENI: fails.append(f"{p['id']}: no treatment items listed"); continue
+    need, also = V.OSETRENI[p["id"]]
+    for t in need + also:
+        if t not in V.LECBA_CS: fails.append(f"{p['id']}: unknown item {t}")
+        elif not os.path.exists(os.path.join(ROOT, "images", "veterina", "nastroje", t + ".svg")): fails.append(f"{p['id']}: no icon {t}")
 for c in sorted(cards - used): fails.append(f"card {c} has no case")
 if len(set(fotos)) != len(fotos): fails.append("two cases share a patient photo")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")
