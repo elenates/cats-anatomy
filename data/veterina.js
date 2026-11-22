@@ -81,7 +81,7 @@ window.ATLAS_DATA.veterina = {
       kocka: "Mourek, kocour, 3 roky",
       foto: "pacienti/mourek",
       nemoc: "ucpana-mocova-trubice",
-      pribeh: "Pan Dvořák přinesl Mourka zabaleného v dece. „Mourek je od rána nějaký divný. Pořád chodí na záchod, sedne si, tlačí, ale vyčůrá jen pár kapek, nebo vůbec nic. Nejdřív jsem myslel, že má zácpu, jenže bobky dělal včera večer úplně normálně. Kolem poledne si lehl pod stůl, mňouká a pořád se olizuje. Minulý týden jsme se stěhovali a Mourek se z toho ještě nevzpamatoval, celé dny se schovával ve skříni. Krmíme ho jen granulemi, protože konzervy nežere. Ven chodí jenom na balkon.“",
+      pribeh: "Pan Dvořák přinesl Mourka zabaleného v dece. „Mourek je od rána nějaký divný. Pořád chodí na záchod, dřepne si a tlačí, ale vyčůrá jen pár kapek, nebo vůbec nic. Nejdřív jsem myslel, že má zácpu, jenže bobky dělal včera večer úplně normálně. Kolem poledne si lehl pod stůl, mňouká a pořád se olizuje. Minulý týden jsme se stěhovali a Mourek se z toho ještě nevzpamatoval, celé dny se schovával ve skříni. Krmíme ho jen granulemi, protože konzervy nežere. Ven chodí jenom na balkon.“",
       nalezy: {"prohmatat": "Močový měchýř je zvětšený, napjatý a bolí."},
       moznosti: ["ucpana-mocova-trubice", "zacpa", "chlupove-koule"],
       proc: {"zacpa": "U zácpy se kočce nedaří vykakat. Mourek ale nemůže vyčůrat a měchýř je zvětšený a napjatý.", "chlupove-koule": "Chlupovou kouli kočka obvykle vyzvrací. Mourek nezvrací, nemůže čůrat."},
