@@ -106,7 +106,7 @@ window.ATLAS_DATA.ui = {
   vetNemociText: "Co kočky trápí a co jim pomůže",
   vetNemociIntro: "Klepni na nemoc a přečti si, co to je, jak ji poznáš a co kočce pomůže.",
   vetBack: "Zpět na veterinu",
-  vetCardBack: "Zpět na: {name}",
+  vetCardBack: "Zpět na nemoc: {name}",
   vetTelo: "Kde to je v těle?",
   vetRentgen: "Podívej se na rentgen →",
   vetObrazky: { "zub-resorpce": "Rentgen zubů kočky" },

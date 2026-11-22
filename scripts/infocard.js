@@ -69,7 +69,7 @@
     if (opts.back) {   // a body part opened from an illness card: a way back to it
       var bk = find(opts.back.content, opts.back.id);
       var bb = el("button", { type: "button", "class": "part-link card-back", "data-back": opts.back.id,
-        text: "← " + fmt(ui.vetCardBack || "Zpět na: {name}", { name: bk ? bk.cs : opts.back.id }) });
+        text: "← " + fmt(ui.vetCardBack || "Zpět na nemoc: {name}", { name: bk ? bk.cs : opts.back.id }) });
       bb.addEventListener("click", function () { open(opts.back.content, opts.back.id); });
       box.insertBefore(bb, box.firstChild);
     }
