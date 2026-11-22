@@ -246,6 +246,62 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Pacient Lízinka", file: "images/veterina/pacienti/lizinka.webp" }]
     },
     {
+      heading: "Pacient Kulička (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Marie-Lan Nguyen", href: "https://commons.wikimedia.org/wiki/File:Golden_tabby_and_white_kitten_n01.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 2.5", href: "https://creativecommons.org/licenses/by/2.5/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Kulička", file: "images/veterina/pacienti/kulicka.webp" }]
+    },
+    {
+      heading: "Pacient Ferda (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Cat_December_2005-1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Ferda", file: "images/veterina/pacienti/ferda.webp" }]
+    },
+    {
+      heading: "Pacient Čiperka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Felinlove", href: "https://commons.wikimedia.org/wiki/File:Oriental_Shorthair_kitten_chocolate_spotted_tabby.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Čiperka", file: "images/veterina/pacienti/ciperka.webp" }]
+    },
+    {
+      heading: "Pacient Rozárka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Felinlove", href: "https://commons.wikimedia.org/wiki/File:Siamese_cat,_female.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Rozárka", file: "images/veterina/pacienti/rozarka.webp" }]
+    },
+    {
+      heading: "Pacient Stařenka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Dario Crespi", href: "https://commons.wikimedia.org/wiki/File:Muso_di_gatto_europeo.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Stařenka", file: "images/veterina/pacienti/starenka.webp" }]
+    },
+    {
+      heading: "Pacient Brumla (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "PantheraLeo1359531", href: "https://commons.wikimedia.org/wiki/File:Liegende_graue_Katze_20200219_135657.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: otočeno podle orientace uložené v souboru, zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Brumla", file: "images/veterina/pacienti/brumla.webp" }]
+    },
+    {
+      heading: "Pacient Pepina (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Dietmar Rabich", href: "https://commons.wikimedia.org/wiki/File:Clovelly_(Devon,_UK),_Katze_--_2013_--_1337.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Pepina", file: "images/veterina/pacienti/pepina.webp" }]
+    },
+    {
+      heading: "Pacient Zrzek (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Etaped", href: "https://commons.wikimedia.org/wiki/File:Cautious_Tabby_Red_Cat.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Zrzek", file: "images/veterina/pacienti/zrzek.webp" }]
+    },
+    {
       heading: "Ikony nástrojů (Na veterině)",
       parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
