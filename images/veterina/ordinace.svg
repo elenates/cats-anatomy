@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Ordinace veterináře">
+<title>Ordinace veterináře</title>
+<!-- Own drawing for Kočičí tělo pod lupou (MIT). Flat style matching the instrument icons. Text-free: the screen adds labels. -->
+<defs>
+  <pattern id="dlazba" width="80" height="40" patternUnits="userSpaceOnUse">
+    <rect width="80" height="40" fill="#e9dccd"/>
+    <path d="M0 0.5H80M0.5 0V40" stroke="#d8c8b6" stroke-width="2"/>
+  </pattern>
+  <pattern id="obklad" width="60" height="60" patternUnits="userSpaceOnUse">
+    <rect width="60" height="60" fill="#eef4f3"/>
+    <path d="M0 0.5H60M0.5 0V60" stroke="#d3e2df" stroke-width="2"/>
+  </pattern>
+  <linearGradient id="ocel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#d9dfe3"/>
+    <stop offset="1" stop-color="#aeb7bd"/>
+  </linearGradient>
+</defs>
+
+<!-- wall and floor -->
+<rect width="1600" height="640" fill="#f6e3d6"/>
+<rect y="380" width="1600" height="260" fill="url(#obklad)"/>
+<rect y="372" width="1600" height="10" fill="#e4d9cc"/>
+<rect y="640" width="1600" height="260" fill="url(#dlazba)"/>
+<rect y="632" width="1600" height="12" fill="#c9b8a6"/>
+
+<!-- door to the waiting room (left), paw sign -->
+<g id="dvere-cekarna">
+  <rect x="40" y="150" width="200" height="490" rx="6" fill="#c98b5e"/>
+  <rect x="56" y="166" width="168" height="200" rx="4" fill="#d9a37c"/>
+  <rect x="56" y="390" width="168" height="230" rx="4" fill="#d9a37c"/>
+  <circle cx="214" cy="410" r="11" fill="#8a817a"/>
+  <g transform="translate(140 262)" fill="#2b2420">
+    <ellipse cx="0" cy="14" rx="26" ry="22"/>
+    <ellipse cx="-28" cy="-12" rx="10" ry="13"/>
+    <ellipse cx="-10" cy="-28" rx="10" ry="13"/>
+    <ellipse cx="10" cy="-28" rx="10" ry="13"/>
+    <ellipse cx="28" cy="-12" rx="10" ry="13"/>
+  </g>
+</g>
+
+<!-- glass cabinet with three shelves for the 24 tools (8 per shelf) -->
+<g id="skrinka">
+  <rect x="290" y="70" width="560" height="470" rx="10" fill="#b5562a"/>
+  <rect x="306" y="86" width="528" height="438" rx="6" fill="#fdfaf6"/>
+  <rect x="306" y="86" width="528" height="438" rx="6" fill="#dceeee" opacity="0.45"/>
+  <rect x="306" y="228" width="528" height="10" fill="#b5562a"/>
+  <rect x="306" y="374" width="528" height="10" fill="#b5562a"/>
+  <rect x="306" y="514" width="528" height="10" fill="#b5562a"/>
+  <rect x="566" y="86" width="8" height="438" fill="#b5562a" opacity="0.35"/>
+  <path d="M330 100l40 40M350 100l30 30M600 100l40 40M620 100l30 30" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+  <rect x="290" y="540" width="560" height="100" rx="6" fill="#c98b5e"/>
+  <rect x="306" y="556" width="260" height="68" rx="4" fill="#d9a37c"/>
+  <rect x="574" y="556" width="260" height="68" rx="4" fill="#d9a37c"/>
+  <rect x="520" y="582" width="30" height="10" rx="5" fill="#8a817a"/>
+  <rect x="590" y="582" width="30" height="10" rx="5" fill="#8a817a"/>
+</g>
+
+<!-- lamp above the table -->
+<g id="lampa">
+  <rect x="1046" y="0" width="8" height="120" fill="#8a817a"/>
+  <path d="M970 170Q1050 100 1130 170Z" fill="#5c5149"/>
+  <ellipse cx="1050" cy="172" rx="62" ry="10" fill="#fff4c2"/>
+  <path d="M990 182L900 560H1200L1110 182Z" fill="#fff8d9" opacity="0.35"/>
+</g>
+
+<!-- examination table (centre) -->
+<g id="stul">
+  <rect x="860" y="540" width="380" height="30" rx="12" fill="url(#ocel)"/>
+  <rect x="860" y="566" width="380" height="8" rx="4" fill="#8a949b"/>
+  <rect x="1000" y="574" width="100" height="40" fill="#8a949b"/>
+  <rect x="1030" y="614" width="40" height="150" fill="#9aa4ab"/>
+  <rect x="960" y="760" width="180" height="24" rx="10" fill="#7d878e"/>
+  <ellipse cx="1050" cy="800" rx="140" ry="12" fill="#c9b8a6" opacity="0.8"/>
+</g>
+
+<!-- small trolley with the ultrasound screen (right of the table) -->
+<g id="vozik">
+  <rect x="1270" y="430" width="120" height="86" rx="8" fill="#2b2420"/>
+  <rect x="1282" y="442" width="96" height="62" rx="4" fill="#3d5a66"/>
+  <path d="M1300 490Q1330 450 1360 490" fill="none" stroke="#9fd3de" stroke-width="4"/>
+  <rect x="1320" y="516" width="20" height="40" fill="#8a817a"/>
+  <rect x="1270" y="556" width="120" height="60" rx="6" fill="#d9dfe3"/>
+  <rect x="1280" y="616" width="10" height="150" fill="#8a949b"/>
+  <rect x="1370" y="616" width="10" height="150" fill="#8a949b"/>
+  <circle cx="1285" cy="772" r="10" fill="#5c5149"/>
+  <circle cx="1375" cy="772" r="10" fill="#5c5149"/>
+</g>
+
+<!-- door to the X-ray room (right), radiation sign -->
+<g id="dvere-rentgen">
+  <rect x="1410" y="150" width="170" height="490" rx="6" fill="#8fa7b3"/>
+  <rect x="1424" y="166" width="142" height="200" rx="4" fill="#a7bcc6"/>
+  <rect x="1424" y="390" width="142" height="230" rx="4" fill="#a7bcc6"/>
+  <circle cx="1424" cy="410" r="11" fill="#5c5149"/>
+  <g transform="translate(1495 262)">
+    <circle r="50" fill="#f5c400"/>
+    <circle r="9" fill="#2b2420"/>
+    <path d="M-7 -12.12L-21 -36.37A42 42 0 0 1 21 -36.37L7 -12.12A14 14 0 0 0 -7 -12.12Z" fill="#2b2420"/>
+    <path d="M-7 -12.12L-21 -36.37A42 42 0 0 1 21 -36.37L7 -12.12A14 14 0 0 0 -7 -12.12Z" fill="#2b2420" transform="rotate(120)"/>
+    <path d="M-7 -12.12L-21 -36.37A42 42 0 0 1 21 -36.37L7 -12.12A14 14 0 0 0 -7 -12.12Z" fill="#2b2420" transform="rotate(240)"/>
+  </g>
+  <rect x="1410" y="110" width="170" height="30" rx="6" fill="#d23b2a"/>
+  <circle cx="1495" cy="125" r="9" fill="#ffd6cf"/>
+</g>
+</svg>
