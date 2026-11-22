@@ -141,7 +141,7 @@ PRIPADY = [
        moznosti=["kozni-plisen", "blechy-tasemnice", "usni-roztoci"],
        proc={"blechy-tasemnice": "Blechy způsobují svědění a ve srsti mohou být černé tečky. Čiperka má ale kulatá lysá místa a některé její chlupy svítí pod UV lampou.",
              "usni-roztoci": "Roztoči způsobují potíže hlavně v uších. Čiperka má ale kulatá lysá místa na kůži a některé její chlupy svítí pod UV lampou."},
-       lecba="Léky proti plísni, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
+       lecba="Léky proti plísním, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
        spatne=[dict(text="Jen ostříhat chlupy kolem lysých míst.", proc="Ostříhání plíseň nevyléčí. Čiperka potřebuje léky a doma se musí uklízet."),
                dict(text="Lék proti roztočům.", proc="Čiperka nemá roztoče, má kožní plíseň.")],
        pozor="Kožní plíseň se může přenést i na lidi. Po pohlazení nemocné kočky si umyj ruce.",

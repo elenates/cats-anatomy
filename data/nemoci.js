@@ -174,7 +174,7 @@ window.ATLAS_DATA.nemoci = {
       coToJe: "Plíseň, která roste na kůži a v chlupech. Je nakažlivá pro další zvířata i pro lidi. Nejčastěji ji mají koťata.",
       jakToPoznas: "Na hlavě, uších, tlapkách nebo ocásku jsou kulatá místa bez chlupů. Kůže je tam šupinatá nebo zarudlá a chlupy kolem jsou zlámané. Často to ani nesvědí.",
       jakToVetZjisti: "Veterinář ve tmě posvítí na srst speciální UV lampou. Některé druhy plísní pak pod lampou svítí žlutozeleně. Jistotu dá kultivace: z chlupů v laboratoři vyroste plíseň, a to trvá až 3 týdny.",
-      coPomuze: "Léky proti plísni, které kočka dostává ústy, a k tomu léčivé koupele nebo šampony. Doma se musí hodně uklízet, protože výtrusy plísně se drží v prachu a chlupech.",
+      coPomuze: "Léky proti plísním, které kočka dostává ústy, a k tomu léčivé koupele nebo šampony. Doma se musí hodně uklízet, protože výtrusy plísně se drží v prachu a chlupech.",
       jakTomuPredejit: "Pelíšky, hřebeny a hračky pravidelně čisti. Když má nové zvíře lysá místa, nech ho nejdřív prohlédnout veterinářem.",
       pozor: null,
       telo: [{"content": "vnejsi", "id": "srst"}],
