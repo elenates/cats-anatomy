@@ -67,7 +67,10 @@ L = ["/*",
 " * pripady: id, jmeno (the patient's name), kocka (name, kind, age), foto (images/veterina/<foto>.webp),",
 " *   nemoc (id of the right card in nemoci.items), pribeh, nalezy {examination id: finding},",
 " *   moznosti (three card ids), proc {wrong card id: why}, lecba (what helps),",
-" *   spatne [{text, proc}] (two wrong treatments with why), pozor (or null)",
+" *   spatne [{text, proc}] (two wrong treatments with why), pozor (or null),",
+" *   strach (the signs of fear the child sees on the table, or null: the cat is calm)",
+" * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,",
+" *   foto (images/veterina/<foto>.webp), refs",
 " */",
 "window.ATLAS_DATA = window.ATLAS_DATA || {};", "",
 "window.ATLAS_DATA.veterina = {",
@@ -76,8 +79,13 @@ L += join([obj([("id", v), ("cs", V.VYSETRENI_CS[v])], 4) for v in V.VYSETRENI])
 L += ["  ],", f"  nic: {js(V.NIC)},", "  pripady: ["]
 L += join([obj([("id", p["id"]), ("jmeno", p["kocka"].split(",")[0].strip()), ("kocka", p["kocka"]), ("foto", p["foto"]),
                 ("nemoc", p["nemoc"]), ("pribeh", p["pribeh"]), ("nalezy", p["nalezy"]), ("moznosti", p["moznosti"]),
-                ("proc", p.get("proc", {})), ("lecba", p["lecba"]), ("spatne", p["spatne"]), ("pozor", p.get("pozor"))], 4)
+                ("proc", p.get("proc", {})), ("lecba", p["lecba"]), ("spatne", p["spatne"]), ("pozor", p.get("pozor")), ("strach", V.STRACH_PRIPADY.get(p["id"]))], 4)
            for p in V.PRIPADY])
-L += ["  ]", "};", ""]
+S = V.STRACH
+L += ["  ],", "  strach: {"]
+L += [f"    {k}: {js(v)}," for k, v in [("jak", S["jak"]), ("otazka", S["otazka"]), ("spravne", S["spravne"]), ("spatne", S["spatne"]),
+                                       ("doma", S["doma"]), ("foto", "vystrasena-kocka"), ("refs", refs(S["sources"]))]]
+L[-1] = L[-1].rstrip(",")
+L += ["  }", "};", ""]
 open(os.path.join(ROOT, "data/veterina.js"), "w", encoding="utf-8").write("\n".join(L))
 print(len(N.NEMOCI), len(V.PRIPADY))
