@@ -28,6 +28,7 @@ with sync_playwright() as p:
         nxt = pg.locator(".vet-s-vysetreni .quiz-next")
         r.ok(nxt.is_disabled(), f"{c['id']}: no going on before an examination")
         r.ok(pg.locator(".vet-room .vet-exam").count() == len(V["vysetreni"]), f"{c['id']}: all examinations in the room")
+        pg.wait_for_function("() => { const i = document.querySelector('.vet-cat img'); return i && i.complete && i.naturalWidth > 0; }", timeout=5000)
         r.ok(pg.locator(".vet-cat img").evaluate("i => i.complete && i.naturalWidth > 0") and
              pg.locator(".vet-cat img").get_attribute("src") == f"images/veterina/vyrezy/{c['id']}.webp", f"{c['id']}: cut-out loads")
         r.ok(pg.locator(".vet-exam:disabled").count() == len(V["vysetreni"]), f"{c['id']}: tools wait until the cat is on the table")
