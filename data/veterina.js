@@ -239,7 +239,7 @@ window.ATLAS_DATA.veterina = {
       nalezy: {"lupa": "Polštářky jsou zarudlé a mají puchýře."},
       moznosti: ["popalena-tlapka", "prerostle-drapy", "zlomena-noha"],
       proc: {"prerostle-drapy": "Rozárka nemá zarostlý dráp. Polštářky má zarudlé s puchýři po horkém sporáku.", "zlomena-noha": "Rozárka nespadla a nesrazilo ji auto. Má popálené polštářky."},
-      lecba: "Hned chlaď tlapku alespoň 20 minut pod chladnou, ne ledovou tekoucí vodou. Pak jeď k veterináři. Veterinář popáleninu ošetří a dá Rozárce léky proti bolesti.",
+      lecba: "Hned chlaď tlapku alespoň 20 minut pod chladnou, ne ledovou tekoucí vodou. Rozárku při tom musí držet dospělý, protože z bolesti může kousat a škrábat. Pak jeď k veterináři. Veterinář popáleninu ošetří a dá Rozárce léky proti bolesti.",
       spatne: [{"text": "Přiložit na tlapku led.", "proc": "Na popáleninu se nikdy nedává led! Chladí se chladnou, ne ledovou vodou."}, {"text": "Zastřihnout drápy.", "proc": "Drápy tu nepomůžou. Popálené polštářky potřebují ošetřit."}],
       pozor: "Na popáleninu nikdy nedávej led!"
     },
@@ -266,7 +266,7 @@ window.ATLAS_DATA.veterina = {
       pribeh: "Brumla pořád žebrá o jídlo a jí víc než dřív, a přesto hubne. V noci běhá po bytě a mňouká.",
       nalezy: {"vaha": "Brumla zhubla.", "prohmatat": "Na krku je zvětšená štítná žláza.", "stetoskop": "Srdce bije rychle.", "krevni-test": "V krvi je moc hormonu štítné žlázy."},
       moznosti: ["stitna-zlaza", "cukrovka", "nemocne-ledviny"],
-      proc: {"cukrovka": "Při cukrovce bývá v krvi a často i v moči moc cukru. Brumla má v krvi moc hormonu štítné žlázy a zvětšenou žlázu na krku.", "nemocne-ledviny": "Kočka s nemocnými ledvinami jí méně. Brumla jí víc než dřív a má zvětšenou štítnou žlázu."},
+      proc: {"cukrovka": "Při cukrovce bývá v krvi a často i v moči moc cukru. Brumla má v krvi moc hormonu štítné žlázy a zvětšenou žlázu na krku.", "nemocne-ledviny": "Kočka s nemocnými ledvinami často jí méně. Brumla jí víc než dřív a má zvětšenou štítnou žlázu."},
       lecba: "Léky každý den, speciální krmivo s omezeným jódem, operace nebo léčba radioaktivním jódem. Veterinář vybere, co je pro Brumlu nejlepší.",
       spatne: [{"text": "Dávat jí víc jídla, ať přibere.", "proc": "Brumla jí hodně, a stejně hubne. Pomůže až léčba štítné žlázy."}, {"text": "Inhalátor s maskou.", "proc": "Inhalátor pomáhá kočkám s astmatem. Brumla má zrychlenou štítnou žlázu."}],
       pozor: null
@@ -306,7 +306,7 @@ window.ATLAS_DATA.veterina = {
       foto: "pacienti/bara",
       nemoc: "zlomena-panev",
       pribeh: "Báru venku srazilo auto. Nemůže chodit a zadní nohy se jí motají. Od rána se ani nevyčůrala.",
-      nalezy: {"prohmatat": "Veterinář prohlédl celou Báru. Jiné zranění nenašel, ale zadní část těla ji moc bolí.", "rentgen": "Pánev je zlomená."},
+      nalezy: {"prohmatat": "Veterinář prohlédl celou Báru. Jiné zranění nenašel, ale zadní část těla ji moc bolí.", "rentgen": "Pánev je zlomená.", "ultrazvuk": "Veterinář zkontroloval močový měchýř a močové cesty. Měchýř je celý, bez poškození."},
       moznosti: ["zlomena-panev", "zlomena-noha", "ucpana-mocova-trubice"],
       proc: {"zlomena-noha": "Rentgen ukázal zlomenou pánev, ne kost v noze.", "ucpana-mocova-trubice": "To, že Bára nečůrá, ještě neznamená, že má ucpanou močovou trubici. Po takovém úrazu musí veterinář zkontrolovat i močový měchýř a močové cesty."},
       lecba: "Lék proti bolesti. Podle typu zlomeniny pak několik týdnů klidu ve velké kleci, nebo operace, při které veterinář kosti zpevní kovovými šrouby či destičkami. Veterinář také kontroluje, jestli Bára může čůrat.",
@@ -449,7 +449,7 @@ window.ATLAS_DATA.veterina = {
       nalezy: {"lupa": "V srsti jsou tvrdé chuchvalce a kůže pod nimi je podrážděná.", "prohmatat": "Klouby na zadních nohou ji bolí, proto se nedokáže dobře očistit."},
       moznosti: ["zplstnatela-srst", "kozni-plisen", "blechy-tasemnice"],
       proc: {"kozni-plisen": "Plíseň může způsobit lysá a šupinatá místa. Perla má ale chlupy zamotané do tvrdých chuchvalců.", "blechy-tasemnice": "Blechy způsobují svědění a tasemnice se může projevit články podobnými zrníčkům rýže. Perla má ale hlavně zplstnatělou srst."},
-      lecba: "Veterinář nebo zkušený střihač odstraní chuchvalce opatrně strojkem. Někdy je potřeba Perlu předem uklidnit lékem nebo uspat. Doma ji pak češ každý den.",
+      lecba: "Veterinář nebo zkušený střihač odstraní chuchvalce opatrně strojkem. Někdy je potřeba, aby Perlu veterinář předem uklidnil lékem nebo uspal. Doma ji pak češ každý den.",
       spatne: [{"text": "Vystříhat chuchvalce nůžkami.", "proc": "Chuchvalce nikdy nestříhej nůžkami! Kočka má tenkou kůži a snadno se pořeže."}, {"text": "Koupel proti plísni.", "proc": "Perla nemá plíseň. Chuchvalce se musí odstranit strojkem."}],
       pozor: "Chuchvalce nikdy nestříhej nůžkami! Kočka má tenkou kůži a snadno se pořeže."
     },
@@ -490,7 +490,7 @@ window.ATLAS_DATA.veterina = {
       pribeh: "Mína už několik dní hlasitě mňouká a volá, je neklidná, válí se po zemi a zvedá zadeček s ocáskem stranou. Jí a čůrá normálně. Mína je jen doma a s kocourem se nikdy nesetkala. Bojíme se, že ji něco bolí.",
       nalezy: {"prohmatat": "Bříško je měkké a nebolí.", "teplomer": "Teplota je v pořádku.", "lupa": "Mína je zdravá. Bradavky ani bříško nejsou zvětšené."},
       moznosti: ["kocka-v-riji", "brezi-kocka", "ucpana-mocova-trubice"],
-      proc: {"brezi-kocka": "Mína nemá zvětšené bradavky ani kulaté bříško. Chová se jako kočka v říji.", "ucpana-mocova-trubice": "Mína normálně čůrá a bříško ji nebolí. Mňouká, protože volá kocoura."},
+      proc: {"brezi-kocka": "Mína se s kocourem nikdy nesetkala, takže nemůže být březí. Její chování odpovídá říji.", "ucpana-mocova-trubice": "Mína normálně čůrá a bříško ji nebolí. Mňouká, protože volá kocoura."},
       lecba: "Kastrace. Veterinář odstraní vaječníky, někdy také dělohu. Pak už Mína do říje nechodí a nemůže mít koťata.",
       spatne: [{"text": "Lék proti bolesti a čekat.", "proc": "Říje není nemoc ani bolest, kterou by lék proti bolesti vyřešil."}, {"text": "Pustit ji ven, ať se uklidní.", "proc": "Venku by mohla potkat kocoura a mít koťata."}],
       pozor: null
