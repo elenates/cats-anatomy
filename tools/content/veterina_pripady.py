@@ -421,9 +421,10 @@ LECBA_CS = {
 LEKY = {
     "antibiotika": "Antibiotika", "proti-bolesti": "Lék proti bolesti", "proti-alergii": "Lék proti alergii",
     "proti-blecham": "Přípravek proti blechám", "proti-cervum": "Lék proti červům", "proti-roztocum": "Lék proti roztočům",
-    "proti-plisni": "Lék proti plísni", "stitna-zlaza": "Lék na štítnou žlázu", "proti-zanetu": "Lék proti zánětu",
+    "proti-plisni": "Lék proti plísním", "stitna-zlaza": "Lék na štítnou žlázu", "proti-zanetu": "Lék proti zánětu",
     "zmekceni-trusu": "Lék na změkčení trusu", "uklidneni": "Uklidňující lék",
 }
+# Vet (2026-11-22): „Lék na štítnou žlázu“ is fine for a child, though the medicine lowers the excess thyroid hormone.
 LECBA_CS.update({"lek-" + k: v for k, v in LEKY.items()})
 # case: (items that must all be used, items that are also right). With no required items, one of the others is enough.
 # Felix and Liduška need no treatment: the step is skipped.
