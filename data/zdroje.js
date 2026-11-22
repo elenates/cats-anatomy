@@ -190,6 +190,62 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Rentgen zubů kočky", file: "images/veterina/zub-resorpce.webp" }]
     },
     {
+      heading: "Pacient Mourek (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "David Corby (edited by Arad)", href: "https://commons.wikimedia.org/wiki/File:Kittyply_edit1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 2.5", href: "https://creativecommons.org/licenses/by/2.5/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Mourek", file: "images/veterina/pacienti/mourek.webp" }]
+    },
+    {
+      heading: "Pacient Micka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Kali_April_2017-2.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Micka", file: "images/veterina/pacienti/micka.webp" }]
+    },
+    {
+      heading: "Pacient Tygr (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Johann Jaritz", href: "https://commons.wikimedia.org/wiki/File:Tabby-cat_brown_our_new_pet_30062015_5046.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0 AT", href: "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Tygr", file: "images/veterina/pacienti/tygr.webp" }]
+    },
+    {
+      heading: "Pacient Bella (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Joaquim Alves Gaspar", href: "https://commons.wikimedia.org/wiki/File:Mya.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 2.5", href: "https://creativecommons.org/licenses/by/2.5/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Bella", file: "images/veterina/pacienti/bella.webp" }]
+    },
+    {
+      heading: "Pacient Šmudla (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Stephanemartin", href: "https://commons.wikimedia.org/wiki/File:Chartreux-cat-edouard-marie.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Šmudla", file: "images/veterina/pacienti/smudla.webp" }]
+    },
+    {
+      heading: "Pacient Rambo (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Collard", href: "https://commons.wikimedia.org/wiki/File:Colossus_the_Cat_2.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 3.0", href: "https://creativecommons.org/licenses/by/3.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Rambo", file: "images/veterina/pacienti/rambo.webp" }]
+    },
+    {
+      heading: "Pacient Pírko (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Kali_April_2016-5.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Pírko", file: "images/veterina/pacienti/pirko.webp" }]
+    },
+    {
+      heading: "Pacient Lízinka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Petro Stelte", href: "https://commons.wikimedia.org/wiki/File:Black-White-Cat-Sitia-Crete-Greece.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Lízinka", file: "images/veterina/pacienti/lizinka.webp" }]
+    },
+    {
       heading: "Ikony nástrojů (Na veterině)",
       parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],

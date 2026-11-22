@@ -2,6 +2,7 @@
 - every case belongs to a Kočičí nemoci card, ids unique, exactly one case per card,
 - the three diagnosis options are cards, include the right one and are different,
 - every finding is for an examination the child can choose, and every examination has an icon,
+- a patient photo exists and has its source card and licence row,
 - texts are filled, there are two wrong treatments, each wrong answer says why, and no dose slipped in."""
 import os, sys, re
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -29,6 +30,13 @@ for p in V.PRIPADY:
         if not t.strip(): fails.append(f"{p['id']}: empty finding {k}")
     for f in ("kocka", "pribeh", "lecba"):
         if not p.get(f, "").strip(): fails.append(f"{p['id']}: empty {f}")
+    if p.get("foto"):
+        f = os.path.join(ROOT, "images", "veterina", p["foto"] + ".webp")
+        if not os.path.exists(f): fails.append(f"{p['id']}: photo {p['foto']} missing")
+        z = open(os.path.join(ROOT, "data", "zdroje.js"), encoding="utf-8").read()
+        l = open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read()
+        rel = "images/veterina/" + p["foto"] + ".webp"
+        if rel not in z or rel not in l: fails.append(f"{p['id']}: photo without source card or licence row")
     if len(p["spatne"]) != 2: fails.append(f"{p['id']}: needs two wrong treatments")
     for w in p["spatne"]:
         if not w.get("text", "").strip() or not w.get("proc", "").strip(): fails.append(f"{p['id']}: wrong treatment without text or why")

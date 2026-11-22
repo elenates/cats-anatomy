@@ -5,6 +5,7 @@
 # The child may open as many examinations as they like; several cases have two or three telling findings.
 # After a wrong pick the game shows why it was wrong: `proc` for each wrong diagnosis and each wrong treatment.
 # Every finding and every correct answer restates its card, so the card's sources cover it; nothing new is claimed here.
+# foto: the patient's photo in images/veterina/ (Commons, chosen by Lenka; credit on its source card).
 # Rules (Lenka): kind of treatment only, no medicine names, no doses.
 
 # Examinations the child can choose (icon ids). An examination a case does not list shows NIC.
@@ -20,7 +21,7 @@ VYSETRENI_CS = {
 NIC = "Nic důležitého."
 
 PRIPADY = [
-  dict(id="mourek", nemoc="ucpana-mocova-trubice", kocka="Mourek, kocour, 3 roky",
+  dict(id="mourek", foto="pacienti/mourek", nemoc="ucpana-mocova-trubice", kocka="Mourek, kocour, 3 roky",
        pribeh="Mourek od rána pořád chodí na záchod a tlačí, ale vyčůrá jen pár kapek, nebo vůbec nic. Mňouká a pořád se olizuje.",
        nalezy={"prohmatat": "Močový měchýř je zvětšený, napjatý a bolí."},
        moznosti=["ucpana-mocova-trubice", "zacpa", "chlupove-koule"],
@@ -30,7 +31,7 @@ PRIPADY = [
        spatne=[dict(text="Dát mu krmivo proti chlupovým koulím.", proc="Mourek nemá chlupovou kouli. Má ucpanou močovou trubici."),
                dict(text="Počkat do zítřka, třeba to přejde.", proc="Ucpaná močová trubice je pohotovost. Čekat se nesmí!")],
        flags="Game pair with Zácpa (card 26)."),
-  dict(id="micka", nemoc="spolknuty-provazek", kocka="Micka, kočka, 2 roky",
+  dict(id="micka", foto="pacienti/micka", nemoc="spolknuty-provazek", kocka="Micka, kočka, 2 roky",
        pribeh="Micka si včera hrála s klubíčkem vlny. Dnes zvrací, nechce jíst a schovává se pod postelí.",
        nalezy={"lupa": "Pod jazykem je zachycený provázek!",
                "prohmatat": "Bříško ji bolí.",
@@ -43,7 +44,7 @@ PRIPADY = [
                dict(text="Dát jí krmivo proti chlupovým koulím.", proc="Micka nemá chlupovou kouli. Provázek musí veterinář odstranit, někdy při operaci.")],
        pozor="Za provázek pod jazykem se nikdy nesmí tahat.",
        flags="Lenka (vet view, 2026-11-21): belly pain is a valid separate finding; part of the gut may need removing (CB-LFB)."),
-  dict(id="tygr", nemoc="zlomena-noha", kocka="Tygr, kocour, 5 let",
+  dict(id="tygr", foto="pacienti/tygr", nemoc="zlomena-noha", kocka="Tygr, kocour, 5 let",
        pribeh="Tygra venku srazilo auto. Na zadní nohu vůbec nedošlápne.",
        nalezy={"prohmatat": "Noha je oteklá a bolí.",
                "rentgen": "Stehenní kost je zlomená."},
@@ -54,7 +55,7 @@ PRIPADY = [
        spatne=[dict(text="Zastřihnout mu drápy.", proc="Drápy tu nepomůžou. Zlomenou kost je potřeba správně zafixovat, aby se zahojila."),
                dict(text="Nechat ho běhat, ať se noha rozchodí.", proc="Zlomená noha potřebuje klid, aby se kost zahojila.")],
        flags="Game pair with Zlomená pánev (card 17): both after a car accident, the X-ray decides."),
-  dict(id="bella", nemoc="otrava-liliemi", kocka="Bella, kočka, 4 roky",
+  dict(id="bella", foto="pacienti/bella", nemoc="otrava-liliemi", kocka="Bella, kočka, 4 roky",
        pribeh="Dostali jsme kytici lilií. Bella má na čumáčku žlutý pyl a jeden list je okousaný. Teď slintá a zvrací.",
        nalezy={"lupa": "Na čumáčku a v srsti je žlutý pyl. Při čištění by ho Bella olízala a spolkla.",
                "krevni-test": "Veterinář vyšetří krev a sleduje, jestli lilie nepoškodily ledviny."},
@@ -66,7 +67,7 @@ PRIPADY = [
                dict(text="Vyčistit jí zuby.", proc="Zuby tu nepomůžou. Bella se otrávila lilií. Potřebuje rychlou pomoc, aby se omezilo vstřebávání jedu a ochránily ledviny.")],
        pozor="Na nic nečekej a hned jeď k veterináři, i když kočka zatím vypadá zdravě!",
        flags="The diagnosis comes mostly from the story, as on the card („Veterinář se ptá, co kočka snědla“)."),
-  dict(id="smudla", nemoc="kocici-ryma", kocka="Šmudla, kotě, 3 měsíce",
+  dict(id="smudla", foto="pacienti/smudla", nemoc="kocici-ryma", kocka="Šmudla, kotě, 3 měsíce",
        pribeh="Šmudla kýchá, teče jí z nosu i z očí a nechce jíst.",
        nalezy={"lupa": "Oči jsou červené a oteklé a v tlamičce jsou bolavé vředy.",
                "teplomer": "Má horečku."},
@@ -77,7 +78,7 @@ PRIPADY = [
        spatne=[dict(text="Vytáhnout jí stéblo z nosu.", proc="Šmudla nemá v nose stéblo. Má kočičí rýmu."),
                dict(text="Inhalátor s maskou.", proc="Inhalátor s maskou pomáhá kočkám s astmatem. Šmudla má rýmu.")],
        flags=""),
-  dict(id="rambo", nemoc="absces", kocka="Rambo, nekastrovaný kocour, 2 roky",
+  dict(id="rambo", foto="pacienti/rambo", nemoc="absces", kocka="Rambo, nekastrovaný kocour, 2 roky",
        pribeh="Rambo se před pár dny popral s kocourem od sousedů. Teď je unavený, nejí a kulhá.",
        nalezy={"teplomer": "Má horečku.",
                "prohmatat": "Na noze je pod srstí teplá, bolavá boule."},
@@ -88,7 +89,7 @@ PRIPADY = [
        spatne=[dict(text="Koupel proti plísni.", proc="Rambo nemá plíseň. Hnis se musí z boule vypustit."),
                dict(text="Nic, boule zmizí sama.", proc="Absces potřebuje veterinární ošetření. Veterinář musí zajistit, aby hnis mohl odtéct a rána se vyčistila.")],
        flags="The boule on the leg explains the limping (card: kulhá)."),
-  dict(id="pirko", nemoc="usni-roztoci", kocka="Pírko, kotě, 10 týdnů",
+  dict(id="pirko", foto="pacienti/pirko", nemoc="usni-roztoci", kocka="Pírko, kotě, 10 týdnů",
        pribeh="Pírko si pořád škrábe uši a třepe hlavou. V uších má něco tmavého.",
        nalezy={"otoskop": "V uchu je tmavý drobivý maz, který vypadá jako mletá káva.",
                "mikroskop": "V kousku mazu jsou pod mikroskopem vidět roztoči!"},
@@ -99,7 +100,7 @@ PRIPADY = [
        spatne=[dict(text="Léčit jen Pírka, ostatní kočky ne.", proc="Ušní roztoči se snadno přenesou na další zvířata. Proto se obvykle léčí všechna zvířata, která s Pírkem žijí."),
                dict(text="Kapky do očí.", proc="Roztoči žijí v uších, ne v očích.")],
        flags=""),
-  dict(id="lizinka", nemoc="blechy-tasemnice", kocka="Lízinka, kočka, 6 let",
+  dict(id="lizinka", foto="pacienti/lizinka", nemoc="blechy-tasemnice", kocka="Lízinka, kočka, 6 let",
        pribeh="Lízinka se pořád drbe a kouše do srsti. U zadečku jsme viděli bílé kousky jako zrníčka rýže.",
        nalezy={"lupa": "Ve srsti jsou černé tečky jako pepř.",
                "hrebinek": "Černé tečky na bílém navlhčeném papíře zčervenaly. Je to bleší trus!"},
