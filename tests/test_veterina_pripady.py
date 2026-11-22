@@ -39,6 +39,13 @@ for p in V.PRIPADY:
         l = open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read()
         rel = "images/veterina/" + p["foto"] + ".webp"
         if rel not in z or rel not in l: fails.append(f"{p['id']}: photo without source card or licence row")
+        # Exam room (#104): a cut-out with transparency for every patient, on the same source card
+        cut = "images/veterina/vyrezy/" + p["id"] + ".webp"
+        if not os.path.exists(os.path.join(ROOT, cut)): fails.append(f"{p['id']}: cut-out {cut} missing")
+        else:
+            from PIL import Image
+            if Image.open(os.path.join(ROOT, cut)).mode != "RGBA": fails.append(f"{p['id']}: cut-out has no transparency")
+        if cut not in z or "| `" + cut + "` |" not in l: fails.append(f"{p['id']}: cut-out without source card or licence row")
     fotos.append(p.get("foto"))
     if len(p["spatne"]) != 2: fails.append(f"{p['id']}: needs two wrong treatments")
     for w in p["spatne"]:
