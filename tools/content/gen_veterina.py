@@ -70,7 +70,8 @@ L = ["/*",
 " *   spatne [{text, proc}] (two wrong treatments with why), pozor (or null),",
 " *   strach (the signs of fear the child sees on the table, or null: the cat is calm),",
 " *   osetreni (items that must all be used on the cat), osetreniNavic (items that are also right; with no osetreni one is enough)",
-" * lecba: the treatment items in the cabinet: id (icon images/veterina/nastroje/<id>.svg), cs",
+" * lecba: the treatment items in the cabinet: id (icon images/veterina/nastroje/<id>.svg), cs; „leky“ opens the drawer",
+" * leky: the kinds of medicine in the drawer: id (lek-<kind>, icon nastroje/<id>.svg), cs",
 " * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,",
 " *   foto (images/veterina/<foto>.webp), refs",
 " */",
@@ -78,7 +79,7 @@ L = ["/*",
 "window.ATLAS_DATA.veterina = {",
 "  vysetreni: ["]
 L += join([obj([("id", v), ("cs", V.VYSETRENI_CS[v])], 4) for v in V.VYSETRENI])
-L += ["  ],", f"  nic: {js(V.NIC)},", f"  lecba: {js([{'id': k, 'cs': v} for k, v in V.LECBA_CS.items() if k not in V.VYSETRENI])},", "  pripady: ["]
+L += ["  ],", f"  nic: {js(V.NIC)},", f"  leky: {js([{'id': 'lek-' + k, 'cs': v} for k, v in V.LEKY.items()])},", f"  lecba: {js([{'id': k, 'cs': v} for k, v in V.LECBA_CS.items() if k not in V.VYSETRENI and not k.startswith('lek-')])},", "  pripady: ["]
 L += join([obj([("id", p["id"]), ("jmeno", p["kocka"].split(",")[0].strip()), ("kocka", p["kocka"]), ("foto", p["foto"]),
                 ("nemoc", p["nemoc"]), ("pribeh", p["pribeh"]), ("nalezy", p["nalezy"]), ("moznosti", p["moznosti"]),
                 ("proc", p.get("proc", {})), ("lecba", p["lecba"]), ("spatne", p["spatne"]), ("pozor", p.get("pozor")), ("strach", V.STRACH_PRIPADY.get(p["id"])), ("osetreni", V.OSETRENI[p["id"]][0]), ("osetreniNavic", V.OSETRENI[p["id"]][1])], 4)

@@ -226,9 +226,33 @@
       var b = el("button", { type: "button", "class": "vet-lecba", "data-lecba": t.id, "aria-label": t.cs, title: t.cs },
         [el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" })]);
       place(b, i < 8 ? slot(1, 2 + i) : slot(2, i - 8));
-      b.addEventListener("click", function () { if (mode === "treat") useItem(t.id, b); else hint.textContent = ui.vetLecbaPolice || ""; });
+      b.addEventListener("click", function () {
+        if (mode !== "treat") { hint.textContent = ui.vetLecbaPolice || ""; return; }
+        if (t.id === "leky") { toggleDrawer(); return; }   // „Léky“ opens the drawer with the kinds of medicine
+        useItem(t.id, b);
+      });
       room.appendChild(b);
     });
+    // The medicine drawer: the kinds of medicine, never a medicine name.
+    var drawer = el("div", { "class": "vet-leky", role: "group", "aria-label": ui.vetLekyH || "Léky", hidden: "" }, [
+      el("div", { "class": "vet-leky-head" }, [el("strong", { text: ui.vetLekyH || "Léky" })])]);
+    var close = el("button", { type: "button", "class": "vet-leky-zavrit", "aria-label": ui.vetZavrit || "Zavřít", text: "✕" });
+    close.addEventListener("click", function () { toggleDrawer(false); });
+    drawer.firstChild.appendChild(close);
+    var lekList = el("ul", { "class": "vet-leky-list" });
+    (V().leky || []).forEach(function (t) {
+      var b = el("button", { type: "button", "class": "vet-lek", "data-lek": t.id }, [
+        el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" }), el("span", { text: t.cs })]);
+      b.addEventListener("click", function () { useItem(t.id, b); });
+      lekList.appendChild(el("li", null, [b]));
+    });
+    drawer.appendChild(lekList);
+    room.appendChild(drawer);
+    function toggleDrawer(open) {
+      var show = open === undefined ? drawer.hidden : open;
+      drawer.hidden = !show;
+      if (show) { var f = drawer.querySelector(".vet-lek"); if (f) f.focus(); }
+    }
     function useItem(id, b) {
       if (!treat || treat.done) return;
       if (treat.ok.indexOf(id) < 0) { treat.say(ui.vetNepomuze || "Tohle teď kočce nepomůže.", false); return; }

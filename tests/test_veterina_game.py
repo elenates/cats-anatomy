@@ -76,12 +76,22 @@ with sync_playwright() as p:
         if need or also:
             s5 = pg.locator(".vet-s-osetri")
             r.ok(s5.count() == 1 and s5.locator(".vet-room").count() == 1 and pg.locator(".vet-s-konec").count() == 0, f"{c['id']}: Ošetři kočku with the room")
-            wrong = [t["id"] for t in V["lecba"] if t["id"] not in need + also][0]
+            wrong = [t["id"] for t in V["lecba"] if t["id"] not in need + also + ["leky"]][0]
             s5.locator(f"[data-lecba='{wrong}']").click()
             r.ok(s5.locator(".vet-room-hint").inner_text() == ui["vetNepomuze"], f"{c['id']}: {wrong} does not help")
+            s5.locator("[data-lecba='leky']").click()
+            r.ok(s5.locator(".vet-leky").is_visible(), f"{c['id']}: Léky opens the drawer")
+            s5.locator("[data-lek='lek-proti-alergii']").click()
+            r.ok(s5.locator(".vet-room-hint").inner_text() == ui["vetNepomuze"], f"{c['id']}: lék proti alergii does not help")
+            s5.locator(".vet-leky-zavrit").click()
             todo = need or also[:1]
             for i, t in enumerate(todo):
-                s5.locator(f"[data-lecba='{t}'], [data-exam='{t}']").first.click()
+                if t.startswith("lek-"):
+                    if s5.locator(".vet-leky").is_hidden(): s5.locator("[data-lecba='leky']").click()
+                    s5.locator(f"[data-lek='{t}']").click()
+                else:
+                    if s5.locator(".vet-leky").is_visible(): s5.locator(".vet-leky-zavrit").click()
+                    s5.locator(f"[data-lecba='{t}'], [data-exam='{t}']").first.click()
                 last = i == len(todo) - 1
                 r.ok(s5.locator(".vet-room-hint").inner_text() == (ui["vetOsetrenaHotovo"] if last else ui["vetChybi"]), f"{c['id']}: used {t}")
                 r.ok((pg.locator(".vet-s-konec").count() == 1) == last, f"{c['id']}: end only after everything")
@@ -108,7 +118,7 @@ with sync_playwright() as p:
     r.ok(pg.evaluate("location.hash").startswith("#/veterina/ordinace/") and pg.evaluate("location.hash") != "#/veterina/ordinace/" + done[-1], "Další pacient opens another case")
     pg.goto(url("/veterina/ordinace/mourek")); pg.wait_for_timeout(100)
     pg.click(".vet-cat"); pg.click(".vet-exam[data-exam='prohmatat']"); pg.click(".vet-s-vysetreni .quiz-next")
-    pg.click(".vet-s-coje [data-option='ucpana-mocova-trubice']"); pg.click(".vet-s-pomuze [data-option='lecba']"); pg.click(".vet-s-osetri [data-lecba='cevka']")
+    pg.click(".vet-s-coje [data-option='ucpana-mocova-trubice']"); pg.click(".vet-s-pomuze [data-option='lecba']"); pg.click(".vet-s-osetri [data-lecba='cevka']"); pg.click(".vet-s-osetri [data-lecba='leky']"); pg.click(".vet-s-osetri [data-lek='lek-proti-bolesti']")
     pg.click(".vet-s-konec a.part-link"); pg.wait_for_timeout(300)
     r.ok(pg.locator("dialog.info-dialog[open]").get_attribute("data-id") == "ucpana-mocova-trubice", "the end link opens the card")
     # drag the cat onto the table; the keyboard; the treatment shelf only says it is for later

@@ -415,16 +415,28 @@ LECBA_CS = {
     "operace": "Operace", "infuze": "Infuze", "voda": "Tekoucí voda", "strojek": "Strojek na srst", "cevka": "Cévka",
     "endoskop": "Endoskop", "zuby": "Ošetření zubů", "hrebinek": "Hřeben",
 }
+# Kinds of medicine (Lenka 2026-11-21: the kind, never a medicine name or a dose). „Léky“ in the cabinet opens
+# a drawer with these; each case uses only the kinds its treatment text names. „Lék proti alergii“ is in the drawer
+# but no case needs it. Icons images/veterina/nastroje/lek-<id>.svg.
+LEKY = {
+    "antibiotika": "Antibiotika", "proti-bolesti": "Lék proti bolesti", "proti-alergii": "Lék proti alergii",
+    "proti-blecham": "Přípravek proti blechám", "proti-cervum": "Lék proti červům", "proti-roztocum": "Lék proti roztočům",
+    "proti-plisni": "Lék proti plísni", "stitna-zlaza": "Lék na štítnou žlázu", "proti-zanetu": "Lék proti zánětu",
+    "zmekceni-trusu": "Lék na změkčení trusu", "uklidneni": "Uklidňující lék",
+}
+LECBA_CS.update({"lek-" + k: v for k, v in LEKY.items()})
 # case: (items that must all be used, items that are also right). With no required items, one of the others is enough.
 # Felix and Liduška need no treatment: the step is skipped.
+# Vet (2026-11-22): Pepina either special food or removal (depends on the kind of stone); Kryštof only castration;
+# Mourek also pain relief, fluids when his condition needs them; Rarášek tweezers, as the blade is visible in the nostril.
 OSETRENI = {
-    "mourek": (["cevka"], []), "micka": (["operace"], []), "tygr": (["operace"], []), "bella": (["infuze"], []),
-    "smudla": ([], ["kapky", "leky"]), "rambo": (["leky"], []), "pirko": (["leky"], []), "lizinka": (["leky"], []),
-    "kulicka": (["leky"], []), "ferda": (["zuby"], []), "ciperka": (["leky"], []), "rozarka": (["voda", "leky"], []),
-    "starenka": (["dieta"], []), "brumla": ([], ["leky", "dieta", "operace"]), "pepina": ([], ["dieta"]),
-    "zrzek": (["endoskop"], ["operace"]), "bara": (["leky"], ["operace"]), "fifinka": (["injekce", "ockovaci-prukaz"], []),
-    "felix": ([], []), "liduska": ([], []), "pusinka": (["hrebinek"], ["dieta"]), "bonifac": (["kapky"], []),
-    "macek": (["dieta"], []), "bobes": (["nuzky-drapy", "leky"], []), "snehurka": (["leky"], ["inhalator"]),
-    "mates": (["infuze", "leky", "dieta"], []), "perla": (["strojek"], ["leky"]), "rarasek": (["pinzeta"], []),
-    "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], ["dieta"]),
+    "mourek": (["cevka", "lek-proti-bolesti"], ["infuze"]), "micka": (["operace"], []), "tygr": (["operace"], []), "bella": (["infuze"], []),
+    "smudla": ([], ["kapky", "lek-antibiotika"]), "rambo": (["lek-antibiotika", "lek-proti-bolesti"], []), "pirko": (["lek-proti-roztocum"], []), "lizinka": (["lek-proti-blecham", "lek-proti-cervum"], []),
+    "kulicka": (["lek-proti-cervum"], []), "ferda": (["zuby"], []), "ciperka": (["lek-proti-plisni"], []), "rozarka": (["voda", "lek-proti-bolesti"], []),
+    "starenka": (["dieta"], []), "brumla": ([], ["lek-stitna-zlaza", "dieta", "operace"]), "pepina": ([], ["dieta", "operace"]),
+    "zrzek": (["endoskop"], ["operace"]), "bara": (["lek-proti-bolesti"], ["operace"]), "fifinka": (["injekce", "ockovaci-prukaz"], []),
+    "felix": ([], []), "liduska": ([], []), "pusinka": (["hrebinek"], ["dieta"]), "bonifac": (["kapky"], ["lek-antibiotika"]),
+    "macek": (["dieta"], []), "bobes": (["nuzky-drapy", "lek-proti-bolesti"], []), "snehurka": (["lek-proti-zanetu"], ["inhalator"]),
+    "mates": (["infuze", "lek-zmekceni-trusu", "dieta"], []), "perla": (["strojek"], ["lek-uklidneni"]), "rarasek": (["pinzeta"], []),
+    "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], []),
 }
