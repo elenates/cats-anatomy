@@ -255,7 +255,7 @@ PRIPADY = [
        lecba="Klid, dobré jídlo, čerstvá voda a teplý, tichý pelíšek na porod. Měj připravené telefonní číslo na veterináře.",
        spatne=[dict(text="Krmivo na hubnutí.", proc="Liduška netloustne, čeká koťátka. Potřebuje dobré jídlo."),
                dict(text="Hodně ji honit, ať se hýbe.", proc="Březí kočka potřebuje klid.")],
-       flags="24th icon „Ultrazvuk“ (Lenka, 2026-11-22); the X-ray links to `brezi-kocka` in Zajímavé rentgeny; five kittens, as on that X-ray (Commons: five foetuses; Lenka, 2026-11-22: findings match the gallery X-rays). Skeletons visible from about day 42–45 (Lenka, vet view)."),
+       flags="24th icon „Ultrazvuk“ (Lenka, 2026-11-22); the X-ray links to `brezi-kocka` in Zajímavé rentgeny; five kittens, as on that X-ray (Commons: five foetuses; Lenka, 2026-11-22: findings match the gallery X-rays). Skeletons visible from about day 42–45 (Lenka, vet view). Vet (2026-11-22): the X-ray caption says about six weeks; nesting can start around week 7 (Cats Protection) and fits the story, which does not say the birth is imminent; nest kept (Lenka)."),
   dict(id="pusinka", foto="pacienti/pusinka", nemoc="chlupove-koule", kocka="Pusinka, dlouhosrstá kočka, 5 let",
        pribeh="Pan Hájek přinesl Pusinku v přepravce a přepravka byla celá od chlupů. „Pusinka má dlouhou bílou srst a chlupy máme doma úplně všude. Česat se moc nenechá, tak ji češeme jen občas. Pusinka se přikrčí, dáví se a pak vyzvrátí podlouhlý chomáč chlupů. Dřív se to stalo jednou za čas, teď je to častěji. Manželka si myslí, že kašle, jako kdysi kašlala kočka její babičky, která měla astma. Jinak jí a chodí na záchod normálně. Pusinka je hrozně líná, celé dny leží na parapetu.“",
        nalezy={"prohmatat": "Bříško je měkké a nebolí.",
