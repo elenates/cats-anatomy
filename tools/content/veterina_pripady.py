@@ -199,7 +199,7 @@ PRIPADY = [
                "rentgen": "V jícnu je jasně vidět kovová jehla!"},
        moznosti=["spolknuta-jehla", "spolknuty-provazek", "nemocne-zuby"],
        proc={"spolknuty-provazek": "Pod jazykem žádný provázek není a rentgen ukázal kovovou jehlu.",
-             "nemocne-zuby": "Slintání tu nezpůsobily zuby. Rentgen ukázal jehlu v jícnu."},
+             "nemocne-zuby": "Zrzek neslintá kvůli nemocným zubům. Rentgen ukázal jehlu v jícnu."},
        lecba="Zatímco Zrzek spí, veterinář se pokusí jehlu vytáhnout endoskopem. Když to nejde, bude možná potřeba operace.",
        spatne=[dict(text="Počkat, jestli jehla vyjde sama.", proc="Jehla může propíchnout jícen, žaludek nebo střevo. Hned k veterináři!"),
                dict(text="Krmivo proti chlupovým koulím.", proc="Krmivo jehlu neodstraní. Jehlu musí vytáhnout veterinář.")],

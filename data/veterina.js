@@ -294,7 +294,7 @@ window.ATLAS_DATA.veterina = {
       pribeh: "Babička šila a Zrzek si hrál s nití. Teď jehla chybí a Zrzek slintá. Jinak vypadá v pořádku.",
       nalezy: {"lupa": "V tlamičce není vidět nit ani jehla.", "rentgen": "V jícnu je jasně vidět kovová jehla!"},
       moznosti: ["spolknuta-jehla", "spolknuty-provazek", "nemocne-zuby"],
-      proc: {"spolknuty-provazek": "Pod jazykem žádný provázek není a rentgen ukázal kovovou jehlu.", "nemocne-zuby": "Slintání tu nezpůsobily zuby. Rentgen ukázal jehlu v jícnu."},
+      proc: {"spolknuty-provazek": "Pod jazykem žádný provázek není a rentgen ukázal kovovou jehlu.", "nemocne-zuby": "Zrzek neslintá kvůli nemocným zubům. Rentgen ukázal jehlu v jícnu."},
       lecba: "Zatímco Zrzek spí, veterinář se pokusí jehlu vytáhnout endoskopem. Když to nejde, bude možná potřeba operace.",
       spatne: [{"text": "Počkat, jestli jehla vyjde sama.", "proc": "Jehla může propíchnout jícen, žaludek nebo střevo. Hned k veterináři!"}, {"text": "Krmivo proti chlupovým koulím.", "proc": "Krmivo jehlu neodstraní. Jehlu musí vytáhnout veterinář."}],
       pozor: "Když kočka možná spolkla jehlu, jeď hned k veterináři. Když jí visí nit, netahej za ni!"
