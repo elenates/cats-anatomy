@@ -302,6 +302,62 @@ window.ATLAS_DATA.zdroje = {
       figures: [{ cs: "Pacient Zrzek", file: "images/veterina/pacienti/zrzek.webp" }]
     },
     {
+      heading: "Pacient Bára (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "W.carter", href: "https://commons.wikimedia.org/wiki/File:Young_tabby_cat_keeping_watch.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Bára", file: "images/veterina/pacienti/bara.webp" }]
+    },
+    {
+      heading: "Pacient Fifinka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alvesgaspar (Joaquim Alves Gaspar)", href: "https://commons.wikimedia.org/wiki/File:Black_kitten_July_August_2009-1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Fifinka", file: "images/veterina/pacienti/fifinka.webp" }]
+    },
+    {
+      heading: "Pacient Felix (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Юрий Д.К.", href: "https://commons.wikimedia.org/wiki/File:Cat_in_Efremov,_Russia1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Felix", file: "images/veterina/pacienti/felix.webp" }]
+    },
+    {
+      heading: "Pacient Liduška (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Kadı", href: "https://commons.wikimedia.org/wiki/File:Cat_in_Fatih,_Istanbul.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY 4.0", href: "https://creativecommons.org/licenses/by/4.0/" }, { text: "." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Liduška", file: "images/veterina/pacienti/liduska.webp" }]
+    },
+    {
+      heading: "Pacient Pusinka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "BlackIceNRW", href: "https://commons.wikimedia.org/wiki/File:Ragdoll_Kater,_drei_Jahre_alt,_RAG_n_21_seal-tabby-colourpoint,_Januar_2015.JPG" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Pusinka", file: "images/veterina/pacienti/pusinka.webp" }]
+    },
+    {
+      heading: "Pacient Bonifác (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Johann Jaritz", href: "https://commons.wikimedia.org/wiki/File:Berndie_11062014_444.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Bonifác", file: "images/veterina/pacienti/bonifac.webp" }]
+    },
+    {
+      heading: "Pacient Macek (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "George Chernilevsky", href: "https://commons.wikimedia.org/wiki/File:Brown_tabby_cat_2021_G1.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Macek", file: "images/veterina/pacienti/macek.webp" }]
+    },
+    {
+      heading: "Pacient Bobeš (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Friedrich Haag", href: "https://commons.wikimedia.org/wiki/File:Heimtier_003_2016_11_27.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Pacient Bobeš", file: "images/veterina/pacienti/bobes.webp" }]
+    },
+    {
       heading: "Ikony nástrojů (Na veterině)",
       parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
