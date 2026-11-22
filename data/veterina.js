@@ -123,7 +123,7 @@ window.ATLAS_DATA.veterina = {
       kocka: "Bella, kočka, 4 roky",
       foto: "pacienti/bella",
       nemoc: "otrava-liliemi",
-      pribeh: "Paní Malá přiběhla s Bellou v přepravce celá udýchaná. „Včera jsme slavili babiččiny narozeniny a dostali jsme velkou kytici lilií. Dala jsem ji na stůl v obýváku. Dnes ráno jsem si všimla, že jeden list je okousaný a Bella má na čumáčku žlutý pyl. Asi před hodinou začala slintat a dvakrát zvracela. Včera večer přitom ještě normálně jedla granule a honila myšku. Loni měla blechy, ale jinak nebyla nikdy nemocná.“",
+      pribeh: "Paní Malá přiběhla celá udýchaná s Bellou v přepravce. „Včera jsme slavili babiččiny narozeniny a dostali jsme velkou kytici lilií. Dala jsem ji na stůl v obýváku. Dnes ráno jsem si všimla, že jeden list je okousaný a Bella má na čumáčku žlutý pyl. Asi před hodinou začala slintat a dvakrát zvracela. Včera večer přitom ještě normálně jedla granule a honila myšku. Loni měla blechy, ale jinak nebyla nikdy nemocná.“",
       nalezy: {"lupa": "Na čumáčku a v srsti je žlutý pyl. Při čištění by ho Bella olízala a spolkla.", "krevni-test": "Veterinář vyšetří krev a sleduje, jestli lilie nepoškodily ledviny."},
       moznosti: ["otrava-liliemi", "nemocne-ledviny", "kocici-ryma"],
       proc: {"nemocne-ledviny": "Chronické onemocnění ledvin se obvykle rozvíjí pomalu, hlavně u starších koček. Bella ale mohla utrpět akutní otravu lilií.", "kocici-ryma": "Bella nekýchá a neteče jí z nosu. Má na čumáčku pyl z lilie."},
@@ -183,7 +183,7 @@ window.ATLAS_DATA.veterina = {
       nalezy: {"lupa": "Ve srsti jsou černé tečky jako pepř.", "hrebinek": "Černé tečky na bílém navlhčeném papíře zčervenaly. Je to bleší trus!"},
       moznosti: ["blechy-tasemnice", "usni-roztoci", "skrkavky"],
       proc: {"usni-roztoci": "Roztoči žijí v uších. Lízinka má ve srsti bleší trus.", "skrkavky": "Škrkavky vypadají jako špagety. Bílé kousky jako zrníčka rýže jsou články tasemnice. Kočka se jí může nakazit, když spolkne blechu, která ji přenáší."},
-      lecba: "Přípravek proti blechám pro všechna zvířata v domě, pro každé ten, který je určený pro jeho druh. Některé přípravky pro psy jsou pro kočky jedovaté! K tomu důkladný úklid bytu a pelíšků a lék proti tasemnici.",
+      lecba: "Přípravek proti blechám pro všechna zvířata v domácnosti, pro každé ten, který je určený pro jeho druh. Některé přípravky pro psy jsou pro kočky jedovaté! K tomu důkladný úklid bytu a pelíšků a lék proti tasemnici.",
       spatne: [{"text": "Ošetřit jen Lízinku, psa ne.", "proc": "Blechy žijí i na dalších zvířatech a v bytě. Ošetřují se všechna zvířata, každé přípravkem určeným pro jeho druh."}, {"text": "Ostříhat jí srst strojkem.", "proc": "Ostříhání srsti blechy neodstraní. Pomůže přípravek proti blechám."}],
       pozor: null
     },
@@ -224,7 +224,7 @@ window.ATLAS_DATA.veterina = {
       pribeh: "Slečna Jana přinesla Čiperku v papírové krabici. „Čiperku jsem si vzala před třemi týdny z inzerátu. U paní bylo ještě hodně dalších koťátek. Na prohlídce jsme spolu ještě nebyli. Asi před týdnem jsem si všimla, že má na hlavě a na uších kulatá místa bez chlupů. Moje sestra říká, že to jsou určitě roztoči v uších. Jenže Čiperka se vůbec neškrábe a hlavou netřepe. A teď mám červené kolečko na ruce i já! Čiperka spí každou noc u mě na polštáři. Je strašně hravá a nejradši honí kuličku z alobalu.“",
       nalezy: {"lupa": "Kůže na lysých místech je šupinatá a chlupy kolem jsou zlámané.", "uv-lampa": "Pod speciální UV lampou některé napadené chlupy svítí žlutozeleně."},
       moznosti: ["kozni-plisen", "blechy-tasemnice", "usni-roztoci"],
-      proc: {"blechy-tasemnice": "Blechy způsobují svědění a ve srsti mohou být černé tečky. Čiperka má ale kulatá lysá místa a napadené chlupy jí svítí pod UV lampou.", "usni-roztoci": "Roztoči způsobují potíže hlavně v uších. Čiperka má ale kulatá lysá místa na kůži a napadené chlupy jí svítí pod UV lampou."},
+      proc: {"blechy-tasemnice": "Blechy způsobují svědění a ve srsti mohou být černé tečky. Čiperka má ale kulatá lysá místa a některé její chlupy svítí pod UV lampou.", "usni-roztoci": "Roztoči způsobují potíže hlavně v uších. Čiperka má ale kulatá lysá místa na kůži a některé její chlupy svítí pod UV lampou."},
       lecba: "Léky proti plísni, které Čiperka dostává ústy, léčivé koupele nebo šampony a důkladný úklid doma.",
       spatne: [{"text": "Jen ostříhat chlupy kolem lysých míst.", "proc": "Ostříhání plíseň nevyléčí. Čiperka potřebuje léky a doma se musí uklízet."}, {"text": "Lék proti roztočům.", "proc": "Čiperka nemá roztoče, má kožní plíseň."}],
       pozor: "Kožní plíseň se může přenést i na lidi. Po pohlazení nemocné kočky si umyj ruce."
@@ -239,7 +239,7 @@ window.ATLAS_DATA.veterina = {
       nalezy: {"lupa": "Polštářky jsou zarudlé a mají puchýře."},
       moznosti: ["popalena-tlapka", "prerostle-drapy", "zlomena-noha"],
       proc: {"prerostle-drapy": "Rozárka nemá zarostlý dráp. Polštářky má zarudlé s puchýři po horkém sporáku.", "zlomena-noha": "Rozárka nespadla a nesrazilo ji auto. Má popálené polštářky."},
-      lecba: "Hned chlaď tlapku alespoň 20 minut pod chladnou, ne ledovou tekoucí vodou. Rozárku při tom musí držet dospělý, protože z bolesti může kousat a škrábat. Když se brání nebo hrozí, že někoho kousne, odvezte ji rovnou k veterináři. Jinak po chlazení jeďte k veterináři. Veterinář popáleninu ošetří a dá Rozárce léky proti bolesti.",
+      lecba: "Hned chlaď tlapku alespoň 20 minut pod chladnou, ne ledovou tekoucí vodou. Při chlazení musí dospělý dávat pozor, aby ho Rozárka z bolesti nekousla nebo nepoškrábala. Když se brání nebo hrozí, že někoho kousne, odvezte ji rovnou k veterináři. Jinak po chlazení jeďte k veterináři. Veterinář popáleninu ošetří a dá Rozárce léky proti bolesti.",
       spatne: [{"text": "Přiložit na tlapku led.", "proc": "Na popáleninu se nikdy nedává led! Chladí se chladnou, ne ledovou vodou."}, {"text": "Zastřihnout drápy.", "proc": "Drápy tu nepomůžou. Popálené polštářky potřebují ošetřit."}],
       pozor: "Na popáleninu nikdy nedávej led!"
     },
