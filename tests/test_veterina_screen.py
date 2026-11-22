@@ -1,4 +1,4 @@
-"""Na veterině screens (#73 stage 4b): menu item, the section start (Ordinace not ready yet, Kočičí nemoci),
+"""Na veterině screens (#73 stage 4b): menu item, the section start (Ordinace, Kočičí nemoci),
 the list grouped by the three badges with every card once, every card in the pop-up (badge, five headings, Pozor!,
 picture, X-ray link into Zajímavé rentgeny, body parts that open their atlas card with a way back), a deep link
 that opens a card, phone layout."""
@@ -15,7 +15,7 @@ with sync_playwright() as p:
 
     pg.goto(url("/veterina")); pg.wait_for_timeout(200)
     r.ok(pg.locator("h1.screen-title").inner_text() == "Na veterině", "section title")
-    r.ok(pg.locator(".vet-menu .menu-card.is-soon").count() == 1 and ui["vetOrdinace"] in pg.locator(".vet-menu .is-soon").inner_text(), "Ordinace shown as not ready yet")
+    r.ok(pg.locator(".vet-menu a.menu-card[href='#/veterina/ordinace']").count() == 1 and pg.locator(".vet-menu .is-soon").count() == 0, "Ordinace is a link")
     pg.click("a.menu-card[href='#/veterina/nemoci']"); pg.wait_for_timeout(200)
     r.ok(pg.locator("h1.screen-title").inner_text() == ui["vetNemoci"], "Kočičí nemoci opens")
 

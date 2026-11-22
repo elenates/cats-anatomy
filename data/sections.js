@@ -100,8 +100,25 @@ window.ATLAS_DATA.ui = {
   // Procvičování (M7 stage 1) – to proofread
   procvicovaniIntro: "Tady najdeš všechny hry z celého atlasu. Vyber si, co chceš procvičit.",
   backProcvicovani: "Zpět na procvičování",
-  // Na veterině (#73 stage 4b) – to be proofread
+  // Na veterině (#73 stages 4b, 4c) – proofread by Lenka
   vetOrdinace: "Ordinace",
+  vetOrdinaceText: "Vyšetři kočku a zjisti, co jí je",
+  vetCekarna: "Čekárna",
+  vetCekarnaIntro: "Vyber si pacienta. Kočky, které už jsi ošetřil/a, mají tlapku 🐾.",
+  vetNahodny: "Náhodný pacient",
+  vetOsetreno: "ošetřeno",
+  vetDoCekarny: "Zpět do čekárny",
+  vetVysetreni: "Vyšetření",
+  vetVysetreniIntro: "Vyber, jak kočku vyšetříš. Můžeš ji vyšetřit, kolikrát chceš.",
+  vetVysledky: "Výsledky vyšetření",
+  vetVim: "Vím, co kočce je →",
+  vetCoJe: "Co kočce je?",
+  vetCoPomuze: "Co pomůže?",
+  vetSpravne: "Správně!",
+  vetSpatne: "To není ono.",
+  vetZkus: "Zkus jinou odpověď.",
+  vetHotovo: "Výborně! Víš, co kočce je i co jí pomůže.",
+  vetDalsi: "Další pacient",
   vetNemoci: "Kočičí nemoci",
   vetNemociText: "Co kočky trápí a co jim pomůže",
   vetNemociIntro: "Klepni na nemoc a přečti si, co to je, jak ji poznáš a co kočce pomůže.",
@@ -246,5 +263,6 @@ window.ATLAS_DATA.procvicovani = [
   { section: "organy", games: [{ href: "#/organy/kviz", title: "quizTitleOrgany" }, { href: "#/organy/soustavy-kviz", title: "soustavyKviz" }] },
   { section: "svaly", games: [{ href: "#/svaly/kviz", title: "quizTitleSvaly" }, { href: "#/svaly/spoj", title: "spojSvaly" }] },
   { section: "smysly", games: [{ href: "#/smysly/kviz", title: "quizTitleSmysly" }, { href: "#/smysly/spoj", title: "spojSmysly" }] },
-  { section: "clovek", games: [{ href: "#/clovek/kdo-ma", title: "kdoMa" }, { href: "#/clovek/najdi", title: "quizTitleClovek" }, { href: "#/clovek/spoj", title: "spojClovek" }] }
+  { section: "clovek", games: [{ href: "#/clovek/kdo-ma", title: "kdoMa" }, { href: "#/clovek/najdi", title: "quizTitleClovek" }, { href: "#/clovek/spoj", title: "spojClovek" }] },
+  { section: "veterina", games: [{ href: "#/veterina/ordinace", title: "vetOrdinace" }] }
 ];
