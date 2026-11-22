@@ -100,16 +100,16 @@ window.ATLAS_DATA.ui = {
   // Procvičování (M7 stage 1) – to proofread
   procvicovaniIntro: "Tady najdeš všechny hry z celého atlasu. Vyber si, co chceš procvičit.",
   backProcvicovani: "Zpět na procvičování",
-  // Na veterině (#73 stages 4b, 4c) – 4b proofread by Lenka; 4c to be proofread
+  // Na veterině (#73 stages 4b, 4c) – proofread by Lenka
   vetOrdinace: "Ordinace",
   vetOrdinaceText: "Vyšetři kočku a zjisti, co jí je",
   vetCekarna: "Čekárna",
-  vetCekarnaIntro: "Vyber si pacienta. Kočky, které už jsou ošetřené, mají tlapku 🐾.",
+  vetCekarnaIntro: "Vyber si pacienta. Kočky, které už jsi ošetřil/a, mají tlapku 🐾.",
   vetNahodny: "Náhodný pacient",
   vetOsetreno: "ošetřeno",
   vetDoCekarny: "Zpět do čekárny",
   vetVysetreni: "Vyšetření",
-  vetVysetreniIntro: "Vyber, jak kočku vyšetříš. Vyšetření můžeš udělat, kolik chceš.",
+  vetVysetreniIntro: "Vyber, jak kočku vyšetříš. Můžeš ji vyšetřit, kolikrát chceš.",
   vetVysledky: "Výsledky vyšetření",
   vetVim: "Vím, co kočce je →",
   vetCoJe: "Co kočce je?",
