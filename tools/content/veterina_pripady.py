@@ -405,3 +405,26 @@ STRACH_PRIPADY = {
     "mates": "Mates vrčí, má rozšířené zorničky a schoulil se s ocasem stočeným kolem těla.",
     "rozarka": "Rozárka syčí a uši má přitisknuté k hlavě.",
 }
+
+# Treat the cat (#104 stage F, the child's wish): after „Co pomůže?“ the child takes the items from the cabinet and
+# uses them on the cat. Items only from the case's own treatment text (lecba); the vet checks the mapping.
+# Icons in images/veterina/nastroje/<id>.svg. „hrebinek“ is also an examination tool.
+LECBA_CS = {
+    "leky": "Léky", "injekce": "Injekce", "kapky": "Kapky nebo mast", "obvaz": "Obvaz", "dieta": "Speciální krmení",
+    "inhalator": "Inhalátor s maskou", "nuzky-drapy": "Nůžky na drápky", "pinzeta": "Pinzeta", "ockovaci-prukaz": "Očkovací průkaz",
+    "operace": "Operace", "infuze": "Infuze", "voda": "Tekoucí voda", "strojek": "Strojek na srst", "cevka": "Cévka",
+    "endoskop": "Endoskop", "zuby": "Ošetření zubů", "hrebinek": "Hřeben",
+}
+# case: (items that must all be used, items that are also right). With no required items, one of the others is enough.
+# Felix and Liduška need no treatment: the step is skipped.
+OSETRENI = {
+    "mourek": (["cevka"], []), "micka": (["operace"], []), "tygr": (["operace"], []), "bella": (["infuze"], []),
+    "smudla": ([], ["kapky", "leky"]), "rambo": (["leky"], []), "pirko": (["leky"], []), "lizinka": (["leky"], []),
+    "kulicka": (["leky"], []), "ferda": (["zuby"], []), "ciperka": (["leky"], []), "rozarka": (["voda", "leky"], []),
+    "starenka": (["dieta"], []), "brumla": ([], ["leky", "dieta", "operace"]), "pepina": ([], ["dieta"]),
+    "zrzek": (["endoskop"], ["operace"]), "bara": (["leky"], ["operace"]), "fifinka": (["injekce", "ockovaci-prukaz"], []),
+    "felix": ([], []), "liduska": ([], []), "pusinka": (["hrebinek"], ["dieta"]), "bonifac": (["kapky"], []),
+    "macek": (["dieta"], []), "bobes": (["nuzky-drapy", "leky"], []), "snehurka": (["leky"], ["inhalator"]),
+    "mates": (["infuze", "leky", "dieta"], []), "perla": (["strojek"], ["leky"]), "rarasek": (["pinzeta"], []),
+    "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], ["dieta"]),
+}
