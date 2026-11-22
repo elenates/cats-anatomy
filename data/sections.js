@@ -119,7 +119,7 @@ window.ATLAS_DATA.ui = {
   vetStrachHint: "Kočka se bojí. Než ji vyšetříš, rozhodni, co uděláš jako první.",
   vetStrachFoto: "Vystrašená kočka syčí a má uši přitisknuté k hlavě",
   vetOsetri: "Ošetři kočku",
-  vetOsetriIntro: "Vezmi ze skříňky všechno, co kočce pomůže, a použij to: klepni na to.",
+  vetOsetriIntro: "Vezmi ze skříňky všechno, co kočce pomůže, a použij to klepnutím.",
   vetChybi: "Správně! Ještě něco chybí.",
   vetNepomuze: "Tohle teď kočce nepomůže.",
   vetOsetrenaHotovo: "Hotovo, kočka je ošetřená.",
