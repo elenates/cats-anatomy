@@ -129,13 +129,13 @@ window.ATLAS_DATA.nemoci = {
       coToJe: "Blechy jsou drobný hmyz, který skáče a saje krev. Když kočka při čištění srsti blechu spolkne, může jí ve střevě vyrůst tasemnice.",
       jakToPoznas: "Kočka se drbe a kouše do srsti. Ve srsti jsou černé tečky jako pepř. U zadečku mohou být bílé kousky jako zrníčka rýže.",
       jakToVetZjisti: "Veterinář pročeše srst hustým bleším hřebínkem nad bílým navlhčeným papírem. Když černé tečky na papíře zčervenají, je to bleší trus.",
-      coPomuze: "Přípravek proti blechám pro všechna zvířata v domě, vyčištění bytu i pelíšků a lék proti tasemnici.",
+      coPomuze: "Přípravek proti blechám pro všechna zvířata v domě, pro každé ten, který je určený pro jeho druh. Některé přípravky pro psy jsou pro kočky jedovaté! K tomu vyčištění bytu i pelíšků a lék proti tasemnici.",
       jakTomuPredejit: "Prevence proti blechám po celý rok, i u koček, které žijí jen doma.",
       pozor: null,
       telo: [{"content": "vnejsi", "id": "srst"}, {"content": "organy", "id": "tenke-strevo"}],
       obrazek: null,
       rentgen: null,
-      refs: ["CHEWY-FLEAS", "PETMD-FLEADIRT", "BANFIELD-FLEAS", "CDC-DIPY"]
+      refs: ["CHEWY-FLEAS", "PETMD-FLEADIRT", "BANFIELD-FLEAS", "PDSA-PERMETHRIN", "CDC-DIPY"]
     },
     {
       id: "skrkavky",
@@ -189,7 +189,7 @@ window.ATLAS_DATA.nemoci = {
       coToJe: "Kočka skočila na horký sporák a spálila si polštářky na tlapkách.",
       jakToPoznas: "Kočka kulhá a olizuje si tlapku. Polštářky jsou zarudlé, mohou mít puchýře nebo jinou barvu.",
       jakToVetZjisti: "Veterinář tlapku prohlédne. Jak moc je popálená, se někdy ukáže až za pár dní.",
-      coPomuze: "Hned: tlapku alespoň 20 minut chlaď pod chladnou, ne ledovou tekoucí vodou. Kočku při tom musí držet dospělý, protože z bolesti může kousat a škrábat. Pak jeď k veterináři. Veterinář popáleninu ošetří a dá kočce léky proti bolesti. Někdy jsou potřeba také antibiotika.",
+      coPomuze: "Hned: tlapku alespoň 20 minut chlaď pod chladnou, ne ledovou tekoucí vodou. Kočku při tom musí držet dospělý, protože z bolesti může kousat a škrábat. Když se brání nebo hrozí, že někoho kousne, odvezte ji rovnou k veterináři. Jinak po chlazení jeďte k veterináři. Veterinář popáleninu ošetří a dá kočce léky proti bolesti. Někdy jsou potřeba také antibiotika.",
       jakTomuPredejit: "Když vaříš, drž kočku dál od sporáku. Po vaření ji na něj nepouštěj, dokud úplně nevychladne.",
       pozor: "Na popáleninu nikdy nedávej led!",
       telo: [{"content": "vnejsi", "id": "polstarky"}, {"content": "vnejsi", "id": "tlapka"}],
