@@ -419,6 +419,13 @@ window.ATLAS_DATA.zdroje = {
       licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
       changes: [{ text: "Úpravy: žádné, jde o původní kresbu." }],
       figures: [{ cs: "Ordinace veterináře", file: "images/veterina/ordinace.svg" }]
+    },
+    {
+      heading: "Vystrašená kočka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Hisashi", href: "https://commons.wikimedia.org/wiki/File:Hissing_Cat_in_Japan_2009-07-05_(cropped).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
+      figures: [{ cs: "Vystrašená kočka", file: "images/veterina/vystrasena-kocka.webp" }]
     }
   ],
 

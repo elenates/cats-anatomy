@@ -53,6 +53,17 @@ for p in V.PRIPADY:
     if set(p.get("proc", {})) != set(m) - {p["nemoc"]}: fails.append(f"{p['id']}: every wrong diagnosis needs a why")
     text = " ".join([p["pribeh"], p["lecba"], *[w["text"] + " " + w["proc"] for w in p["spatne"]], *p.get("proc", {}).values(), *p["nalezy"].values()])
     if re.search(r"\d\s*(mg|ml|tablet|kapk)", text, re.I): fails.append(f"{p['id']}: looks like a dose")
+# Exam room (#104 stage C): the frightened-cat step.
+S = V.STRACH
+for k in ("jak", "otazka", "doma", "sources"):
+    if not S.get(k, "").strip(): fails.append(f"strach: empty {k}")
+if not S["spravne"].get("text") or not S["spravne"].get("proc"): fails.append("strach: right answer needs text and why")
+if len(S["spatne"]) != 2 or any(not w.get("text") or not w.get("proc") for w in S["spatne"]): fails.append("strach: needs two wrong answers with why")
+ids = {p["id"] for p in V.PRIPADY}
+for k, t in V.STRACH_PRIPADY.items():
+    if k not in ids: fails.append(f"strach: unknown case {k}")
+    if not t.strip(): fails.append(f"strach: empty signs for {k}")
+if not os.path.exists(os.path.join(ROOT, "images", "veterina", "vystrasena-kocka.webp")): fails.append("strach: photo missing")
 for c in sorted(cards - used): fails.append(f"card {c} has no case")
 if len(set(fotos)) != len(fotos): fails.append("two cases share a patient photo")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")

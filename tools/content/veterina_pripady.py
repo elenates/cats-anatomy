@@ -382,3 +382,26 @@ PRIPADY = [
                dict(text="Lék proti bolesti.", proc="Kryštofa nic nebolí. Je zdravý a dospívá.")],
        flags="Healthy visit. Hormones support spraying (BATH-NEUTER), neutering often helps but not always (Lenka, vet view)."),
 ]
+
+# Exam room (#104 stage C): some patients in pain are frightened when they are put on the table.
+# The child must notice the signs and choose the safe first step before examining.
+# Texts proofread by Lenka with the vet's view (2026-11-22). Photo: images/veterina/vystrasena-kocka.webp (Lenka: A).
+STRACH = dict(
+    jak="Jak poznáš, že se kočka bojí? Uši má přitisknuté k hlavě nebo sklopené do stran, zorničky má rozšířené. Syčí, vrčí nebo prská. Krčí se a dělá se malá, nebo se naopak hrbí a čepýří srst. Může také švihat ocasem.",
+    otazka="Kočka se bojí. Co uděláš jako první?",
+    spravne=dict(text="Necháš ji chvilku v klidu, mluvíš potichu a nedíváš se jí přímo do očí. Veterinář ji pak jemně přikryje ručníkem.",
+                 proc="Vystrašená kočka potřebuje chvilku klidu. Pod ručníkem se může cítit bezpečněji a veterinář ji může opatrně vyšetřit."),
+    spatne=[dict(text="Rychle ji chytíš a pevně podržíš.", proc="Prudké pohyby a hrubé držení kočku vystraší ještě víc. Může kousnout nebo škrábnout."),
+            dict(text="Pohladíš ji po bříšku, aby se uklidnila.", proc="Kočka, která syčí a vrčí, nechce, aby se jí někdo dotýkal. Dej jí prostor.")],
+    doma="Doma: Když se kočka bojí nebo ji něco bolí, nesahej na ni a zavolej dospělého. Kočka, která má bolesti, může kousnout, i když je jinak hodná.",
+    sources="AGVIC-BODY (frightened: body low, ears flat; defensive: tail fluffed up, back arched); EDINBURGH-BODY (tail lashing, crouched defensive); PETCIRCLE-BODY (growling, hissing, spitting, dilated pupils; do not approach); AAHA-FELINE (hide partly under a towel, towels rather than scruffing, no eye contact); AAFP-HANDLING (rough handling, sudden movements, loud voices cause fear or aggression); AAFP-INTERACT (reduce fear at the vet)",
+    flags="Vet view (Lenka, 2026-11-22): the towel helps the cat hide and feel safer, it is not for forceful restraint. A cat in pain may bite even if it is normally gentle (vet review of the burn card).",
+)
+# Patients who are frightened on the table, with the signs the child sees (each sign is in STRACH['jak']).
+STRACH_PRIPADY = {
+    "tygr": "Tygr má uši sklopené dozadu, rozšířené zorničky a syčí.",
+    "rambo": "Rambo vrčí, švihá ocasem a uši má sklopené do stran.",
+    "bara": "Bára se krčí, má uši přitisknuté k hlavě, a když se k ní někdo přiblíží, zasyčí.",
+    "mates": "Mates vrčí, má rozšířené zorničky a schoulil se s ocasem stočeným kolem těla.",
+    "rozarka": "Rozárka syčí a uši má přitisknuté k hlavě.",
+}
