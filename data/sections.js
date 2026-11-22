@@ -18,6 +18,7 @@ window.ATLAS_DATA.sections = [
   { id: "smysly",      cs: "Smysly",              icon: "👁️", status: "active" },
   { id: "rentgen",     cs: "Kočičí rentgen",      icon: "🩻", status: "active" },
   { id: "clovek",      cs: "Kočka a člověk",      icon: "🧍", status: "active" },
+  { id: "veterina",    cs: "Na veterině",         icon: "🩺", status: "active" },
   { id: "procvicovani", cs: "Procvičování",       icon: "✏️", status: "active" }
 ];
 
@@ -99,6 +100,16 @@ window.ATLAS_DATA.ui = {
   // Procvičování (M7 stage 1) – to proofread
   procvicovaniIntro: "Tady najdeš všechny hry z celého atlasu. Vyber si, co chceš procvičit.",
   backProcvicovani: "Zpět na procvičování",
+  // Na veterině (#73 stage 4b) – to be proofread
+  vetOrdinace: "Ordinace",
+  vetNemoci: "Kočičí nemoci",
+  vetNemociText: "Co kočky trápí a co jim pomůže",
+  vetNemociIntro: "Klepni na nemoc a přečti si, co to je, jak ji poznáš a co kočce pomůže.",
+  vetBack: "Zpět na veterinu",
+  vetCardBack: "Zpět na nemoc: {name}",
+  vetTelo: "Kde to je v těle?",
+  vetRentgen: "Podívej se na rentgen →",
+  vetObrazky: { "zub-resorpce": "Rentgen zubů kočky" },
 
   // Quiz Najdi část těla (Vnější stavba těla, M7) – to proofread
   quizOpenVnejsi: "Najdi část těla",
