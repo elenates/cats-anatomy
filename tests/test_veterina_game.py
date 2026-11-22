@@ -1,4 +1,4 @@
-"""Ordinace, the vet game (#73 stage 4c): the waiting room with every patient and Náhodný pacient; every case played
+"""Ordinace, the vet game (#73 stage 4c, exam room #104 stage D): the cat onto the table, tools only then, the frightened-cat step for five patients; the waiting room with every patient and Náhodný pacient; every case played
 through: the story, every examination with its finding („Nic důležitého.“ when the case has none), the button to go
 on only after an examination, „Co kočce je?“ with a why for each wrong card, „Co pomůže?“ with a why for each wrong
 treatment, the end with Pozor!, the link to the card and the next patient; the paw in the waiting room afterwards
@@ -27,7 +27,25 @@ with sync_playwright() as p:
         r.ok(pg.locator(".vet-patient img").evaluate("i => i.complete && i.naturalWidth > 0"), f"{c['id']}: photo loads")
         nxt = pg.locator(".vet-s-vysetreni .quiz-next")
         r.ok(nxt.is_disabled(), f"{c['id']}: no going on before an examination")
-        r.ok(pg.locator(".vet-exam").count() == len(V["vysetreni"]), f"{c['id']}: all examinations")
+        r.ok(pg.locator(".vet-room .vet-exam").count() == len(V["vysetreni"]), f"{c['id']}: all examinations in the room")
+        r.ok(pg.locator(".vet-cat img").evaluate("i => i.complete && i.naturalWidth > 0") and
+             pg.locator(".vet-cat img").get_attribute("src") == f"images/veterina/vyrezy/{c['id']}.webp", f"{c['id']}: cut-out loads")
+        r.ok(pg.locator(".vet-exam:disabled").count() == len(V["vysetreni"]), f"{c['id']}: tools wait until the cat is on the table")
+        pg.click(".vet-cat"); pg.wait_for_timeout(50)
+        r.ok(pg.locator(".vet-room.is-on-table").count() == 1, f"{c['id']}: the cat is on the table")
+        if c.get("strach"):
+            S = V["strach"]; box = pg.locator(".vet-strach")
+            r.ok(box.count() == 1 and c["strach"] in box.inner_text() and S["jak"] in box.inner_text(), f"{c['id']}: frightened, signs shown")
+            r.ok(box.locator("img").evaluate("i => i.complete && i.naturalWidth > 0"), f"{c['id']}: frightened-cat photo loads")
+            r.ok(pg.locator(".vet-exam:disabled").count() == len(V["vysetreni"]), f"{c['id']}: no examining a frightened cat")
+            for i, w in enumerate(S["spatne"]):
+                box.locator(f"[data-option='strach-{i}']").click()
+                r.ok(w["proc"] in box.locator(".vet-fb").inner_text(), f"{c['id']}: why not frightened answer {i}")
+            box.locator("[data-option='spravne']").click()
+            r.ok(S["spravne"]["proc"] in box.inner_text() and S["doma"] in box.inner_text(), f"{c['id']}: the safe first step and the note for home")
+        else:
+            r.ok(pg.locator(".vet-strach").count() == 0, f"{c['id']}: calm cat, no frightened step")
+        r.ok(pg.locator(".vet-exam:disabled").count() == 0, f"{c['id']}: tools ready")
         for v in V["vysetreni"]:
             pg.click(f".vet-exam[data-exam='{v['id']}']")
             t = pg.locator(f"[data-nalez='{v['id']}'] .card-p").inner_text()
@@ -72,10 +90,22 @@ with sync_playwright() as p:
     pg.click(".vet-s-konec .vet-dalsi"); pg.wait_for_timeout(150)
     r.ok(pg.evaluate("location.hash").startswith("#/veterina/ordinace/") and pg.evaluate("location.hash") != "#/veterina/ordinace/" + done[-1], "Další pacient opens another case")
     pg.goto(url("/veterina/ordinace/mourek")); pg.wait_for_timeout(100)
-    pg.click(".vet-exam[data-exam='prohmatat']"); pg.click(".vet-s-vysetreni .quiz-next")
+    pg.click(".vet-cat"); pg.click(".vet-exam[data-exam='prohmatat']"); pg.click(".vet-s-vysetreni .quiz-next")
     pg.click(".vet-s-coje [data-option='ucpana-mocova-trubice']"); pg.click(".vet-s-pomuze [data-option='lecba']")
     pg.click(".vet-s-konec a.part-link"); pg.wait_for_timeout(300)
     r.ok(pg.locator("dialog.info-dialog[open]").get_attribute("data-id") == "ucpana-mocova-trubice", "the end link opens the card")
+    # drag the cat onto the table; the keyboard; the treatment shelf only says it is for later
+    pg.keyboard.press("Escape"); pg.goto(url("/veterina/ordinace/felix")); pg.wait_for_timeout(200)
+    pg.locator(".vet-room").scroll_into_view_if_needed(); pg.evaluate("window.scrollBy(0, 200)"); pg.wait_for_timeout(100)
+    cb = pg.locator(".vet-cat").bounding_box(); tb = pg.locator(".vet-table").bounding_box()
+    pg.mouse.move(cb["x"] + cb["width"] / 2, cb["y"] + cb["height"] / 2); pg.mouse.down()
+    pg.mouse.move(tb["x"] + tb["width"] / 2, tb["y"] + tb["height"] / 2, steps=8); pg.mouse.up(); pg.wait_for_timeout(50)
+    r.ok(pg.locator(".vet-room.is-on-table").count() == 1, "the cat can be dragged onto the table")
+    pg.click(".vet-lecba[data-lecba='leky']")
+    r.ok(pg.locator(".vet-room-hint").inner_text() == ui["vetLecbaPolice"], "a treatment thing says it is for later")
+    pg.goto(url("/veterina/ordinace/macek")); pg.wait_for_timeout(200)
+    pg.focus(".vet-cat"); pg.keyboard.press("Enter"); pg.wait_for_timeout(50)
+    r.ok(pg.locator(".vet-room.is-on-table").count() == 1, "the keyboard puts the cat on the table")
     # paws last only while the page is open
     pg.reload(); pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(200)
     r.ok(pg.locator(".vet-tlapka").count() == 0, "paws are gone after a reload")
@@ -84,6 +114,7 @@ with sync_playwright() as p:
     ph.goto(url("/veterina/ordinace")); ph.wait_for_timeout(300)
     r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone waiting room: no sideways scroll")
     ph.goto(url("/veterina/ordinace/pepina")); ph.wait_for_timeout(300)
+    ph.click(".vet-cat")
     for v in ("prohmatat", "rentgen", "teplomer"): ph.click(f".vet-exam[data-exam='{v}']")
     ph.click(".vet-s-vysetreni .quiz-next"); ph.click(".vet-s-coje [data-option='zacpa']") if ph.locator(".vet-s-coje [data-option='zacpa']").count() else None
     r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone case: no sideways scroll")

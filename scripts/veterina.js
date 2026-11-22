@@ -6,7 +6,10 @@
  *   #/veterina/ordinace         Ordinace, the waiting room: every patient photo, a paw 🐾 on the cats already treated
  *                               (kept only while the page is open: no points, nothing saved; Lenka 2026-11-22),
  *                               and Náhodný pacient
- *   #/veterina/ordinace/<id>    one case (ATLAS_DATA.veterina.pripady): the story, the examinations (any number,
+ *   #/veterina/ordinace/<id>    one case (ATLAS_DATA.veterina.pripady): the story, the exam room (#104: the cat's
+ *                               cut-out is tapped or dragged onto the table; a frightened patient needs the safe first
+ *                               step first; tools from the cabinet, ultrasound on the trolley, the X-ray room door),
+ *                               the examinations (any number,
  *                               „Nic důležitého.“ when a case has no finding), „Co kočce je?“ (three cards; a wrong
  *                               one says why), „Co pomůže?“ (three answers; a wrong one says why), the end with the
  *                               case's Pozor!, a link to the card in Kočičí nemoci and the next patient
@@ -161,36 +164,119 @@
     var host = el("div", { "class": "vet-game", "data-case": p.id });
     nodes.push(host);
 
-    // 1. Examinations
+    // 1. Examinations, in the exam room (#104): put the cat on the table, calm a frightened cat first,
+    // then take a tool from the cabinet, the ultrasound from the trolley or carry the cat to the X-ray room.
     var s1 = step(host, ui.vetVysetreni || "Vyšetření", "vet-s-vysetreni");
-    s1.sec.appendChild(el("p", { "class": "fig-note", text: ui.vetVysetreniIntro || "" }));
-    var grid = el("ul", { "class": "vet-exams" });
+    var hint = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: ui.vetNaStul || "" });
+    s1.sec.appendChild(hint);
     var results = el("ol", { "class": "vet-nalezy", "aria-live": "polite" });
     var next = el("button", { type: "button", "class": "quiz-next", disabled: "", text: ui.vetVim || "Vím, co kočce je →" });
+    var room = el("div", { "class": "vet-room", role: "group", "aria-label": ui.vetOrdinace || "Ordinace" });
+    room.appendChild(el("img", { "class": "vet-room-bg", src: "images/veterina/ordinace.svg", alt: "" }));
+    room.appendChild(el("span", { "class": "vet-room-label vet-l-cekarna", "aria-hidden": "true", text: ui.vetCekarna || "Čekárna" }));
+    room.appendChild(el("span", { "class": "vet-room-label vet-l-rentgen", "aria-hidden": "true", text: ui.vetRentgenDvere || "Rentgen" }));
+    var table = el("button", { type: "button", "class": "vet-table", "aria-label": ui.vetStul || "Vyšetřovací stůl" });
+    room.appendChild(table);
+    var cat = el("button", { type: "button", "class": "vet-cat", "aria-label": fmt(ui.vetPolozit || "Položit kočku {name} na stůl", { name: p.jmeno }) }, [
+      el("img", { src: "images/veterina/vyrezy/" + p.id + ".webp", alt: "", draggable: "false" })]);
+    room.appendChild(cat);
+    var flash = el("div", { "class": "vet-flash", "aria-hidden": "true" });
+    room.appendChild(flash);
+    var tools = [];   // examination buttons: disabled until the cat is on the table (and calm)
+    var SHELF = { stetoskop: [0, 0], teplomer: [0, 1], vaha: [0, 2], prohmatat: [0, 3], lupa: [0, 4], otoskop: [0, 5], "krevni-test": [0, 6],
+      "test-moci": [0, 7], "barvivo-oko": [1, 0], mikroskop: [1, 1], hrebinek: [1, 2], "uv-lampa": [1, 3] };
+    var LECBA = ["leky", "injekce", "kapky", "obvaz", "dieta", "inhalator", "nuzky-drapy", "pinzeta", "ockovaci-prukaz", "operace"];
+    function slot(row, col) { return { left: (19.9 + col * 4.0) + "%", top: (13.3 + row * 16.2) + "%" }; }
+    function place(n, pos) { Object.keys(pos).forEach(function (k) { n.style[k] = pos[k]; }); }
+    var onTable = false, calm = !p.strach;
+    function setTools() { tools.forEach(function (b) { b.disabled = !(onTable && calm); }); }
+    function examine(v, b) {
+      if (b.classList.contains("is-done")) {   // already done: show its result again
+        var old = results.querySelector("[data-nalez='" + v.id + "']");
+        if (old) { old.scrollIntoView({ block: "nearest" }); old.classList.remove("is-flash"); void old.offsetWidth; old.classList.add("is-flash"); }
+        return;
+      }
+      b.classList.add("is-done"); b.setAttribute("aria-pressed", "true");
+      // A short movement: the tool to the cat, or the cat to the X-ray room and back.
+      if (v.id === "rentgen") { room.classList.remove("is-xray"); void room.offsetWidth; room.classList.add("is-xray"); }
+      else { b.classList.remove("is-used"); void b.offsetWidth; b.classList.add("is-used"); }
+      var f = p.nalezy[v.id];
+      var li = el("li", { "class": "vet-nalez" + (f ? "" : " is-nic"), "data-nalez": v.id }, [
+        el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" }),
+        el("div", null, [el("strong", { text: v.cs }), el("p", { "class": "card-p", text: f || V().nic })])]);
+      // The card's own picture (the dental X-ray) goes with the X-ray finding.
+      if (v.id === "rentgen" && f && c.obrazek) li.lastChild.appendChild(el("img", { "class": "vet-nalez-obr", src: "images/veterina/" + c.obrazek + ".webp",
+        alt: (ui.vetObrazky || {})[c.obrazek] || "" }));
+      results.appendChild(li);
+      next.disabled = false;
+      li.scrollIntoView({ block: "nearest" });
+    }
     V().vysetreni.forEach(function (v) {
-      var b = el("button", { type: "button", "class": "vet-exam", "data-exam": v.id }, [
-        el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" }), el("span", { text: v.cs })]);
-      b.addEventListener("click", function () {
-        if (b.classList.contains("is-done")) {   // already done: show its result again
-          var old = results.querySelector("[data-nalez='" + v.id + "']");
-          if (old) { old.scrollIntoView({ block: "nearest" }); old.classList.remove("is-flash"); void old.offsetWidth; old.classList.add("is-flash"); }
-          return;
-        }
-        b.classList.add("is-done"); b.setAttribute("aria-pressed", "true");
-        var f = p.nalezy[v.id];
-        var li = el("li", { "class": "vet-nalez" + (f ? "" : " is-nic"), "data-nalez": v.id }, [
-          el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" }),
-          el("div", null, [el("strong", { text: v.cs }), el("p", { "class": "card-p", text: f || V().nic })])]);
-        // The card's own picture (the dental X-ray) goes with the X-ray finding.
-        if (v.id === "rentgen" && f && c.obrazek) li.lastChild.appendChild(el("img", { "class": "vet-nalez-obr", src: "images/veterina/" + c.obrazek + ".webp",
-          alt: (ui.vetObrazky || {})[c.obrazek] || "" }));
-        results.appendChild(li);
-        next.disabled = false;
-        li.scrollIntoView({ block: "nearest" });
-      });
-      grid.appendChild(el("li", null, [b]));
+      var where = v.id === "rentgen" ? "vet-t-rentgen" : v.id === "ultrazvuk" ? "vet-t-ultrazvuk" : "vet-t-police";
+      var b = el("button", { type: "button", "class": "vet-exam " + where, "data-exam": v.id, "aria-label": v.cs, title: v.cs, disabled: "" },
+        v.id === "rentgen" ? [] : [el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" })]);
+      if (SHELF[v.id]) place(b, slot(SHELF[v.id][0], SHELF[v.id][1]));
+      b.addEventListener("click", function () { examine(v, b); });
+      tools.push(b); room.appendChild(b);
     });
-    s1.sec.appendChild(grid);
+    // The treatment things on the lower shelves are for later: a tap only says so.
+    LECBA.forEach(function (id, i) {
+      var pos = i < 2 ? slot(1, 6 + i) : slot(2, i - 2);
+      var b = el("button", { type: "button", "class": "vet-lecba", "data-lecba": id, "aria-label": ui.vetLecbaPolice || "", title: ui.vetLecbaPolice || "" },
+        [el("img", { src: "images/veterina/nastroje/" + id + ".svg", alt: "" })]);
+      place(b, pos);
+      b.addEventListener("click", function () { hint.textContent = ui.vetLecbaPolice || ""; });
+      room.appendChild(b);
+    });
+
+    // The frightened patient (#104 stage C): the signs, the photo and the safe first step.
+    var S = V().strach;
+    function scared() {
+      var box = el("section", { "class": "vet-strach", role: "region", "aria-label": ui.vetStrachH || "Pozor, kočka se bojí!" }, [
+        el("h3", { "class": "card-h", text: ui.vetStrachH || "Pozor, kočka se bojí!" }),
+        el("div", { "class": "vet-strach-row" }, [
+          el("img", { src: "images/veterina/" + S.foto + ".webp", alt: ui.vetStrachFoto || "" }),
+          el("div", null, [el("p", { "class": "card-p vet-strach-znaky", text: p.strach }), el("p", { "class": "card-p", text: S.jak }),
+            el("p", { "class": "card-p vet-strach-otazka", text: S.otazka })])])]);
+      s1.sec.insertBefore(box, results.previousSibling);
+      var opts = [{ key: "spravne", text: S.spravne.text, right: true, why: S.spravne.proc }].concat(S.spatne.map(function (w, i) {
+        return { key: "strach-" + i, text: w.text, right: false, why: w.proc }; }));
+      choice(box, opts, function () {
+        calm = true; room.classList.remove("is-scared"); setTools();
+        box.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [document.createTextNode(S.doma)]));
+        hint.textContent = ui.vetNastroje || "";
+      });
+    }
+    function putOnTable() {
+      if (onTable) return;
+      onTable = true; room.classList.add("is-on-table"); cat.disabled = true;
+      cat.setAttribute("aria-label", p.jmeno);
+      if (p.strach) { room.classList.add("is-scared"); hint.textContent = ui.vetStrachHint || ""; scared(); }
+      else hint.textContent = ui.vetNastroje || "";
+      setTools();
+    }
+    table.addEventListener("click", putOnTable);
+    // Tap the cat, or drag it onto the table.
+    var drag = null;
+    cat.addEventListener("pointerdown", function (e) {
+      if (onTable) return;
+      drag = { x: e.clientX, y: e.clientY, moved: false }; cat.setPointerCapture(e.pointerId);
+    });
+    cat.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 6) drag.moved = true;
+      cat.style.transform = "translate(" + dx + "px," + dy + "px)";
+    });
+    cat.addEventListener("pointerup", function (e) {
+      if (!drag) return;
+      var moved = drag.moved; drag = null; cat.style.transform = "";
+      var t = table.getBoundingClientRect();
+      var over = e.clientX >= t.left - 40 && e.clientX <= t.right + 40 && e.clientY >= t.top - 200 && e.clientY <= t.bottom + 40;
+      if (!moved || over) putOnTable();
+    });
+    cat.addEventListener("click", function (e) { if (e.detail === 0) putOnTable(); });   // keyboard
+    s1.sec.appendChild(el("div", { "class": "vet-room-wrap" }, [room]));
     s1.sec.appendChild(el("h3", { "class": "card-h", text: ui.vetVysledky || "Výsledky vyšetření" }));
     s1.sec.appendChild(results);
     s1.sec.appendChild(next);
