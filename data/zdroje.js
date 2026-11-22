@@ -284,7 +284,7 @@ window.ATLAS_DATA.zdroje = {
       heading: "Pacient Brumla (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "PantheraLeo1359531", href: "https://commons.wikimedia.org/wiki/File:Liegende_graue_Katze_20200219_135657.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: otočeno podle údaje v souboru, zmenšeno a převedeno do formátu WebP." }],
+      changes: [{ text: "Úpravy: otočeno podle orientace uložené v souboru, zmenšeno a převedeno do formátu WebP." }],
       figures: [{ cs: "Pacient Brumla", file: "images/veterina/pacienti/brumla.webp" }]
     },
     {
