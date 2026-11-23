@@ -182,6 +182,9 @@
     room.appendChild(cat);
     var flash = el("div", { "class": "vet-flash", "aria-hidden": "true" });
     room.appendChild(flash);
+    // The cabinet's things live in their own layer: over the cabinet on a big screen, a grid with names under the
+    // room on a phone, where the room is too small to tap them (#104).
+    var shelf = el("div", { "class": "vet-shelf", role: "group", "aria-label": ui.vetSkrinka || "Skříňka" });
     var tools = [];   // examination buttons: disabled until the cat is on the table (and calm)
     var SHELF = { stetoskop: [0, 0], teplomer: [0, 1], vaha: [0, 2], prohmatat: [0, 3], lupa: [0, 4], otoskop: [0, 5], "krevni-test": [0, 6],
       "test-moci": [0, 7], "barvivo-oko": [0, 8], mikroskop: [0, 9], hrebinek: [1, 0], "uv-lampa": [1, 1] };
@@ -199,7 +202,11 @@
       }
       b.classList.add("is-done"); b.setAttribute("aria-pressed", "true");
       // A short movement: the tool to the cat, or the cat to the X-ray room and back.
-      if (v.id === "rentgen") { room.classList.remove("is-xray"); void room.offsetWidth; room.classList.add("is-xray"); }
+      if (v.id === "rentgen") {
+        room.classList.remove("is-xray"); void room.offsetWidth; room.classList.add("is-xray");
+        // Remove it afterwards, or the trip would replay when the room moves into „Ošetři kočku“.
+        clearTimeout(room._xray); room._xray = setTimeout(function () { room.classList.remove("is-xray"); }, 1700);
+      }
       else { b.classList.remove("is-used"); void b.offsetWidth; b.classList.add("is-used"); }
       var f = p.nalezy[v.id];
       var li = el("li", { "class": "vet-nalez" + (f ? "" : " is-nic"), "data-nalez": v.id }, [
@@ -218,20 +225,21 @@
         v.id === "rentgen" ? [] : [el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" })]);
       if (SHELF[v.id]) place(b, slot(SHELF[v.id][0], SHELF[v.id][1]));
       b.addEventListener("click", function () { if (mode === "treat") useItem(v.id, b); else examine(v, b); });
-      tools.push(b); room.appendChild(b);
+      if (SHELF[v.id]) b.appendChild(el("span", { "class": "vet-tool-name", text: v.cs }));
+      tools.push(b); (SHELF[v.id] ? shelf : room).appendChild(b);
     });
     // The treatment things on the lower shelves: before the diagnosis a tap only says they are for later;
     // in „Ošetři kočku“ the child uses the right ones on the cat.
     (V().lecba || []).forEach(function (t, i) {
       var b = el("button", { type: "button", "class": "vet-lecba", "data-lecba": t.id, "aria-label": t.cs, title: t.cs },
-        [el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" })]);
+        [el("img", { src: "images/veterina/nastroje/" + t.id + ".svg", alt: "" }), el("span", { "class": "vet-tool-name", text: t.cs })]);
       place(b, i < 8 ? slot(1, 2 + i) : slot(2, i - 8));
       b.addEventListener("click", function () {
         if (mode !== "treat") { hint.textContent = ui.vetLecbaPolice || ""; return; }
         if (t.id === "leky") { toggleDrawer(); return; }   // „Léky“ opens the drawer with the kinds of medicine
         useItem(t.id, b);
       });
-      room.appendChild(b);
+      shelf.appendChild(b);
     });
     // The medicine drawer: the kinds of medicine, never a medicine name.
     var drawer = el("div", { "class": "vet-leky", role: "group", "aria-label": ui.vetLekyH || "Léky", hidden: "" }, [
@@ -247,7 +255,7 @@
       lekList.appendChild(el("li", null, [b]));
     });
     drawer.appendChild(lekList);
-    room.appendChild(drawer);
+    shelf.appendChild(drawer);
     function toggleDrawer(open) {
       var show = open === undefined ? drawer.hidden : open;
       drawer.hidden = !show;
@@ -259,6 +267,7 @@
       if (treat.used.indexOf(id) >= 0) return;
       treat.used.push(id); b.classList.add("is-applied"); b.classList.remove("is-used"); void b.offsetWidth; b.classList.add("is-used");
       room.classList.remove("is-treated"); void room.offsetWidth; room.classList.add("is-treated");
+      clearTimeout(room._glow); room._glow = setTimeout(function () { room.classList.remove("is-treated"); }, 1100);
       var left = treat.need.filter(function (x) { return treat.used.indexOf(x) < 0; });
       if (left.length) { treat.say(ui.vetChybi || "Správně! Ještě něco chybí.", true); return; }
       treat.done = true; treat.say(ui.vetOsetrenaHotovo || "Hotovo, kočka je ošetřená.", true); treat.finish();
@@ -310,7 +319,7 @@
       if (!moved || over) putOnTable();
     });
     cat.addEventListener("click", function (e) { if (e.detail === 0) putOnTable(); });   // keyboard
-    var wrap = el("div", { "class": "vet-room-wrap" }, [room]);
+    var wrap = el("div", { "class": "vet-room-wrap" }, [room, shelf]);
     s1.sec.appendChild(wrap);
     s1.sec.appendChild(el("h3", { "class": "card-h", text: ui.vetVysledky || "Výsledky vyšetření" }));
     s1.sec.appendChild(results);

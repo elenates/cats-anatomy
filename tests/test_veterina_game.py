@@ -27,7 +27,7 @@ with sync_playwright() as p:
         r.ok(pg.locator(".vet-patient img").evaluate("i => i.complete && i.naturalWidth > 0"), f"{c['id']}: photo loads")
         nxt = pg.locator(".vet-s-vysetreni .quiz-next")
         r.ok(nxt.is_disabled(), f"{c['id']}: no going on before an examination")
-        r.ok(pg.locator(".vet-room .vet-exam").count() == len(V["vysetreni"]), f"{c['id']}: all examinations in the room")
+        r.ok(pg.locator(".vet-room-wrap .vet-exam").count() == len(V["vysetreni"]), f"{c['id']}: all examinations in the room")
         pg.wait_for_function("() => { const i = document.querySelector('.vet-cat img'); return i && i.complete && i.naturalWidth > 0; }", timeout=5000)
         r.ok(pg.locator(".vet-cat img").evaluate("i => i.complete && i.naturalWidth > 0") and
              pg.locator(".vet-cat img").get_attribute("src") == f"images/veterina/vyrezy/{c['id']}.webp", f"{c['id']}: cut-out loads")
@@ -142,6 +142,12 @@ with sync_playwright() as p:
     r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone waiting room: no sideways scroll")
     ph.goto(url("/veterina/ordinace/pepina")); ph.wait_for_timeout(300)
     ph.click(".vet-cat")
+    # The whole room fits the phone; the cabinet's things are a grid with names, big enough to tap
+    rb = ph.locator(".vet-room").bounding_box()
+    r.ok(rb["x"] >= 0 and rb["x"] + rb["width"] <= 391, "phone: the whole room fits the screen")
+    tb = ph.locator(".vet-shelf [data-exam='stetoskop']").bounding_box()
+    r.ok(tb["width"] >= 44 and tb["height"] >= 44 and ph.locator(".vet-shelf [data-exam='stetoskop'] .vet-tool-name").is_visible(), "phone: tools are big with names")
+    r.ok(ph.locator(".vet-room").evaluate("e => getComputedStyle(e).touchAction") != "none", "phone: the room does not block scrolling")
     for v in ("prohmatat", "rentgen", "teplomer"): ph.click(f".vet-exam[data-exam='{v}']")
     ph.click(".vet-s-vysetreni .quiz-next"); ph.click(".vet-s-coje [data-option='zacpa']") if ph.locator(".vet-s-coje [data-option='zacpa']").count() else None
     r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone case: no sideways scroll")
