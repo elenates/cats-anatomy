@@ -82,7 +82,10 @@
   /* ---------- Ordinace: the game ---------- */
   var cured = {};   // case id -> true; only while the page is open (no points, nothing saved)
   function V() { return D.veterina || { pripady: [], vysetreni: [] }; }
-  function findCase(id) { return V().pripady.filter(function (p) { return p.id === id; })[0]; }
+  function findCase(id) { return V().pripady.concat(V().zvlastni || []).filter(function (p) { return p.id === id; })[0]; }
+  // The surprise patients (#104): shown once enough cats are cured while the page is open.
+  function curedCount() { return V().pripady.filter(function (p) { return cured[p.id]; }).length; }
+  function surprises() { return (V().zvlastni || []).filter(function (z) { return curedCount() >= z.odemknout; }); }
   function card(id) { return window.InfoCard.find("nemoci", id) || { cs: id }; }
   function fmt(s, v) { return String(s).replace(/\{(\w+)\}/g, function (_, k) { return v[k]; }); }
   function shuffle(a) {
@@ -104,6 +107,12 @@
     rnd.addEventListener("click", function () { goRandom(); });
     nodes.push(el("div", { "class": "screen-head" }, [el("h2", { "class": "vet-h", text: ui.vetCekarna || "Čekárna" }), rnd]));
     nodes.push(el("p", { "class": "fig-note", text: ui.vetCekarnaIntro || "" }));
+    surprises().forEach(function (z) {
+      nodes.push(el("a", { "class": "vet-prekvapeni", href: "#/veterina/ordinace/" + z.id, "data-pacient": z.id }, [
+        el("img", { src: "images/veterina/" + z.foto + ".webp", alt: "" }),
+        el("span", null, [el("strong", { text: ui.vetPrekvapeni || "Překvapení!" }), document.createTextNode(" " + (ui.vetPrekvapeniText || "")),
+          el("span", { "class": "vet-jmeno", text: z.kocka })])]));
+    });
     nodes.push(el("ul", { "class": "vet-cekarna" }, V().pripady.map(function (p) {
       var rest = p.kocka.slice(p.jmeno.length).replace(/^,\s*/, "");
       var a = el("a", { "class": "vet-pacient" + (cured[p.id] ? " is-cured" : ""), href: "#/veterina/ordinace/" + p.id, "data-pacient": p.id }, [
@@ -156,7 +165,10 @@
   function renderPripad(id) {
     var p = findCase(id);
     if (!p) return renderCekarna();
-    var c = card(p.nemoc);
+    // The surprise patient's own wording instead of „kočka“ (#104); every other case uses the shared strings.
+    var ui = Object.assign({}, D.ui || {}, p.texty || {});
+    function vcs(v) { return (p.vysetreniCs || {})[v.id] || v.cs; }   // e.g. „Prohlédnout Rádžu“
+    var c = p.nemoc ? card(p.nemoc) : null;   // the surprise patient has no illness card
     var nodes = [back("#/veterina/ordinace", ui.vetDoCekarny || "Zpět do čekárny"), el("h1", { "class": "screen-title", text: p.jmeno })];
     nodes.push(el("div", { "class": "vet-patient" }, [
       el("img", { src: "images/veterina/" + p.foto + ".webp", alt: p.kocka }),
@@ -167,10 +179,10 @@
     // 1. Examinations, in the exam room (#104): put the cat on the table, calm a frightened cat first,
     // then take a tool from the cabinet, the ultrasound from the trolley or carry the cat to the X-ray room.
     var s1 = step(host, ui.vetVysetreni || "Vyšetření", "vet-s-vysetreni");
-    var hint = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: ui.vetNaStul || "" });
+    var hint = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: p.naStul || ui.vetNaStul || "" });
     s1.sec.appendChild(hint);
     var results = el("ol", { "class": "vet-nalezy", "aria-live": "polite" });
-    var next = el("button", { type: "button", "class": "quiz-next", disabled: "", text: ui.vetVim || "Vím, co kočce je →" });
+    var next = el("button", { type: "button", "class": "quiz-next", disabled: "", text: p.vim || ui.vetVim || "Vím, co kočce je →" });
     var room = el("div", { "class": "vet-room", role: "group", "aria-label": ui.vetOrdinace || "Ordinace" });
     room.appendChild(el("img", { "class": "vet-room-bg", src: "images/veterina/ordinace.svg", alt: "" }));
     room.appendChild(el("span", { "class": "vet-room-label vet-l-cekarna", "aria-hidden": "true", text: ui.vetCekarna || "Čekárna" }));
@@ -211,9 +223,9 @@
       var f = p.nalezy[v.id];
       var li = el("li", { "class": "vet-nalez" + (f ? "" : " is-nic"), "data-nalez": v.id }, [
         el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" }),
-        el("div", null, [el("strong", { text: v.cs }), el("p", { "class": "card-p", text: f || V().nic })])]);
+        el("div", null, [el("strong", { text: vcs(v) }), el("p", { "class": "card-p", text: f || V().nic })])]);
       // The card's own picture (the dental X-ray) goes with the X-ray finding.
-      if (v.id === "rentgen" && f && c.obrazek) li.lastChild.appendChild(el("img", { "class": "vet-nalez-obr", src: "images/veterina/" + c.obrazek + ".webp",
+      if (v.id === "rentgen" && f && c && c.obrazek) li.lastChild.appendChild(el("img", { "class": "vet-nalez-obr", src: "images/veterina/" + c.obrazek + ".webp",
         alt: (ui.vetObrazky || {})[c.obrazek] || "" }));
       results.appendChild(li);
       next.disabled = false;
@@ -221,11 +233,11 @@
     }
     V().vysetreni.forEach(function (v) {
       var where = v.id === "rentgen" ? "vet-t-rentgen" : v.id === "ultrazvuk" ? "vet-t-ultrazvuk" : "vet-t-police";
-      var b = el("button", { type: "button", "class": "vet-exam " + where, "data-exam": v.id, "aria-label": v.cs, title: v.cs, disabled: "" },
+      var b = el("button", { type: "button", "class": "vet-exam " + where, "data-exam": v.id, "aria-label": vcs(v), title: vcs(v), disabled: "" },
         v.id === "rentgen" ? [] : [el("img", { src: "images/veterina/nastroje/" + v.id + ".svg", alt: "" })]);
       if (SHELF[v.id]) place(b, slot(SHELF[v.id][0], SHELF[v.id][1]));
       b.addEventListener("click", function () { if (mode === "treat") useItem(v.id, b); else examine(v, b); });
-      if (SHELF[v.id]) b.appendChild(el("span", { "class": "vet-tool-name", text: v.cs }));
+      if (SHELF[v.id]) b.appendChild(el("span", { "class": "vet-tool-name", text: vcs(v) }));
       tools.push(b); (SHELF[v.id] ? shelf : room).appendChild(b);
     });
     // The treatment things on the lower shelves: before the diagnosis a tap only says they are for later;
@@ -278,15 +290,16 @@
       var box = el("section", { "class": "vet-strach", role: "region", "aria-label": ui.vetStrachH || "Pozor, kočka se bojí!" }, [
         el("h3", { "class": "card-h", text: ui.vetStrachH || "Pozor, kočka se bojí!" }),
         el("div", { "class": "vet-strach-row" }, [
-          el("img", { src: "images/veterina/" + S.foto + ".webp", alt: ui.vetStrachFoto || "" }),
-          el("div", null, [el("p", { "class": "card-p vet-strach-znaky", text: p.strach }), el("p", { "class": "card-p", text: S.jak }),
-            el("p", { "class": "card-p vet-strach-otazka", text: S.otazka })])])]);
+          el("img", { src: "images/veterina/" + (p.strachFoto || S.foto) + ".webp", alt: p.strachFoto ? p.strach : (ui.vetStrachFoto || "") }),
+          el("div", null, [el("p", { "class": "card-p vet-strach-znaky", text: p.strach }), p.strachSpravne ? null : el("p", { "class": "card-p", text: S.jak }),
+            el("p", { "class": "card-p vet-strach-otazka", text: p.strachOtazka || S.otazka })])])]);
       s1.sec.insertBefore(box, results.previousSibling);
-      var opts = [{ key: "spravne", text: S.spravne.text, right: true, why: S.spravne.proc }].concat(S.spatne.map(function (w, i) {
+      var right = p.strachSpravne || S.spravne;   // a tiger cub is never handled like a pet cat
+      var opts = [{ key: "spravne", text: right.text, right: true, why: right.proc }].concat((p.strachSpatne || S.spatne).map(function (w, i) {
         return { key: "strach-" + i, text: w.text, right: false, why: w.proc }; }));
       choice(box, opts, function () {
         calm = true; room.classList.remove("is-scared"); setTools();
-        box.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [document.createTextNode(S.doma)]));
+        if (!p.strachSpravne) box.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [document.createTextNode(S.doma)]));
         hint.textContent = ui.vetNastroje || "";
       });
     }
@@ -325,44 +338,52 @@
     s1.sec.appendChild(results);
     s1.sec.appendChild(next);
 
+    // End, after the treatment (or straight after „Co pomůže?“ for a healthy cat)
+    function finish() {
+      cured[p.id] = true;
+      var s4 = step(host, p.hotovo || ui.vetHotovo || "Výborně! Víš, co kočce je i co jí pomůže.", "vet-s-konec");
+      if (p.pozor) s4.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [
+        el("strong", { text: (D.nemoci.labels || {}).pozor || "Pozor!" }), document.createTextNode(" " + p.pozor)]));
+      if (c) s4.sec.appendChild(el("p", null, [el("a", { "class": "part-link", href: "#/veterina/nemoci/" + p.nemoc, "data-karta": p.nemoc,
+        text: fmt(ui.readCard || "Přečti si kartičku: {name} →", { name: c.cs }) })]));
+      var dalsi = el("button", { type: "button", "class": "quiz-open vet-dalsi", text: ui.vetDalsi || "Další pacient" });
+      dalsi.addEventListener("click", function () { goRandom(p.id); });
+      s4.sec.appendChild(el("div", { "class": "quiz-actions" }, [dalsi,
+        el("a", { "class": "quiz-open quiz-secondary", href: "#/veterina/ordinace", text: ui.vetDoCekarny || "Zpět do čekárny" })]));
+      s4.focus();
+    }
+    // Treat the cat (#104 stage F): the room moves down here; use every needed thing on the cat.
+    function treatThenFinish() {
+      var need = p.osetreni || [], also = p.osetreniNavic || [];
+      if (!need.length && !also.length) { finish(); return; }   // a healthy cat needs no treatment
+      var s5 = step(host, p.osetriNadpis || ui.vetOsetri || "Ošetři kočku", "vet-s-osetri");
+      var say = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: ui.vetOsetriIntro || "" });
+      s5.sec.appendChild(say);
+      s5.sec.appendChild(wrap);
+      mode = "treat";
+      treat = { need: need, ok: need.concat(also), used: [], done: false,
+        say: function (t, ok) { say.textContent = t; say.classList.toggle("is-wrong", !ok); },
+        finish: finish };
+      s5.focus();
+    }
+
     next.addEventListener("click", function () {
       next.hidden = true;
+      if (p.potrebuje) {
+        // The surprise patient is healthy: „Co Rádža potřebuje?“ instead of a diagnosis and a treatment
+        var sz = step(host, p.otazka, "vet-s-coje");
+        choice(sz.sec, [{ key: "potrebuje", text: p.potrebuje.text, right: true, why: p.potrebuje.proc }].concat(p.spatne.map(function (w, i) {
+          return { key: "spatne-" + i, text: w.text, right: false, why: w.proc }; })), treatThenFinish);
+        sz.focus();
+        return;
+      }
       // 2. Diagnosis
       var s2 = step(host, ui.vetCoJe || "Co kočce je?", "vet-s-coje");
       choice(s2.sec, p.moznosti.map(function (m) { return { key: m, text: card(m).cs, right: m === p.nemoc, why: m === p.nemoc ? "" : p.proc[m] }; }), function () {
         // 3. Treatment
         var s3 = step(host, ui.vetCoPomuze || "Co pomůže?", "vet-s-pomuze");
         var opts = [{ key: "lecba", text: p.lecba, right: true, why: "" }].concat(p.spatne.map(function (w, i) { return { key: "spatne-" + i, text: w.text, right: false, why: w.proc }; }));
-        choice(s3.sec, opts, function () {
-          function finish() {
-          // End
-          cured[p.id] = true;
-          var s4 = step(host, ui.vetHotovo || "Výborně! Víš, co kočce je i co jí pomůže.", "vet-s-konec");
-          if (p.pozor) s4.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [
-            el("strong", { text: (D.nemoci.labels || {}).pozor || "Pozor!" }), document.createTextNode(" " + p.pozor)]));
-          var more = el("a", { "class": "part-link", href: "#/veterina/nemoci/" + p.nemoc, "data-karta": p.nemoc,
-            text: fmt(ui.readCard || "Přečti si kartičku: {name} →", { name: c.cs }) });
-          var dalsi = el("button", { type: "button", "class": "quiz-open vet-dalsi", text: ui.vetDalsi || "Další pacient" });
-          dalsi.addEventListener("click", function () { goRandom(p.id); });
-          s4.sec.appendChild(el("p", null, [more]));
-          s4.sec.appendChild(el("div", { "class": "quiz-actions" }, [dalsi,
-            el("a", { "class": "quiz-open quiz-secondary", href: "#/veterina/ordinace", text: ui.vetDoCekarny || "Zpět do čekárny" })]));
-          s4.focus();
-          }
-          var need = p.osetreni || [], also = p.osetreniNavic || [];
-          if (!need.length && !also.length) { finish(); return; }   // a healthy cat needs no treatment
-          // Treat the cat (#104 stage F): the room moves down here; use every needed thing on the cat.
-          var s5 = step(host, ui.vetOsetri || "Ošetři kočku", "vet-s-osetri");
-          var say = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: ui.vetOsetriIntro || "" });
-          s5.sec.appendChild(say);
-          s5.sec.appendChild(wrap);
-          mode = "treat";
-          treat = { need: need.length ? need : [], ok: need.concat(also), used: [], done: false,
-            say: function (t, ok) { say.textContent = t; say.classList.toggle("is-wrong", !ok); },
-            finish: finish };
-          if (!need.length) treat.need = [];   // any one right thing is enough
-          s5.focus();
-        });
+        choice(s3.sec, opts, treatThenFinish);
         s3.focus();
       });
       s2.focus();

@@ -112,6 +112,55 @@ with sync_playwright() as p:
             pg.click(".vet-random"); pg.wait_for_timeout(150)
             h = pg.evaluate("location.hash").split("/")[-1]
             r.ok(h in [x["id"] for x in V["pripady"]] and h not in done, f"Náhodný pacient picks an untreated cat ({h})")
+            r.ok(pg.locator(".vet-prekvapeni").count() == 0, "no surprise patient before enough cures")
+
+    # The surprise patient (#104): the tiger cub Rádža, in the waiting room once enough cats are cured
+    Z = V["zvlastni"][0]
+    pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(150)
+    tile = pg.locator(".vet-prekvapeni")
+    r.ok(len(done) >= Z["odemknout"] and tile.count() == 1 and ui["vetPrekvapeni"] in tile.inner_text() and Z["kocka"] in tile.inner_text(), "surprise patient shown after cures")
+    r.ok(tile.locator("img").evaluate("i => i.complete && i.naturalWidth > 0"), "surprise photo loads")
+    for _ in range(12):
+        pg.click(".vet-random"); pg.wait_for_timeout(60)
+        r.ok(pg.evaluate("location.hash").split("/")[-1] != Z["id"], "Náhodný pacient never picks the surprise patient")
+        pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(60)
+    pg.click(".vet-prekvapeni"); pg.wait_for_timeout(150)
+    r.ok(pg.locator(".screen-title").inner_text() == Z["jmeno"] and Z["pribeh"] in pg.locator(".vet-patient").inner_text(), "radza: story")
+    r.ok(pg.locator(".vet-room-hint").inner_text() == Z["naStul"], "radza: put him on the table")
+    pg.wait_for_function("() => { const i = document.querySelector('.vet-cat img'); return i && i.complete && i.naturalWidth > 0; }", timeout=5000)
+    pg.click(".vet-cat"); pg.wait_for_timeout(50)
+    box = pg.locator(".vet-strach")
+    r.ok(Z["strach"] in box.inner_text() and V["strach"]["jak"] not in box.inner_text(), "radza: his own signs, not the cat ones")
+    r.ok(box.locator("img").get_attribute("src") == f"images/veterina/{Z['strachFoto']}.webp" and box.locator("img").evaluate("i => i.naturalWidth > 0"), "radza: hissing tiger photo")
+    r.ok(Z["texty"]["vetStrachH"] in box.inner_text() and Z["strachOtazka"] in box.inner_text(), "radza: Rádža se bojí, not kočka")
+    for i, w in enumerate(Z["strachSpatne"]):
+        box.locator(f"[data-option='strach-{i}']").click()
+        r.ok(w["text"] in box.inner_text() and w["proc"] in box.locator(".vet-fb").inner_text(), f"radza: why not frightened answer {i}")
+    box.locator("[data-option='spravne']").click()
+    r.ok(Z["strachSpravne"]["proc"] in box.inner_text() and V["strach"]["doma"] not in box.inner_text(), "radza: step back and call the vet and keepers")
+    for v in V["vysetreni"]:
+        pg.click(f".vet-exam[data-exam='{v['id']}']")
+        r.ok(pg.locator(f"[data-nalez='{v['id']}'] .card-p").inner_text() == Z["nalezy"].get(v["id"], V["nic"]), f"radza/{v['id']}: finding")
+    r.ok(pg.locator(".vet-s-vysetreni .quiz-next").inner_text() == Z["vim"], "radza: own next button")
+    pg.click(".vet-s-vysetreni .quiz-next"); pg.wait_for_timeout(50)
+    q = pg.locator(".vet-s-coje")
+    r.ok(Z["otazka"] in q.inner_text() and pg.locator(".vet-s-pomuze").count() == 0, "radza: what he needs, no diagnosis")
+    for i, w in enumerate(Z["spatne"]):
+        q.locator(f"[data-option='spatne-{i}']").click()
+        r.ok(w["proc"] in q.locator(".vet-fb").inner_text(), f"radza: why not answer {i}")
+    q.locator("[data-option='potrebuje']").click(); pg.wait_for_timeout(50)
+    s5 = pg.locator(".vet-s-osetri")
+    r.ok(s5.count() == 1 and Z["osetriNadpis"] in s5.inner_text() and Z["texty"]["vetOsetriIntro"] in s5.inner_text(), "radza: Ošetři Rádžu")
+    s5.locator("[data-lecba='operace']").click()
+    r.ok(s5.locator(".vet-room-hint").inner_text() == Z["texty"]["vetNepomuze"], "radza: a wrong item says so in his words")
+    for i, t in enumerate(Z["osetreni"]):
+        s5.locator(f"[data-lecba='{t}']").click()
+        r.ok((pg.locator(".vet-s-konec").count() == 1) == (i == len(Z["osetreni"]) - 1), f"radza: used {t}")
+    end = pg.locator(".vet-s-konec")
+    r.ok(Z["hotovo"] in end.inner_text() and Z["pozor"] in end.inner_text() and end.locator("a.part-link").count() == 0, "radza: end, Pozor!, no card link")
+    kl = [l for l in pg.locator(".vet-game").inner_text().split("\n") if "kočk" in l.lower() and l.strip() != "Pozor! " + Z["pozor"]]
+    r.ok(not kl, f"radza: the game never calls him a cat {kl}")
+    pg.screenshot(path=shot("veterina-radza.png"), full_page=True)
 
     # the card link and Další pacient
     pg.click(".vet-s-konec .vet-dalsi"); pg.wait_for_timeout(150)

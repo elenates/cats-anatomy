@@ -126,6 +126,8 @@ window.ATLAS_DATA.ui = {
   vetLekyH: "Léky: vyber, jaký lék kočce pomůže",
   vetZavrit: "Zavřít",
   vetSkrinka: "Skříňka s nástroji a léky",
+  vetPrekvapeni: "Překvapení!",
+  vetPrekvapeniText: "Ze zoo přivezli vzácného pacienta.",
   vetVysledky: "Výsledky vyšetření",
   vetVim: "Vím, co kočce je →",
   vetCoJe: "Co kočce je?",
