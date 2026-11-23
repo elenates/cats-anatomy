@@ -472,7 +472,7 @@ ZVLASTNI = [dict(
     # Rádža's own wording where the game otherwise says „kočka“ (#104): the strings in data/sections.js by key,
     # the frightened step's question and wrong answers
     texty=dict(
-        vetNastroje="Vezmi si nástroj ze skříňky a vyšetři Rádžu. Ultrazvuk najdeš na vozíku, na rentgen odneseš Rádžu dveřmi vpravo. Můžeš ho vyšetřit, kolikrát chceš.",
+        vetNastroje="Vezmi si nástroj ze skříňky a vyšetři Rádžu. Ultrazvuk najdeš na vozíku, na rentgen ho odneseš dveřmi vpravo. Můžeš ho vyšetřit, kolikrát chceš.",
         vetLecbaPolice="Tyhle věci slouží k ošetření. Nejdřív zjisti, co Rádža potřebuje.",
         vetPolozit="Položit Rádžu na stůl",
         vetStrachH="Pozor, Rádža se bojí!",
