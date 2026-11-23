@@ -71,6 +71,27 @@ for p in V.PRIPADY:
     for t in need + also:
         if t not in V.LECBA_CS: fails.append(f"{p['id']}: unknown item {t}")
         elif not os.path.exists(os.path.join(ROOT, "images", "veterina", "nastroje", t + ".svg")): fails.append(f"{p['id']}: no icon {t}")
+# Surprise patient (#104): the tiger cub „Rádža“ — healthy, so no diagnosis; own photos, items with icons, unlock after cures.
+for z in getattr(V, "ZVLASTNI", []):
+    for k in ("jmeno", "kocka", "pribeh", "otazka", "strach", "pozor", "naStul", "vim", "osetriNadpis", "hotovo", "sources"):
+        if not z.get(k, "").strip(): fails.append(f"{z['id']}: empty {k}")
+    if z["id"] in ids: fails.append(f"{z['id']}: same id as a case")
+    if not z["potrebuje"].get("text") or not z["potrebuje"].get("proc"): fails.append(f"{z['id']}: right answer needs text and why")
+    if len(z["spatne"]) != 2 or any(not w.get("text") or not w.get("proc") for w in z["spatne"]): fails.append(f"{z['id']}: needs two wrong answers with why")
+    if not z["strachSpravne"].get("text") or not z["strachSpravne"].get("proc"): fails.append(f"{z['id']}: frightened step needs text and why")
+    if not isinstance(z.get("odemknout"), int) or not 1 <= z["odemknout"] <= len(V.PRIPADY): fails.append(f"{z['id']}: bad unlock count")
+    for k in z["nalezy"]:
+        if k not in V.VYSETRENI: fails.append(f"{z['id']}: finding for unknown exam {k}")
+    for t in z["osetreni"]:
+        if t not in V.LECBA_CS: fails.append(f"{z['id']}: unknown item {t}")
+        elif not os.path.exists(os.path.join(ROOT, "images", "veterina", "nastroje", t + ".svg")): fails.append(f"{z['id']}: no icon {t}")
+    z_js = open(os.path.join(ROOT, "data", "zdroje.js"), encoding="utf-8").read()
+    l_md = open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read()
+    for rel in ("images/veterina/" + z["foto"] + ".webp", "images/veterina/" + z["strachFoto"] + ".webp", "images/veterina/vyrezy/" + z["id"] + ".webp"):
+        if not os.path.exists(os.path.join(ROOT, rel)): fails.append(f"{z['id']}: {rel} missing")
+        if rel not in z_js or "| `" + rel + "` |" not in l_md: fails.append(f"{z['id']}: {rel} without source card or licence row")
+    text = " ".join([z["pribeh"], z["potrebuje"]["proc"], *[w["text"] + " " + w["proc"] for w in z["spatne"]], *z["nalezy"].values()])
+    if re.search(r"\d\s*(mg|ml|tablet|kapk)", text, re.I): fails.append(f"{z['id']}: looks like a dose")
 for c in sorted(cards - used): fails.append(f"card {c} has no case")
 if len(set(fotos)) != len(fotos): fails.append("two cases share a patient photo")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")

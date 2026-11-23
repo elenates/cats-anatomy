@@ -633,6 +633,14 @@ a.menu-card:active {
 .vet-options .spoj-btn.is-tried { border-color: #b3261e; background: #fbeaea; color: var(--muted); }
 .vet-fb { margin-top: 12px; }
 .vet-s-konec { border-color: #1f7a3d; }
+.vet-prekvapeni { display: flex; align-items: center; gap: 14px; margin: 0 0 16px; padding: 10px 14px; border-radius: 14px; background: #fff3d6;
+  border: 3px dashed #c77700; color: inherit; text-decoration: none; animation: vet-prekvapeni-in .6s ease-out; }
+@keyframes vet-prekvapeni-in { from { opacity: 0; transform: translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) { .vet-prekvapeni { animation: none; } }
+.vet-prekvapeni img { width: 110px; height: 80px; object-fit: cover; border-radius: 10px; }
+.vet-prekvapeni .vet-jmeno { display: block; margin-top: 4px; padding: 0; }
+.vet-prekvapeni img { flex-shrink: 0; }
+.vet-prekvapeni:hover, .vet-prekvapeni:focus-visible { background: #ffe9b3; }
 /* ===================== Na veterině: the exam room (#104 stage D) ===================== */
 .vet-room-wrap { position: relative; margin: 8px 0 16px; }
 .vet-room { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: #f6e3d6; }

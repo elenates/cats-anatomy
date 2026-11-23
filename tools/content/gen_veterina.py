@@ -71,6 +71,9 @@ L = ["/*",
 " *   strach (the signs of fear the child sees on the table, or null: the cat is calm),",
 " *   osetreni (items that must all be used on the cat), osetreniNavic (items that are also right; with no osetreni one is enough)",
 " * lecba: the treatment items in the cabinet: id (icon images/veterina/nastroje/<id>.svg), cs; „leky“ opens the drawer",
+" * zvlastni: the surprise patients (#104): like a case, plus otazka, potrebuje {text, proc} (instead of a card), strachSpravne,",
+" *   strachFoto, strachOtazka, strachSpatne, naStul, vim, osetriNadpis, hotovo, odemknout (cured cats needed to show it),",
+" *   texty (the patient's own wording for UI strings, by ui key), vysetreniCs (own names of examinations)",
 " * leky: the kinds of medicine in the drawer: id (lek-<kind>, icon nastroje/<id>.svg), cs",
 " * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,",
 " *   foto (images/veterina/<foto>.webp), refs",
@@ -88,7 +91,8 @@ S = V.STRACH
 L += ["  ],", "  strach: {"]
 L += [f"    {k}: {js(v)}," for k, v in [("jak", S["jak"]), ("otazka", S["otazka"]), ("spravne", S["spravne"]), ("spatne", S["spatne"]),
                                        ("doma", S["doma"]), ("foto", "vystrasena-kocka"), ("refs", refs(S["sources"]))]]
-L[-1] = L[-1].rstrip(",")
-L += ["  }", "};", ""]
+L += ["  },", "  zvlastni: ["]
+L.append(",\n".join("    " + js({**{k: v for k, v in z.items() if k not in ("sources", "flags")}, "refs": refs(z["sources"])}) for z in V.ZVLASTNI))
+L += ["  ]", "};", ""]
 open(os.path.join(ROOT, "data/veterina.js"), "w", encoding="utf-8").write("\n".join(L))
 print(len(N.NEMOCI), len(V.PRIPADY))

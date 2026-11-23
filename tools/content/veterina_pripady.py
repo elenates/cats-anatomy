@@ -441,3 +441,51 @@ OSETRENI = {
     "mates": (["infuze", "lek-zmekceni-trusu", "dieta"], []), "perla": (["strojek"], ["lek-uklidneni"]), "rarasek": (["pinzeta"], []),
     "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], []),
 }
+
+# The surprise patient (#104, the child's wish 2026-11-23): a tiger cub from the zoo, a healthy first check-up.
+# It appears in the waiting room once 5 cats are cured (while the page is open); never a random patient.
+# Texts proofread by Lenka with the vet's view (2026-11-23): a tiger cub is a wild animal, never handled like a pet cat.
+ZVLASTNI = [dict(
+    id="radza", jmeno="Rádža", kocka="Rádža, tygr sumaterský, 10 týdnů", foto="pacienti/radza",
+    pribeh="Paní Malinová ze zoologické zahrady přivezla Rádžu ve velké přepravce. „Rádža se narodil před deseti týdny v naší zoo. Jeho máma je tygřice Sára a moc dobře se o něj stará. Dneska ho čeká první prohlídka u veterináře, pomáhají nám s ní ošetřovatelé ze zoo. Celé dny si se sourozenci hraje a společně se přetahují o kus provazu. Návštěvníci ho uvidí ve výběhu, až bude mít všechna očkování. Je to tygr sumaterský. Ve volné přírodě jich zůstalo už jen několik set.“",
+    nalezy={
+        "vaha": "Rádža váží asi 8 kilogramů. Jeho váha odpovídá věku.",
+        "stetoskop": "Srdce a plíce jsou v pořádku.",
+        "krevni-test": "Veterinář mu odebral krev na vyšetření. Výsledky jsou v pořádku.",
+        "mikroskop": "Ve vzorku trusu se nenašla vajíčka škrkavek.",
+    },
+    otazka="Co Rádža potřebuje?",
+    potrebuje=dict(text="Očkování a mikročip.", proc="Mikročip je malinký čip pod kůží, podle kterého Rádžu v zoo vždycky poznají."),
+    spatne=[dict(text="Vzít si ho domů jako kotě.", proc="Tygr je divoké zvíře. Potřebuje péči odborníků a prostor, který mu doma nemůžeš dát."),
+            dict(text="Dát mu méně jídla, aby nebyl tak těžký.", proc="Rádža nemá nadváhu. Jeho váha odpovídá věku a potřebuje dostatek potravy, aby dobře rostl.")],
+    strach="Rádža vrčí a syčí a uši má sklopené dozadu.",
+    strachSpravne=dict(text="Necháš Rádžu v klidu, odstoupíš od něj a zavoláš veterináře a ošetřovatele.",
+                       proc="I malý tygr má ostré zuby a drápy. Vystrašeného tygra drží a vyšetřují jen veterinář a ošetřovatelé ze zoo."),
+    strachFoto="pacienti/radza-syci",
+    osetreni=["injekce", "mikrocip"],
+    pozor="Tygří mládě může vypadat jako velká kočka, ale je to divoké zvíře. I malý tygr umí škrábat a kousat. O tygra se smějí starat jen vyškolení ošetřovatelé a veterinář.",
+    naStul="Polož Rádžu na vyšetřovací stůl: klepni na něj nebo ho přetáhni.",
+    vim="Vím, co Rádža potřebuje →",
+    osetriNadpis="Ošetři Rádžu",
+    hotovo="Výborně! Rádža je očkovaný a má mikročip.",
+    odemknout=5,
+    # Rádža's own wording where the game otherwise says „kočka“ (#104): the strings in data/sections.js by key,
+    # the frightened step's question and wrong answers
+    texty=dict(
+        vetNastroje="Vezmi si nástroj ze skříňky a vyšetři Rádžu. Ultrazvuk najdeš na vozíku, na rentgen ho odneseš dveřmi vpravo. Můžeš ho vyšetřit, kolikrát chceš.",
+        vetLecbaPolice="Tyhle věci slouží k ošetření. Nejdřív zjisti, co Rádža potřebuje.",
+        vetPolozit="Položit Rádžu na stůl",
+        vetStrachH="Pozor, Rádža se bojí!",
+        vetStrachHint="Rádža se bojí. Než ho vyšetříš, rozhodni, co uděláš jako první.",
+        vetOsetriIntro="Vezmi ze skříňky všechno, co Rádža potřebuje, a použij to klepnutím.",
+        vetNepomuze="Tohle teď Rádža nepotřebuje.",
+        vetOsetrenaHotovo="Hotovo, Rádža je ošetřený.",
+        vetLekyH="Léky: vyber, jaký lék Rádža potřebuje"),
+    vysetreniCs=dict(lupa="Prohlédnout Rádžu"),
+    strachOtazka="Rádža se bojí. Co uděláš jako první?",
+    strachSpatne=[dict(text="Rychle ho chytíš a pevně podržíš.", proc="Prudké pohyby a hrubé držení Rádžu vystraší ještě víc. Může kousnout nebo škrábnout."),
+                  dict(text="Pohladíš ho po bříšku, aby se uklidnil.", proc="Tygr, který syčí a vrčí, nechce, aby se ho někdo dotýkal. Dej mu prostor.")],
+    sources="ZSL-TIGER-CUBS (first health check: weights 9.3, 8.25 and 6.7 kg, microchips); NZP-TIGER-CUBS (first exam at three weeks: microchips, blood and fecal samples); WTOP-TIGER-CUBS (a series of health exams and vaccinations before going on exhibit); EURONEWS-TIGER-CUBS (first health checks: weighed, vaccinated, microchipped; a cub growls); IBT-TIGER-CUBS (cubs wriggling and hissing at their first check); FFI-SUMATRAN-TIGER (fewer than 600 Sumatran tigers in the wild, critically endangered)",
+    flags="Vet view (Lenka, 2026-11-23): weight 8 kg plausible; vaccination and microchip at this age credible; a stool test looks for eggs; the frightened tiger cub is never handled like a pet cat: step back and call the vet and keepers.",
+)]
+LECBA_CS["mikrocip"] = "Mikročip"
