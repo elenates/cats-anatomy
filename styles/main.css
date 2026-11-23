@@ -634,14 +634,14 @@ a.menu-card:active {
 .vet-fb { margin-top: 12px; }
 .vet-s-konec { border-color: #1f7a3d; }
 /* ===================== Na veterině: the exam room (#104 stage D) ===================== */
-.vet-room-wrap { overflow-x: auto; margin: 8px 0 16px; border-radius: var(--radius); }
-.vet-room { position: relative; width: 100%; min-width: 760px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: #f6e3d6; touch-action: none; }
+.vet-room-wrap { position: relative; margin: 8px 0 16px; }
+.vet-room { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); background: #f6e3d6; }
 .vet-room-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; user-select: none; }
 .vet-room-label { position: absolute; padding: 2px 8px; border-radius: 8px; background: rgba(255,255,255,.85); font-weight: 700; font-size: clamp(0.8rem, 1.4vw, 1.05rem); text-align: center; pointer-events: none; }
 .vet-l-cekarna { left: 2.5%; top: 9%; width: 12.5%; }
 .vet-l-rentgen { left: 88.1%; top: 4.5%; width: 10.6%; }
-.vet-room button { position: absolute; padding: 0; border: 0; background: transparent; cursor: pointer; font: inherit; }
-.vet-room button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
+.vet-room button, .vet-shelf > button { position: absolute; padding: 0; border: 0; background: transparent; cursor: pointer; font: inherit; }
+.vet-room button:focus-visible, .vet-shelf button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
 .vet-table { left: 53.75%; top: 38%; width: 23.75%; height: 27%; }
 .vet-cat { left: 2%; bottom: 7%; width: 20%; height: 32%; z-index: 3; transition: left .6s ease, bottom .6s ease; touch-action: none; }
 .vet-cat img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; pointer-events: none; user-select: none;
@@ -654,17 +654,17 @@ a.menu-card:active {
 .vet-flash { position: absolute; left: 88.1%; top: 16.7%; width: 10.6%; height: 54.4%; background: #fff; opacity: 0; pointer-events: none; }
 .vet-room.is-xray .vet-flash { animation: vet-blesk 1.6s; }
 @keyframes vet-blesk { 45%, 55% { opacity: 0; } 50% { opacity: .9; } }
-.vet-room .vet-exam, .vet-room .vet-lecba { width: 2.9%; height: auto; aspect-ratio: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
-.vet-room .vet-exam img, .vet-room .vet-lecba img { width: 100%; height: 100%; }
-.vet-room .vet-exam:hover:not(:disabled) { background: rgba(181,86,42,.15); border-radius: 8px; }
-.vet-room .vet-exam:disabled { cursor: default; opacity: .55; }
-.vet-room .vet-exam.is-done { background: var(--accent-soft); border-radius: 8px; box-shadow: 0 0 0 2px var(--accent); }
-.vet-room .vet-exam.is-used { animation: vet-pop .5s; }
+.vet-room-wrap .vet-exam, .vet-room-wrap .vet-lecba { width: 2.9%; height: auto; aspect-ratio: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.vet-room-wrap .vet-exam img, .vet-room-wrap .vet-lecba img { width: 100%; height: 100%; }
+.vet-room-wrap .vet-exam:hover:not(:disabled) { background: rgba(181,86,42,.15); border-radius: 8px; }
+.vet-room-wrap .vet-exam:disabled { cursor: default; opacity: .55; }
+.vet-room-wrap .vet-exam.is-done { background: var(--accent-soft); border-radius: 8px; box-shadow: 0 0 0 2px var(--accent); }
+.vet-room-wrap .vet-exam.is-used { animation: vet-pop .5s; }
 @keyframes vet-pop { 50% { transform: scale(1.5); } }
-.vet-room .vet-lecba { opacity: .8; }
-.vet-room .vet-lecba:hover { background: rgba(181,86,42,.15); border-radius: 8px; }
-.vet-room .vet-lecba.is-applied { background: #dff3e4; border-radius: 8px; box-shadow: 0 0 0 2px #1f7a3d; opacity: 1; }
-.vet-room .vet-lecba.is-used { animation: vet-pop .5s; }
+.vet-room-wrap .vet-lecba { opacity: .8; }
+.vet-room-wrap .vet-lecba:hover { background: rgba(181,86,42,.15); border-radius: 8px; }
+.vet-room-wrap .vet-lecba.is-applied { background: #dff3e4; border-radius: 8px; box-shadow: 0 0 0 2px #1f7a3d; opacity: 1; }
+.vet-room-wrap .vet-lecba.is-used { animation: vet-pop .5s; }
 .vet-room.is-treated .vet-cat img { animation: vet-glow 1s; }
 @keyframes vet-glow { 50% { filter: drop-shadow(0 0 14px #7bd389); } }
 .vet-room-hint.is-wrong { color: #b3261e; font-weight: 700; }
@@ -672,26 +672,41 @@ a.menu-card:active {
   background: #fff; border: 3px solid var(--accent); border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
 .vet-leky[hidden] { display: none; }
 .vet-leky-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-.vet-room .vet-leky button { position: static; }
+.vet-room-wrap .vet-leky button { position: static; }
+.vet-shelf { position: absolute; inset: 0; pointer-events: none; }
+.vet-shelf > * { pointer-events: auto; }
+.vet-tool-name { display: none; }
 .vet-leky-zavrit { width: 32px; height: 32px; font-size: 1.1rem; font-weight: 700; }
 .vet-leky-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.vet-room .vet-lek { display: flex; align-items: center; gap: 8px; width: 100%; padding: 3px 6px; text-align: left; font-size: clamp(0.75rem, 1.2vw, 0.95rem); border-radius: 8px; }
-.vet-room .vet-lek:hover { background: var(--accent-soft); }
+.vet-room-wrap .vet-lek { background: #fff; display: flex; align-items: center; gap: 8px; width: 100%; padding: 3px 6px; text-align: left; font-size: clamp(0.75rem, 1.2vw, 0.95rem); border-radius: 8px; }
+.vet-room-wrap .vet-lek:hover { background: var(--accent-soft); }
 .vet-lek img { width: 26px; height: 26px; flex: none; }
-.vet-room .vet-lek.is-applied { background: #dff3e4; box-shadow: inset 0 0 0 2px #1f7a3d; }
+.vet-room-wrap .vet-lek.is-applied { background: #dff3e4; box-shadow: inset 0 0 0 2px #1f7a3d; }
 .vet-s-osetri .vet-room-hint { font-weight: 700; }
-.vet-room .vet-t-rentgen { left: 88.1%; top: 16.7%; width: 10.6%; height: 54.4%; aspect-ratio: auto; }
-.vet-room .vet-t-ultrazvuk { left: 79.4%; top: 47.8%; width: 7.5%; height: 20.7%; aspect-ratio: auto; align-items: flex-end; }
-.vet-room .vet-t-ultrazvuk img { width: 60%; height: auto; }
-.vet-room .vet-t-rentgen.is-done, .vet-room .vet-t-ultrazvuk.is-done { background: rgba(246,227,214,.35); }
+.vet-room-wrap .vet-t-rentgen { left: 88.1%; top: 16.7%; width: 10.6%; height: 54.4%; aspect-ratio: auto; }
+.vet-room-wrap .vet-t-ultrazvuk { left: 79.4%; top: 47.8%; width: 7.5%; height: 20.7%; aspect-ratio: auto; align-items: flex-end; }
+.vet-room-wrap .vet-t-ultrazvuk img { width: 60%; height: auto; }
+.vet-room-wrap .vet-t-rentgen.is-done, .vet-room-wrap .vet-t-ultrazvuk.is-done { background: rgba(246,227,214,.35); }
 .vet-strach { margin: 12px 0 16px; padding: 12px; border-radius: 12px; background: #fff6e5; border-left: 6px solid #c77700; }
 .vet-strach-row { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 12px 16px; align-items: start; }
 .vet-strach-row img { width: 100%; border-radius: 12px; }
 .vet-strach-znaky { font-weight: 700; }
 .vet-strach .nemoc-pozor { margin-top: 12px; }
+@media (max-width: 700px) {
+  /* The whole room fits the phone; the cabinet's things are a grid with names under it. */
+  .vet-shelf { position: static; display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 6px; margin-top: 10px; }
+  .vet-room-wrap .vet-shelf > .vet-exam, .vet-room-wrap .vet-shelf > .vet-lecba { position: static; width: auto; aspect-ratio: auto; flex-direction: column;
+    gap: 2px; padding: 6px 2px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line, #e4d9cc); min-height: 76px; }
+  .vet-room-wrap .vet-shelf > button img { width: 36px; height: 36px; }
+  .vet-tool-name { display: block; font-size: 0.72rem; line-height: 1.15; text-align: center; }
+  .vet-room-wrap .vet-leky { position: static; width: auto; max-height: none; grid-column: 1 / -1; order: -1; }
+  .vet-room-label { font-size: 0.7rem; padding: 1px 4px; }
+  .vet-l-rentgen { left: auto; right: 1%; width: auto; }
+  .vet-l-cekarna { width: auto; }
+}
 @media (prefers-reduced-motion: reduce) {
   .vet-cat { transition: none; }
-  .vet-room.is-scared .vet-cat img, .vet-room.is-on-table.is-xray .vet-cat, .vet-room.is-xray .vet-flash, .vet-room .vet-exam.is-used, .vet-room .vet-lecba.is-used, .vet-room.is-treated .vet-cat img { animation: none; }
+  .vet-room.is-scared .vet-cat img, .vet-room.is-on-table.is-xray .vet-cat, .vet-room.is-xray .vet-flash, .vet-room-wrap .vet-exam.is-used, .vet-room-wrap .vet-lecba.is-used, .vet-room.is-treated .vet-cat img { animation: none; }
 }
 @media (max-width: 640px) {
   .vet-patient { grid-template-columns: 1fr; }
