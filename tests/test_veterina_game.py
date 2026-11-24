@@ -14,7 +14,7 @@ with sync_playwright() as p:
     V = pg.evaluate("ATLAS_DATA.veterina"); N = pg.evaluate("ATLAS_DATA.nemoci"); ui = pg.evaluate("ATLAS_DATA.ui")
     cards = {c["id"]: c for c in N["items"]}
     r.ok(pg.locator(".screen-title").inner_text() == ui["vetOrdinace"], "Ordinace title")
-    r.ok(pg.locator("[data-pacient]").count() == 31 and pg.locator(".vet-tlapka").count() == 0, "31 patients, no paws yet")
+    r.ok(pg.locator("[data-pacient]").count() == 32 and pg.locator(".vet-tlapka").count() == 0, "32 patients, no paws yet")
     for c in V["pripady"]:
         a = pg.locator(f"[data-pacient='{c['id']}']")
         r.ok(c["jmeno"] in a.inner_text() and a.locator("img").get_attribute("src") == f"images/veterina/{c['foto']}.webp", f"{c['id']}: waiting-room card")
@@ -164,7 +164,7 @@ with sync_playwright() as p:
 
     # the card link and Další pacient
     pg.click(".vet-s-konec .vet-dalsi"); pg.wait_for_timeout(150)
-    r.ok(pg.evaluate("location.hash").startswith("#/veterina/ordinace/") and pg.evaluate("location.hash") != "#/veterina/ordinace/" + done[-1], "Další pacient opens another case")
+    r.ok(pg.evaluate("location.hash").startswith("#/veterina/ordinace/") and pg.evaluate("location.hash") != "#/veterina/ordinace/" + Z["id"], "Další pacient opens another case")
     pg.goto(url("/veterina/ordinace/mourek")); pg.wait_for_timeout(100)
     pg.click(".vet-cat"); pg.click(".vet-exam[data-exam='prohmatat']"); pg.click(".vet-s-vysetreni .quiz-next")
     pg.click(".vet-s-coje [data-option='ucpana-mocova-trubice']"); pg.click(".vet-s-pomuze [data-option='lecba']"); pg.click(".vet-s-osetri [data-lecba='cevka']"); pg.click(".vet-s-osetri [data-lecba='leky']"); pg.click(".vet-s-osetri [data-lek='lek-proti-bolesti']")

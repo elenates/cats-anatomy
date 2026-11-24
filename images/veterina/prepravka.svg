@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="240" height="180" role="img" aria-label="Zavřená přepravka"><title>Zavřená přepravka</title>
+<ellipse cx="120" cy="168" rx="104" ry="8" fill="#2b2420" opacity=".15"/>
+<path d="M88 34 Q120 6 152 34" fill="none" stroke="#5c5149" stroke-width="10" stroke-linecap="round"/>
+<rect x="20" y="34" width="200" height="128" rx="22" fill="#d9a37c" stroke="#2b2420" stroke-width="4"/>
+<path d="M20 98h200" stroke="#b5562a" stroke-width="5"/>
+<g fill="#c98b5e"><rect x="38" y="52" width="10" height="34" rx="5"/><rect x="56" y="52" width="10" height="34" rx="5"/><rect x="174" y="52" width="10" height="34" rx="5"/><rect x="192" y="52" width="10" height="34" rx="5"/></g>
+<rect x="82" y="48" width="76" height="102" rx="12" fill="#5c5149" stroke="#2b2420" stroke-width="4"/>
+<g stroke="#a7bcc6" stroke-width="5" stroke-linecap="round"><path d="M98 58v82M114 58v82M130 58v82M146 58v82"/><path d="M90 78h60M90 104h60M90 130h60"/></g>
+<rect x="150" y="90" width="16" height="20" rx="5" fill="#8a817a" stroke="#2b2420" stroke-width="3"/>
+<text x="120" y="122" font-family="sans-serif" font-size="44" font-weight="700" text-anchor="middle" fill="#fff8d9" stroke="#2b2420" stroke-width="3" paint-order="stroke">?</text>
+</svg>

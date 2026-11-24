@@ -381,6 +381,21 @@ PRIPADY = [
        spatne=[dict(text="Vynadat mu, ať přestane.", proc="Kryštof neznačkuje ze zlobení. Pohlavní hormony mohou značkování podporovat a kastrace často pomůže."),
                dict(text="Lék proti bolesti.", proc="Kryštofa nic nebolí. Je zdravý a dospívá.")],
        flags="Healthy visit. Hormones support spraying (BATH-NEUTER), neutering often helps but not always (Lenka, vet view)."),
+  dict(id="vrtulka", foto="pacienti/vrtulka", nemoc="zanet-ucha", kocka="Vrtulka, kočka, 5 let",
+       pribeh="Paní Horáková přinesla Vrtulku v přepravce a opatrně ji postavila na zem. „Od včerejška chodí Vrtulka nakřivo a padá na levý bok. Hlavu drží pořád nakloněnou a oči jí divně kmitají ze strany na stranu. Myslím, že spadla z gauče a praštila se do hlavy. Minulý týden si často drbala levé ucho a třepala hlavou, ale pak to přestalo. Dneska ráno nevyskočila ani na parapet, kde se jinak celé dopoledne vyhřívá. Jí, ale při jídle se špatně trefuje do misky.“",
+       nalezy={"lupa": "Hlavu drží nakloněnou doleva a oči jí rychle kmitají ze strany na stranu.",
+               "otoskop": "Ušní bubínek v levém uchu je zakalený a vyboulený. Za ním je hnis.",
+               "mikroskop": "Pod mikroskopem nejsou vidět žádní roztoči.",
+               "prohmatat": "Nic důležitého, žádné bolavé místo po pádu.",
+               "rentgen": "Na rentgenu hlavy je vidět, že prostor za levým bubínkem je zaplněný.",
+               "barvivo-oko": "Oči jsou v pořádku."},
+       moznosti=["zanet-ucha", "usni-roztoci", "poskrabane-oko"],
+       proc={"usni-roztoci": "Roztoči obvykle dělají v uchu tmavý maz. Vrtulka žádný nemá, pod mikroskopem nejsou vidět a hlavně má nemocný ušní bubínek.",
+             "poskrabane-oko": "Oči jsou v pořádku. Kmitají kvůli uchu, protože je v něm orgán rovnováhy."},
+       lecba="Antibiotika na několik týdnů a lék proti zánětu. Doma klid, misky a záchod blízko a žádné skákání na vysoká místa, dokud se jí nevrátí rovnováha.",
+       spatne=[dict(text="Kapky proti roztočům do uší.", proc="Vrtulka roztoče nemá. Když je bubínek nemocný, některé kapky by mohly ucho poškodit."),
+               dict(text="Počkat, až se z toho vyspí.", proc="Takový zánět se obvykle sám nevyléčí. Čím dřív začne léčba, tím větší je šance, že se rovnováha vrátí.")],
+       flags="The child's idea (Dr. Pol episode, own texts); proofread by Lenka with the vet's view (2026-11-24): inner-ear involvement explains the head tilt and nystagmus; a clear X-ray finding is a simplification (a normal X-ray would not rule it out); the absence of mites is not a perfect exclusion, the eardrum and imaging are the stronger evidence."),
 ]
 
 # Exam room (#104 stage C): some patients in pain are frightened when they are put on the table.
@@ -440,6 +455,7 @@ OSETRENI = {
     "macek": (["dieta"], []), "bobes": (["nuzky-drapy", "lek-proti-bolesti"], []), "snehurka": (["lek-proti-zanetu"], ["inhalator"]),
     "mates": (["infuze", "lek-zmekceni-trusu", "dieta"], []), "perla": (["strojek"], ["lek-uklidneni"]), "rarasek": (["pinzeta"], []),
     "bertik": (["injekce", "dieta"], []), "mina": (["operace"], []), "krystof": (["operace"], []),
+    "vrtulka": (["lek-antibiotika", "lek-proti-zanetu"], []),
 }
 
 # The surprise patient (#104, the child's wish 2026-11-23): a tiger cub from the zoo, a healthy first check-up.
@@ -489,3 +505,54 @@ ZVLASTNI = [dict(
     flags="Vet view (Lenka, 2026-11-23): weight 8 kg plausible; vaccination and microchip at this age credible; a stool test looks for eggs; the frightened tiger cub is never handled like a pet cat: step back and call the vet and keepers.",
 )]
 LECBA_CS["mikrocip"] = "Mikročip"
+
+
+# Carrier patients (#113, the child's wish 2026-11-24): after Rádža is treated the waiting room shows closed
+# carriers and the child chooses which one to open. Not domestic cats, so no illness card: one question
+# „Co … potřebuje?“ like Rádža. Texts proofread by Lenka with the vet's view (2026-11-24). Shown from stage 3.
+PRENOSKY = [
+  dict(id="suma", jmeno="Šuma", kocka="Šuma, rys ostrovid, 5 měsíců", foto="pacienti/suma",
+       pribeh="Pan Kubát ze záchranné stanice Správy Národního parku Šumava přivezl rysí kotě v přepravce. „Tohle je Šuma. Našli jsme ji samotnou a dlouho jsme čekali, jestli se její máma vrátí. Nevrátila se, a tak jsme ji přijali do stanice. Teď u nás vyrůstá, aby se jednou mohla vrátit do přírody. Proto k ní chodíme co nejméně a nehladíme ji. Dnes ráno jsem jí za uchem uviděl něco malého, tmavého a nafouklého. Rys ostrovid je u nás vzácný a přísně chráněný.“",
+       nalezy={"lupa": "Za levým uchem je přisáté klíště. Je tmavé a nasáté krví.",
+               "teplomer": "Teplota je normální.",
+               "stetoskop": "Srdce a plíce jsou v pořádku."},
+       otazka="Co Šuma potřebuje?",
+       potrebuje=dict(text="Vytáhnout klíště pinzetou nebo speciálními kleštičkami.",
+                      proc="Klíště se musí vytáhnout celé a co nejdřív, aby Šumě nepřeneslo nemoc."),
+       spatne=[dict(text="Potřít klíště máslem nebo olejem, aby samo odpadlo.", proc="Máslo ani olej klíště neodstraní. Klíště se musí co nejdřív vytáhnout celé."),
+               dict(text="Vzít si Šumu domů a mazlit se s ní.", proc="Šuma je divoké zvíře a má se vrátit do lesa. Kdyby si zvykla na lidi, v přírodě by to měla těžké.")],
+       osetreni=["pinzeta"],
+       pozor="Rysí kotě vypadá jako velká kočka, ale je to divoké zvíře. Když v lese najdeš mládě, nesahej na něj a nech ho tam. Máma bývá někde poblíž. Pokud si myslíš, že potřebuje pomoc, ať dospělý zavolá záchrannou stanici.",
+       hotovo="Výborně! Šuma je bez klíštěte.",
+       sources="NOVINKY-LYNX-ORPHAN (an orphaned lynx kitten found in autumn 2025 in NP Šumava, rescue station of the park administration in Klášterec u Vimperka; kept from getting used to people); MZP-LYNX (specially protected, strongly endangered species, Act 114/1992 and Decree 395/1992); CDC-TICK (fine-tipped tweezers; avoid petroleum jelly, nail polish, heat; remove quickly); MSD-TICK (irritants do not make the tick back out); MAINE-LYNX (a kitten found alone was likely taken while the mother was hunting; „If you care, leave them there“)",
+       flags="Vet view (Lenka, 2026-11-24): tick drops only with a wildlife vet's approval (product, dose and use for a lynx), so the answer is tick removal only for now; the rescue team waited for the mother before taking the kitten; minimal contact with people kept. Vet answer (Lenka, 2026-11-24): remove the tick with tweezers rather than routinely applying drops; products safe for domestic cats are not automatically safe for a Eurasian lynx, any antiparasitic treatment is chosen by a vet familiar with wild felids. So no drops in the game."),
+  dict(id="fred", jmeno="Fred", kocka="Fred, fretka, 2 roky", foto="pacienti/fred",
+       pribeh="Pan Novák přinesl Freda v přepravce. „Fred teď hrozně líná, jeho chlupy jsou po celém bytě. Včera jsem si všiml, že má v trusu chlupy. Jí normálně, běhá a hraje si jako vždycky a trus dělá každý den. Jen se bojím, aby se mu z těch chlupů neudělala v bříšku koule.“",
+       nalezy={"hrebinek": "Při pročesávání zůstává na hřebínku spousta chlupů. Fred zrovna líná.",
+               "prohmatat": "Bříško je měkké a Fredovi prohmatání nevadí. Při prohmatání není cítit žádná tvrdá překážka.",
+               "vaha": "Fred váží stejně jako minule."},
+       otazka="Co Fred potřebuje?",
+       potrebuje=dict(text="Pastu proti chlupovým kuličkám a pravidelné pročesávání.",
+                      proc="Fretky si samy čistí srst a při línání spolknou hodně chlupů. Pasta pomáhá, aby chlupy prošly střevem ven. Česáním odstraníš volné chlupy dřív, než je Fred spolkne."),
+       spatne=[dict(text="Hned ho operovat.", proc="Operace není potřeba, když veterinář nezjistí žádnou překážku."),
+               dict(text="Dát mu méně jídla.", proc="Fred potřebuje jíst normálně. Chlupy v trusu jsou kvůli línání, ne kvůli jídlu.")],
+       osetreni=["hrebinek", "lek-zmekceni-trusu"],
+       pozor="Fretky rády okusují gumu a měkké plasty a můžou je spolknout. Schovej před nimi gumové hračky, gumičky i pantofle. Když fretka přestane jíst, zvrací nebo nedělá trus, musí hned k veterináři.",
+       hotovo="Výborně! Fred dostal pastu a je učesaný.",
+       sources="PETMD-FERRET-HAIRBALL (ferrets shed in spring and autumn; malt-based laxatives during shedding prevent hairballs); ASKAVET-FERRET (brushing during shedding; laxatives during shedding; obstruction: no stool, vomiting, pain); MSD-FERRET-FB (young ferrets swallow soft rubber or plastic; obstruction; removal by surgery or endoscopy)",
+       flags="Vet view (Lenka, 2026-11-24): a moulting case with normal appetite, normal droppings and a soft belly; reduced appetite would need a foreign-body work-up, so it is not in the story; no X-ray finding, as soft rubber may not show on X-ray; for ferrets the laxative is a paste, not a pill. Vet answer (Lenka, 2026-11-24): brushing and a hairball paste are reasonable for an otherwise healthy ferret that eats normally, passes normal stools and shows no pain; normal appetite, daily stools and a soft belly do not completely rule out a foreign body, so the texts never claim it is ruled out, and Pozor! says to go back to the vet if signs appear; routine X-ray or ultrasound not needed."),
+]
+
+# Birthday guest (#113): shown only on 13–15 December by the device clock (and on a hidden test address).
+# A guest cat brings a round box with a cake instead of an illness. Texts proofread by Lenka with the vet's view (2026-11-24).
+NAROZENINY = dict(
+    id="bublina", jmeno="Bublina", kocka="Bublina, kočka, 3 roky", foto="pacienti/bublina",
+    dlazdice="Překvapení! Dnes přišla návštěva, která není nemocná.",
+    pribeh="Dnes není nikdo nemocný. Do ordinace vešla kočka Bublina a před sebou tlačila kulatou krabici s mašlí. Na krabici byla cedulka: „Pro tebe!“",
+    naStul="Polož Bublinu na stůl. Krabici otevři klepnutím nebo přetažením.",
+    hotovo="V krabici je dort se svíčkami. Všechno nejlepší!",
+    pozor="Dort je jen pro tebe, ne pro Bublinu. Čokoláda kočkám škodí a mléko a šlehačka jim můžou rozbouřit bříško. Bublina může slavit s tebou, ale pochutná si na svém kočičím krmení.",
+    dny=[(12, 13), (12, 14), (12, 15)],
+    sources="VCA-CHOCOLATE-CAT (chocolate is toxic to cats: theobromine and caffeine); AGVIC-FOODS (adult cats lack lactase: milk and dairy can cause diarrhoea or upset)",
+    flags="Lenka (2026-11-24): instead of an illness the guest brings the cake and says „Všechno nejlepší!“; only 13 December plus two days; a hidden test address shows it on any day; no child's name in the code.",
+)
