@@ -129,7 +129,7 @@ window.ATLAS_DATA.ui = {
   vetPrekvapeni: "Překvapení!",
   vetPrekvapeniText: "Ze zoo přivezli vzácného pacienta.",
   vetPrenoskyH: "Kdo je v přepravce?",
-  vetPrenoskyText: "Přivezli dvě zavřené přepravky. Vyber jednu a otevři ji.",
+  vetPrenoskyText: "Přivezli dvě zavřené přepravky. Vyber si jednu a otevři ji.",
   vetPrenoska: "{n}. přepravka",
   vetOtevrit: "Otevřít {n}. přepravku",
   vetKrabice: "Otevřít krabici",
