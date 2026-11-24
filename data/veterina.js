@@ -612,6 +612,23 @@ window.ATLAS_DATA.veterina = {
       strach: null,
       osetreni: ["operace"],
       osetreniNavic: []
+    },
+    {
+      id: "vrtulka",
+      jmeno: "Vrtulka",
+      kocka: "Vrtulka, kočka, 5 let",
+      foto: "pacienti/vrtulka",
+      nemoc: "zanet-ucha",
+      pribeh: "Paní Horáková přinesla Vrtulku v přepravce a opatrně ji postavila na zem. „Od včerejška chodí Vrtulka nakřivo a padá na levý bok. Hlavu drží pořád nakloněnou a oči jí divně kmitají ze strany na stranu. Myslím, že spadla z gauče a praštila se do hlavy. Minulý týden si často drbala levé ucho a třepala hlavou, ale pak to přestalo. Dneska ráno nevyskočila ani na parapet, kde se jinak celé dopoledne vyhřívá. Jí, ale při jídle se špatně trefuje do misky.“",
+      nalezy: {"lupa": "Hlavu drží nakloněnou doleva a oči jí rychle kmitají ze strany na stranu.", "otoskop": "Ušní bubínek v levém uchu je zakalený a vyboulený. Za ním je hnis.", "mikroskop": "Pod mikroskopem nejsou vidět žádní roztoči.", "prohmatat": "Nic důležitého, žádné bolavé místo po pádu.", "rentgen": "Na rentgenu hlavy je vidět, že prostor za levým bubínkem je zaplněný.", "barvivo-oko": "Oči jsou v pořádku."},
+      moznosti: ["zanet-ucha", "usni-roztoci", "poskrabane-oko"],
+      proc: {"usni-roztoci": "Roztoči obvykle dělají v uchu tmavý maz. Vrtulka žádný nemá, pod mikroskopem nejsou vidět a hlavně má nemocný ušní bubínek.", "poskrabane-oko": "Oči jsou v pořádku. Kmitají kvůli uchu, protože je v něm orgán rovnováhy."},
+      lecba: "Antibiotika na několik týdnů a lék proti zánětu. Doma klid, misky a záchod blízko a žádné skákání na vysoká místa, dokud se jí nevrátí rovnováha.",
+      spatne: [{"text": "Kapky proti roztočům do uší.", "proc": "Vrtulka roztoče nemá. Když je bubínek nemocný, některé kapky by mohly ucho poškodit."}, {"text": "Počkat, až se z toho vyspí.", "proc": "Takový zánět se obvykle sám nevyléčí. Čím dřív začne léčba, tím větší je šance, že se rovnováha vrátí."}],
+      pozor: null,
+      strach: null,
+      osetreni: ["lek-antibiotika", "lek-proti-zanetu"],
+      osetreniNavic: []
     }
   ],
   strach: {

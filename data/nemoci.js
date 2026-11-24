@@ -481,6 +481,21 @@ window.ATLAS_DATA.nemoci = {
       obrazek: null,
       rentgen: null,
       refs: ["VCA-NEUTER2", "VCA-NEUTERBEH", "VP-NEUTER", "PETMD-NEUTER", "BATH-NEUTER", "PDSA-NEUTER", "ICC-NEUTER"]
+    },
+    {
+      id: "zanet-ucha",
+      cs: "Zánět středního a vnitřního ucha",
+      badge: "pohotovost",
+      coToJe: "Střední ucho je malá dutina za ušním bubínkem. Když se v něm rozvine zánět, může se rozšířit až do vnitřního ucha. Ve vnitřním uchu je orgán rovnováhy, a proto má kočka potíže s chůzí.",
+      jakToPoznas: "Kočka drží hlavu nakloněnou na jednu stranu, chodí nakřivo nebo padá na bok. Oči jí rychle kmitají ze strany na stranu. Předtím si často drbe ucho a třepe hlavou.",
+      jakToVetZjisti: "Veterinář se podívá do ucha otoskopem a prohlédne ušní bubínek. Někdy je potřeba i rentgen nebo jiné vyšetření hlavy.",
+      coPomuze: "Antibiotika, často na několik týdnů, a lék proti zánětu. Doma potřebuje kočka klid a bezpečí, dokud se jí nevrátí rovnováha. Někdy jí hlava zůstane trochu nakloněná, ale kočka se tomu může postupně přizpůsobit.",
+      jakTomuPredejit: "Když si kočka drbe ucho nebo třepe hlavou, ať se na ni podívá veterinář. Nikdy jí nečisti uši tyčinkami hluboko v uchu.",
+      pozor: null,
+      telo: [{"content": "vnejsi", "id": "ucho"}, {"content": "smysly", "id": "bubinek"}, {"content": "smysly", "id": "polokruhove-kanalky"}],
+      obrazek: null,
+      rentgen: null,
+      refs: ["MSD-OTITIS", "MSD-OTITIS-PT", "VCA-OTITIS-INT", "CVJ-OTITIS-CASE"]
     }
   ]
 };
