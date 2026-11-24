@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 190" width="200" height="190" role="img" aria-label="Dort se svíčkami"><title>Dort se svíčkami</title>
+<ellipse cx="100" cy="176" rx="90" ry="10" fill="#2b2420" opacity=".15"/>
+<ellipse cx="100" cy="162" rx="86" ry="16" fill="#a7bcc6" stroke="#2b2420" stroke-width="4"/>
+<path d="M30 92v62a70 16 0 0 0 140 0V92" fill="#c98b5e" stroke="#2b2420" stroke-width="4"/>
+<path d="M30 124a70 16 0 0 0 140 0" fill="none" stroke="#fff8d9" stroke-width="8"/>
+<ellipse cx="100" cy="92" rx="70" ry="16" fill="#f3d9e6" stroke="#2b2420" stroke-width="4"/>
+<path d="M30 92 q8 18 16 4 q8 18 16 4 q8 18 16 4 q8 18 16 4 q8 18 16 4 q8 18 16 4 q8 18 16 4 q8 18 16 4 q6 14 12 0" fill="#f3d9e6" stroke="#2b2420" stroke-width="3"/>
+<g fill="#b5562a"><circle cx="70" cy="88" r="5"/><circle cx="128" cy="96" r="5"/><circle cx="100" cy="100" r="5"/><circle cx="146" cy="86" r="4"/><circle cx="56" cy="96" r="4"/></g>
+<g stroke="#2b2420" stroke-width="2.5">
+<rect x="66" y="44" width="10" height="40" rx="3" fill="#4a90c2"/><rect x="95" y="36" width="10" height="48" rx="3" fill="#e6f1fb"/><rect x="124" y="44" width="10" height="40" rx="3" fill="#4a90c2"/></g>
+<g fill="#ffcc3d" stroke="#b5562a" stroke-width="2"><path d="M71 40c-6-8 0-16 0-22 6 8 6 16 0 22z"/><path d="M100 32c-6-8 0-16 0-22 6 8 6 16 0 22z"/><path d="M129 40c-6-8 0-16 0-22 6 8 6 16 0 22z"/></g>
+</svg>

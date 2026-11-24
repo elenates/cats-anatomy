@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" width="200" height="180" role="img" aria-label="Kulatá krabice s mašlí"><title>Kulatá krabice s mašlí</title>
+<ellipse cx="100" cy="166" rx="84" ry="10" fill="#2b2420" opacity=".15"/>
+<path d="M24 74v76a76 18 0 0 0 152 0V74" fill="#e6f1fb" stroke="#2b2420" stroke-width="4"/>
+<path d="M24 112a76 18 0 0 0 152 0" fill="none" stroke="#4a90c2" stroke-width="3" stroke-dasharray="6 6"/>
+<path d="M90 90v78M110 90v78" stroke="#b5562a" stroke-width="10"/>
+<ellipse cx="100" cy="74" rx="80" ry="20" fill="#fff8d9" stroke="#2b2420" stroke-width="4"/>
+<ellipse cx="100" cy="66" rx="80" ry="20" fill="#f3d9e6" stroke="#2b2420" stroke-width="4"/>
+<path d="M100 64 C70 28 50 52 74 62 Z" fill="#b5562a" stroke="#2b2420" stroke-width="3"/>
+<path d="M100 64 C130 28 150 52 126 62 Z" fill="#b5562a" stroke="#2b2420" stroke-width="3"/>
+<circle cx="100" cy="62" r="9" fill="#c98b5e" stroke="#2b2420" stroke-width="3"/>
+<rect x="132" y="96" width="38" height="24" rx="4" fill="#fff8d9" stroke="#2b2420" stroke-width="2" transform="rotate(8 151 108)"/>
+<path d="M140 104h22M140 111h16" stroke="#8a817a" stroke-width="2.5" stroke-linecap="round" transform="rotate(8 151 108)"/>
+</svg>

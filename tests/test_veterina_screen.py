@@ -22,7 +22,7 @@ with sync_playwright() as p:
     heads = pg.locator(".nemoci-h").all_inner_texts()
     r.ok(heads == list(N["badges"].values()), f"groups in badge order: {heads}")
     ids = pg.evaluate("[...document.querySelectorAll('[data-nemoc]')].map(b => b.dataset.nemoc)")
-    r.ok(sorted(ids) == sorted(c["id"] for c in N["items"]) and len(ids) == 31, "every card listed once")
+    r.ok(sorted(ids) == sorted(c["id"] for c in N["items"]) and len(ids) == 32, "every card listed once")
     for c in N["items"]:
         r.ok(pg.locator(f"#skupina-{c['badge']} [data-nemoc='{c['id']}']").count() == 1, f"{c['id']} in its group")
 

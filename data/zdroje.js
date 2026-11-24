@@ -440,6 +440,41 @@ window.ATLAS_DATA.zdroje = {
       licence: [{ text: "Licence: " }, { text: "CC BY 2.0", href: "https://creativecommons.org/licenses/by/2.0/" }, { text: "." }],
       changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP." }],
       figures: [{ cs: "Vystrašené tygří mládě", file: "images/veterina/pacienti/radza-syci.webp" }]
+    },
+    {
+      heading: "Pacientka Vrtulka (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Syrio", href: "https://commons.wikimedia.org/wiki/File:Gatto_randagio_a_Rovina.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
+      figures: [{ cs: "Pacientka Vrtulka", file: "images/veterina/pacienti/vrtulka.webp" }, { cs: "Pacientka Vrtulka na stole", file: "images/veterina/vyrezy/vrtulka.webp" }]
+    },
+    {
+      heading: "Návštěva Bublina (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alexey Komarov", href: "https://commons.wikimedia.org/wiki/File:Citizen_of_Br%C3%A4nn%C3%B6.jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
+      figures: [{ cs: "Návštěva Bublina", file: "images/veterina/pacienti/bublina.webp" }, { cs: "Návštěva Bublina na stole", file: "images/veterina/vyrezy/bublina.webp" }]
+    },
+    {
+      heading: "Pacientka Šuma (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Magnus Johansson", href: "https://commons.wikimedia.org/wiki/File:Eurasian_lynx2_(14825149178).jpg" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.0", href: "https://creativecommons.org/licenses/by-sa/2.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
+      figures: [{ cs: "Pacientka Šuma", file: "images/veterina/pacienti/suma.webp" }, { cs: "Pacientka Šuma na stole", file: "images/veterina/vyrezy/suma.webp" }]
+    },
+    {
+      heading: "Pacient Fred (Na veterině)",
+      parts: [{ text: "Autor: " }, { text: "Alfredo Gutiérrez", href: "https://commons.wikimedia.org/wiki/File:Ferret_2008.png" }, { text: ". Zdroj: Wikimedia Commons." }],
+      licence: [{ text: "Licence: " }, { text: "CC BY-SA 4.0", href: "https://creativecommons.org/licenses/by-sa/4.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
+      changes: [{ text: "Úpravy: zmenšeno a převedeno do formátu WebP; vyříznuto z pozadí pro umístění na vyšetřovací stůl." }],
+      figures: [{ cs: "Pacient Fred", file: "images/veterina/pacienti/fred.webp" }, { cs: "Pacient Fred na stole", file: "images/veterina/vyrezy/fred.webp" }]
+    },
+    {
+      heading: "Přepravka, krabice a dort (Na veterině)",
+      parts: [{ text: "Autor: projekt Kočičí tělo pod lupou. Vlastní kresby nakreslené přímo pro tuto aplikaci." }],
+      licence: [{ text: "Licence: MIT, stejně jako kód aplikace." }],
+      changes: [{ text: "Úpravy: žádné, jde o původní kresby." }],
+      figures: [{ cs: "Zavřená přepravka", file: "images/veterina/prepravka.svg" }, { cs: "Kulatá krabice s mašlí", file: "images/veterina/krabice-dort.svg" }, { cs: "Dort se svíčkami", file: "images/veterina/dort.svg" }]
     }
   ],
 

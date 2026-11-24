@@ -1,6 +1,6 @@
 """Na veterině data checks (#73 stage 4a), without a browser:
 - gen_veterina.py rebuilds data/nemoci.js and data/veterina.js byte for byte,
-- the data files load in node and hold 31 cards and 31 cases,
+- the data files load in node and hold 32 cards and 32 cases,
 - every card has its texts, a known badge, refs with a row in sources/references.md,
   atlas links to existing items, and an existing picture or gallery X-ray when it names one,
 - every examination has an icon; every case points to a card, its three options are cards,
@@ -26,7 +26,7 @@ d = json.loads(subprocess.run(["node", "-e", js], capture_output=True, text=True
 known = set(re.findall(r"^\|\s*([A-Z][A-Za-z0-9-]+)\s*\|", open(os.path.join(ROOT, "sources", "references.md"), encoding="utf-8").read(), re.M))
 
 cards = {c["id"]: c for c in d["n"]["items"]}
-if len(cards) != 31: fails.append(f"{len(cards)} cards, expected 31")
+if len(cards) != 32: fails.append(f"{len(cards)} cards, expected 32")
 for k in ("coToJe", "jakToPoznas", "jakToVetZjisti", "coPomuze", "jakTomuPredejit", "pozor"):
     if not d["n"]["labels"].get(k): fails.append(f"no label for {k}")
 for i, c in cards.items():
@@ -49,7 +49,7 @@ for v in d["v"]["vysetreni"]:
     if not os.path.exists(os.path.join(ROOT, "images", "veterina", "nastroje", v["id"] + ".svg")): fails.append(f"examination {v['id']}: no icon")
 if not d["v"]["nic"]: fails.append("no text for an examination without a finding")
 cases = d["v"]["pripady"]
-if len(cases) != 31: fails.append(f"{len(cases)} cases, expected 31")
+if len(cases) != 32: fails.append(f"{len(cases)} cases, expected 32")
 for p in cases:
     i = p["id"]
     if not p["jmeno"] or not p["kocka"].startswith(p["jmeno"]): fails.append(f"case {i}: bad name")
