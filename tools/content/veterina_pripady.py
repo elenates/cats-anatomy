@@ -509,7 +509,8 @@ LECBA_CS["mikrocip"] = "Mikročip"
 
 # Carrier patients (#113, the child's wish 2026-11-24): after Rádža is treated the waiting room shows closed
 # carriers and the child chooses which one to open. Not domestic cats, so no illness card: one question
-# „Co … potřebuje?“ like Rádža. Texts proofread by Lenka with the vet's view (2026-11-24). Shown from stage 3.
+# „Co … potřebuje?“ like Rádža. Texts proofread by Lenka with the vet's view (2026-11-24). Shown once Rádža is cured,
+# while the page is open; the order of the closed carriers is shuffled on each page load.
 PRENOSKY = [
   dict(id="suma", jmeno="Šuma", kocka="Šuma, rys ostrovid, 5 měsíců", foto="pacienti/suma",
        pribeh="Pan Kubát ze záchranné stanice Správy Národního parku Šumava přivezl rysí kotě v přepravce. „Tohle je Šuma. Našli jsme ji samotnou a dlouho jsme čekali, jestli se její máma vrátí. Nevrátila se, a tak jsme ji přijali do stanice. Teď u nás vyrůstá, aby se jednou mohla vrátit do přírody. Proto k ní chodíme co nejméně a nehladíme ji. Dnes ráno jsem jí za uchem uviděl něco malého, tmavého a nafouklého. Rys ostrovid je u nás vzácný a přísně chráněný.“",
@@ -524,6 +525,17 @@ PRENOSKY = [
        osetreni=["pinzeta"],
        pozor="Rysí kotě vypadá jako velká kočka, ale je to divoké zvíře. Když v lese najdeš mládě, nesahej na něj a nech ho tam. Máma bývá někde poblíž. Pokud si myslíš, že potřebuje pomoc, ať dospělý zavolá záchrannou stanici.",
        hotovo="Výborně! Šuma je bez klíštěte.",
+       naStul="Polož Šumu na vyšetřovací stůl: klepni na ni nebo ji přetáhni.",
+       vim="Vím, co Šuma potřebuje →", osetriNadpis="Ošetři Šumu",
+       vysetreniCs=dict(lupa="Prohlédnout Šumu"),
+       texty=dict(
+           vetNastroje="Vezmi si nástroj ze skříňky a vyšetři Šumu. Ultrazvuk najdeš na vozíku, na rentgen ji odneseš dveřmi vpravo. Můžeš ji vyšetřit, kolikrát chceš.",
+           vetLecbaPolice="Tyhle věci slouží k ošetření. Nejdřív zjisti, co Šuma potřebuje.",
+           vetPolozit="Položit Šumu na stůl",
+           vetOsetriIntro="Vezmi ze skříňky všechno, co Šuma potřebuje, a použij to klepnutím.",
+           vetNepomuze="Tohle teď Šuma nepotřebuje.",
+           vetOsetrenaHotovo="Hotovo, Šuma je ošetřená.",
+           vetLekyH="Léky: vyber, jaký lék Šuma potřebuje"),
        sources="NOVINKY-LYNX-ORPHAN (an orphaned lynx kitten found in autumn 2025 in NP Šumava, rescue station of the park administration in Klášterec u Vimperka; kept from getting used to people); MZP-LYNX (specially protected, strongly endangered species, Act 114/1992 and Decree 395/1992); CDC-TICK (fine-tipped tweezers; avoid petroleum jelly, nail polish, heat; remove quickly); MSD-TICK (irritants do not make the tick back out); MAINE-LYNX (a kitten found alone was likely taken while the mother was hunting; „If you care, leave them there“)",
        flags="Vet view (Lenka, 2026-11-24): tick drops only with a wildlife vet's approval (product, dose and use for a lynx), so the answer is tick removal only for now; the rescue team waited for the mother before taking the kitten; minimal contact with people kept. Vet answer (Lenka, 2026-11-24): remove the tick with tweezers rather than routinely applying drops; products safe for domestic cats are not automatically safe for a Eurasian lynx, any antiparasitic treatment is chosen by a vet familiar with wild felids. So no drops in the game."),
   dict(id="fred", jmeno="Fred", kocka="Fred, fretka, 2 roky", foto="pacienti/fred",
@@ -539,6 +551,17 @@ PRENOSKY = [
        osetreni=["hrebinek", "lek-zmekceni-trusu"],
        pozor="Fretky rády okusují gumu a měkké plasty a můžou je spolknout. Schovej před nimi gumové hračky, gumičky i pantofle. Když fretka přestane jíst, zvrací nebo nedělá trus, musí hned k veterináři.",
        hotovo="Výborně! Fred dostal pastu a je učesaný.",
+       naStul="Polož Freda na vyšetřovací stůl: klepni na něj nebo ho přetáhni.",
+       vim="Vím, co Fred potřebuje →", osetriNadpis="Ošetři Freda",
+       vysetreniCs=dict(lupa="Prohlédnout Freda"),
+       texty=dict(
+           vetNastroje="Vezmi si nástroj ze skříňky a vyšetři Freda. Ultrazvuk najdeš na vozíku, na rentgen ho odneseš dveřmi vpravo. Můžeš ho vyšetřit, kolikrát chceš.",
+           vetLecbaPolice="Tyhle věci slouží k ošetření. Nejdřív zjisti, co Fred potřebuje.",
+           vetPolozit="Položit Freda na stůl",
+           vetOsetriIntro="Vezmi ze skříňky všechno, co Fred potřebuje, a použij to klepnutím.",
+           vetNepomuze="Tohle teď Fred nepotřebuje.",
+           vetOsetrenaHotovo="Hotovo, Fred je ošetřený.",
+           vetLekyH="Léky: vyber, jaký lék Fred potřebuje"),
        sources="PETMD-FERRET-HAIRBALL (ferrets shed in spring and autumn; malt-based laxatives during shedding prevent hairballs); ASKAVET-FERRET (brushing during shedding; laxatives during shedding; obstruction: no stool, vomiting, pain); MSD-FERRET-FB (young ferrets swallow soft rubber or plastic; obstruction; removal by surgery or endoscopy)",
        flags="Vet view (Lenka, 2026-11-24): a moulting case with normal appetite, normal droppings and a soft belly; reduced appetite would need a foreign-body work-up, so it is not in the story; no X-ray finding, as soft rubber may not show on X-ray; for ferrets the laxative is a paste, not a pill. Vet answer (Lenka, 2026-11-24): brushing and a hairball paste are reasonable for an otherwise healthy ferret that eats normally, passes normal stools and shows no pain; normal appetite, daily stools and a soft belly do not completely rule out a foreign body, so the texts never claim it is ruled out, and Pozor! says to go back to the vet if signs appear; routine X-ray or ultrasound not needed."),
 ]

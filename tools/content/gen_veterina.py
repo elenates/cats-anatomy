@@ -74,6 +74,8 @@ L = ["/*",
 " * zvlastni: the surprise patients (#104): like a case, plus otazka, potrebuje {text, proc} (instead of a card), strachSpravne,",
 " *   strachFoto, strachOtazka, strachSpatne, naStul, vim, osetriNadpis, hotovo, odemknout (cured cats needed to show it),",
 " *   texty (the patient's own wording for UI strings, by ui key), vysetreniCs (own names of examinations)",
+" * prenosky: the carrier patients (#113), shown after Rádža is cured: like zvlastni, without the frightened step",
+" * narozeniny: the birthday guest (#113): id, jmeno, kocka, foto, dlazdice, pribeh, naStul, hotovo, pozor, dny [[month, day]], refs",
 " * leky: the kinds of medicine in the drawer: id (lek-<kind>, icon nastroje/<id>.svg), cs",
 " * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,",
 " *   foto (images/veterina/<foto>.webp), refs",
@@ -93,6 +95,9 @@ L += [f"    {k}: {js(v)}," for k, v in [("jak", S["jak"]), ("otazka", S["otazka"
                                        ("doma", S["doma"]), ("foto", "vystrasena-kocka"), ("refs", refs(S["sources"]))]]
 L += ["  },", "  zvlastni: ["]
 L.append(",\n".join("    " + js({**{k: v for k, v in z.items() if k not in ("sources", "flags")}, "refs": refs(z["sources"])}) for z in V.ZVLASTNI))
-L += ["  ]", "};", ""]
+L += ["  ],", "  prenosky: ["]
+L.append(",\n".join("    " + js({**{k: v for k, v in z.items() if k not in ("sources", "flags")}, "refs": refs(z["sources"])}) for z in V.PRENOSKY))
+B = V.NAROZENINY
+L += ["  ],", "  narozeniny: " + js({**{k: v for k, v in B.items() if k not in ("sources", "flags")}, "refs": refs(B["sources"])}), "};", ""]
 open(os.path.join(ROOT, "data/veterina.js"), "w", encoding="utf-8").write("\n".join(L))
 print(len(N.NEMOCI), len(V.PRIPADY))

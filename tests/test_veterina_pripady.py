@@ -92,6 +92,40 @@ for z in getattr(V, "ZVLASTNI", []):
         if rel not in z_js or "| `" + rel + "` |" not in l_md: fails.append(f"{z['id']}: {rel} without source card or licence row")
     text = " ".join([z["pribeh"], z["potrebuje"]["proc"], *[w["text"] + " " + w["proc"] for w in z["spatne"]], *z["nalezy"].values()])
     if re.search(r"\d\s*(mg|ml|tablet|kapk)", text, re.I): fails.append(f"{z['id']}: looks like a dose")
+# Carrier patients and the birthday guest (#113): own photos and cut-outs with licences, items with icons, sources listed.
+refs_md = open(os.path.join(ROOT, "sources", "references.md"), encoding="utf-8").read()
+z_js2 = open(os.path.join(ROOT, "data", "zdroje.js"), encoding="utf-8").read()
+l_md2 = open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read()
+def pictures(z):
+    for rel in ("images/veterina/" + z["foto"] + ".webp", "images/veterina/vyrezy/" + z["id"] + ".webp"):
+        if not os.path.exists(os.path.join(ROOT, rel)): fails.append(f"{z['id']}: {rel} missing")
+        if rel not in z_js2 or "| `" + rel + "` |" not in l_md2: fails.append(f"{z['id']}: {rel} without source card or licence row")
+    for ref in re.findall(r"([A-Z][A-Z0-9-]+) \(", z["sources"]):
+        if "| " + ref + " |" not in refs_md: fails.append(f"{z['id']}: source {ref} not in references.md")
+special = [x["id"] for x in getattr(V, "ZVLASTNI", [])]
+for z in getattr(V, "PRENOSKY", []):
+    for k in ("jmeno", "kocka", "pribeh", "otazka", "pozor", "naStul", "vim", "osetriNadpis", "hotovo", "sources"):
+        if not z.get(k, "").strip(): fails.append(f"{z['id']}: empty {k}")
+    if z["id"] in ids or z["id"] in special: fails.append(f"{z['id']}: same id as another patient")
+    if not z["potrebuje"].get("text") or not z["potrebuje"].get("proc"): fails.append(f"{z['id']}: right answer needs text and why")
+    if len(z["spatne"]) != 2 or any(not w.get("text") or not w.get("proc") for w in z["spatne"]): fails.append(f"{z['id']}: needs two wrong answers with why")
+    for k in z["nalezy"]:
+        if k not in V.VYSETRENI: fails.append(f"{z['id']}: finding for unknown exam {k}")
+    if not z["osetreni"]: fails.append(f"{z['id']}: no treatment items")
+    for t in z["osetreni"]:
+        if t not in V.LECBA_CS and t not in V.VYSETRENI: fails.append(f"{z['id']}: unknown item {t}")
+        elif not os.path.exists(os.path.join(ROOT, "images", "veterina", "nastroje", t + ".svg")): fails.append(f"{z['id']}: no icon {t}")
+    if "kočk" in " ".join(z["texty"].values()).lower(): fails.append(f"{z['id']}: own wording still says kočka")
+    pictures(z)
+B = getattr(V, "NAROZENINY", None)
+if B:
+    for k in ("jmeno", "kocka", "dlazdice", "pribeh", "naStul", "hotovo", "pozor", "sources"):
+        if not B.get(k, "").strip(): fails.append(f"{B['id']}: empty {k}")
+    if sorted(B["dny"]) != [(12, 13), (12, 14), (12, 15)]: fails.append("birthday guest: only 13–15 December (Lenka)")
+    for n in ("krabice-dort", "dort", "prepravka"):
+        rel = "images/veterina/" + n + ".svg"
+        if not os.path.exists(os.path.join(ROOT, rel)) or "| `" + rel + "` |" not in l_md2 or rel not in z_js2: fails.append(f"{rel}: missing, or no licence row or source card")
+    pictures(B)
 for c in sorted(cards - used): fails.append(f"card {c} has no case")
 if len(set(fotos)) != len(fotos): fails.append("two cases share a patient photo")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")

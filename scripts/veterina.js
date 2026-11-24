@@ -82,10 +82,24 @@
   /* ---------- Ordinace: the game ---------- */
   var cured = {};   // case id -> true; only while the page is open (no points, nothing saved)
   function V() { return D.veterina || { pripady: [], vysetreni: [] }; }
-  function findCase(id) { return V().pripady.concat(V().zvlastni || []).filter(function (p) { return p.id === id; })[0]; }
+  function findCase(id) { return V().pripady.concat(V().zvlastni || [], V().prenosky || []).filter(function (p) { return p.id === id; })[0]; }
   // The surprise patients (#104): shown once enough cats are cured while the page is open.
   function curedCount() { return V().pripady.filter(function (p) { return cured[p.id]; }).length; }
   function surprises() { return (V().zvlastni || []).filter(function (z) { return curedCount() >= z.odemknout; }); }
+  // The carrier patients (#113): closed carriers in the waiting room once Rádža is cured; the child chooses one.
+  // The order is shuffled once per page load, so the child does not know who is in which carrier.
+  var opened = {}, carrierOrder = null;
+  function carriers() {
+    if (!cured.radza) return [];
+    if (!carrierOrder) carrierOrder = shuffle(V().prenosky || []);
+    return carrierOrder;
+  }
+  // The birthday guest (#113): only on the days in narozeniny.dny by the device clock; „#/veterina/ordinace/<id>“ opens
+  // it on any day (the hidden test address).
+  function birthdayToday(now) {
+    var B = V().narozeniny; now = now || new Date();
+    return !!B && B.dny.some(function (d) { return d[0] === now.getMonth() + 1 && d[1] === now.getDate(); });
+  }
   function card(id) { return window.InfoCard.find("nemoci", id) || { cs: id }; }
   function fmt(s, v) { return String(s).replace(/\{(\w+)\}/g, function (_, k) { return v[k]; }); }
   function shuffle(a) {
@@ -113,6 +127,28 @@
         el("span", null, [el("strong", { text: ui.vetPrekvapeni || "Překvapení!" }), document.createTextNode(" " + (ui.vetPrekvapeniText || "")),
           el("span", { "class": "vet-jmeno", text: z.kocka })])]));
     });
+    if (birthdayToday()) {
+      var B = V().narozeniny;
+      nodes.push(el("a", { "class": "vet-prekvapeni vet-narozeniny", href: "#/veterina/ordinace/" + B.id, "data-pacient": B.id }, [
+        el("img", { src: "images/veterina/krabice-dort.svg", alt: "" }),
+        el("span", null, [el("strong", { text: B.dlazdice }), el("span", { "class": "vet-jmeno", text: B.kocka })])]));
+    }
+    var C = carriers();
+    if (C.length) {
+      nodes.push(el("section", { "class": "vet-prenosky", "aria-label": ui.vetPrenoskyH || "Kdo je v přepravce?" }, [
+        el("p", null, [el("strong", { text: (ui.vetPrekvapeni || "Překvapení!") + " " + (ui.vetPrenoskyH || "Kdo je v přepravce?") }),
+          document.createTextNode(" " + (ui.vetPrenoskyText || ""))]),
+        el("ul", { "class": "vet-cekarna" }, C.map(function (p, i) {
+          var n = { n: i + 1 }, open = opened[p.id];
+          var a = el("a", { "class": "vet-pacient vet-prenoska" + (open ? " is-open" : "") + (cured[p.id] ? " is-cured" : ""),
+            href: "#/veterina/ordinace/" + p.id, "data-pacient": p.id, "aria-label": open ? p.kocka : fmt(ui.vetOtevrit || "Otevřít {n}. přepravku", n) },
+            open ? [el("img", { src: "images/veterina/" + p.foto + ".webp", alt: "" }), el("span", { "class": "vet-jmeno", text: p.jmeno }),
+                    el("span", { "class": "vet-kocka", text: p.kocka.slice(p.jmeno.length).replace(/^,\s*/, "") }),
+                    cured[p.id] ? el("span", { "class": "vet-tlapka", role: "img", "aria-label": ui.vetOsetreno || "ošetřeno", text: "🐾" }) : null]
+                 : [el("img", { src: "images/veterina/prepravka.svg", alt: "" }), el("span", { "class": "vet-jmeno", text: fmt(ui.vetPrenoska || "{n}. přepravka", n) })]);
+          return el("li", null, [a]);
+        }))]));
+    }
     nodes.push(el("ul", { "class": "vet-cekarna" }, V().pripady.map(function (p) {
       var rest = p.kocka.slice(p.jmeno.length).replace(/^,\s*/, "");
       var a = el("a", { "class": "vet-pacient" + (cured[p.id] ? " is-cured" : ""), href: "#/veterina/ordinace/" + p.id, "data-pacient": p.id }, [
@@ -163,8 +199,11 @@
   }
 
   function renderPripad(id) {
+    var B = V().narozeniny;
+    if (B && id === B.id) return renderNarozeniny(B);
     var p = findCase(id);
     if (!p) return renderCekarna();
+    opened[p.id] = true;
     // The surprise patient's own wording instead of „kočka“ (#104); every other case uses the shared strings.
     var ui = Object.assign({}, D.ui || {}, p.texty || {});
     function vcs(v) { return (p.vysetreniCs || {})[v.id] || v.cs; }   // e.g. „Prohlédnout Rádžu“
@@ -391,11 +430,61 @@
     return nodes;
   }
 
+  // The birthday guest (#113): put the cat on the table, open the box, the cake and „Všechno nejlepší!“.
+  function renderNarozeniny(B) {
+    var nodes = [back("#/veterina/ordinace", ui.vetDoCekarny || "Zpět do čekárny"), el("h1", { "class": "screen-title", text: B.jmeno })];
+    nodes.push(el("div", { "class": "vet-patient" }, [
+      el("img", { src: "images/veterina/" + B.foto + ".webp", alt: B.kocka }),
+      el("div", null, [el("p", { "class": "vet-kocka-line", text: B.kocka }), el("p", { "class": "vet-pribeh", text: B.pribeh })])]));
+    var host = el("div", { "class": "vet-game", "data-case": B.id });
+    nodes.push(host);
+    var s1 = step(host, ui.vetPrekvapeni || "Překvapení!", "vet-s-narozeniny");
+    var hint = el("p", { "class": "fig-note vet-room-hint", "aria-live": "polite", text: B.naStul });
+    s1.sec.appendChild(hint);
+    var room = el("div", { "class": "vet-room vet-room-oslava", role: "group", "aria-label": ui.vetOrdinace || "Ordinace" });
+    room.appendChild(el("img", { "class": "vet-room-bg", src: "images/veterina/ordinace.svg", alt: "" }));
+    var table = el("button", { type: "button", "class": "vet-table", "aria-label": ui.vetStul || "Vyšetřovací stůl" });
+    var cat = el("button", { type: "button", "class": "vet-cat", "aria-label": B.naStul }, [
+      el("img", { src: "images/veterina/vyrezy/" + B.id + ".webp", alt: "", draggable: "false" })]);
+    var box = el("button", { type: "button", "class": "vet-krabice", "aria-label": ui.vetKrabice || "Otevřít krabici", disabled: "" }, [
+      el("img", { src: "images/veterina/krabice-dort.svg", alt: "", draggable: "false" })]);
+    room.appendChild(table); room.appendChild(cat); room.appendChild(box);
+    s1.sec.appendChild(el("div", { "class": "vet-room-wrap" }, [room]));
+    var onTable = false, done = false;
+    function putOnTable() {
+      if (onTable) return;
+      onTable = true; room.classList.add("is-on-table"); cat.disabled = true; cat.setAttribute("aria-label", B.jmeno);
+      box.disabled = false; box.focus({ preventScroll: true });
+    }
+    function openBox() {
+      if (!onTable || done) return;
+      done = true; room.classList.add("is-open"); box.disabled = true;
+      box.firstChild.src = "images/veterina/dort.svg"; box.setAttribute("aria-label", B.hotovo);
+      var s2 = step(host, B.hotovo, "vet-s-konec");
+      s2.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [
+        el("strong", { text: (D.nemoci.labels || {}).pozor || "Pozor!" }), document.createTextNode(" " + B.pozor)]));
+      s2.sec.appendChild(el("div", { "class": "quiz-actions" }, [
+        el("a", { "class": "quiz-open", href: "#/veterina/ordinace", text: ui.vetDoCekarny || "Zpět do čekárny" })]));
+      s2.focus();
+    }
+    // Tap or drag: the cat onto the table, then the box open.
+    function draggable(n, act) {
+      var drag = null;
+      n.addEventListener("pointerdown", function (e) { if (n.disabled) return; drag = { x: e.clientX, y: e.clientY }; n.setPointerCapture(e.pointerId); });
+      n.addEventListener("pointermove", function (e) { if (drag) n.style.transform = "translate(" + (e.clientX - drag.x) + "px," + (e.clientY - drag.y) + "px)"; });
+      n.addEventListener("pointerup", function () { if (!drag) return; drag = null; n.style.transform = ""; act(); });
+      n.addEventListener("click", function (e) { if (e.detail === 0) act(); });   // keyboard
+    }
+    draggable(cat, putOnTable); draggable(box, openBox);
+    table.addEventListener("click", putOnTable);
+    return nodes;
+  }
+
   function render(sub, sub2) {
     if (sub === "nemoci") return renderNemoci(sub2);
     if (sub === "ordinace") return sub2 ? renderPripad(sub2) : renderCekarna();
     return renderStart();
   }
 
-  window.Veterina = { render: render, cured: cured };
+  window.Veterina = { render: render, cured: cured, birthdayToday: birthdayToday };
 })();
