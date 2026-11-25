@@ -484,49 +484,49 @@ window.ATLAS_DATA.zdroje = {
       heading: "Mňoukání nemocné kočky 1 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Dan Crosby", href: "https://commons.wikimedia.org/wiki/File:Meow.ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 3.0", href: "https://creativecommons.org/licenses/by-sa/3.0/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Mňoukání nemocné kočky 1", file: "sounds/veterina/mnoukani-1.mp3" }]
     },
     {
       heading: "Mňoukání nemocné kočky 2 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Jeanot", href: "https://commons.wikimedia.org/wiki/File:Felis_silvestris_catus.ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC BY-SA 2.5", href: "https://creativecommons.org/licenses/by-sa/2.5/" }, { text: ". Naši upravenou verzi sdílíme pod stejnou licencí." }],
-      changes: [{ text: "Úpravy: hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Mňoukání nemocné kočky 2", file: "sounds/veterina/mnoukani-2.mp3" }]
     },
     {
       heading: "Předení vyléčené kočky 1 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Mysid", href: "https://commons.wikimedia.org/wiki/File:Purring_cat.oga" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: volné dílo (public domain)." }],
-      changes: [{ text: "Úpravy: zkráceno, hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Předení vyléčené kočky 1", file: "sounds/veterina/predeni-1.mp3" }]
     },
     {
       heading: "Předení vyléčené kočky 2 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Insanejeff", href: "https://commons.wikimedia.org/wiki/File:Purr_(10_sec_loopable).ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: volné dílo (public domain)." }],
-      changes: [{ text: "Úpravy: zkráceno, hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Předení vyléčené kočky 2", file: "sounds/veterina/predeni-2.mp3" }]
     },
     {
       heading: "Předení vyléčené kočky 3 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Adam Cuerden", href: "https://commons.wikimedia.org/wiki/File:Whiskers%27_purr.ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: volné dílo (public domain)." }],
-      changes: [{ text: "Úpravy: zkráceno, hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Předení vyléčené kočky 3", file: "sounds/veterina/predeni-3.mp3" }]
     },
     {
       heading: "Syčení vystrašené kočky (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Zabuhailo", href: "https://commons.wikimedia.org/wiki/File:Cat_hissing_-_Zabuhailo.wav" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: " (volné dílo)." }],
-      changes: [{ text: "Úpravy: hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Syčení vystrašené kočky", file: "sounds/veterina/syceni.mp3" }]
     },
     {
       heading: "Vrčení tygra (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "schots", href: "https://commons.wikimedia.org/wiki/File:439280_schots_angry-tiger.wav" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: " }, { text: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" }, { text: " (volné dílo)." }],
-      changes: [{ text: "Úpravy: zkráceno, hlasitost upravena na stejnou úroveň jako u ostatních zvuků a převedeno do formátu MP3." }],
+      changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
       figures: [{ cs: "Vrčení tygra", file: "sounds/veterina/tygr.mp3" }]
     }
   ],
