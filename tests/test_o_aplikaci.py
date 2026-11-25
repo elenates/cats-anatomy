@@ -8,6 +8,9 @@ from common import *
 r = Run("o aplikaci")
 files = sorted(os.path.relpath(f, ROOT) for ext in ("webp", "svg") for f in glob.glob(os.path.join(ROOT, "images", "**", "*." + ext), recursive=True))
 rows = set(re.findall(r"^\| `(images/[^`]+)`", open(os.path.join(ROOT, "sources", "image-licenses.md"), encoding="utf-8").read(), re.M))
+# Sounds (#113): every file in sounds/ has a row in sources/sound-licenses.md and a card in the Zvuky section
+sounds = sorted(os.path.relpath(f, ROOT) for f in glob.glob(os.path.join(ROOT, "sounds", "**", "*.mp3"), recursive=True))
+srows = set(re.findall(r"^\| `(sounds/[^`]+)`", open(os.path.join(ROOT, "sources", "sound-licenses.md"), encoding="utf-8").read(), re.M))
 with sync_playwright() as p:
     b = browser(p)
     for vn in ("tablet", "phone"):
@@ -20,9 +23,11 @@ with sync_playwright() as p:
         Z = pg.evaluate("ATLAS_DATA.zdroje")
         r.ok(pg.locator(".screen-title").inner_text() == Z["title"], f"{vn}: title")
         listed = pg.eval_on_selector_all("[data-file]", "els=>els.map(e=>e.dataset.file)")
-        r.ok(sorted(listed) == files, f"{vn}: every image listed once; missing {set(files)-set(listed)}, extra {set(listed)-set(files)}")
+        r.ok(sorted(listed) == sorted(files + sounds), f"{vn}: every image and sound listed once; missing {set(files + sounds)-set(listed)}, extra {set(listed)-set(files + sounds)}")
+        r.ok(sounds and set(sounds) <= srows, f"{vn}: sound licence rows missing for {set(sounds)-srows}")
+        r.ok(pg.locator(".about-section h2", has_text=Z["soundsHeading"]).count() == 1, f"{vn}: Zvuky section")
         r.ok(set(files) <= rows, f"{vn}: licence rows missing for {set(files)-rows}")
-        r.ok(pg.locator(".about-card").count() == len(Z["images"]), f"{vn}: one card per source")
+        r.ok(pg.locator(".about-card").count() == len(Z["images"]) + len(Z["sounds"]), f"{vn}: one card per source")
         r.ok(pg.locator(".about-card h3 em").first.inner_text() == "Anatomie descriptive et comparative du chat", f"{vn}: book title in italics")
         hrefs = pg.eval_on_selector_all(".about-section a", "els=>els.map(a=>a.getAttribute('href'))")
         r.ok(hrefs and all(h.startswith("https://") for h in hrefs), f"{vn}: links {hrefs}")

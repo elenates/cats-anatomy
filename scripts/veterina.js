@@ -86,6 +86,33 @@
   // The surprise patients (#104): shown once enough cats are cured while the page is open.
   function curedCount() { return V().pripady.filter(function (p) { return cured[p.id]; }).length; }
   function surprises() { return (V().zvlastni || []).filter(function (z) { return curedCount() >= z.odemknout; }); }
+  // Sounds (#113): only after a tap, a button switches them off. Sick cats meow on the table (two recordings,
+  // taken in turn by the order of the cases), frightened cats hiss, cured cats purr (three recordings in turn),
+  // Rádža growls when frightened. Healthy visits do not meow; Šuma and Fred have no sound (no free recording).
+  // The choice is kept in localStorage when the browser allows it. Veterina.zvuky logs what played (for the tests).
+  var zvuky = [], ztlumeno = false;
+  try { ztlumeno = localStorage.getItem("vet-zvuky") === "vypnute"; } catch (e) { /* file:// or private mode */ }
+  function zvuk(name) {
+    if (ztlumeno || !name) return;
+    zvuky.push(name);
+    try { var a = new Audio("sounds/veterina/" + name + ".mp3"); var pr = a.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) { /* no audio */ }
+  }
+  function zvukyFor(p) {
+    var i = V().pripady.indexOf(p), card = p.nemoc && (D.nemoci.items || []).filter(function (c) { return c.id === p.nemoc; })[0];
+    if (p.id === "radza") return { strach: "tygr" };
+    if (i < 0) return {};
+    return { stul: card && card.badge === "zdrava" ? null : "mnoukani-" + (i % 2 + 1), strach: "syceni", hotovo: "predeni-" + (i % 3 + 1) };
+  }
+  function zvukButton() {
+    var b = el("button", { type: "button", "class": "vet-zvuk", "aria-pressed": String(!ztlumeno) });
+    function show() { b.textContent = ztlumeno ? (ui.vetZvukVyp || "🔇 Zvuky vypnuté") : (ui.vetZvukZap || "🔊 Zvuky zapnuté"); b.setAttribute("aria-pressed", String(!ztlumeno)); }
+    b.addEventListener("click", function () {
+      ztlumeno = !ztlumeno; show();
+      try { localStorage.setItem("vet-zvuky", ztlumeno ? "vypnute" : "zapnute"); } catch (e) { /* not kept */ }
+    });
+    show(); return b;
+  }
+
   // The carrier patients (#113): closed carriers in the waiting room once Rádža is cured; the child chooses one.
   // The order is shuffled once per page load, so the child does not know who is in which carrier.
   var opened = {}, carrierOrder = null;
@@ -324,7 +351,7 @@
       treat.done = true; treat.say(ui.vetOsetrenaHotovo || "Hotovo, kočka je ošetřená.", true); treat.finish();
     }
     // The frightened patient (#104 stage C): the signs, the photo and the safe first step.
-    var S = V().strach;
+    var S = V().strach, Z = zvukyFor(p);
     function scared() {
       var box = el("section", { "class": "vet-strach", role: "region", "aria-label": ui.vetStrachH || "Pozor, kočka se bojí!" }, [
         el("h3", { "class": "card-h", text: ui.vetStrachH || "Pozor, kočka se bojí!" }),
@@ -346,8 +373,8 @@
       if (onTable) return;
       onTable = true; room.classList.add("is-on-table"); cat.disabled = true;
       cat.setAttribute("aria-label", p.jmeno);
-      if (p.strach) { room.classList.add("is-scared"); hint.textContent = ui.vetStrachHint || ""; scared(); }
-      else hint.textContent = ui.vetNastroje || "";
+      if (p.strach) { room.classList.add("is-scared"); hint.textContent = ui.vetStrachHint || ""; scared(); zvuk(Z.strach); }
+      else { hint.textContent = ui.vetNastroje || ""; zvuk(Z.stul); }
       setTools();
     }
     table.addEventListener("click", putOnTable);
@@ -372,6 +399,7 @@
     });
     cat.addEventListener("click", function (e) { if (e.detail === 0) putOnTable(); });   // keyboard
     var wrap = el("div", { "class": "vet-room-wrap" }, [room, shelf]);
+    s1.sec.appendChild(el("div", { "class": "vet-zvuk-row" }, [zvukButton()]));
     s1.sec.appendChild(wrap);
     s1.sec.appendChild(el("h3", { "class": "card-h", text: ui.vetVysledky || "Výsledky vyšetření" }));
     s1.sec.appendChild(results);
@@ -379,7 +407,7 @@
 
     // End, after the treatment (or straight after „Co pomůže?“ for a healthy cat)
     function finish() {
-      cured[p.id] = true;
+      cured[p.id] = true; zvuk(Z.hotovo);
       var s4 = step(host, p.hotovo || ui.vetHotovo || "Výborně! Víš, co kočce je i co jí pomůže.", "vet-s-konec");
       if (p.pozor) s4.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [
         el("strong", { text: (D.nemoci.labels || {}).pozor || "Pozor!" }), document.createTextNode(" " + p.pozor)]));
@@ -449,6 +477,7 @@
     var box = el("button", { type: "button", "class": "vet-krabice", "aria-label": ui.vetKrabice || "Otevřít krabici", disabled: "" }, [
       el("img", { src: "images/veterina/krabice-dort.svg", alt: "", draggable: "false" })]);
     room.appendChild(table); room.appendChild(cat); room.appendChild(box);
+    s1.sec.appendChild(el("div", { "class": "vet-zvuk-row" }, [zvukButton()]));
     s1.sec.appendChild(el("div", { "class": "vet-room-wrap" }, [room]));
     var onTable = false, done = false;
     function putOnTable() {
@@ -458,7 +487,7 @@
     }
     function openBox() {
       if (!onTable || done) return;
-      done = true; room.classList.add("is-open"); box.disabled = true;
+      done = true; room.classList.add("is-open"); box.disabled = true; zvuk("predeni-3");
       box.firstChild.src = "images/veterina/dort.svg"; box.setAttribute("aria-label", B.hotovo);
       var s2 = step(host, B.hotovo, "vet-s-konec");
       s2.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [
@@ -486,5 +515,5 @@
     return renderStart();
   }
 
-  window.Veterina = { render: render, cured: cured, birthdayToday: birthdayToday };
+  window.Veterina = { render: render, cured: cured, birthdayToday: birthdayToday, zvuky: zvuky };
 })();

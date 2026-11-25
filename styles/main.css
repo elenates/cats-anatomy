@@ -738,3 +738,9 @@ a.menu-card:active {
   .vet-cekarna { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .vet-exams { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Sounds on or off (#113) */
+.vet-zvuk-row { display: flex; justify-content: flex-end; margin: 0 0 6px; }
+.vet-zvuk { font: inherit; font-size: .95rem; padding: 6px 12px; min-height: 44px; border-radius: 999px; border: 2px solid #c9bfb5;
+  background: #fff; color: #2b2420; cursor: pointer; }
+.vet-zvuk[aria-pressed="false"] { background: #f0efec; color: #5c5149; }
