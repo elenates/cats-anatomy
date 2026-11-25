@@ -590,12 +590,12 @@ ADVENT = dict(
     tipy=[
       dict(tema="Svíčky", text="Kočka si může o svíčku ožehnout vousky nebo ocas, nebo ji shodit a způsobit požár. Hořící svíčku nikdy nenechávej s kočkou bez dozoru. Bezpečnější jsou svíčky na baterky.",
            sources="VCA-HOLIDAY-CAT (cats can burn themselves or knock candles over; never unattended; battery candles); CP-CANDLES (cats get too close and burn themselves or knock the candle over and cause a fire); PV-CANDLES (singed whiskers, burnt paws or tails, knocked-over candles)"),
-      dict(tema="Lameta a stužky", text="Lesklá lameta, stužky a provázky lákají kočky ke hře. Když je kočka spolkne, můžou se jí zamotat ve střevech a pak musí na operaci. Schovej je tam, kam kočka nedosáhne.",
+      dict(tema="Lameta a stužky", text="Lesklá lameta, stužky a provázky lákají kočky ke hře. Když je kočka spolkne, můžou se jí zamotat ve střevech a způsobit vážné zdravotní problémy. Někdy je nutná operace. Schovej je tam, kam kočka nedosáhne.",
            sources="VCA-LINEAR-FB (string, yarn and tinsel; tearing of the intestines; surgery); CP-CHRISTMAS (tinsel and ribbon are easily swallowed); CORNELL-HOLIDAY (tinsel can lodge in the intestines)"),
       dict(tema="Lilie", text="Lilie jsou pro kočky velmi jedovaté. Stačí okousat kousek listu, olízat pyl ze srsti nebo se napít vody z vázy a může to kočce vážně poškodit ledviny. Do bytu s kočkou lilie nepatří.",
            sources="ICATCARE-LILY (all parts toxic; a leaf, pollen or vase water can be fatal; kidney damage); FDA-LILY (true lilies and daylilies; kidney failure in less than 3 days); CP-CHRISTMAS (lilies and lily pollen very dangerous, also the vase water)"),
-      dict(tema="Vánoční stromeček", text="Vánoční stromeček láká kočky ke šplhání. Skleněné ozdoby se můžou rozbít, kabely od světýlek může kočka prokousnout a vodu ve stojanu by neměla pít. Stromeček dobře upevni a vodu ve stojanu zakryj.",
+      dict(tema="Vánoční stromeček", text="Vánoční stromeček láká kočky ke šplhání. Skleněné ozdoby se můžou rozbít, kabely od světýlek může kočka prokousnout a vodu ve stojanu by neměla pít. Stromeček dobře upevni a zakryj vodu ve stojanu.",
            sources="ANIMALTRUST-XMAS (secure real trees against tipping over; cover the water in the stand); AAHA-HOLIDAY (tree water often treated with chemicals that make cats sick); CP-XMAS-TIPS (glass baubles dangerous); PETPLAN-XMAS (fairy lights a risk)"),
     ],
-    flags="Lenka (2026-11-25): one tip per Sunday; shown only on the Advent Sundays; the vet checks the tips.",
+    flags="Lenka (2026-11-25): one tip per Sunday; shown only on the Advent Sundays. Vet view (2026-11-25): not every swallowed ribbon or tinsel needs surgery (it may pass, be vomited, or be removed by endoscope), so „Někdy je nutná operace.“; the lily message is right (true lilies and daylilies are the dangerous ones); the tree hazards are enough for children (fallen needles optional).",
 )
