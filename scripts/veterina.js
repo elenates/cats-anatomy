@@ -87,7 +87,7 @@
   function curedCount() { return V().pripady.filter(function (p) { return cured[p.id]; }).length; }
   function surprises() { return (V().zvlastni || []).filter(function (z) { return curedCount() >= z.odemknout; }); }
   // Sounds (#113): only after a tap, a button switches them off. Sick cats meow on the table (two recordings,
-  // taken in turn by the order of the cases), frightened cats hiss, cured cats purr (three recordings in turn),
+  // taken in turn by the order of the cases), frightened cats hiss, cured cats purr (two recordings in turn; the third one Lenka picked was too low to hear on laptop and phone speakers),
   // Rádža growls when frightened. Healthy visits do not meow; Šuma and Fred have no sound (no free recording).
   // The choice is kept in localStorage when the browser allows it. Veterina.zvuky logs what played (for the tests).
   var zvuky = [], ztlumeno = false;
@@ -101,7 +101,7 @@
     var i = V().pripady.indexOf(p), card = p.nemoc && (D.nemoci.items || []).filter(function (c) { return c.id === p.nemoc; })[0];
     if (p.id === "radza") return { strach: "tygr" };
     if (i < 0) return {};
-    return { stul: card && card.badge === "zdrava" ? null : "mnoukani-" + (i % 2 + 1), strach: "syceni", hotovo: "predeni-" + (i % 3 + 1) };
+    return { stul: card && card.badge === "zdrava" ? null : "mnoukani-" + (i % 2 + 1), strach: "syceni", hotovo: "predeni-" + (i % 2 + 1) };
   }
   function zvukButton() {
     var b = el("button", { type: "button", "class": "vet-zvuk", "aria-pressed": String(!ztlumeno) });
@@ -487,7 +487,7 @@
     }
     function openBox() {
       if (!onTable || done) return;
-      done = true; room.classList.add("is-open"); box.disabled = true; zvuk("predeni-3");
+      done = true; room.classList.add("is-open"); box.disabled = true; zvuk("predeni-2");
       box.firstChild.src = "images/veterina/dort.svg"; box.setAttribute("aria-label", B.hotovo);
       var s2 = step(host, B.hotovo, "vet-s-konec");
       s2.sec.appendChild(el("div", { "class": "nemoc-pozor", role: "note" }, [

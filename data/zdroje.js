@@ -503,17 +503,10 @@ window.ATLAS_DATA.zdroje = {
     },
     {
       heading: "Předení vyléčené kočky 2 (Na veterině)",
-      parts: [{ text: "Autor: " }, { text: "Insanejeff", href: "https://commons.wikimedia.org/wiki/File:Purr_(10_sec_loopable).ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
-      licence: [{ text: "Licence: volné dílo (public domain)." }],
-      changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
-      figures: [{ cs: "Předení vyléčené kočky 2", file: "sounds/veterina/predeni-2.mp3" }]
-    },
-    {
-      heading: "Předení vyléčené kočky 3 (Na veterině)",
       parts: [{ text: "Autor: " }, { text: "Adam Cuerden", href: "https://commons.wikimedia.org/wiki/File:Whiskers%27_purr.ogg" }, { text: ". Zdroj: Wikimedia Commons." }],
       licence: [{ text: "Licence: volné dílo (public domain)." }],
       changes: [{ text: "Úpravy: zkráceno, hlasitost sjednocena s ostatními zvuky a převedeno do formátu MP3." }],
-      figures: [{ cs: "Předení vyléčené kočky 3", file: "sounds/veterina/predeni-3.mp3" }]
+      figures: [{ cs: "Předení vyléčené kočky 2", file: "sounds/veterina/predeni-2.mp3" }]
     },
     {
       heading: "Syčení vystrašené kočky (Na veterině)",

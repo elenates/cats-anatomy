@@ -285,7 +285,7 @@ with sync_playwright() as p:
     zp.goto(url("/veterina/ordinace/felix")); zp.wait_for_timeout(120); zp.click(".vet-cat")
     zp.click(".vet-exam[data-exam='lupa']"); zp.click(".vet-s-vysetreni .quiz-next")
     zp.click(f".vet-s-coje [data-option='{felix['nemoc']}']"); n = len(log()); zp.click(".vet-s-pomuze [data-option='lecba']"); zp.wait_for_timeout(50)
-    r.ok(zp.locator(".vet-s-konec").count() == 1 and log()[n:] == [f"predeni-{i % 3 + 1}"], f"sound: a cured cat purrs ({log()[n:]})")
+    r.ok(zp.locator(".vet-s-konec").count() == 1 and log()[n:] == [f"predeni-{i % 2 + 1}"], f"sound: a cured cat purrs ({log()[n:]})")
     # the button
     zp.goto(url("/veterina/ordinace/" + sick[0]["id"])); zp.wait_for_timeout(120)
     btn = zp.locator(".vet-zvuk")
@@ -295,7 +295,7 @@ with sync_playwright() as p:
     zp.goto(url("/veterina/ordinace/bublina")); zp.wait_for_timeout(120)
     r.ok(zp.locator(".vet-zvuk").get_attribute("aria-pressed") == "false", "sound button: off stays off on the next patient")
     zp.click(".vet-zvuk"); zp.click(".vet-cat"); zp.wait_for_timeout(450); n = len(log()); zp.click(".vet-krabice")
-    r.ok(log()[n:] == ["predeni-3"], "sound: Bublina purrs when the box opens")
+    r.ok(log()[n:] == ["predeni-2"], "sound: Bublina purrs when the box opens")
     r.ok(zp.evaluate("[...new Set(Veterina.zvuky)].every(n => true)") and all(os.path.exists(os.path.join(ROOT, "sounds", "veterina", n + ".mp3")) for n in set(log())), "sound files exist")
 
     ph = r.watch(b.new_page(viewport=VIEWPORTS["phone"]))
