@@ -219,6 +219,25 @@ with sync_playwright() as p:
         r.ok(pg.evaluate("location.hash").split("/")[-1] not in list(P) + [V["narozeniny"]["id"]], "Náhodný pacient never picks a carrier patient or the birthday guest")
         pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(50)
 
+
+    # Advent Sundays (#118): the wreath with one more candle and one tip per Sunday; the hidden address
+    # „?datum=RRRR-MM-DD“ shows any day. The four Sundays before 25 December, also when 24 December is a Sunday.
+    A = V["advent"]
+    days = pg.evaluate("""[[2026,11,29],[2026,12,6],[2026,12,13],[2026,12,20],[2026,12,27],[2026,11,22],[2026,11,30],
+        [2023,12,3],[2023,12,24],[2027,11,28]].map(d => Veterina.adventSunday(new Date(d[0], d[1] - 1, d[2])))""")
+    r.ok(days == [1, 2, 3, 4, 0, 0, 0, 1, 4, 1], f"Advent Sundays {days}")
+    for n, d in enumerate(["2026-11-29", "2026-12-06", "2026-12-13", "2026-12-20"], 1):
+        pg.goto(url("/veterina/ordinace?datum=" + d)); pg.wait_for_timeout(120)
+        box = pg.locator(".vet-advent"); tip = A["tipy"][n - 1]
+        r.ok(box.count() == 1 and A["nadpis"].replace("{n}", str(n)) in box.inner_text() and tip["text"] in box.inner_text()
+             and box.locator(".vet-plamen").count() == n, f"Advent {n}: wreath with {n} candles and tip „{tip['tema']}“")
+    pg.goto(url("/veterina/ordinace?datum=2026-12-13")); pg.wait_for_timeout(120)
+    r.ok(pg.locator(".vet-advent").count() == 1 and pg.locator(".vet-narozeniny").count() == 1, "13 December 2026: the 3rd Advent Sunday and Bublina's birthday together")
+    pg.goto(url("/veterina/ordinace?datum=2026-12-14")); pg.wait_for_timeout(120)
+    r.ok(pg.locator(".vet-advent").count() == 0 and pg.locator(".vet-narozeniny").count() == 1, "test address: the day after, no wreath, still the birthday")
+    pg.goto(url("/veterina/ordinace?datum=2026-12-16")); pg.wait_for_timeout(120)
+    r.ok(pg.locator(".vet-advent").count() == 0 and pg.locator(".vet-narozeniny").count() == 0, "test address: an ordinary day")
+
     # The birthday guest (#113): only on 13–15 December by the device clock; the hidden address works on any day
     B = V["narozeniny"]
     days = pg.evaluate("[[12,12],[12,13],[12,14],[12,15],[12,16],[1,13]].map(d => Veterina.birthdayToday(new Date(2026, d[0] - 1, d[1])))")
@@ -303,6 +322,8 @@ with sync_playwright() as p:
     r.ok(ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone waiting room: no sideways scroll")
     ph.evaluate("Veterina.cured.radza = true"); ph.goto(url("/veterina/ordinace/mourek")); ph.goto(url("/veterina/ordinace")); ph.wait_for_timeout(800)
     r.ok(ph.locator(".vet-prenosky").count() == 1 and ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone: carriers fit the screen")
+    ph.goto(url("/veterina/ordinace?datum=2026-12-20")); ph.wait_for_timeout(300)
+    r.ok(ph.locator(".vet-advent").count() == 1 and ph.evaluate("document.documentElement.scrollWidth") <= 392, "phone: the Advent wreath fits the screen")
     ph.screenshot(path=shot("veterina-prenosky-phone.png"))
     ph.goto(url("/veterina/ordinace/pepina")); ph.wait_for_timeout(300)
     ph.click(".vet-cat")

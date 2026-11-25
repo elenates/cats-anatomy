@@ -123,8 +123,38 @@
   }
   // The birthday guest (#113): only on the days in narozeniny.dny by the device clock; „#/veterina/ordinace/<id>“ opens
   // it on any day (the hidden test address).
+  // Today, or the day in the hidden test address „#/veterina/ordinace?datum=RRRR-MM-DD“ (#118), so every holiday
+  // can be seen on any day.
+  function dnes() {
+    var m = /[?&]datum=(\d{4})-(\d{1,2})-(\d{1,2})/.exec(location.hash);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date();
+  }
+  // Advent Sundays (#118): the four Sundays before 25 December. Returns 1–4, or 0 on any other day.
+  function adventSunday(now) {
+    now = now || dnes();
+    if (now.getDay() !== 0) return 0;
+    var xmas = new Date(now.getFullYear(), 11, 25), fourth = new Date(xmas);
+    fourth.setDate(25 - (xmas.getDay() || 7));   // the last Sunday before Christmas Day
+    var weeks = Math.round((fourth - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 6048e5);
+    return weeks >= 0 && weeks <= 3 ? 4 - weeks : 0;
+  }
+  // The wreath: own drawing in code (MIT), n candles lit.
+  function venec(n) {
+    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 200 130"); svg.setAttribute("class", "vet-venec-svg"); svg.setAttribute("aria-hidden", "true");
+    var h = '<ellipse cx="100" cy="104" rx="88" ry="20" fill="#2f6b3a"/><ellipse cx="100" cy="100" rx="84" ry="18" fill="#3f8a4b"/>' +
+      '<g fill="#b5562a">' + [30, 62, 100, 138, 170].map(function (x, i) { return '<circle cx="' + x + '" cy="' + (i % 2 ? 112 : 96) + '" r="5"/>'; }).join("") + '</g>';
+    [44, 82, 118, 156].forEach(function (x, i) {
+      var lit = i < n, y = i % 2 ? 46 : 40;
+      h += '<rect x="' + (x - 9) + '" y="' + y + '" width="18" height="' + (100 - y) + '" rx="4" fill="' + (lit ? "#f3d9e6" : "#e6e1dc") + '" stroke="#2b2420" stroke-width="2.5"/>' +
+        '<path d="M' + x + ' ' + y + 'v-6" stroke="#2b2420" stroke-width="2"/>' +
+        (lit ? '<path class="vet-plamen" d="M' + x + ' ' + (y - 6) + 'c-7-8 0-16 0-24 7 8 7 16 0 24z" fill="#ffcc3d" stroke="#b5562a" stroke-width="2"/>' : "");
+    });
+    svg.innerHTML = h;
+    return svg;
+  }
   function birthdayToday(now) {
-    var B = V().narozeniny; now = now || new Date();
+    var B = V().narozeniny; now = now || dnes();
     return !!B && B.dny.some(function (d) { return d[0] === now.getMonth() + 1 && d[1] === now.getDate(); });
   }
   function card(id) { return window.InfoCard.find("nemoci", id) || { cs: id }; }
@@ -154,6 +184,15 @@
         el("span", null, [el("strong", { text: ui.vetPrekvapeni || "Překvapení!" }), document.createTextNode(" " + (ui.vetPrekvapeniText || "")),
           el("span", { "class": "vet-jmeno", text: z.kocka })])]));
     });
+    var an = adventSunday(), A = V().advent;
+    if (an && A) {
+      var tip = A.tipy[an - 1];
+      nodes.push(el("section", { "class": "vet-advent", "aria-label": fmt(A.nadpis, { n: an }) }, [venec(an),
+        el("div", null, [el("h2", { "class": "card-h", text: fmt(A.nadpis, { n: an }) }),
+          el("p", { "class": "card-p", text: fmt(A.text, { svicky: A.svicky[an - 1] }) }),
+          el("div", { "class": "nemoc-pozor", role: "note" }, [el("strong", { text: (D.nemoci.labels || {}).pozor || "Pozor!" }),
+            document.createTextNode(" " + tip.tema + ": " + tip.text)])])]));
+    }
     if (birthdayToday()) {
       var B = V().narozeniny;
       nodes.push(el("a", { "class": "vet-prekvapeni vet-narozeniny", href: "#/veterina/ordinace/" + B.id, "data-pacient": B.id }, [
@@ -515,5 +554,5 @@
     return renderStart();
   }
 
-  window.Veterina = { render: render, cured: cured, birthdayToday: birthdayToday, zvuky: zvuky };
+  window.Veterina = { render: render, cured: cured, birthdayToday: birthdayToday, adventSunday: adventSunday, zvuky: zvuky };
 })();

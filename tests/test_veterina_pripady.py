@@ -126,6 +126,16 @@ if B:
         rel = "images/veterina/" + n + ".svg"
         if not os.path.exists(os.path.join(ROOT, rel)) or "| `" + rel + "` |" not in l_md2 or rel not in z_js2: fails.append(f"{rel}: missing, or no licence row or source card")
     pictures(B)
+# Advent wreath (#118): four tips, each with sources listed in references.md
+A = getattr(V, "ADVENT", None)
+if A:
+    if len(A["tipy"]) != 4 or len(A["svicky"]) != 4: fails.append("advent: four Sundays, four tips")
+    for t in A["tipy"]:
+        if not t["tema"].strip() or not t["text"].strip(): fails.append("advent: empty tip")
+        refs = re.findall(r"([A-Z][A-Z0-9-]+) \(", t["sources"])
+        if not refs: fails.append(f"advent {t['tema']}: no sources")
+        for ref in refs:
+            if "| " + ref + " |" not in refs_md: fails.append(f"advent {t['tema']}: source {ref} not in references.md")
 for c in sorted(cards - used): fails.append(f"card {c} has no case")
 if len(set(fotos)) != len(fotos): fails.append("two cases share a patient photo")
 print(f"veterina cases: {len(V.PRIPADY)} cases for {len(cards)} cards")

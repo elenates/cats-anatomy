@@ -75,6 +75,7 @@ L = ["/*",
 " *   strachFoto, strachOtazka, strachSpatne, naStul, vim, osetriNadpis, hotovo, odemknout (cured cats needed to show it),",
 " *   texty (the patient's own wording for UI strings, by ui key), vysetreniCs (own names of examinations)",
 " * prenosky: the carrier patients (#113), shown after Rádža is cured: like zvlastni, without the frightened step",
+" * advent: the Advent wreath (#118): nadpis, text, svicky, tipy [{tema, text, refs}]",
 " * narozeniny: the birthday guest (#113): id, jmeno, kocka, foto, dlazdice, pribeh, naStul, hotovo, pozor, dny [[month, day]], refs",
 " * leky: the kinds of medicine in the drawer: id (lek-<kind>, icon nastroje/<id>.svg), cs",
 " * strach: the frightened-cat step (#104): jak, otazka, spravne {text, proc}, spatne [{text, proc}], doma,",
@@ -98,6 +99,9 @@ L.append(",\n".join("    " + js({**{k: v for k, v in z.items() if k not in ("sou
 L += ["  ],", "  prenosky: ["]
 L.append(",\n".join("    " + js({**{k: v for k, v in z.items() if k not in ("sources", "flags")}, "refs": refs(z["sources"])}) for z in V.PRENOSKY))
 B = V.NAROZENINY
-L += ["  ],", "  narozeniny: " + js({**{k: v for k, v in B.items() if k not in ("sources", "flags")}, "refs": refs(B["sources"])}), "};", ""]
+A = V.ADVENT
+L += ["  ],", "  narozeniny: " + js({**{k: v for k, v in B.items() if k not in ("sources", "flags")}, "refs": refs(B["sources"])}) + ",",
+      "  advent: " + js({**{k: v for k, v in A.items() if k not in ("tipy", "flags")},
+                         "tipy": [{**{k: v for k, v in x.items() if k != "sources"}, "refs": refs(x["sources"])} for x in A["tipy"]]}), "};", ""]
 open(os.path.join(ROOT, "data/veterina.js"), "w", encoding="utf-8").write("\n".join(L))
 print(len(N.NEMOCI), len(V.PRIPADY))
