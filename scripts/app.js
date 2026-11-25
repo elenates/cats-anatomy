@@ -524,8 +524,9 @@
     var z = data.zdroje;
     var nodes = [el("a", { "class": "back-link", href: "#/", text: "← " + ui.back }), el("h1", { "class": "screen-title", text: z.title }),
       el("p", { "class": "about-p", text: z.intro })];
-    var imgs = el("section", { "class": "about-section" }, [el("h2", { text: z.imagesHeading })]);
-    z.images.forEach(function (g) {
+    function cards(heading, list) {
+    var imgs = el("section", { "class": "about-section" }, [el("h2", { text: heading })]);
+    list.forEach(function (g) {
       var card = el("article", { "class": "about-card" }, [Array.isArray(g.heading) ? (function () { var h = parts(g.heading, ""); var h3 = el("h3"); while (h.firstChild) h3.appendChild(h.firstChild); return h3; })() : el("h3", { text: g.heading })]);
       ["parts", "source", "licence", "changes"].forEach(function (k) { if (g[k]) card.appendChild(parts(g[k])); });
       if (g.figures.length > 1 || g.figures[0].no) {
@@ -535,7 +536,10 @@
       } else card.setAttribute("data-file", g.figures[0].file);
       imgs.appendChild(card);
     });
-    nodes.push(imgs);
+    return imgs;
+    }
+    nodes.push(cards(z.imagesHeading, z.images));
+    if (z.sounds && z.sounds.length) nodes.push(cards(z.soundsHeading || "Zvuky", z.sounds));   // #113
     [["textsHeading", "texts"], ["privacyHeading", "privacy"], ["codeHeading", "code"]].forEach(function (k) {
       nodes.push(el("section", { "class": "about-section" }, [el("h2", { text: z[k[0]] })].concat(z[k[1]].map(function (x) { return parts(x); }))));
     });

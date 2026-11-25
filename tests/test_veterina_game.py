@@ -120,6 +120,8 @@ with sync_playwright() as p:
     pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(150)
     tile = pg.locator(".vet-prekvapeni")
     r.ok(len(done) >= Z["odemknout"] and tile.count() == 1 and ui["vetPrekvapeni"] in tile.inner_text() and Z["kocka"] in tile.inner_text(), "surprise patient shown after cures")
+    try: pg.wait_for_function("() => { const i = document.querySelector('.vet-prekvapeni img'); return i && i.complete && i.naturalWidth > 0; }", timeout=5000)
+    except Exception: pass
     r.ok(tile.locator("img").evaluate("i => i.complete && i.naturalWidth > 0"), "surprise photo loads")
     for _ in range(12):
         pg.click(".vet-random"); pg.wait_for_timeout(60)
@@ -254,6 +256,47 @@ with sync_playwright() as p:
     # paws last only while the page is open
     pg.reload(); pg.goto(url("/veterina/ordinace")); pg.wait_for_timeout(200)
     r.ok(pg.locator(".vet-tlapka").count() == 0, "paws are gone after a reload")
+
+
+    # Sounds (#113): sick cats meow on the table, frightened cats hiss, cured cats purr, healthy visits do not meow;
+    # Rádža growls; Šuma and Fred are silent; the button switches the sounds off (kept while the browser allows it)
+    zp = r.watch(b.new_page(viewport={"width": 1280, "height": 900}))
+    zp.goto(url("/veterina/ordinace")); zp.evaluate("try { localStorage.removeItem('vet-zvuky') } catch (e) {}")
+    def log(): return zp.evaluate("Veterina.zvuky.slice()")
+    pr = V["pripady"]; karty = {k["id"]: k for k in N["items"]}
+    sick = [c for c in pr if not c.get("strach") and karty[c["nemoc"]]["badge"] != "zdrava"][:2]
+    for c in sick:
+        n = len(log()); zp.goto(url("/veterina/ordinace/" + c["id"])); zp.wait_for_timeout(120); zp.click(".vet-cat")
+        i = pr.index(c)
+        r.ok(log()[n:] == [f"mnoukani-{i % 2 + 1}"], f"sound: {c['id']} meows on the table ({log()[n:]})")
+    zdrava = next(c for c in pr if karty[c["nemoc"]]["badge"] == "zdrava" and not c.get("strach"))
+    n = len(log()); zp.goto(url("/veterina/ordinace/" + zdrava["id"])); zp.wait_for_timeout(120); zp.click(".vet-cat")
+    r.ok(log()[n:] == [], f"sound: a healthy visit ({zdrava['id']}) does not meow")
+    scared = next(c for c in pr if c.get("strach"))
+    n = len(log()); zp.goto(url("/veterina/ordinace/" + scared["id"])); zp.wait_for_timeout(120); zp.click(".vet-cat")
+    r.ok(log()[n:] == ["syceni"], f"sound: {scared['id']} hisses when frightened")
+    n = len(log()); zp.goto(url("/veterina/ordinace/radza")); zp.wait_for_timeout(120); zp.click(".vet-cat")
+    r.ok(log()[n:] == ["tygr"], "sound: Rádža growls when frightened")
+    for q in V["prenosky"]:
+        n = len(log()); zp.goto(url("/veterina/ordinace/" + q["id"])); zp.wait_for_timeout(120); zp.click(".vet-cat")
+        r.ok(log()[n:] == [], f"sound: {q['id']} is silent")
+    # a whole case ends with a purr: Felix needs no treatment
+    felix = next(c for c in pr if c["id"] == "felix"); i = pr.index(felix)
+    zp.goto(url("/veterina/ordinace/felix")); zp.wait_for_timeout(120); zp.click(".vet-cat")
+    zp.click(".vet-exam[data-exam='lupa']"); zp.click(".vet-s-vysetreni .quiz-next")
+    zp.click(f".vet-s-coje [data-option='{felix['nemoc']}']"); n = len(log()); zp.click(".vet-s-pomuze [data-option='lecba']"); zp.wait_for_timeout(50)
+    r.ok(zp.locator(".vet-s-konec").count() == 1 and log()[n:] == [f"predeni-{i % 3 + 1}"], f"sound: a cured cat purrs ({log()[n:]})")
+    # the button
+    zp.goto(url("/veterina/ordinace/" + sick[0]["id"])); zp.wait_for_timeout(120)
+    btn = zp.locator(".vet-zvuk")
+    r.ok(btn.get_attribute("aria-pressed") == "true" and btn.inner_text() == ui["vetZvukZap"], "sound button: on")
+    btn.click(); n = len(log()); zp.click(".vet-cat")
+    r.ok(btn.get_attribute("aria-pressed") == "false" and btn.inner_text() == ui["vetZvukVyp"] and log()[n:] == [], "sound button: off, nothing plays")
+    zp.goto(url("/veterina/ordinace/bublina")); zp.wait_for_timeout(120)
+    r.ok(zp.locator(".vet-zvuk").get_attribute("aria-pressed") == "false", "sound button: off stays off on the next patient")
+    zp.click(".vet-zvuk"); zp.click(".vet-cat"); zp.wait_for_timeout(450); n = len(log()); zp.click(".vet-krabice")
+    r.ok(log()[n:] == ["predeni-3"], "sound: Bublina purrs when the box opens")
+    r.ok(zp.evaluate("[...new Set(Veterina.zvuky)].every(n => true)") and all(os.path.exists(os.path.join(ROOT, "sounds", "veterina", n + ".mp3")) for n in set(log())), "sound files exist")
 
     ph = r.watch(b.new_page(viewport=VIEWPORTS["phone"]))
     ph.goto(url("/veterina/ordinace")); ph.wait_for_timeout(300)

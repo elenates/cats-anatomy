@@ -133,6 +133,8 @@ window.ATLAS_DATA.ui = {
   vetPrenoska: "{n}. přepravka",
   vetOtevrit: "Otevřít {n}. přepravku",
   vetKrabice: "Otevřít krabici",
+  vetZvukZap: "🔊 Zvuky zapnuté",
+  vetZvukVyp: "🔇 Zvuky vypnuté",
   vetVysledky: "Výsledky vyšetření",
   vetVim: "Vím, co kočce je →",
   vetCoJe: "Co kočce je?",
