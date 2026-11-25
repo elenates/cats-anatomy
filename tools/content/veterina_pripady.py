@@ -597,5 +597,5 @@ ADVENT = dict(
       dict(tema="Vánoční stromeček", text="Vánoční stromeček láká kočky ke šplhání. Skleněné ozdoby se můžou rozbít, kabely od světýlek může kočka prokousnout a vodu ve stojanu by neměla pít. Stromeček dobře upevni a zakryj vodu ve stojanu.",
            sources="ANIMALTRUST-XMAS (secure real trees against tipping over; cover the water in the stand); AAHA-HOLIDAY (tree water often treated with chemicals that make cats sick); CP-XMAS-TIPS (glass baubles dangerous); PETPLAN-XMAS (fairy lights a risk)"),
     ],
-    flags="Lenka (2026-11-25): one tip per Sunday; shown only on the Advent Sundays. Vet view (2026-11-25): not every swallowed ribbon or tinsel needs surgery (it may pass, be vomited, or be removed by endoscope), so „Někdy je nutná operace.“; the lily message is right (true lilies and daylilies are the dangerous ones); the tree hazards are enough for children (fallen needles optional).",
+    flags="Lenka (2026-11-25): one tip per Sunday; shown only on the Advent Sundays. Vet view (2026-11-25): not every swallowed ribbon or tinsel needs surgery (it may pass, be vomited, or be removed by endoscope), so „Někdy je nutná operace.“; the lily message is right (true lilies and daylilies are the dangerous ones; Lenka keeps „lilie“ for children, 2026-11-25); the tree hazards are enough for children (fallen needles optional).",
 )
