@@ -64,6 +64,19 @@ for p in cases:
     if not p["lecba"] or not p["pribeh"]: fails.append(f"case {i}: missing text")
     if not os.path.exists(os.path.join(ROOT, "images", "veterina", p["foto"] + ".webp")): fails.append(f"case {i}: photo missing")
 
+# Sounds (#113): every sound must be audible on laptop and phone speakers, which hardly play anything below
+# ~150 Hz. A purr recorded almost only below 150 Hz was silent there (Lenka, 2026-11-25), so at least a fifth
+# of each sound's energy must lie above 150 Hz. Needs ffmpeg; skipped without it.
+import glob, shutil, subprocess
+if shutil.which("ffmpeg"):
+    import numpy as np
+    for f in sorted(glob.glob(os.path.join(ROOT, "sounds", "**", "*.mp3"), recursive=True)):
+        a = np.frombuffer(subprocess.run(["ffmpeg", "-v", "0", "-i", f, "-ac", "1", "-ar", "16000", "-f", "s16le", "-"], capture_output=True).stdout, np.int16).astype(float)
+        S = np.abs(np.fft.rfft(a)) ** 2; fr = np.fft.rfftfreq(len(a), 1 / 16000)
+        share = S[fr >= 150].sum() / S.sum() if S.sum() else 0
+        if share < 0.2: fails.append(f"{os.path.relpath(f, ROOT)}: only {share:.0%} of the sound above 150 Hz, too low for small speakers")
+else:
+    print("(ffmpeg missing: sound check skipped)")
 print(f"veterina data: {len(cards)} cards, {len(cases)} cases, {len(ex)} examinations")
 if fails:
     print("\n".join("FAIL " + f for f in fails)); sys.exit(1)
