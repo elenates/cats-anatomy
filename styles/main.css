@@ -744,3 +744,14 @@ a.menu-card:active {
 .vet-zvuk { font: inherit; font-size: .95rem; padding: 6px 12px; min-height: 44px; border-radius: 999px; border: 2px solid #c9bfb5;
   background: #fff; color: #2b2420; cursor: pointer; }
 .vet-zvuk[aria-pressed="false"] { background: #f0efec; color: #5c5149; }
+
+/* Advent wreath (#118) */
+.vet-advent { display: flex; gap: 16px; align-items: center; margin: 0 0 16px; padding: 12px 16px; border-radius: 14px;
+  background: #eef6ee; border: 3px solid #3f8a4b; }
+.vet-venec-svg { flex: 0 0 180px; width: 180px; height: auto; }
+.vet-advent .card-h { margin: 0 0 4px; }
+.vet-advent .nemoc-pozor { margin: 8px 0 0; }
+.vet-plamen { transform-origin: center bottom; transform-box: fill-box; animation: vet-plamen 1.6s ease-in-out infinite alternate; }
+@keyframes vet-plamen { from { transform: scale(1, 1); } to { transform: scale(.88, 1.08); } }
+@media (prefers-reduced-motion: reduce) { .vet-plamen { animation: none; } }
+@media (max-width: 560px) { .vet-advent { flex-direction: column; align-items: stretch; } .vet-venec-svg { flex-basis: auto; width: 160px; margin: 0 auto; } }
